@@ -398,6 +398,7 @@ footer .hover\:pl-1:hover { padding-left: 4px; }
   .hero-stats { gap: 1px; }
 }
 
+
 /* ─── Utility animations ─── */
 @keyframes spin { to { transform: rotate(360deg); } }
 .fa-spin { animation: spin 1s linear infinite; }

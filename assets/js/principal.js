@@ -416,6 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (a.getAttribute('href') === `#${id}`) {
             a.style.color = 'var(--ouro)';
           }
+          
         });
       }
     });
