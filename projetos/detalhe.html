@@ -3,210 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos – RPP Engenharia e Construção Civil</title>
+    <meta name="description" content="Portefólio completo de projetos de engenharia e construção civil da RPP.">
 
-    <!-- SEO Dinâmico Futuro -->
-    <title>Detalhe do Projeto | RPP Engenharia</title>
-    <meta name="description" content="Detalhes completos do projeto executado pela RPP – Engenharia e Construção Civil, LDA.">
-    <meta name="robots" content="index, follow">
-
-    <!--Icons-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!--FAVICON-->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../assets/css/estilos.css">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              verde: { DEFAULT: '#0F4D35', escuro: '#0A3D28', claro: '#1A6B4A' },
+              ouro:  { DEFAULT: '#C49A3C', claro: '#D4AC54' },
+              carvao: '#1C1C1E',
+              creme:  '#F7F4EF'
+            },
+            fontFamily: {
+              display:    ['Cormorant Garamond', 'serif'],
+              body:       ['DM Sans', 'sans-serif'],
+              condensed:  ['Barlow Condensed', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+      body { font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+      :root { --verde: #0F4D35; --ouro: #C49A3C; --carvao: #1C1C1E; }
+      ::-webkit-scrollbar { width: 5px; }
+      ::-webkit-scrollbar-thumb { background: var(--verde); border-radius: 10px; }
+
+      .project-card {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid #e5e7eb;
+        cursor: pointer;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+      .project-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.12); }
+      .card-img-wrap { position: relative; height: 240px; overflow: hidden; }
+      .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+      .project-card:hover .card-img-wrap img { transform: scale(1.07); }
+      .card-overlay {
+        position: absolute; inset: 0;
+        background: rgba(15, 77, 53, 0.75);
+        display: flex; align-items: center; justify-content: center;
+        opacity: 0; transition: opacity 0.4s;
+      }
+      .project-card:hover .card-overlay { opacity: 1; }
+      .badge {
+        position: absolute; top: 14px; left: 14px;
+        background: rgba(15, 77, 53, 0.9); color: #fff;
+        font-size: 11px; padding: 5px 12px; border-radius: 999px;
+        font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; z-index: 1;
+      }
+      .card-body { padding: 20px 22px 22px; }
+
+      .filter-btn {
+        padding: 8px 20px; border-radius: 999px;
+        border: 1px solid #e5e7eb; background: #fff;
+        color: #6b7280; font-size: 12px; font-weight: 500; letter-spacing: 0.05em;
+        transition: all 0.25s; cursor: pointer;
+      }
+      .filter-btn:hover { border-color: var(--verde); color: var(--verde); }
+      .filter-btn.active { background: var(--verde); border-color: var(--verde); color: #fff; }
+
+      .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+      .reveal.visible { opacity: 1; transform: translateY(0); }
+
+      .hero-tag { animation: fadeUp 0.6s ease forwards 0.2s; opacity: 0; }
+      .hero-title { animation: fadeUp 0.7s ease forwards 0.4s; opacity: 0; }
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+    </style>
 </head>
+<body class="font-body text-carvao bg-creme">
 
-<body class="font-inter text-gray-800">
-
-<!-- ================= HEADER ================= -->
-<header id="cabecalho-principal"
-        class="fixed top-0 w-full z-50 
-               transition-all duration-500 bg-white">
-
-    <div class="container mx-auto px-8 py-4 
-                flex justify-between items-center">
-
-        <!-- Logo -->
-        <h1 id="logo-principal"
-    class="flex items-center gap-3 text-1xl font-bold text-[#0F4D35] tracking-wide transition-colors duration-300">
-    
-            <img src="../assets/imagens/logo.jpeg" alt="RPP Logo" class="h-8 w-auto rounded-md">
-    
-            <span>RPP <p style="font-size: 12px; color: grey;">ENGENHARIA & CONSTRUÇÃO</p></span>
-        </h1>
-
-        <!-- Menu -->
-        <nav id="menu-principal"
-     class="hidden md:flex items-center 
-            space-x-10 text-sm font-medium text-[#0F4D35]
-            transition-colors duration-300">
-            <a href="../index.html#inicio" class="hover:text-gray-300 transition-colors duration-300">Início</a>
-            <a href="../index.html#sobre" class="hover:text-gray-300 transition-colors duration-300">Sobre</a>
-            <a href="../index.html#servicos" class="hover:text-gray-300 transition-colors duration-300">Serviços</a>
-            <a href="detalhe.html" class="hover:text-gray-300 transition-colors duration-300">Projetos</a>
-            <a href="../index.html#sustentabilidade" class="hover:text-gray-300 transition-colors duration-300">Sustentabilidade</a>
-            <a href="../index.html#contacto" class="hover:text-gray-300 transition-colors duration-300">Contacto</a>
-        </nav>
-
-        <!-- Botão -->
-        <a id="botao-proposta"
-            href="#contacto"
-            class="hidden md:inline-block
-                    border border-white
-                    px-6 py-2
-                    rounded-md
-                    text-white text-sm font-semibold tracking-wide
-                    transition-all duration-300
-                    bg-[#0F4D35]">
-                SOLICITAR PROPOSTA
-            </a>
-
+<!-- ── HEADER ── -->
+<header class="bg-carvao/95 backdrop-blur sticky top-0 z-50 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex justify-between items-center">
+        <a href="../index.html" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded bg-verde flex items-center justify-center">
+                <span class="text-white font-condensed font-bold text-xs tracking-widest">RPP</span>
+            </div>
+            <div class="leading-none">
+                <span class="block font-condensed font-bold text-white text-base tracking-wider">RPP</span>
+                <span class="block text-[10px] tracking-[0.2em] text-gray-500 uppercase">Engenharia & Construção</span>
+            </div>
+        </a>
+        <a href="../index.html#contacto"
+           class="inline-flex items-center gap-2 bg-verde text-white text-xs font-semibold tracking-wider px-5 py-2.5 rounded uppercase hover:bg-verde-claro transition-colors">
+            <i class="fa-solid fa-paper-plane text-xs"></i> Solicitar Proposta
+        </a>
     </div>
 </header>
 
-<!-- ================= HERO PORTFÓLIO ================= -->
-<section class="pt-28 pb-16 bg-gray-100">
-    <div class="container mx-auto px-6">
-
-       <a href="../index.html" class="text-sm hover:text-white text-[#0F4D35] items-center gap-2 mb-[20px] hover:bg-[#0F4D35]  px-2 py-2 rounded-full">
-            ← Voltar ao Início
-        </a>
-
-        <h1 class="text-4xl md:text-5xl font-bold font-montserrat text-[#232324] mb-6 mt-4">
-            Portfólio de Projetos
+<!-- ── HERO ── -->
+<section class="relative bg-carvao py-28 overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center opacity-20"
+         style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=60')"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-carvao/80 to-carvao"></div>
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-10">
+        <nav class="flex items-center gap-2 text-xs text-gray-500 mb-8 hero-tag">
+            <a href="../index.html" class="hover:text-white transition-colors">Início</a>
+            <span class="text-gray-700">/</span>
+            <span class="text-gray-300">Projetos</span>
+        </nav>
+        <div class="flex items-center gap-3 mb-5 hero-tag">
+            <div class="w-8 h-px bg-ouro"></div>
+            <span class="text-ouro font-condensed tracking-[0.25em] text-sm uppercase">Portefólio</span>
+        </div>
+        <h1 class="font-display text-5xl lg:text-7xl font-bold text-white leading-tight hero-title">
+            Todos os Projetos
         </h1>
-
-        <p class="text-gray-600 max-w-2xl">
-            Explore a nossa trajetória através de infraestruturas que transformam cidades
-            e impulsionam o futuro.
-        </p>
-
     </div>
 </section>
 
+<!-- ── FILTROS + GRID ── -->
+<section class="py-20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
 
-<!-- ================= FILTRO ================= -->
-<section class="py-12 bg-white">
-    <div class="container mx-auto px-6">
-
-        <div class="flex flex-wrap items-center gap-4">
-
-            <span class="text-gray-500 flex items-center gap-2">
-                <i class="fa-solid fa-filter"></i> Filtrar por:
-            </span>
-
-            <button class="filter-btn active" data-filter="all">Todos</button>
+        <!-- Filtros -->
+        <div class="flex flex-wrap gap-3 mb-14 reveal">
+            <button class="filter-btn active" data-filter="all">Todos os Projetos</button>
             <button class="filter-btn" data-filter="edificacao">Edificação</button>
             <button class="filter-btn" data-filter="infraestrutura">Infraestrutura</button>
             <button class="filter-btn" data-filter="sustentavel">Sustentável</button>
             <button class="filter-btn" data-filter="industrial">Industrial</button>
-
         </div>
 
-    </div>
-</section>
+        <!-- Grid -->
+        <div id="projectsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-
-<!-- ================= GRID DE PROJETOS ================= -->
-<section class="pb-24 bg-white">
-    <div class="container mx-auto px-6">
-
-        <div id="projectsGrid" class="grid md:grid-cols-3 gap-10">
-
-            <!-- CARD 1 -->
-            <div class="project-card cursor-pointer"
+            <div class="project-card reveal"
                  data-category="edificacao"
                  data-title="Torre Financeira Global"
-                 data-image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab"
-                 data-location="Lisboa"
-                 data-year="2023"
+                 data-image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
+                 data-location="Lisboa, Portugal" data-year="2023"
                  data-dimension="45.000 m²"
-                 data-description="Edifício corporativo de alto padrão com arquitetura contemporânea, eficiência energética e tecnologia sustentável integrada.">
-
-                <div class="card-image">
-                    <span class="badge">EDIFICAÇÃO</span>
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab">
+                 data-description="Edifício corporativo de alto padrão com arquitetura contemporânea, eficiência energética e tecnologia sustentável integrada. Um marco na skyline empresarial de Lisboa.">
+                <div class="card-img-wrap">
+                    <span class="badge">Edificação</span>
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Torre Financeira Global" loading="lazy">
+                    <div class="card-overlay"><span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand text-ouro mr-2"></i>Ver Detalhes</span></div>
                 </div>
-
-                <div class="card-content">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="card-title">Torre Financeira Global</h3>
-                        <span class="year">2023</span>
+                <div class="card-body">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-carvao text-lg">Torre Financeira Global</h3>
+                            <p class="text-gray-500 text-sm mt-1"><i class="fa-solid fa-location-dot text-ouro text-xs mr-1"></i>Lisboa, Portugal</p>
+                        </div>
+                        <span class="text-ouro font-condensed font-bold text-sm">2023</span>
                     </div>
-
-                    <p class="location"><i class="fa-solid fa-location-dot"></i> Lisboa</p>
-
-                    <div class="dimension">
-                        <span>DIMENSÃO</span>
-                        <strong>45.000 m²</strong>
+                    <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Dimensão</span>
+                        <span class="text-verde font-semibold text-sm">45.000 m²</span>
                     </div>
                 </div>
             </div>
 
-
-            <!-- CARD 2 -->
-            <div class="project-card cursor-pointer"
+            <div class="project-card reveal"
                  data-category="infraestrutura"
                  data-title="Ponte do Estuário"
-                 data-image="https://images.unsplash.com/photo-1501594907352-04cda38ebc29"
-                 data-location="Porto"
-                 data-year="2022"
+                 data-image="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80"
+                 data-location="Porto, Portugal" data-year="2022"
                  data-dimension="1.2 km"
-                 data-description="Projeto de infraestrutura moderna concebido para melhorar a mobilidade urbana e fortalecer a conectividade regional com padrões internacionais de segurança.">
-
-                <div class="card-image">
-                    <span class="badge">INFRAESTRUTURA</span>
-                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29">
+                 data-description="Infraestrutura moderna concebida para melhorar a mobilidade urbana e fortalecer a conectividade regional com padrões internacionais de segurança sísmica.">
+                <div class="card-img-wrap">
+                    <span class="badge">Infraestrutura</span>
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80" alt="Ponte do Estuário" loading="lazy">
+                    <div class="card-overlay"><span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand text-ouro mr-2"></i>Ver Detalhes</span></div>
                 </div>
-
-                <div class="card-content">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="card-title">Ponte do Estuário</h3>
-                        <span class="year">2022</span>
+                <div class="card-body">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-carvao text-lg">Ponte do Estuário</h3>
+                            <p class="text-gray-500 text-sm mt-1"><i class="fa-solid fa-location-dot text-ouro text-xs mr-1"></i>Porto, Portugal</p>
+                        </div>
+                        <span class="text-ouro font-condensed font-bold text-sm">2022</span>
                     </div>
-
-                    <p class="location"><i class="fa-solid fa-location-dot"></i> Porto</p>
-
-                    <div class="dimension">
-                        <span>DIMENSÃO</span>
-                        <strong>1.2 km</strong>
+                    <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Dimensão</span>
+                        <span class="text-verde font-semibold text-sm">1.2 km</span>
                     </div>
                 </div>
             </div>
 
-
-            <!-- CARD 3 -->
-            <div class="project-card cursor-pointer"
+            <div class="project-card reveal"
                  data-category="sustentavel"
                  data-title="Campus Tecnológico Verde"
-                 data-image="https://images.unsplash.com/photo-1466611653911-95081537e5b7"
-                 data-location="Madrid"
-                 data-year="2024"
+                 data-image="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80"
+                 data-location="Madrid, Espanha" data-year="2024"
                  data-dimension="12.000 m²"
-                 data-description="Complexo tecnológico sustentável com soluções de energia renovável, arquitetura bioclimática e certificações ambientais internacionais.">
-
-                <div class="card-image">
-                    <span class="badge">SUSTENTÁVEL</span>
-                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7">
+                 data-description="Complexo tecnológico sustentável com soluções de energia renovável, arquitetura bioclimática e certificação LEED Gold.">
+                <div class="card-img-wrap">
+                    <span class="badge">Sustentável</span>
+                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80" alt="Campus Tecnológico Verde" loading="lazy">
+                    <div class="card-overlay"><span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand text-ouro mr-2"></i>Ver Detalhes</span></div>
                 </div>
-
-                <div class="card-content">
-                    <div class="flex justify-between items-center mb-3">
-                        <h3 class="card-title">Campus Tecnológico Verde</h3>
-                        <span class="year">2024</span>
+                <div class="card-body">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-carvao text-lg">Campus Tecnológico Verde</h3>
+                            <p class="text-gray-500 text-sm mt-1"><i class="fa-solid fa-location-dot text-ouro text-xs mr-1"></i>Madrid, Espanha</p>
+                        </div>
+                        <span class="text-ouro font-condensed font-bold text-sm">2024</span>
                     </div>
+                    <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Dimensão</span>
+                        <span class="text-verde font-semibold text-sm">12.000 m²</span>
+                    </div>
+                </div>
+            </div>
 
-                    <p class="location"><i class="fa-solid fa-location-dot"></i> Madrid</p>
+            <div class="project-card reveal"
+                 data-category="industrial"
+                 data-title="Parque Industrial Luanda Norte"
+                 data-image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80"
+                 data-location="Luanda, Angola" data-year="2023"
+                 data-dimension="80.000 m²"
+                 data-description="Parque industrial de grande escala com infraestrutura técnica avançada, incluindo subestação elétrica, armazenamento e redes de utilidades industriais.">
+                <div class="card-img-wrap">
+                    <span class="badge">Industrial</span>
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Parque Industrial Luanda Norte" loading="lazy">
+                    <div class="card-overlay"><span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand text-ouro mr-2"></i>Ver Detalhes</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-carvao text-lg">Parque Industrial Luanda Norte</h3>
+                            <p class="text-gray-500 text-sm mt-1"><i class="fa-solid fa-location-dot text-ouro text-xs mr-1"></i>Luanda, Angola</p>
+                        </div>
+                        <span class="text-ouro font-condensed font-bold text-sm">2023</span>
+                    </div>
+                    <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Dimensão</span>
+                        <span class="text-verde font-semibold text-sm">80.000 m²</span>
+                    </div>
+                </div>
+            </div>
 
-                    <div class="dimension">
-                        <span>DIMENSÃO</span>
-                        <strong>12.000 m²</strong>
+            <div class="project-card reveal"
+                 data-category="edificacao"
+                 data-title="Sede Corporativa RPP"
+                 data-image="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1200&q=80"
+                 data-location="Lisboa, Portugal" data-year="2021"
+                 data-dimension="8.500 m²"
+                 data-description="Nova sede social da RPP, projetada com os mais altos padrões de conforto, eficiência energética e tecnologia de gestão integrada de edifícios.">
+                <div class="card-img-wrap">
+                    <span class="badge">Edificação</span>
+                    <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=800&q=80" alt="Sede Corporativa RPP" loading="lazy">
+                    <div class="card-overlay"><span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand text-ouro mr-2"></i>Ver Detalhes</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-carvao text-lg">Sede Corporativa RPP</h3>
+                            <p class="text-gray-500 text-sm mt-1"><i class="fa-solid fa-location-dot text-ouro text-xs mr-1"></i>Lisboa, Portugal</p>
+                        </div>
+                        <span class="text-ouro font-condensed font-bold text-sm">2021</span>
+                    </div>
+                    <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Dimensão</span>
+                        <span class="text-verde font-semibold text-sm">8.500 m²</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card reveal"
+                 data-category="infraestrutura"
+                 data-title="Anel Rodoviário Sul"
+                 data-image="https://images.unsplash.com/photo-1545993990-b9f03a4f07d1?auto=format&fit=crop&w=1200&q=80"
+                 data-location="Benguela, Angola" data-year="2020"
+                 data-dimension="42 km"
+                 data-description="Via rodoviária de alta velocidade com 4 faixas, sinalização inteligente, iluminação LED e sistemas de drenagem avançados.">
+                <div class="card-img-wrap">
+                    <span class="badge">Infraestrutura</span>
+                    <img src="https://images.unsplash.com/photo-1545993990-b9f03a4f07d1?auto=format&fit=crop&w=800&q=80" alt="Anel Rodoviário Sul" loading="lazy">
+                    <div class="card-overlay"><span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand text-ouro mr-2"></i>Ver Detalhes</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-carvao text-lg">Anel Rodoviário Sul</h3>
+                            <p class="text-gray-500 text-sm mt-1"><i class="fa-solid fa-location-dot text-ouro text-xs mr-1"></i>Benguela, Angola</p>
+                        </div>
+                        <span class="text-ouro font-condensed font-bold text-sm">2020</span>
+                    </div>
+                    <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Dimensão</span>
+                        <span class="text-verde font-semibold text-sm">42 km</span>
                     </div>
                 </div>
             </div>
@@ -215,209 +309,121 @@
     </div>
 </section>
 
-<!-- ================= MODAL PROJETO ================= -->
-<div id="projectModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 p-6">
-
-    <div id="modalContent" class="bg-white w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform scale-95 opacity-0 transition duration-300">
-
-        <!-- Imagem -->
-        <div class="relative h-[400px]">
-            <img id="modalImage" class="w-full h-full object-cover">
-            <button id="closeModal"
-                class="absolute top-4 right-4 bg-white/80 hover:bg-white text-black px-4 py-2 rounded-full">
-                ✕
+<!-- ── MODAL ── -->
+<div id="projectModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4 lg:p-8">
+    <div id="modalContent" class="bg-white w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
+        <div class="relative h-72 md:h-96">
+            <img id="modalImage" class="w-full h-full object-cover" alt="">
+            <div class="absolute inset-0 bg-gradient-to-t from-carvao/60 to-transparent"></div>
+            <button id="closeModal" class="absolute top-4 right-4 w-10 h-10 bg-white/10 backdrop-blur hover:bg-white hover:text-carvao text-white rounded-full flex items-center justify-center transition-all text-sm">
+                <i class="fa-solid fa-xmark"></i>
             </button>
-        </div>
-
-        <!-- Conteúdo -->
-        <div class="p-10 grid md:grid-cols-2 gap-10">
-
-            <!-- Descrição -->
-            <div>
-                <h2 id="modalTitle" class="text-2xl font-bold mb-6 text-[#0F4D35]"></h2>
-                <p id="modalDescription" class="text-gray-600 leading-relaxed"></p>
+            <div class="absolute bottom-6 left-8">
+                <h2 id="modalTitle" class="font-display text-2xl md:text-3xl font-bold text-white"></h2>
             </div>
-
-            <!-- Informações -->
-            <div class="bg-gray-50 p-6 rounded-lg">
-                <h3 class="text-lg font-bold mb-6 text-[#0F4D35]">Ficha Técnica</h3>
-
-                <ul class="space-y-3 text-gray-600">
-                    <li><strong>Localização:</strong> <span id="modalLocation"></span></li>
-                    <li><strong>Ano:</strong> <span id="modalYear"></span></li>
-                    <li><strong>Dimensão:</strong> <span id="modalDimension"></span></li>
-                    <li><strong>Categoria:</strong> <span id="modalCategory"></span></li>
+        </div>
+        <div class="p-8 grid md:grid-cols-5 gap-8">
+            <div class="md:col-span-3">
+                <p class="text-gray-400 text-xs uppercase tracking-wider mb-3">Descrição</p>
+                <p id="modalDescription" class="text-gray-600 leading-relaxed"></p>
+                <a href="../index.html#contacto" class="inline-flex items-center gap-2 mt-6 bg-verde text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-verde-escuro transition-colors">
+                    <i class="fa-solid fa-paper-plane text-xs"></i> Solicitar Proposta Similar
+                </a>
+            </div>
+            <div class="md:col-span-2 bg-creme rounded-xl p-6">
+                <p class="text-gray-400 text-xs uppercase tracking-wider mb-4">Ficha Técnica</p>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex justify-between border-b border-gray-100 pb-3"><span class="text-gray-500">Localização</span><span id="modalLocation" class="font-semibold text-carvao text-right"></span></li>
+                    <li class="flex justify-between border-b border-gray-100 pb-3"><span class="text-gray-500">Ano</span><span id="modalYear" class="font-semibold text-carvao"></span></li>
+                    <li class="flex justify-between border-b border-gray-100 pb-3"><span class="text-gray-500">Dimensão</span><span id="modalDimension" class="font-semibold text-verde"></span></li>
+                    <li class="flex justify-between"><span class="text-gray-500">Categoria</span><span id="modalCategory" class="font-semibold text-carvao capitalize"></span></li>
                 </ul>
             </div>
-
         </div>
-
     </div>
-
 </div>
 
+<!-- ── CTA ── -->
+<section class="py-20 bg-verde text-center">
+    <div class="max-w-2xl mx-auto px-6">
+        <h2 class="font-display text-4xl font-bold text-white mb-5">Tem um projeto em mente?</h2>
+        <p class="text-white/70 mb-10">Fale com a nossa equipa e receba uma proposta personalizada.</p>
+        <a href="../index.html#contacto" class="inline-flex items-center gap-3 bg-white text-verde px-10 py-4 rounded-xl font-bold text-sm tracking-wider uppercase hover:bg-creme transition-all">
+            Falar Connosco <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+    </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="bg-carvao text-gray-500 py-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+        <p>© 2026 RPP – Engenharia e Construção Civil, LDA.</p>
+        <a href="../index.html" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
+            <i class="fa-solid fa-arrow-left text-xs"></i> Voltar ao Início
+        </a>
+    </div>
+</footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+// Reveal
+document.addEventListener('DOMContentLoaded', () => {
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+                e.target.style.transitionDelay = `${i % 3 * 80}ms`;
+                e.target.classList.add('visible');
+                obs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    const modal = document.getElementById("projectModal");
-    const modalContent = document.getElementById("modalContent");
-    const closeModal = document.getElementById("closeModal");
-
-    const modalImage = document.getElementById("modalImage");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalDescription = document.getElementById("modalDescription");
-    const modalLocation = document.getElementById("modalLocation");
-    const modalYear = document.getElementById("modalYear");
-    const modalDimension = document.getElementById("modalDimension");
-    const modalCategory = document.getElementById("modalCategory");
-
-    const cards = document.querySelectorAll(".project-card");
-
-    cards.forEach(card => {
-        card.addEventListener("click", function () {
-
-            modalImage.src = this.dataset.image;
-            modalTitle.textContent = this.dataset.title;
-            modalDescription.textContent = this.dataset.description;
-            modalLocation.textContent = this.dataset.location;
-            modalYear.textContent = this.dataset.year;
-            modalDimension.textContent = this.dataset.dimension;
-            modalCategory.textContent = this.dataset.category;
-
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
-
-            setTimeout(() => {
-                modalContent.classList.remove("scale-95", "opacity-0");
-                modalContent.classList.add("scale-100", "opacity-100");
-            }, 50);
-
-            document.body.style.overflow = "hidden";
+    // Filter
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const f = btn.dataset.filter;
+            document.querySelectorAll('.project-card').forEach(card => {
+                const match = f === 'all' || card.dataset.category === f;
+                card.style.transition = 'opacity 0.35s, transform 0.35s';
+                if (match) {
+                    card.style.display = '';
+                    requestAnimationFrame(() => { card.style.opacity = '1'; card.style.transform = ''; });
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => { card.style.display = 'none'; }, 350);
+                }
+            });
         });
     });
 
-    function closeProjectModal() {
-        modalContent.classList.remove("scale-100", "opacity-100");
-        modalContent.classList.add("scale-95", "opacity-0");
-
-        setTimeout(() => {
-            modal.classList.add("hidden");
-            modal.classList.remove("flex");
-            document.body.style.overflow = "auto";
-        }, 200);
+    // Modal
+    const modal = document.getElementById('projectModal');
+    const mc = document.getElementById('modalContent');
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', () => {
+            document.getElementById('modalImage').src = card.dataset.image;
+            document.getElementById('modalTitle').textContent = card.dataset.title;
+            document.getElementById('modalDescription').textContent = card.dataset.description;
+            document.getElementById('modalLocation').textContent = card.dataset.location;
+            document.getElementById('modalYear').textContent = card.dataset.year;
+            document.getElementById('modalDimension').textContent = card.dataset.dimension;
+            document.getElementById('modalCategory').textContent = card.dataset.category;
+            modal.classList.remove('hidden'); modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            requestAnimationFrame(() => { mc.classList.remove('scale-95','opacity-0'); mc.classList.add('scale-100','opacity-100'); });
+        });
+    });
+    function closeModal() {
+        mc.classList.remove('scale-100','opacity-100'); mc.classList.add('scale-95','opacity-0');
+        setTimeout(() => { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow=''; }, 250);
     }
-
-    closeModal.addEventListener("click", closeProjectModal);
-
-    modal.addEventListener("click", function (e) {
-        if (e.target === modal) {
-            closeProjectModal();
-        }
-    });
-
-    document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") {
-            closeProjectModal();
-        }
-    });
-
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 });
 </script>
-
-
-
-<!-- ================= FOOTER ================= -->
-<footer class="bg-[#000015] text-gray-400 py-16">
-    
-    <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-12">
-
-        <!-- Coluna 1 -->
-        <div>
-            <!-- Logo -->
-        <h1 id="logo-principal"
-            class="flex items-center gap-3 text-1xl font-bold text-white tracking-wide transition-colors duration-300">
-    
-            <img src="C:\Users\PC\RPP\assets\imagens\logo.jpeg" alt="RPP Logo" class="h-8 w-auto rounded-md">
-    
-            <span>RPP <p style="font-size: 12px; color: grey;">ENGENHARIA & CONSTRUÇÃO</p></span>
-        </h1>
-            <br>
-
-            <p class="text-sm leading-relaxed mb-6">
-                Excelência na construção de infraestruturas, garantindo solidez,
-                inovação e rigoroso cumprimento de prazos desde 1999.
-            </p>
-
-            <p class="text-sm">
-                NIF: 500 000 000
-            </p>
-        </div>
-
-        <!-- Coluna 2 -->
-        <div>
-            <h4 class="text-white font-semibold uppercase mb-6">
-                Links Rápidos
-            </h4>
-            <ul class="space-y-3 text-sm">
-                <li><a href="#inicio" class="hover:text-white transition">Início</a></li>
-                <li><a href="#sobre" class="hover:text-white transition">Sobre</a></li>
-                <li><a href="#servicos" class="hover:text-white transition">Serviços</a></li>
-                <li><a href="#projetos" class="hover:text-white transition">Projetos</a></li>
-                <li><a href="#" class="hover:text-white transition">Sustentabilidade</a></li>
-                <li><a href="#contacto" class="hover:text-white transition">Contacto</a></li>
-            </ul>
-        </div>
-
-        <!-- Coluna 3 -->
-        <div>
-            <h4 class="text-white font-semibold uppercase mb-6">
-                Serviços
-            </h4>
-            <ul class="space-y-3 text-sm">
-                <li>Infraestruturas Públicas</li>
-                <li>Edificação Corporativa</li>
-                <li>Obras Industriais</li>
-                <li>Obras de Arte</li>
-                <li>Reabilitação</li>
-            </ul>
-        </div>
-
-        <!-- Coluna 4 -->
-        <div>
-            <h4 class="text-white font-semibold uppercase mb-6">
-                Sede
-            </h4>
-            <div class="text-sm space-y-3">
-              <p>
-                   <i class="fa-solid fa-location-dot"></i> Avenida da República, 100<br>
-                    1050-193 Lisboa, Portugal
-                </p>
-                <p><i class="fa-solid fa-envelope "></i> geral@rpp-engenharia.pt</p>
-                <p><i class="fa-solid fa-phone"></i> +351 210 000 000</p>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Linha divisória -->
-    <div class="border-t border-gray-800 mt-12"></div>
-
-    <!-- Rodapé inferior -->
-    <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-        <p>
-            © 2026 RPP – Engenharia e Construção Civil, LDA. Todos os direitos reservados.
-        </p>
-
-        <div class="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" class="hover:text-white transition">Política de Privacidade</a>
-            <a href="#" class="hover:text-white transition">Termos de Utilização</a>
-        </div>
-    </div>
-
-</footer>
-
-<script src="assets/js/principal.js"></script>
-
 </body>
 </html>
