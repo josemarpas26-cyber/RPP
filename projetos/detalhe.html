@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Dinâmico Futuro -->
+    <title>Detalhe do Projeto | RPP Engenharia</title>
+    <meta name="description" content="Detalhes completos do projeto executado pela RPP – Engenharia e Construção Civil, LDA.">
+    <meta name="robots" content="index, follow">
+
+    <!--Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!--FAVICON-->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+
+<body class="font-inter text-gray-800">
+
+<!-- ================= HEADER ================= -->
+<header id="cabecalho-principal"
+        class="fixed top-0 w-full z-50 
+               transition-all duration-500 bg-white">
+
+    <div class="container mx-auto px-8 py-4 
+                flex justify-between items-center">
+
+        <!-- Logo -->
+        <h1 id="logo-principal"
+    class="flex items-center gap-3 text-1xl font-bold text-[#0F4D35] tracking-wide transition-colors duration-300">
+    
+            <img src="../assets/imagens/logo.jpeg" alt="RPP Logo" class="h-8 w-auto rounded-md">
+    
+            <span>RPP <p style="font-size: 12px; color: grey;">ENGENHARIA & CONSTRUÇÃO</p></span>
+        </h1>
+
+        <!-- Menu -->
+        <nav id="menu-principal"
+     class="hidden md:flex items-center 
+            space-x-10 text-sm font-medium text-[#0F4D35]
+            transition-colors duration-300">
+            <a href="../index.html#inicio" class="hover:text-gray-300 transition-colors duration-300">Início</a>
+            <a href="../index.html#sobre" class="hover:text-gray-300 transition-colors duration-300">Sobre</a>
+            <a href="../index.html#servicos" class="hover:text-gray-300 transition-colors duration-300">Serviços</a>
+            <a href="detalhe.html" class="hover:text-gray-300 transition-colors duration-300">Projetos</a>
+            <a href="../index.html#sustentabilidade" class="hover:text-gray-300 transition-colors duration-300">Sustentabilidade</a>
+            <a href="../index.html#contacto" class="hover:text-gray-300 transition-colors duration-300">Contacto</a>
+        </nav>
+
+        <!-- Botão -->
+        <a id="botao-proposta"
+            href="#contacto"
+            class="hidden md:inline-block
+                    border border-white
+                    px-6 py-2
+                    rounded-md
+                    text-white text-sm font-semibold tracking-wide
+                    transition-all duration-300
+                    bg-[#0F4D35]">
+                SOLICITAR PROPOSTA
+            </a>
+
+    </div>
+</header>
+
+<!-- ================= HERO PORTFÓLIO ================= -->
+<section class="pt-28 pb-16 bg-gray-100">
+    <div class="container mx-auto px-6">
+
+       <a href="../index.html" class="text-sm hover:text-white text-[#0F4D35] items-center gap-2 mb-[20px] hover:bg-[#0F4D35]  px-2 py-2 rounded-full">
+            ← Voltar ao Início
+        </a>
+
+        <h1 class="text-4xl md:text-5xl font-bold font-montserrat text-[#232324] mb-6 mt-4">
+            Portfólio de Projetos
+        </h1>
+
+        <p class="text-gray-600 max-w-2xl">
+            Explore a nossa trajetória através de infraestruturas que transformam cidades
+            e impulsionam o futuro.
+        </p>
+
+    </div>
+</section>
+
+
+<!-- ================= FILTRO ================= -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-6">
+
+        <div class="flex flex-wrap items-center gap-4">
+
+            <span class="text-gray-500 flex items-center gap-2">
+                <i class="fa-solid fa-filter"></i> Filtrar por:
+            </span>
+
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="edificacao">Edificação</button>
+            <button class="filter-btn" data-filter="infraestrutura">Infraestrutura</button>
+            <button class="filter-btn" data-filter="sustentavel">Sustentável</button>
+            <button class="filter-btn" data-filter="industrial">Industrial</button>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================= GRID DE PROJETOS ================= -->
+<section class="pb-24 bg-white">
+    <div class="container mx-auto px-6">
+
+        <div id="projectsGrid" class="grid md:grid-cols-3 gap-10">
+
+            <!-- CARD 1 -->
+            <div class="project-card cursor-pointer"
+                 data-category="edificacao"
+                 data-title="Torre Financeira Global"
+                 data-image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab"
+                 data-location="Lisboa"
+                 data-year="2023"
+                 data-dimension="45.000 m²"
+                 data-description="Edifício corporativo de alto padrão com arquitetura contemporânea, eficiência energética e tecnologia sustentável integrada.">
+
+                <div class="card-image">
+                    <span class="badge">EDIFICAÇÃO</span>
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab">
+                </div>
+
+                <div class="card-content">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="card-title">Torre Financeira Global</h3>
+                        <span class="year">2023</span>
+                    </div>
+
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Lisboa</p>
+
+                    <div class="dimension">
+                        <span>DIMENSÃO</span>
+                        <strong>45.000 m²</strong>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- CARD 2 -->
+            <div class="project-card cursor-pointer"
+                 data-category="infraestrutura"
+                 data-title="Ponte do Estuário"
+                 data-image="https://images.unsplash.com/photo-1501594907352-04cda38ebc29"
+                 data-location="Porto"
+                 data-year="2022"
+                 data-dimension="1.2 km"
+                 data-description="Projeto de infraestrutura moderna concebido para melhorar a mobilidade urbana e fortalecer a conectividade regional com padrões internacionais de segurança.">
+
+                <div class="card-image">
+                    <span class="badge">INFRAESTRUTURA</span>
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29">
+                </div>
+
+                <div class="card-content">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="card-title">Ponte do Estuário</h3>
+                        <span class="year">2022</span>
+                    </div>
+
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Porto</p>
+
+                    <div class="dimension">
+                        <span>DIMENSÃO</span>
+                        <strong>1.2 km</strong>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- CARD 3 -->
+            <div class="project-card cursor-pointer"
+                 data-category="sustentavel"
+                 data-title="Campus Tecnológico Verde"
+                 data-image="https://images.unsplash.com/photo-1466611653911-95081537e5b7"
+                 data-location="Madrid"
+                 data-year="2024"
+                 data-dimension="12.000 m²"
+                 data-description="Complexo tecnológico sustentável com soluções de energia renovável, arquitetura bioclimática e certificações ambientais internacionais.">
+
+                <div class="card-image">
+                    <span class="badge">SUSTENTÁVEL</span>
+                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7">
+                </div>
+
+                <div class="card-content">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="card-title">Campus Tecnológico Verde</h3>
+                        <span class="year">2024</span>
+                    </div>
+
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Madrid</p>
+
+                    <div class="dimension">
+                        <span>DIMENSÃO</span>
+                        <strong>12.000 m²</strong>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= MODAL PROJETO ================= -->
+<div id="projectModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 p-6">
+
+    <div id="modalContent" class="bg-white w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform scale-95 opacity-0 transition duration-300">
+
+        <!-- Imagem -->
+        <div class="relative h-[400px]">
+            <img id="modalImage" class="w-full h-full object-cover">
+            <button id="closeModal"
+                class="absolute top-4 right-4 bg-white/80 hover:bg-white text-black px-4 py-2 rounded-full">
+                ✕
+            </button>
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="p-10 grid md:grid-cols-2 gap-10">
+
+            <!-- Descrição -->
+            <div>
+                <h2 id="modalTitle" class="text-2xl font-bold mb-6 text-[#0F4D35]"></h2>
+                <p id="modalDescription" class="text-gray-600 leading-relaxed"></p>
+            </div>
+
+            <!-- Informações -->
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <h3 class="text-lg font-bold mb-6 text-[#0F4D35]">Ficha Técnica</h3>
+
+                <ul class="space-y-3 text-gray-600">
+                    <li><strong>Localização:</strong> <span id="modalLocation"></span></li>
+                    <li><strong>Ano:</strong> <span id="modalYear"></span></li>
+                    <li><strong>Dimensão:</strong> <span id="modalDimension"></span></li>
+                    <li><strong>Categoria:</strong> <span id="modalCategory"></span></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const modal = document.getElementById("projectModal");
+    const modalContent = document.getElementById("modalContent");
+    const closeModal = document.getElementById("closeModal");
+
+    const modalImage = document.getElementById("modalImage");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDescription = document.getElementById("modalDescription");
+    const modalLocation = document.getElementById("modalLocation");
+    const modalYear = document.getElementById("modalYear");
+    const modalDimension = document.getElementById("modalDimension");
+    const modalCategory = document.getElementById("modalCategory");
+
+    const cards = document.querySelectorAll(".project-card");
+
+    cards.forEach(card => {
+        card.addEventListener("click", function () {
+
+            modalImage.src = this.dataset.image;
+            modalTitle.textContent = this.dataset.title;
+            modalDescription.textContent = this.dataset.description;
+            modalLocation.textContent = this.dataset.location;
+            modalYear.textContent = this.dataset.year;
+            modalDimension.textContent = this.dataset.dimension;
+            modalCategory.textContent = this.dataset.category;
+
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+
+            setTimeout(() => {
+                modalContent.classList.remove("scale-95", "opacity-0");
+                modalContent.classList.add("scale-100", "opacity-100");
+            }, 50);
+
+            document.body.style.overflow = "hidden";
+        });
+    });
+
+    function closeProjectModal() {
+        modalContent.classList.remove("scale-100", "opacity-100");
+        modalContent.classList.add("scale-95", "opacity-0");
+
+        setTimeout(() => {
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            document.body.style.overflow = "auto";
+        }, 200);
+    }
+
+    closeModal.addEventListener("click", closeProjectModal);
+
+    modal.addEventListener("click", function (e) {
+        if (e.target === modal) {
+            closeProjectModal();
+        }
+    });
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+            closeProjectModal();
+        }
+    });
+
+});
+</script>
+
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-[#000015] text-gray-400 py-16">
+    
+    <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-12">
+
+        <!-- Coluna 1 -->
+        <div>
+            <!-- Logo -->
+        <h1 id="logo-principal"
+            class="flex items-center gap-3 text-1xl font-bold text-white tracking-wide transition-colors duration-300">
+    
+            <img src="C:\Users\PC\RPP\assets\imagens\logo.jpeg" alt="RPP Logo" class="h-8 w-auto rounded-md">
+    
+            <span>RPP <p style="font-size: 12px; color: grey;">ENGENHARIA & CONSTRUÇÃO</p></span>
+        </h1>
+            <br>
+
+            <p class="text-sm leading-relaxed mb-6">
+                Excelência na construção de infraestruturas, garantindo solidez,
+                inovação e rigoroso cumprimento de prazos desde 1999.
+            </p>
+
+            <p class="text-sm">
+                NIF: 500 000 000
+            </p>
+        </div>
+
+        <!-- Coluna 2 -->
+        <div>
+            <h4 class="text-white font-semibold uppercase mb-6">
+                Links Rápidos
+            </h4>
+            <ul class="space-y-3 text-sm">
+                <li><a href="#inicio" class="hover:text-white transition">Início</a></li>
+                <li><a href="#sobre" class="hover:text-white transition">Sobre</a></li>
+                <li><a href="#servicos" class="hover:text-white transition">Serviços</a></li>
+                <li><a href="#projetos" class="hover:text-white transition">Projetos</a></li>
+                <li><a href="#" class="hover:text-white transition">Sustentabilidade</a></li>
+                <li><a href="#contacto" class="hover:text-white transition">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- Coluna 3 -->
+        <div>
+            <h4 class="text-white font-semibold uppercase mb-6">
+                Serviços
+            </h4>
+            <ul class="space-y-3 text-sm">
+                <li>Infraestruturas Públicas</li>
+                <li>Edificação Corporativa</li>
+                <li>Obras Industriais</li>
+                <li>Obras de Arte</li>
+                <li>Reabilitação</li>
+            </ul>
+        </div>
+
+        <!-- Coluna 4 -->
+        <div>
+            <h4 class="text-white font-semibold uppercase mb-6">
+                Sede
+            </h4>
+            <div class="text-sm space-y-3">
+              <p>
+                   <i class="fa-solid fa-location-dot"></i> Avenida da República, 100<br>
+                    1050-193 Lisboa, Portugal
+                </p>
+                <p><i class="fa-solid fa-envelope "></i> geral@rpp-engenharia.pt</p>
+                <p><i class="fa-solid fa-phone"></i> +351 210 000 000</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Linha divisória -->
+    <div class="border-t border-gray-800 mt-12"></div>
+
+    <!-- Rodapé inferior -->
+    <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+        <p>
+            © 2026 RPP – Engenharia e Construção Civil, LDA. Todos os direitos reservados.
+        </p>
+
+        <div class="flex space-x-6 mt-4 md:mt-0">
+            <a href="#" class="hover:text-white transition">Política de Privacidade</a>
+            <a href="#" class="hover:text-white transition">Termos de Utilização</a>
+        </div>
+    </div>
+
+</footer>
+
+<script src="assets/js/principal.js"></script>
+
+</body>
+</html>

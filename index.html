@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>RPP – Engenharia e Construção Civil, LDA</title>
+    <meta name="description" content="RPP – Engenharia e Construção Civil, LDA. Soluções completas em engenharia, infraestruturas e construção civil com excelência internacional.">
+    <meta name="keywords" content="engenharia, construção civil, infraestruturas, projetos, sustentabilidade">
+    <meta name="author" content="RPP Engenharia">
+
+    <!--Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!--FAVICON-->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="assets/css/estilos.css">
+</head>
+
+<body class="font-inter text-gray-800">
+
+<!-- ================= HEADER ================= -->
+<header id="cabecalho-principal"
+        class="fixed top-0 w-full z-50 
+               transition-all duration-500">
+
+    <div class="container mx-auto px-8 py-4 
+                flex justify-between items-center">
+
+        <!-- Logo -->
+        <h1 id="logo-principal"
+    class="flex items-center gap-3 text-1xl font-bold text-white tracking-wide transition-colors duration-300">
+    
+            <img src="assets/imagens/logo.jpeg" alt="RPP Logo" class="h-8 w-auto rounded-md">
+    
+            <span>RPP <p style="font-size: 12px; color: grey;">ENGENHARIA & CONSTRUÇÃO</p></span>
+        </h1>
+
+        <!-- Menu -->
+        <nav id="menu-principal"
+     class="hidden md:flex items-center 
+            space-x-10 text-sm font-medium text-white
+            transition-colors duration-300">
+            <a href="#inicio" class="hover:text-gray-300 transition-colors duration-300">Início</a>
+            <a href="#sobre" class="hover:text-gray-300 transition-colors duration-300">Sobre</a>
+            <a href="#servicos" class="hover:text-gray-300 transition-colors duration-300">Serviços</a>
+            <a href="#projetos" class="hover:text-gray-300 transition-colors duration-300">Projetos</a>
+            <a href="#sustentabilidade" class="hover:text-gray-300 transition-colors duration-300">Sustentabilidade</a>
+            <a href="#contacto" class="hover:text-gray-300 transition-colors duration-300">Contacto</a>
+        </nav>
+
+        <!-- Botão -->
+        <a id="botao-proposta"
+            href="#contacto"
+            class="hidden md:inline-block
+                    border border-white
+                    px-6 py-2
+                    rounded-md
+                    text-white text-sm font-semibold tracking-wide
+                    transition-all duration-300
+                    hover:bg-white hover:text-[#0F4D35]">
+                SOLICITAR PROPOSTA
+            </a>
+
+    </div>
+</header>
+<!-- ================= HERO ================= -->
+<section id="inicio" class="relative h-screen bg-cover bg-center flex items-center" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e');">
+    
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+
+    <div class="relative container mx-auto px-6 text-white">
+        <h1 class="text-4xl md:text-6xl font-bold font-montserrat mb-6">
+            Construindo <br> Infraestruturas com <br>Excelência
+        </h1>
+        <p class="text-lg md:text-xl mb-8 max-w-2xl">
+A RPP é uma construtora multinacional dedicada a projetos de engenharia civil complexos. Entregamos soluções sólidas e duradouras para os setores público e privado.     </p>
+
+        <div class="flex flex-wrap gap-4">
+            <a href="projetos/detalhe.html" class="bg-[#0F4D35] border border-white text-white px-6 py-3 font-semibold rounded">
+                VER PROJETOS
+            </a>
+            <a href="#contacto" class="border border-white px-6 py-3 font-semibold rounded hover:bg-white hover:text-[#0F4D35] transition">
+                SOLICITAR ORÇAMENTO
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ================= SOBRE ================= -->
+<section id="sobre" class="py-24 bg-white">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+        <!-- Coluna Esquerda - Imagem -->
+        <div class="w-full h-full">
+            <img src="assets/imagens/sobre.jpg" 
+                 alt="RPP Engenharia"
+                 class="w-full h-full object-cover rounded-lg shadow-2xl">
+        </div>
+
+        <!-- Coluna Direita - Conteúdo -->
+        <div>
+
+            <h3 class="text-lg font-bold font-montserrat mb-4 text-[#0F4D35]">
+                QUEM SOMOS?
+            </h3>
+
+            <p class="text-4xl font-bold font-montserrat mb-6 text-[#232324]">
+                Sólida, experiente e preparada para os maiores desafios
+            </p>
+
+            <p class="mb-10 text-gray-600 leading-relaxed">
+                A RPP Engenharia e Construção Civil orgulha-se de um historial de sucesso na execução de infraestruturas críticas. 
+                Com presença internacional, a nossa abordagem foca-se na qualidade intransigente e cumprimento rigoroso de prazos.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h4 class="font-bold text-lg mb-2">Missão</h4>
+                    <p class="text-gray-600">
+                        Executar projetos com máxima qualidade e responsabilidade.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-2">Visão</h4>
+                    <p class="text-gray-600">
+                        Ser referência internacional em engenharia e construção.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= NÚMEROS ================= -->
+<section class="py-20 bg-[#0F4D35]">
+    <div class="container mx-auto px-6 
+                grid md:grid-cols-4 
+                text-center items-center">
+
+        <!-- Item 1 -->
+        <div class="space-y-3 md:border-r md:border-white/20">
+            <h3 class="text-5xl font-bold text-white">
+                +450
+            </h3>
+            <p class="text-sm font-semibold tracking-widest text-white/70">
+                PROJETOS CONCLUÍDOS
+            </p>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="space-y-3 md:border-r md:border-white/20">
+            <h3 class="text-5xl font-bold text-white">
+                +120
+            </h3>
+            <p class="text-sm font-semibold tracking-widest text-white/70">
+                CLIENTES ATIVOS
+            </p>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="space-y-3 md:border-r md:border-white/20">
+            <h3 class="text-5xl font-bold text-white">
+                25
+            </h3>
+            <p class="text-sm font-semibold tracking-widest text-white/70">
+                ANOS DE EXPERIÊNCIA
+            </p>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="space-y-3">
+            <h3 class="text-5xl font-bold text-white">
+                100%
+            </h3>
+            <p class="text-sm font-semibold tracking-widest text-white/70">
+                COMPROMISSO
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= SERVIÇOS ================= -->
+<section id="servicos" class="py-24 bg-gray-100">
+    <div class="container mx-auto px-6">
+        <h3 class="text-lg font-montserrat text-center mb-16 text-[#0F4D35]">
+            
+           ÁREAS DE ATUAÇÃO
+
+           <p class="text-4xl font-bold font-montserrat mb-6 text-[#232324]">
+               Capacidade Técnica de Excelência
+            </p>
+
+            <p class="mb-10 text-gray-600 leading-relaxed text-lg">
+               Oferecemos um portefólio abrangente de serviços de engenharia e construção, <br>adaptado às exigências de projetos de grande escala.
+            </p>
+
+        </h3>
+
+
+        <div class="grid md:grid-cols-3 gap-10">
+
+            <div class="p-8 shadow-lg rounded-lg hover:shadow-2xl transition bg-white">
+                <p
+                    class="flex items-center justify-center transition duration-300 mx-auto bg-grey-100 hover:bg-[#0F4D35] text-[#0F4D35] hover:text-white rounded-md font-bold text-[30px] w-[70px] h-[70px]">
+                    <i class="fa-solid fa-location-dot"></i>
+                </p>
+                <h4 class="font-bold text-xl mb-4 mt-4">Edificação Corporativa</h4>
+                <p class="text-gray-600">Construção de edifícios de escritórios, sedes empresariais e centros logísticos modernos e eficientes.</p>
+                <br>
+                <a href="#contacto" class="text-[#0F4D35] text-sm font-bold">Saber mais ></a>
+            </div>
+
+            <div class="p-8 shadow-lg rounded-lg hover:shadow-2xl transition bg-white">
+                <p
+                    class="flex items-center justify-center mx-auto transition duration-300 bg-grey-100 hover:bg-[#0F4D35] text-[#0F4D35] hover:text-white rounded-md font-bold text-[30px] w-[70px] h-[70px]">
+                    <i class="fa-solid fa-building"></i>
+                </p>
+                <h4 class="font-bold text-xl mb-4 mt-4">Infraestruturas Públicas</h4>
+                <p class="text-gray-600">Desenvolvimento de vias rodoviárias, pontes, viadutos e redes de saneamento com alto rigor técnico.</p>
+                <br>
+                <a href="#contacto" class="text-[#0F4D35] text-sm font-bold">Saber mais ></a>
+            </div>
+
+            <div class="p-8 shadow-lg rounded-lg hover:shadow-2xl transition bg-white">
+                <p
+                    class="flex items-center justify-center mx-auto transition duration-300 bg-grey-100 hover:bg-[#0F4D35] text-[#0F4D35] hover:text-white rounded-md font-bold text-[30px] w-[70px] h-[70px]">
+                    <i class="fa-solid fa-helmet-safety"></i>
+                </p>
+                <h4 class="font-bold text-xl mb-4 mt-4">Obras Industriais</h4>
+                <p class="text-gray-600">Parques industriais, fábricas e instalações complexas que requerem especificações técnicas de alto nível.</p>
+                <br>
+                <a href="#contacto" class="text-[#0F4D35] text-sm font-bold">Saber mais ></a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= PROJETOS ================= -->
+<section id="projetos" class="py-24 bg-white">
+
+    <div class="container mx-auto px-8">
+
+        <!-- Título -->
+        <div class="text-center mb-16">
+            <h3 class="text-lg font-montserrat  text-[#0F4D35] ">
+           PORTEFÓLIO
+
+           <p class="text-4xl font-bold font-montserrat mb-6 text-[#232324]">
+               Projetos de Referência
+            </p>
+        </h3>
+        </div>
+
+       <!-- ================= GRID DE PROJETOS ================= -->
+<section class="pb-20 bg-white">
+    <div class="container mx-auto px-6">
+
+        <div id="projectsGrid" class="grid md:grid-cols-3 gap-10">
+
+            <!-- CARD 1 -->
+            <div class="project-card cursor-pointer bg-[#F2F2F2] shadow-2xl"
+                 data-category="edificacao"
+                 data-title="Torre Financeira Global"
+                 data-image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab"
+                 data-location="Lisboa"
+                 data-year="2023"
+                 data-dimension="45.000 m²"
+                 data-description="Edifício corporativo de alto padrão com arquitetura contemporânea, eficiência energética e tecnologia sustentável integrada.">
+
+                <div class="card-image">
+                    <span class="badge">EDIFICAÇÃO</span>
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab">
+                </div>
+
+                <div class="card-content">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="card-title">Torre Financeira Global</h3>
+                        <span class="year">2023</span>
+                    </div>
+
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Lisboa</p>
+
+                    <div class="dimension">
+                        <span>DIMENSÃO</span>
+                        <strong>45.000 m²</strong>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- CARD 2 -->
+            <div class="project-card cursor-pointer bg-[#F2F2F2] shadow-2xl"
+                 data-category="infraestrutura"
+                 data-title="Ponte do Estuário"
+                 data-image="https://images.unsplash.com/photo-1501594907352-04cda38ebc29"
+                 data-location="Porto"
+                 data-year="2022"
+                 data-dimension="1.2 km"
+                 data-description="Projeto de infraestrutura moderna concebido para melhorar a mobilidade urbana e fortalecer a conectividade regional com padrões internacionais de segurança.">
+
+                <div class="card-image">
+                    <span class="badge">INFRAESTRUTURA</span>
+                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29">
+                </div>
+
+                <div class="card-content">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="card-title">Ponte do Estuário</h3>
+                        <span class="year">2022</span>
+                    </div>
+
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Porto</p>
+
+                    <div class="dimension">
+                        <span>DIMENSÃO</span>
+                        <strong>1.2 km</strong>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- CARD 3 -->
+            <div class="project-card cursor-pointer bg-[#F2F2F2] shadow-2xl "
+                 data-category="sustentavel"
+                 data-title="Campus Tecnológico Verde"
+                 data-image="https://images.unsplash.com/photo-1466611653911-95081537e5b7"
+                 data-location="Madrid"
+                 data-year="2024"
+                 data-dimension="12.000 m²"
+                 data-description="Complexo tecnológico sustentável com soluções de energia renovável, arquitetura bioclimática e certificações ambientais internacionais.">
+
+                <div class="card-image">
+                    <span class="badge">SUSTENTÁVEL</span>
+                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7">
+                </div>
+
+                <div class="card-content">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="card-title">Campus Tecnológico Verde</h3>
+                        <span class="year">2024</span>
+                    </div>
+
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Madrid</p>
+
+                    <div class="dimension">
+                        <span>DIMENSÃO</span>
+                        <strong>12.000 m²</strong>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+    <a href="projetos/detalhe.html" 
+    class="block mx-auto bg-[#0F4D35] text-white px-8 py-6 rounded-md font-bold text-center mt-[-50px] mb-[-2px] w-fit">
+        VER MAIS
+    </a>
+
+</section>
+
+<!-- ================= Sustentabilidade ================= -->
+
+<section class="relative overflow-hidden bg-gradient-to-r from-[#071A2C] to-[#0B2A45] text-white">
+
+    <!-- Padrão de pontos -->
+    <div class="absolute inset-0 opacity-[0.06] 
+        bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] 
+        bg-[length:28px_28px]">
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-12 py-24 grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Lado Esquerdo -->
+        <div>
+
+            <span class="text-green-500 uppercase tracking-widest text-sm font-semibold">
+                O Nosso Compromisso
+            </span>
+
+            <h2 class="mt-4 text-4xl lg:text-6xl font-bold leading-[1.1] font-montserrat">
+                Construímos hoje a pensar no amanhã
+            </h2>
+
+            <p class="mt-6 text-gray-300 text-lg leading-relaxed max-w-xl">
+                A sustentabilidade e a segurança são pilares fundamentais da RPP.
+                Integramos práticas de construção verde, gestão eficiente de recursos
+                e garantimos os mais elevados padrões de segurança para todos os nossos colaboradores.
+            </p>
+
+            <!-- Blocos -->
+            <div class="mt-12 space-y-10">
+
+                <!-- Item 1 -->
+                <div class="flex items-start gap-5">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-full bg-green-500/20">
+                        <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M5 13c4 0 6-4 14-4-2 8-6 10-10 10-2 0-4-2-4-6z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold">Responsabilidade Ambiental</h4>
+                        <p class="text-gray-400 mt-2 leading-relaxed max-w-md">
+                            Minimização da pegada de carbono, gestão de resíduos em obra
+                            e utilização de materiais sustentáveis.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="flex items-start gap-5">
+                    <div class="w-12 h-12 flex items-center justify-center rounded-full bg-green-500/20">
+                        <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold">Segurança Zero Acidentes</h4>
+                        <p class="text-gray-400 mt-2 leading-relaxed max-w-md">
+                            Formação contínua e rigoroso controlo das condições de segurança
+                            e saúde no trabalho.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Lado Direito (Imagem) -->
+        <div>
+            <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7"
+                 alt="Energia eólica ao pôr do sol"
+                 class="w-full h-full object-cover rounded-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)]">
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="py-20 bg-[#0F4D35] text-white text-center">
+    <h3 class="text-5xl font-bold font-montserrat mb-6">
+        Pronto para iniciar o seu grande projeto?
+    </h3>
+
+    <p class="mb-10 text-gray-300 leading-relaxed text-lg">
+             A nossa equipa de especialistas está preparada para analisar as suas <br>necessidades e apresentar uma proposta técnica e comercial rigorosa.
+            </p>
+    <a href="#contacto" class="bg-white text-[#0F4D35] px-8 py-6 rounded-md font-bold  ">
+        SOLICITAR PROPOSTA
+    </a>
+</section>
+
+<!-- ================= CONTACTO ================= -->
+<section id="contacto" class="py-24 bg-gray-100">
+     <h3 class="text-lg font-montserrat text-center mb-16 text-[#0F4D35] ">
+           FALE CONNOSCO
+
+           <p class="text-4xl font-bold font-montserrat mb-6 text-[#232324]">
+               Estamos à sua disposição
+            </p>
+
+           
+        </h3>
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 ">
+
+        
+        <div>
+          
+            
+  <section class="bg-gray-100 py-8 mt-[-50px]">
+    <div class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-md">
+        
+        <h2 class="text-2xl font-bold mb-6">
+            Envie uma Mensagem
+        </h2>
+
+        <form id="formulario-contacto" class="space-y-4">
+
+            <!-- Linha 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block mb-1 font-medium text-gray-700 text-sm">
+                        Nome da Empresa / Entidade
+                    </label>
+                    <input type="text" 
+                           placeholder="A sua empresa..." 
+                           class="w-full p-2.5 border rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#0F4D35]">
+                </div>
+
+                <div>
+                    <label class="block mb-1 font-medium text-gray-700 text-sm">
+                        Pessoa de Contacto
+                    </label>
+                    <input type="text" 
+                           placeholder="O seu nome..." 
+                           class="w-full p-2.5 border rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#0F4D35]">
+                </div>
+            </div>
+
+            <!-- Linha 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block mb-1 font-medium text-gray-700 text-sm">
+                        E-mail
+                    </label>
+                    <input type="email" 
+                           placeholder="email@empresa.com" 
+                           class="w-full p-2.5 border rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#0F4D35]">
+                </div>
+
+                <div>
+                    <label class="block mb-1 font-medium text-gray-700 text-sm">
+                        Telefone
+                    </label>
+                    <input type="text" 
+                           placeholder="+244..." 
+                           class="w-full p-2.5 border rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#0F4D35]">
+                </div>
+            </div>
+
+            <!-- Mensagem -->
+            <div>
+                <label class="block mb-1 font-medium text-gray-700 text-sm">
+                    Assunto / Detalhes do Projeto
+                </label>
+                <textarea rows="4" 
+                          placeholder="Descreva brevemente o projeto ou a sua necessidade..." 
+                          class="w-full p-2.5 border rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#0F4D35]"></textarea>
+            </div>
+
+            <!-- Botão -->
+            <button type="submit" 
+                    class="w-full bg-[#0F4D35] text-white py-3 rounded-lg font-semibold hover:bg-[#0c3d2a] transition">
+                ENVIAR MENSAGEM
+            </button>
+
+        </form>
+    </div>
+</section>
+        </div>
+
+        <div class="mt-[5px]">
+            <p><strong><i class="fa-solid fa-envelope "></i> Email:</strong> geral@rppengenharia.com</p>
+            <p><strong><i class="fa-solid fa-phone"></i> Telefone:</strong> +244 900 000 000</p>
+            <p><strong>NIF:</strong> 5000000000</p>
+
+            <iframe class="w-full h-[380px] mt-6 rounded"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d6969.92709346321!2d13.210605020319921!3d-8.902305736705582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-PT!2sao!4v1772496124371!5m2!1spt-PT!2sao" 
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= MODAL PROJETO ================= -->
+<div id="projectModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 p-6">
+
+    <div id="modalContent" class="bg-white w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform scale-95 opacity-0 transition duration-300">
+
+        <!-- Imagem -->
+        <div class="relative h-[400px]">
+            <img id="modalImage" class="w-full h-full object-cover">
+            <button id="closeModal"
+                class="absolute top-4 right-4 bg-white/80 hover:bg-white text-black px-4 py-2 rounded-full">
+                ✕
+            </button>
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="p-10 grid md:grid-cols-2 gap-10">
+
+            <!-- Descrição -->
+            <div>
+                <h2 id="modalTitle" class="text-2xl font-bold mb-6 text-[#0F4D35]"></h2>
+                <p id="modalDescription" class="text-gray-600 leading-relaxed"></p>
+            </div>
+
+            <!-- Informações -->
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <h3 class="text-lg font-bold mb-6 text-[#0F4D35]">Ficha Técnica</h3>
+
+                <ul class="space-y-3 text-gray-600">
+                    <li><strong>Localização:</strong> <span id="modalLocation"></span></li>
+                    <li><strong>Ano:</strong> <span id="modalYear"></span></li>
+                    <li><strong>Dimensão:</strong> <span id="modalDimension"></span></li>
+                    <li><strong>Categoria:</strong> <span id="modalCategory"></span></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const modal = document.getElementById("projectModal");
+    const modalContent = document.getElementById("modalContent");
+    const closeModal = document.getElementById("closeModal");
+
+    const modalImage = document.getElementById("modalImage");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDescription = document.getElementById("modalDescription");
+    const modalLocation = document.getElementById("modalLocation");
+    const modalYear = document.getElementById("modalYear");
+    const modalDimension = document.getElementById("modalDimension");
+    const modalCategory = document.getElementById("modalCategory");
+
+    const cards = document.querySelectorAll(".project-card");
+
+    cards.forEach(card => {
+        card.addEventListener("click", function () {
+
+            modalImage.src = this.dataset.image;
+            modalTitle.textContent = this.dataset.title;
+            modalDescription.textContent = this.dataset.description;
+            modalLocation.textContent = this.dataset.location;
+            modalYear.textContent = this.dataset.year;
+            modalDimension.textContent = this.dataset.dimension;
+            modalCategory.textContent = this.dataset.category;
+
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+
+            setTimeout(() => {
+                modalContent.classList.remove("scale-95", "opacity-0");
+                modalContent.classList.add("scale-100", "opacity-100");
+            }, 50);
+
+            document.body.style.overflow = "hidden";
+        });
+    });
+
+    function closeProjectModal() {
+        modalContent.classList.remove("scale-100", "opacity-100");
+        modalContent.classList.add("scale-95", "opacity-0");
+
+        setTimeout(() => {
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            document.body.style.overflow = "auto";
+        }, 200);
+    }
+
+    closeModal.addEventListener("click", closeProjectModal);
+
+    modal.addEventListener("click", function (e) {
+        if (e.target === modal) {
+            closeProjectModal();
+        }
+    });
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+            closeProjectModal();
+        }
+    });
+
+});
+</script>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-[#000015] text-gray-400 py-16">
+    
+    <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-12">
+
+        <!-- Coluna 1 -->
+        <div>
+            <!-- Logo -->
+        <h1 id="logo-principal"
+    class="flex items-center gap-3 text-1xl font-bold text-white tracking-wide transition-colors duration-300">
+    
+            <img src="assets/imagens/logo.jpeg" alt="RPP Logo" class="h-8 w-auto rounded-md">
+    
+            <span>RPP <p style="font-size: 12px; color: grey;">ENGENHARIA & CONSTRUÇÃO</p></span>
+        </h1>
+            <br>
+
+            <p class="text-sm leading-relaxed mb-6">
+                Excelência na construção de infraestruturas, garantindo solidez,
+                inovação e rigoroso cumprimento de prazos desde 1999.
+            </p>
+
+            <p class="text-sm">
+                NIF: 500 000 000
+            </p>
+        </div>
+
+        <!-- Coluna 2 -->
+        <div>
+            <h4 class="text-white font-semibold uppercase mb-6">
+                Links Rápidos
+            </h4>
+            <ul class="space-y-3 text-sm">
+                <li><a href="#inicio" class="hover:text-white transition">Início</a></li>
+                <li><a href="#sobre" class="hover:text-white transition">Sobre</a></li>
+                <li><a href="#servicos" class="hover:text-white transition">Serviços</a></li>
+                <li><a href="#projetos" class="hover:text-white transition">Projetos</a></li>
+                <li><a href="#" class="hover:text-white transition">Sustentabilidade</a></li>
+                <li><a href="#contacto" class="hover:text-white transition">Contacto</a></li>
+            </ul>
+        </div>
+
+        <!-- Coluna 3 -->
+        <div>
+            <h4 class="text-white font-semibold uppercase mb-6">
+                Serviços
+            </h4>
+            <ul class="space-y-3 text-sm">
+                <li>Infraestruturas Públicas</li>
+                <li>Edificação Corporativa</li>
+                <li>Obras Industriais</li>
+                <li>Obras de Arte</li>
+                <li>Reabilitação</li>
+            </ul>
+        </div>
+
+        <!-- Coluna 4 -->
+        <div>
+            <h4 class="text-white font-semibold uppercase mb-6">
+                Sede
+            </h4>
+            <div class="text-sm space-y-3">
+                <p>
+                   <i class="fa-solid fa-location-dot"></i> Avenida da República, 100<br>
+                    1050-193 Lisboa, Portugal
+                </p>
+                <p><i class="fa-solid fa-envelope "></i> geral@rpp-engenharia.pt</p>
+                <p><i class="fa-solid fa-phone"></i> +351 210 000 000</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Linha divisória -->
+    <div class="border-t border-gray-800 mt-12"></div>
+
+    <!-- Rodapé inferior -->
+    <div class="max-w-7xl mx-auto px-8 py-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+        <p>
+            © 2026 RPP – Engenharia e Construção Civil, LDA. Todos os direitos reservados.
+        </p>
+
+        <div class="flex space-x-6 mt-4 md:mt-0">
+            <a href="#" class="hover:text-white transition">Política de Privacidade</a>
+            <a href="#" class="hover:text-white transition">Termos de Utilização</a>
+        </div>
+    </div>
+
+</footer>
+
+<script src="assets/js/principal.js"></script>
+
+</body>
+</html>
