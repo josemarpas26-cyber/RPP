@@ -30,29 +30,14 @@
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Outfit', system-ui, sans-serif; color: var(--carvao); background: var(--branco); overflow-x: hidden; cursor: none; }
-
-        /* CURSOR */
-        #cursor-dot {
-            position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;
-            width: 8px; height: 8px; border-radius: 50%; background: var(--ouro);
-            transform: translate(-50%,-50%);
-            transition: width .3s var(--ease-out-expo), height .3s var(--ease-out-expo), background .3s;
-        }
-        #cursor-ring {
-            position: fixed; top: 0; left: 0; z-index: 9998; pointer-events: none;
-            width: 36px; height: 36px; border-radius: 50%;
-            border: 1.5px solid rgba(196,154,60,.5);
-            transform: translate(-50%,-50%);
-            transition: width .4s var(--ease-out-expo), height .4s var(--ease-out-expo);
-        }
-        .cursor-hover #cursor-dot { width: 14px; height: 14px; background: var(--ouro-lt); }
-        .cursor-hover #cursor-ring { width: 52px; height: 52px; border-color: var(--ouro); }
+        /* ✅ CURSOR NORMAL — sem cursor personalizado */
+        body { font-family: 'Outfit', system-ui, sans-serif; color: var(--carvao); background: var(--branco); overflow-x: hidden; }
 
         /* SCROLL PROGRESS */
         #scroll-progress {
             position: fixed; top: 0; left: 0; height: 2px; z-index: 9997;
             background: linear-gradient(90deg, var(--ouro), var(--ouro-lt)); width: 0%;
+            transition: width .1s linear;
         }
 
         /* HEADER */
@@ -93,14 +78,14 @@
             display: none; align-items: center; gap: .5rem;
             border: 1px solid rgba(196,154,60,.6); color: var(--ouro-lt); background: transparent;
             font-size: .72rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
-            padding: .55rem 1.3rem; border-radius: 4px; text-decoration: none; cursor: none;
+            padding: .55rem 1.3rem; border-radius: 4px; text-decoration: none;
             transition: background .3s, color .3s, border-color .3s;
         }
         @media(min-width:1024px){ .btn-proposta { display: inline-flex; } }
         .btn-proposta:hover { background: var(--ouro); color: var(--carvao); border-color: var(--ouro); }
 
         /* HAMBURGER */
-        #hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: none; padding: 6px; }
+        #hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
         @media(min-width:1024px){ #hamburger { display: none; } }
         .ham-line { display: block; height: 1.5px; background: #fff; transition: all .35s var(--ease-out-expo); }
         .ham-line:nth-child(1){ width: 24px; }
@@ -126,7 +111,7 @@
         .mobile-cta {
             margin-top: 2.5rem; border: 1px solid rgba(196,154,60,.5); color: var(--ouro-lt);
             font-size: .78rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-            padding: .8rem 2.2rem; border-radius: 4px; text-decoration: none; cursor: none;
+            padding: .8rem 2.2rem; border-radius: 4px; text-decoration: none;
             transition: background .3s, color .3s;
         }
         .mobile-cta:hover { background: var(--ouro); color: var(--carvao); }
@@ -199,7 +184,7 @@
             display: inline-flex; align-items: center; gap: .6rem;
             background: var(--verde); color: #fff;
             font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-            padding: 1rem 2rem; border-radius: 6px; text-decoration: none; cursor: none;
+            padding: 1rem 2rem; border-radius: 6px; text-decoration: none;
             transition: background .3s, transform .3s;
         }
         .btn-primary:hover { background: var(--verde-lt); transform: translateY(-2px); }
@@ -209,7 +194,7 @@
             display: inline-flex; align-items: center; gap: .6rem;
             border: 1px solid rgba(255,255,255,.3); color: rgba(255,255,255,.85);
             font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-            padding: 1rem 2rem; border-radius: 6px; text-decoration: none; cursor: none;
+            padding: 1rem 2rem; border-radius: 6px; text-decoration: none;
             transition: border-color .3s, color .3s, transform .3s;
         }
         .btn-ghost:hover { border-color: rgba(255,255,255,.7); color: #fff; transform: translateY(-2px); }
@@ -245,7 +230,7 @@
         @media(min-width:640px){ .servicos-grid { grid-template-columns: repeat(2,1fr); } }
         @media(min-width:1024px){ .servicos-grid { grid-template-columns: repeat(3,1fr); } }
         .servico-card {
-            background: var(--creme); border: 1px solid #E5E1D8; border-radius: 14px; padding: 2rem; cursor: none;
+            background: var(--creme); border: 1px solid #E5E1D8; border-radius: 14px; padding: 2rem;
             transition: border-color .4s, box-shadow .4s, transform .4s var(--ease-out-expo);
             position: relative; overflow: hidden;
         }
@@ -272,20 +257,20 @@
         @media(min-width:768px){ .projetos-header { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
         .projetos-header .section-title { color: #fff; }
         .filter-group { display: flex; flex-wrap: wrap; gap: .5rem; }
-        .filter-btn { background: none; border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.55); cursor: none; font-family: 'Outfit', sans-serif; font-size: .7rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: .45rem 1rem; border-radius: 100px; transition: all .3s; }
+        .filter-btn { background: none; border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.55); cursor: pointer; font-family: 'Outfit', sans-serif; font-size: .7rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: .45rem 1rem; border-radius: 100px; transition: all .3s; }
         .filter-btn:hover { color: #fff; border-color: rgba(255,255,255,.4); }
         .filter-btn.active { background: var(--ouro); border-color: var(--ouro); color: var(--carvao); font-weight: 600; }
         .projects-grid { display: grid; gap: 1.2rem; }
         @media(min-width:640px){ .projects-grid { grid-template-columns: repeat(2,1fr); } }
         @media(min-width:1024px){ .projects-grid { grid-template-columns: repeat(3,1fr); } }
-        .project-card { position: relative; border-radius: 14px; overflow: hidden; cursor: none; background: #1a1a18; transition: transform .5s var(--ease-out-expo), box-shadow .5s; }
+        .project-card { position: relative; border-radius: 14px; overflow: hidden; cursor: pointer; background: #1a1a18; transition: transform .5s var(--ease-out-expo), box-shadow .5s; }
         .project-card:hover { transform: translateY(-5px); box-shadow: 0 24px 64px rgba(0,0,0,.5); }
         .card-img { position: relative; overflow: hidden; }
         .card-img img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform .8s var(--ease-out-expo), filter .5s; filter: brightness(.85); }
         .project-card:hover .card-img img { transform: scale(1.07); filter: brightness(.7); }
         .card-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,16,.95) 0%, rgba(17,17,16,.3) 60%, transparent 100%); }
         .card-badge { position: absolute; top: 1rem; left: 1rem; background: rgba(17,17,16,.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.7); font-size: .62rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; padding: .3rem .75rem; border-radius: 100px; }
-        .card-expand { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.1); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.2); color: #fff; display: flex; align-items: center; justify-content: center; font-size: .75rem; opacity: 0; transform: scale(.8); transition: opacity .3s, transform .3s var(--ease-out-expo); cursor: none; }
+        .card-expand { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.1); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.2); color: #fff; display: flex; align-items: center; justify-content: center; font-size: .75rem; opacity: 0; transform: scale(.8); transition: opacity .3s, transform .3s var(--ease-out-expo); cursor: pointer; }
         .project-card:hover .card-expand { opacity: 1; transform: scale(1); }
         .card-body { padding: 1.2rem 1.4rem 1.4rem; }
         .card-meta { display: flex; justify-content: space-between; align-items: flex-start; gap: .5rem; }
@@ -297,7 +282,7 @@
         .card-dim-label { font-size: .65rem; color: rgba(255,255,255,.3); text-transform: uppercase; letter-spacing: .15em; }
         .card-dim-value { font-size: .85rem; font-weight: 600; color: var(--verde-lt); }
         .projetos-cta { text-align: center; margin-top: 3.5rem; }
-        .projetos-cta a { display: inline-flex; align-items: center; gap: .6rem; border: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.75); font-size: .78rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; padding: 1rem 2.2rem; border-radius: 8px; text-decoration: none; cursor: none; transition: background .3s, color .3s, border-color .3s, transform .3s; }
+        .projetos-cta a { display: inline-flex; align-items: center; gap: .6rem; border: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.75); font-size: .78rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; padding: 1rem 2.2rem; border-radius: 8px; text-decoration: none; transition: background .3s, color .3s, border-color .3s, transform .3s; }
         .projetos-cta a:hover { background: #fff; color: var(--carvao); border-color: #fff; transform: translateY(-2px); }
 
         /* SUSTENTABILIDADE */
@@ -333,34 +318,61 @@
         #cta-band .section-eyebrow .rule { background: rgba(196,154,60,.5); }
         #cta-band .section-title { color: #fff; }
         #cta-band p { color: rgba(255,255,255,.65); line-height: 1.75; margin-top: 1.2rem; font-size: 1.05rem; }
-        .btn-white { display: inline-flex; align-items: center; gap: .6rem; background: #fff; color: var(--verde); font-size: .78rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; padding: 1.1rem 2.5rem; border-radius: 8px; text-decoration: none; cursor: none; margin-top: 2.5rem; box-shadow: 0 8px 32px rgba(0,0,0,.15); transition: background .3s, transform .3s, box-shadow .3s; }
+        .btn-white { display: inline-flex; align-items: center; gap: .6rem; background: #fff; color: var(--verde); font-size: .78rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; padding: 1.1rem 2.5rem; border-radius: 8px; text-decoration: none; margin-top: 2.5rem; box-shadow: 0 8px 32px rgba(0,0,0,.15); transition: background .3s, transform .3s, box-shadow .3s; }
         .btn-white:hover { background: var(--creme); transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,.2); }
 
-        /* NOTÍCIAS */
+        /* ============================================================
+           NOTÍCIAS — CARROSSEL VERDADEIRO (1 card visível de cada vez)
+        ============================================================ */
         #noticias { padding: 8rem 0; background: var(--creme); }
         #noticias .inner { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
         .noticias-header { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 3.5rem; }
         @media(min-width:768px){ .noticias-header { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
         .noticias-header .section-title { color: var(--carvao); }
+
+        /* Controlos */
         .carousel-controls { display: flex; align-items: center; gap: .75rem; }
-        .carousel-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(17,17,16,.2); background: none; cursor: none; display: flex; align-items: center; justify-content: center; color: var(--carvao); font-size: .8rem; transition: background .3s, color .3s, border-color .3s; }
+        .carousel-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(17,17,16,.2); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--carvao); font-size: .85rem; transition: background .3s, color .3s, border-color .3s; }
         .carousel-btn:hover { background: var(--verde); color: #fff; border-color: var(--verde); }
-        .carousel-count { font-size: .85rem; font-weight: 600; color: var(--carvao); }
-        .noticias-track { display: grid; gap: 1.2rem; }
-        @media(min-width:640px){ .noticias-track { grid-template-columns: repeat(2,1fr); } }
-        @media(min-width:1024px){ .noticias-track { grid-template-columns: repeat(3,1fr); } }
-        .noticia-card { background: var(--branco); border: 1px solid #E5E1D8; border-radius: 14px; overflow: hidden; cursor: none; transition: transform .4s var(--ease-out-expo), box-shadow .4s; }
-        .noticia-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.1); }
-        .noticia-card .n-img { position: relative; height: 180px; overflow: hidden; }
-        .noticia-card .n-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease-out-expo); }
-        .noticia-card:hover .n-img img { transform: scale(1.06); }
-        .noticia-card .n-cat { position: absolute; bottom: .8rem; left: .8rem; background: var(--verde); color: #fff; font-size: .6rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; padding: .25rem .65rem; border-radius: 100px; }
-        .noticia-card .n-body { padding: 1.3rem; }
+        .carousel-count { font-size: .85rem; font-weight: 600; color: var(--carvao); min-width: 3rem; text-align: center; }
+
+        /* Viewport do carrossel */
+        .carousel-viewport { overflow: hidden; border-radius: 16px; }
+        .carousel-track {
+            display: flex;
+            transition: transform .55s var(--ease-out-expo);
+        }
+
+        /* Cada card ocupa 100% do viewport */
+        .noticia-card {
+            background: var(--branco); border: 1px solid #E5E1D8; border-radius: 0;
+            overflow: hidden; flex: 0 0 100%; width: 100%;
+            display: grid; grid-template-columns: 1fr;
+        }
+        @media(min-width:768px){
+            .noticia-card { grid-template-columns: 1fr 1fr; border-radius: 16px; }
+        }
+
+        .noticia-card .n-img { position: relative; overflow: hidden; min-height: 220px; }
+        @media(min-width:768px){ .noticia-card .n-img { min-height: 360px; } }
+        .noticia-card .n-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease-out-expo); }
+        .noticia-card:hover .n-img img { transform: scale(1.04); }
+        .noticia-card .n-cat { position: absolute; bottom: .8rem; left: .8rem; background: var(--verde); color: #fff; font-size: .6rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; padding: .3rem .75rem; border-radius: 100px; }
+
+        .noticia-card .n-body {
+            padding: 2.5rem;
+            display: flex; flex-direction: column; justify-content: center;
+        }
         .noticia-card .n-date { font-size: .72rem; color: #aaa; margin-bottom: .5rem; }
-        .noticia-card .n-title { font-size: .95rem; font-weight: 600; color: var(--carvao); line-height: 1.45; }
-        .noticia-card .n-desc  { font-size: .82rem; color: #666; line-height: 1.65; margin-top: .6rem; }
-        .noticia-card .n-link  { display: inline-flex; align-items: center; gap: .35rem; font-size: .76rem; font-weight: 600; color: var(--verde); text-decoration: none; margin-top: 1rem; transition: gap .3s; }
-        .noticia-card .n-link:hover { gap: .6rem; }
+        .noticia-card .n-title { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem,2.5vw,1.8rem); font-weight: 700; color: var(--carvao); line-height: 1.3; }
+        .noticia-card .n-desc  { font-size: .9rem; color: #666; line-height: 1.75; margin-top: 1rem; }
+        .noticia-card .n-link  { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; font-weight: 600; color: var(--verde); text-decoration: none; margin-top: 1.5rem; transition: gap .3s; }
+        .noticia-card .n-link:hover { gap: .7rem; }
+
+        /* Dots de paginação */
+        .carousel-dots { display: flex; justify-content: center; gap: .5rem; margin-top: 1.8rem; }
+        .c-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(17,17,16,.15); border: none; cursor: pointer; transition: background .3s, transform .3s; padding: 0; }
+        .c-dot.active { background: var(--verde); transform: scale(1.3); }
 
         /* ADMIN */
         #admin { padding: 6rem 0; background: var(--branco); border-top: 1px solid #eee; }
@@ -370,7 +382,7 @@
         .admin-input { width: 100%; background: #fff; border: 1px solid #DDD9D0; border-radius: 8px; padding: .7rem 1rem; font-family: 'Outfit', sans-serif; font-size: .9rem; color: var(--carvao); transition: border-color .3s, box-shadow .3s; outline: none; }
         .admin-input:focus { border-color: var(--verde); box-shadow: 0 0 0 3px rgba(13,74,51,.1); }
         textarea.admin-input { resize: vertical; }
-        .admin-btn { display: inline-flex; align-items: center; gap: .5rem; background: var(--verde); color: #fff; border: none; cursor: none; font-family: 'Outfit', sans-serif; font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .75rem 1.6rem; border-radius: 8px; transition: background .3s; }
+        .admin-btn { display: inline-flex; align-items: center; gap: .5rem; background: var(--verde); color: #fff; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .75rem 1.6rem; border-radius: 8px; transition: background .3s; }
         .admin-btn:hover { background: var(--verde-md); }
         .admin-btn.secondary { background: none; color: var(--carvao); border: 1px solid #DDD9D0; }
         .admin-btn.secondary:hover { background: #f0ede6; }
@@ -381,7 +393,7 @@
         .pub-item-title { font-size: .88rem; font-weight: 500; color: var(--carvao); }
         .pub-item-cat { font-size: .68rem; color: #aaa; margin-top: .1rem; }
         .pub-actions { display: flex; gap: .5rem; }
-        .icon-btn { width: 32px; height: 32px; border-radius: 6px; border: none; background: #f0ede6; cursor: none; display: flex; align-items: center; justify-content: center; font-size: .75rem; color: #555; transition: background .2s, color .2s; }
+        .icon-btn { width: 32px; height: 32px; border-radius: 6px; border: none; background: #f0ede6; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: .75rem; color: #555; transition: background .2s, color .2s; }
         .icon-btn:hover { background: var(--verde); color: #fff; }
         .icon-btn.del:hover { background: #e53e3e; }
 
@@ -398,7 +410,7 @@
         .contact-label { display: block; font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: .5rem; }
         .c2 { display: grid; gap: 1.2rem; }
         @media(min-width:640px){ .c2 { grid-template-columns: 1fr 1fr; } }
-        .btn-submit { width: 100%; background: var(--verde); color: #fff; border: none; cursor: none; font-family: 'Outfit', sans-serif; font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: 1.1rem; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: .5rem; transition: background .3s, transform .3s; }
+        .btn-submit { width: 100%; background: var(--verde); color: #fff; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: 1.1rem; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: .5rem; transition: background .3s, transform .3s; }
         .btn-submit:hover { background: var(--verde-lt); transform: translateY(-2px); }
         .form-success { display: none; text-align: center; padding: 1rem; background: rgba(22,105,74,.2); border-radius: 10px; color: var(--verde-lt); font-size: .9rem; font-weight: 600; }
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -419,7 +431,7 @@
         @media(min-width:768px){ .modal-img-wrap { height: 380px; } }
         .modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .modal-img-wrap::after { content:''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,16,.7), transparent 50%); }
-        #closeModal { position: absolute; top: 1rem; right: 1rem; z-index: 1; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,.3); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.2); color: #fff; cursor: none; display: flex; align-items: center; justify-content: center; font-size: .85rem; transition: background .3s; }
+        #closeModal { position: absolute; top: 1rem; right: 1rem; z-index: 1; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,.3); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.2); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: .85rem; transition: background .3s; }
         #closeModal:hover { background: rgba(255,255,255,.15); }
         .modal-title-wrap { position: absolute; bottom: 1.5rem; left: 2rem; z-index: 1; }
         #modalTitle { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,3vw,2.2rem); font-weight: 900; color: #fff; }
@@ -443,7 +455,7 @@
         @media(min-width:1024px){ footer .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; } }
         .footer-brand p { font-size: .85rem; line-height: 1.75; margin-top: 1rem; margin-bottom: 1.5rem; }
         .social-links { display: flex; gap: .6rem; }
-        .social-link { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: center; color: #555; font-size: .82rem; text-decoration: none; cursor: none; transition: background .3s, color .3s; }
+        .social-link { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: center; color: #555; font-size: .82rem; text-decoration: none; transition: background .3s, color .3s; }
         .social-link:hover { background: var(--verde); color: #fff; }
         .footer-col h4 { color: #fff; font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1.4rem; }
         .footer-links { list-style: none; }
@@ -463,7 +475,7 @@
         .legal-links a:hover { color: #fff; }
 
         /* KEYFRAMES */
-        @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeUp  { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
         @keyframes slideUp { from { opacity:0; transform:translateY(100%); } to { opacity:1; transform:translateY(0); } }
 
         .hidden { display: none !important; }
@@ -471,8 +483,7 @@
 </head>
 
 <body>
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
+<!-- ✅ SEM cursor-dot / cursor-ring -->
 <div id="scroll-progress"></div>
 
 <!-- HEADER -->
@@ -726,7 +737,9 @@
     </div>
 </section>
 
-<!-- NOTÍCIAS -->
+<!-- ============================================================
+     NOTÍCIAS — Carrossel 1 card de cada vez
+============================================================ -->
 <section id="noticias">
     <div class="inner">
         <div class="noticias-header reveal">
@@ -735,12 +748,25 @@
                 <h2 class="section-title">Notícias e Publicações</h2>
             </div>
             <div class="carousel-controls">
-                <button id="noticias-prev" class="carousel-btn" aria-label="Anterior"><i class="fa-solid fa-arrow-left"></i></button>
-                <span class="carousel-count"><span id="slide-atual">1</span> / <span id="slide-total">1</span></span>
-                <button id="noticias-next" class="carousel-btn" aria-label="Próxima"><i class="fa-solid fa-arrow-right"></i></button>
+                <button id="noticias-prev" class="carousel-btn" aria-label="Anterior">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <span class="carousel-count">
+                    <span id="slide-atual">1</span> / <span id="slide-total">1</span>
+                </span>
+                <button id="noticias-next" class="carousel-btn" aria-label="Próxima">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
             </div>
         </div>
-        <div id="noticias-track" class="noticias-track reveal"></div>
+
+        <!-- Viewport: 1 card visível -->
+        <div class="carousel-viewport reveal">
+            <div id="noticias-track" class="carousel-track"></div>
+        </div>
+
+        <!-- Dots -->
+        <div id="carousel-dots" class="carousel-dots"></div>
     </div>
 </section>
 
@@ -900,155 +926,236 @@
 (function(){
     'use strict';
 
-    // CURSOR
-    const dot = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-    let mx=0,my=0,rx=0,ry=0;
-    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.cssText=`left:${mx}px;top:${my}px`; });
-    (function animRing(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.cssText=`left:${rx}px;top:${ry}px`; requestAnimationFrame(animRing); })();
-    document.querySelectorAll('a,button,.project-card,.servico-card,.noticia-card').forEach(el=>{
-        el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
-        el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
-    });
-
-    // SCROLL PROGRESS + HEADER
+    // ── SCROLL PROGRESS + HEADER ──────────────────────────────
     const progressBar = document.getElementById('scroll-progress');
     const header = document.getElementById('cabecalho');
     window.addEventListener('scroll', ()=>{
-        const pct = window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
-        progressBar.style.width = pct+'%';
-        header.classList.toggle('scrolled', window.scrollY>60);
+        const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+        progressBar.style.width = pct + '%';
+        header.classList.toggle('scrolled', window.scrollY > 60);
     }, {passive:true});
 
-    // HAMBURGER
+    // ── HAMBURGER ─────────────────────────────────────────────
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
-    hamburger.addEventListener('click',()=>{
+    hamburger.addEventListener('click', ()=>{
         const open = mobileMenu.classList.toggle('open');
         hamburger.classList.toggle('open', open);
-        document.body.style.overflow = open?'hidden':'';
+        document.body.style.overflow = open ? 'hidden' : '';
     });
-    document.querySelectorAll('.mobile-nav-link,.mobile-cta').forEach(el=>el.addEventListener('click',()=>{
-        mobileMenu.classList.remove('open'); hamburger.classList.remove('open'); document.body.style.overflow='';
+    document.querySelectorAll('.mobile-nav-link,.mobile-cta').forEach(el => el.addEventListener('click', ()=>{
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        document.body.style.overflow = '';
     }));
 
-    // REVEAL
-    const revObs = new IntersectionObserver(entries=>entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in-view');revObs.unobserve(e.target);} }), {threshold:.1,rootMargin:'0px 0px -60px 0px'});
-    document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+    // ── REVEAL ────────────────────────────────────────────────
+    const revObs = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); revObs.unobserve(e.target); }
+    }), {threshold:.1, rootMargin:'0px 0px -60px 0px'});
+    document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-    // PROJECT MODAL
+    // ── PROJECT MODAL ─────────────────────────────────────────
     const modal = document.getElementById('projectModal');
-    const mc = document.getElementById('modalContent');
     function openModal(c){
-        ['modalImage','modalTitle','modalDescription','modalLocation','modalYear','modalDimension','modalCategory'].forEach(id=>{
-            const el=document.getElementById(id);
-            const key=id.replace('modal','').toLowerCase();
-            const map={modalimage:'image',modaltitle:'title',modaldescription:'description',modallocation:'location',modalyear:'year',modaldimension:'dimension',modalcategory:'category'};
-            if(id==='modalImage') el.src=c.dataset.image; else el.textContent=c.dataset[map[id.toLowerCase()]];
-        });
-        modal.classList.add('open'); document.body.style.overflow='hidden';
+        document.getElementById('modalImage').src          = c.dataset.image;
+        document.getElementById('modalTitle').textContent  = c.dataset.title;
+        document.getElementById('modalDescription').textContent = c.dataset.description;
+        document.getElementById('modalLocation').textContent    = c.dataset.location;
+        document.getElementById('modalYear').textContent        = c.dataset.year;
+        document.getElementById('modalDimension').textContent   = c.dataset.dimension;
+        document.getElementById('modalCategory').textContent    = c.dataset.category;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
     }
-    function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
-    document.querySelectorAll('.project-card').forEach(c=>c.addEventListener('click',()=>openModal(c)));
-    document.getElementById('closeModal').addEventListener('click',closeModal);
-    modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
-    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+    function closeModalFn(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
+    document.querySelectorAll('.project-card').forEach(c => c.addEventListener('click', ()=> openModal(c)));
+    document.getElementById('closeModal').addEventListener('click', closeModalFn);
+    modal.addEventListener('click', e => { if(e.target === modal) closeModalFn(); });
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModalFn(); });
 
-    // FILTERS
-    document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
-        document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    // ── FILTERS ───────────────────────────────────────────────
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', ()=>{
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        document.querySelectorAll('.project-card').forEach(c=>c.style.display=(btn.dataset.filter==='all'||c.dataset.category===btn.dataset.filter)?'':'none');
+        document.querySelectorAll('.project-card').forEach(c => {
+            c.style.display = (btn.dataset.filter==='all' || c.dataset.category===btn.dataset.filter) ? '' : 'none';
+        });
     }));
 
-    // CONTACT FORM
-    document.getElementById('formulario-contacto')?.addEventListener('submit',function(e){
+    // ── CONTACT FORM ──────────────────────────────────────────
+    document.getElementById('formulario-contacto')?.addEventListener('submit', function(e){
         e.preventDefault();
         const btn=document.getElementById('btn-enviar'), ok=document.getElementById('form-success');
         btn.disabled=true; btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> A enviar...';
-        setTimeout(()=>{ btn.classList.add('hidden'); ok.style.display='block'; this.reset();
-            setTimeout(()=>{ btn.classList.remove('hidden'); ok.style.display='none'; btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Enviar Mensagem'; },5000);
-        },1200);
+        setTimeout(()=>{
+            btn.classList.add('hidden'); ok.style.display='block'; this.reset();
+            setTimeout(()=>{ btn.classList.remove('hidden'); ok.style.display='none'; btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Enviar Mensagem'; }, 5000);
+        }, 1200);
     });
 
-    // NEWS + ADMIN
+    // ══════════════════════════════════════════════════════════
+    //  NOTÍCIAS — CARROSSEL (1 card visível + slide animado)
+    // ══════════════════════════════════════════════════════════
     const NEWS_KEY='rpp_noticias_v2', IMGS_KEY='rpp_imgs_v2', PASS='rpp2026';
-    const load=()=>{ try{ return JSON.parse(localStorage.getItem(NEWS_KEY))||[]; }catch{ return []; } };
-    const save=d=>localStorage.setItem(NEWS_KEY,JSON.stringify(d));
-    const loadImgs=()=>{ try{ return JSON.parse(localStorage.getItem(IMGS_KEY))||{}; }catch{ return {}; } };
-    const saveImgs=i=>localStorage.setItem(IMGS_KEY,JSON.stringify(i));
-    if(!localStorage.getItem(NEWS_KEY)) save([
-        {id:1,titulo:'RPP conclui obra de referência em Luanda',resumo:'A empresa entregou mais um projeto de excelência dentro do prazo e orçamento previstos.',categoria:'Institucional',data:'2024-03-15'},
-        {id:2,titulo:'Novo contrato de infraestrutura no Norte de Angola',resumo:'RPP assinou contrato para construção de rede rodoviária de 85 km em Malanje.',categoria:'Infraestrutura',data:'2024-02-10'},
-        {id:3,titulo:'Certificação ISO 14001 renovada',resumo:'A RPP renovou com sucesso a certificação ambiental ISO 14001, reforçando o compromisso com a sustentabilidade.',categoria:'Sustentabilidade',data:'2024-01-22'},
+
+    const loadNews  = ()=>{ try{ return JSON.parse(localStorage.getItem(NEWS_KEY))||[]; }catch{ return []; } };
+    const saveNews  = d => localStorage.setItem(NEWS_KEY, JSON.stringify(d));
+    const loadImgs  = ()=>{ try{ return JSON.parse(localStorage.getItem(IMGS_KEY))||{}; }catch{ return {}; } };
+    const saveImgs  = i => localStorage.setItem(IMGS_KEY, JSON.stringify(i));
+    const fmtDate   = s=>{ try{ return new Date(s).toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'}); }catch{ return s; } };
+
+    const defImgs = [
+        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=70',
+        'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=70',
+        'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=900&q=70'
+    ];
+
+    if (!localStorage.getItem(NEWS_KEY)) saveNews([
+        {id:1, titulo:'RPP conclui obra de referência em Luanda',    resumo:'A empresa entregou mais um projeto de excelência dentro do prazo e orçamento previstos.', categoria:'Institucional',    data:'2024-03-15'},
+        {id:2, titulo:'Novo contrato de infraestrutura no Norte de Angola', resumo:'RPP assinou contrato para construção de rede rodoviária de 85 km em Malanje.',              categoria:'Infraestrutura',   data:'2024-02-10'},
+        {id:3, titulo:'Certificação ISO 14001 renovada',              resumo:'A RPP renovou com sucesso a certificação ambiental ISO 14001, reforçando o compromisso com a sustentabilidade.', categoria:'Sustentabilidade', data:'2024-01-22'},
     ]);
 
-    let currentPage=0; const PER_PAGE=3;
-    const defImgs=['https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=70','https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=70','https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=600&q=70'];
-    const fmtDate=s=>{ try{ return new Date(s).toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'}); }catch{ return s; } };
+    let currentIdx = 0;
+    const track    = document.getElementById('noticias-track');
+    const dotsWrap = document.getElementById('carousel-dots');
+    const slideAtualEl = document.getElementById('slide-atual');
+    const slideTotalEl = document.getElementById('slide-total');
 
-    function renderNews(){
-        const all=load(), imgs=loadImgs(), total=Math.max(1,Math.ceil(all.length/PER_PAGE));
-        currentPage=Math.min(currentPage,total-1);
-        document.getElementById('slide-atual').textContent=currentPage+1;
-        document.getElementById('slide-total').textContent=total;
-        document.getElementById('noticias-track').innerHTML=all.slice(currentPage*PER_PAGE,(currentPage+1)*PER_PAGE).map((n,i)=>`
+    function buildCarousel(){
+        const all  = loadNews();
+        const imgs = loadImgs();
+        if (!all.length){ track.innerHTML='<p style="padding:2rem;color:#aaa;">Sem publicações.</p>'; return; }
+
+        // Renderizar todos os cards no track
+        track.innerHTML = all.map((n, i) => `
             <article class="noticia-card">
-                <div class="n-img"><img src="${imgs[n.id]||defImgs[i%3]}" alt="${n.titulo}" loading="lazy"><span class="n-cat">${n.categoria}</span></div>
-                <div class="n-body"><p class="n-date">${fmtDate(n.data)}</p><h3 class="n-title">${n.titulo}</h3><p class="n-desc">${n.resumo}</p><a href="#" class="n-link">Ler mais <i class="fa-solid fa-arrow-right" style="font-size:.65rem;"></i></a></div>
+                <div class="n-img">
+                    <img src="${imgs[n.id] || defImgs[i % defImgs.length]}" alt="${n.titulo}" loading="lazy">
+                    <span class="n-cat">${n.categoria}</span>
+                </div>
+                <div class="n-body">
+                    <p class="n-date">${fmtDate(n.data)}</p>
+                    <h3 class="n-title">${n.titulo}</h3>
+                    <p class="n-desc">${n.resumo}</p>
+                    <a href="#" class="n-link">Ler mais <i class="fa-solid fa-arrow-right" style="font-size:.65rem;"></i></a>
+                </div>
             </article>`).join('');
+
+        // Dots
+        dotsWrap.innerHTML = all.map((_, i) =>
+            `<button class="c-dot${i===currentIdx?' active':''}" data-idx="${i}" aria-label="Notícia ${i+1}"></button>`
+        ).join('');
+        dotsWrap.querySelectorAll('.c-dot').forEach(d =>
+            d.addEventListener('click', ()=> goTo(parseInt(d.dataset.idx)))
+        );
+
+        // Atualizar contador e posição
+        slideTotalEl.textContent = all.length;
+        goTo(currentIdx, false);
     }
-    document.getElementById('noticias-prev').addEventListener('click',()=>{ currentPage=(currentPage-1+Math.ceil(load().length/PER_PAGE))%Math.ceil(load().length/PER_PAGE); renderNews(); });
-    document.getElementById('noticias-next').addEventListener('click',()=>{ currentPage=(currentPage+1)%Math.ceil(load().length/PER_PAGE); renderNews(); });
-    renderNews();
 
-    // Admin auth
-    const loginForm=document.getElementById('admin-login-form'), panel=document.getElementById('admin-panel'), loginErr=document.getElementById('admin-login-error');
-    if(sessionStorage.getItem('rpp_admin')==='1'){ loginForm.classList.add('hidden'); panel.classList.remove('hidden'); renderAdminList(); }
-    loginForm.addEventListener('submit',e=>{ e.preventDefault(); if(document.getElementById('admin-password').value===PASS){ sessionStorage.setItem('rpp_admin','1'); loginForm.classList.add('hidden'); panel.classList.remove('hidden'); renderAdminList(); }else{ loginErr.textContent='Senha incorreta.'; } });
-    document.getElementById('admin-logout').addEventListener('click',()=>{ sessionStorage.removeItem('rpp_admin'); loginForm.classList.remove('hidden'); panel.classList.add('hidden'); document.getElementById('admin-password').value=''; loginErr.textContent=''; });
+    function goTo(idx, animate=true){
+        const all = loadNews();
+        currentIdx = (idx + all.length) % all.length;
+        if (!animate) track.style.transition = 'none';
+        track.style.transform = `translateX(-${currentIdx * 100}%)`;
+        if (!animate) requestAnimationFrame(()=>{ track.style.transition = ''; });
+        slideAtualEl.textContent = currentIdx + 1;
+        dotsWrap.querySelectorAll('.c-dot').forEach((d, i) => d.classList.toggle('active', i===currentIdx));
+    }
 
-    const pubForm=document.getElementById('publicacao-form'), cancelBtn=document.getElementById('cancelar-edicao');
-    pubForm.addEventListener('submit',async e=>{
-        e.preventDefault();
-        const data=load(), imgs=loadImgs();
-        const id=document.getElementById('publicacao-id').value;
-        const titulo=document.getElementById('publicacao-titulo').value.trim();
-        const resumo=document.getElementById('publicacao-resumo').value.trim();
-        const categoria=document.getElementById('publicacao-categoria').value;
-        const fi=document.getElementById('publicacao-imagem');
-        const imgData=fi.files[0]?await new Promise(res=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.readAsDataURL(fi.files[0]); }):null;
-        if(id){ const idx=data.findIndex(x=>x.id===parseInt(id)); if(idx>-1){ data[idx]={...data[idx],titulo,resumo,categoria}; if(imgData) imgs[data[idx].id]=imgData; } }
-        else{ const nid=Date.now(); data.unshift({id:nid,titulo,resumo,categoria,data:new Date().toISOString().slice(0,10)}); if(imgData) imgs[nid]=imgData; }
-        save(data); saveImgs(imgs); pubForm.reset(); document.getElementById('publicacao-id').value=''; cancelBtn.classList.add('hidden'); renderAdminList(); renderNews();
+    document.getElementById('noticias-prev').addEventListener('click', ()=> goTo(currentIdx - 1));
+    document.getElementById('noticias-next').addEventListener('click', ()=> goTo(currentIdx + 1));
+
+    // Swipe touch
+    let touchStartX = 0;
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchend',   e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) goTo(dx < 0 ? currentIdx+1 : currentIdx-1);
     });
-    cancelBtn.addEventListener('click',()=>{ pubForm.reset(); document.getElementById('publicacao-id').value=''; cancelBtn.classList.add('hidden'); });
+
+    // Auto-avanço a cada 6 s
+    let autoPlay = setInterval(()=> goTo(currentIdx+1), 6000);
+    [document.getElementById('noticias-prev'), document.getElementById('noticias-next')].forEach(btn =>
+        btn.addEventListener('click', ()=>{ clearInterval(autoPlay); autoPlay = setInterval(()=> goTo(currentIdx+1), 6000); })
+    );
+
+    buildCarousel();
+
+    // ── ADMIN AUTH ────────────────────────────────────────────
+    const loginForm = document.getElementById('admin-login-form');
+    const panel     = document.getElementById('admin-panel');
+    const loginErr  = document.getElementById('admin-login-error');
+
+    if (sessionStorage.getItem('rpp_admin')==='1'){
+        loginForm.classList.add('hidden'); panel.classList.remove('hidden'); renderAdminList();
+    }
+    loginForm.addEventListener('submit', e=>{
+        e.preventDefault();
+        if (document.getElementById('admin-password').value===PASS){
+            sessionStorage.setItem('rpp_admin','1'); loginForm.classList.add('hidden'); panel.classList.remove('hidden'); renderAdminList();
+        } else { loginErr.textContent='Senha incorreta.'; }
+    });
+    document.getElementById('admin-logout').addEventListener('click', ()=>{
+        sessionStorage.removeItem('rpp_admin'); loginForm.classList.remove('hidden'); panel.classList.add('hidden');
+        document.getElementById('admin-password').value=''; loginErr.textContent='';
+    });
+
+    const pubForm   = document.getElementById('publicacao-form');
+    const cancelBtn = document.getElementById('cancelar-edicao');
+
+    pubForm.addEventListener('submit', async e=>{
+        e.preventDefault();
+        const data=loadNews(), imgs=loadImgs();
+        const id      = document.getElementById('publicacao-id').value;
+        const titulo  = document.getElementById('publicacao-titulo').value.trim();
+        const resumo  = document.getElementById('publicacao-resumo').value.trim();
+        const categoria = document.getElementById('publicacao-categoria').value;
+        const fi      = document.getElementById('publicacao-imagem');
+        const imgData = fi.files[0] ? await new Promise(res=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.readAsDataURL(fi.files[0]); }) : null;
+        if (id){
+            const idx=data.findIndex(x=>x.id===parseInt(id));
+            if (idx>-1){ data[idx]={...data[idx],titulo,resumo,categoria}; if(imgData) imgs[data[idx].id]=imgData; }
+        } else {
+            const nid=Date.now(); data.unshift({id:nid,titulo,resumo,categoria,data:new Date().toISOString().slice(0,10)});
+            if (imgData) imgs[nid]=imgData;
+        }
+        saveNews(data); saveImgs(imgs); pubForm.reset(); document.getElementById('publicacao-id').value=''; cancelBtn.classList.add('hidden');
+        currentIdx=0; buildCarousel(); renderAdminList();
+    });
+    cancelBtn.addEventListener('click', ()=>{ pubForm.reset(); document.getElementById('publicacao-id').value=''; cancelBtn.classList.add('hidden'); });
 
     function renderAdminList(){
-        const data=load(), list=document.getElementById('lista-publicacoes');
-        list.innerHTML=data.length?data.map(n=>`
+        const data=loadNews(), list=document.getElementById('lista-publicacoes');
+        list.innerHTML = data.length ? data.map(n=>`
             <li class="pub-item">
                 <div><div class="pub-item-title">${n.titulo}</div><div class="pub-item-cat">${n.categoria} · ${n.data}</div></div>
                 <div class="pub-actions">
                     <button class="icon-btn" data-edit="${n.id}" title="Editar"><i class="fa-solid fa-pen"></i></button>
                     <button class="icon-btn del" data-del="${n.id}" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
                 </div>
-            </li>`).join(''):'<li style="color:#aaa;font-size:.85rem;padding:.5rem 0;">Sem publicações.</li>';
-        list.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',()=>{
-            const item=load().find(x=>x.id===parseInt(b.dataset.edit)); if(!item) return;
-            document.getElementById('publicacao-id').value=item.id;
-            document.getElementById('publicacao-titulo').value=item.titulo;
-            document.getElementById('publicacao-resumo').value=item.resumo;
-            document.getElementById('publicacao-categoria').value=item.categoria;
+            </li>`).join('') : '<li style="color:#aaa;font-size:.85rem;padding:.5rem 0;">Sem publicações.</li>';
+
+        list.querySelectorAll('[data-edit]').forEach(b => b.addEventListener('click', ()=>{
+            const item=loadNews().find(x=>x.id===parseInt(b.dataset.edit)); if(!item) return;
+            document.getElementById('publicacao-id').value   = item.id;
+            document.getElementById('publicacao-titulo').value  = item.titulo;
+            document.getElementById('publicacao-resumo').value  = item.resumo;
+            document.getElementById('publicacao-categoria').value = item.categoria;
             cancelBtn.classList.remove('hidden');
             pubForm.scrollIntoView({behavior:'smooth',block:'center'});
         }));
-        list.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{
-            if(!confirm('Eliminar publicação?')) return;
+        list.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', ()=>{
+            if (!confirm('Eliminar publicação?')) return;
             const id=parseInt(b.dataset.del), imgs=loadImgs();
-            save(load().filter(x=>x.id!==id)); delete imgs[id]; saveImgs(imgs); renderAdminList(); renderNews();
+            saveNews(loadNews().filter(x=>x.id!==id)); delete imgs[id]; saveImgs(imgs);
+            currentIdx=0; buildCarousel(); renderAdminList();
         }));
     }
+
 })();
 </script>
 </body>
