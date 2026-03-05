@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notícias – RPP Engenharia e Construção Civil</title>
+<meta name="description" content="Últimas notícias e publicações da RPP Engenharia e Construção Civil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --verde:#0D4A33;--verde-md:#16694A;--verde-lt:#1E8A62;
+  --ouro:#C49A3C;--ouro-lt:#D9B55A;
+  --carvao:#111110;--carvao-md:#1C1C1A;
+  --creme:#F5F1EA;--branco:#FAFAF8;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;color:var(--carvao);background:var(--branco);overflow-x:hidden}
+img{max-width:100%;display:block}
+
+/* HEADER */
+header{background:rgba(17,17,16,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,154,60,.1);position:sticky;top:0;z-index:100}
+.hdr-inner{max-width:1280px;margin:0 auto;padding:.9rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+@media(min-width:640px){.hdr-inner{padding:.9rem 2.5rem}}
+.logo-wrap{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.logo-mark{width:38px;height:38px;border-radius:8px;background:var(--verde);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.logo-mark img{width:38px;height:38px;object-fit:cover}
+.logo-name{display:block;font-family:'Bebas Neue',sans-serif;color:#fff;font-size:1.1rem;letter-spacing:.15em;line-height:1}
+.logo-tagline{display:block;color:rgba(255,255,255,.4);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;margin-top:3px}
+.hdr-actions{display:flex;align-items:center;gap:.75rem}
+.btn-back{display:inline-flex;align-items:center;gap:.45rem;color:rgba(255,255,255,.6);font-size:.73rem;font-weight:500;letter-spacing:.1em;text-decoration:none;transition:color .3s}
+.btn-back:hover{color:#fff}
+.btn-cta{display:inline-flex;align-items:center;gap:.4rem;background:var(--verde);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.52rem 1.15rem;border-radius:6px;text-decoration:none;transition:background .3s;white-space:nowrap}
+.btn-cta:hover{background:var(--verde-lt)}
+
+/* PAGE HERO */
+.page-hero{position:relative;background:var(--carvao);padding:5rem 0 4rem;overflow:hidden}
+.page-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=60') center/cover;opacity:.15}
+.page-hero-inner{position:relative;max-width:1280px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:640px){.page-hero-inner{padding:0 2.5rem}}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:1.5rem;flex-wrap:wrap}
+.breadcrumb a{color:rgba(255,255,255,.4);text-decoration:none;transition:color .3s}
+.breadcrumb a:hover{color:#fff}
+.breadcrumb .sep{color:rgba(255,255,255,.2)}
+.eyebrow{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.eyebrow .rule{height:1px;width:28px;background:var(--ouro);flex-shrink:0}
+.eyebrow span{font-size:.68rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ouro)}
+.page-title{font-family:'Playfair Display',serif;font-weight:900;color:#fff;font-size:clamp(2.5rem,6vw,5rem);line-height:1}
+.page-hero-desc{color:rgba(255,255,255,.5);margin-top:1rem;max-width:540px;line-height:1.7;font-size:.95rem}
+
+/* SEARCH / FILTER */
+.controls-bar{background:var(--creme);border-bottom:1px solid #E5E1D8;padding:1.2rem 0;position:sticky;top:61px;z-index:50}
+.controls-inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;flex-wrap:wrap;gap:.9rem;align-items:center;justify-content:space-between}
+@media(min-width:640px){.controls-inner{padding:0 2.5rem}}
+.search-wrap{position:relative;flex:1;min-width:200px;max-width:320px}
+.search-wrap i{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);color:#aaa;font-size:.8rem;pointer-events:none}
+.search-input{width:100%;background:#fff;border:1px solid #D8D4CB;border-radius:100px;padding:.6rem 1rem .6rem 2.2rem;font-family:'Outfit',sans-serif;font-size:.85rem;color:var(--carvao);transition:border-color .3s,box-shadow .3s;outline:none}
+.search-input:focus{border-color:var(--verde);box-shadow:0 0 0 3px rgba(13,74,51,.1)}
+.filter-group{display:flex;flex-wrap:wrap;gap:.4rem}
+.filter-btn{background:none;border:1px solid #D8D4CB;color:#777;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.38rem .85rem;border-radius:100px;transition:all .3s;-webkit-tap-highlight-color:transparent}
+.filter-btn:hover{border-color:var(--verde);color:var(--verde)}
+.filter-btn.active{background:var(--verde);border-color:var(--verde);color:#fff;font-weight:600}
+.results-count{font-size:.78rem;color:#aaa;white-space:nowrap}
+
+/* MAIN NEWS GRID */
+.news-section{padding:4rem 0 6rem}
+.news-inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:640px){.news-inner{padding:0 2.5rem}}
+
+/* FEATURED (first article) */
+.featured-card{display:grid;gap:0;background:#fff;border:1px solid #E8E4DC;border-radius:20px;overflow:hidden;cursor:pointer;transition:transform .45s var(--ease),box-shadow .45s;margin-bottom:2.5rem}
+@media(min-width:768px){.featured-card{grid-template-columns:1.2fr 1fr}}
+.featured-card:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.12)}
+.featured-img{position:relative;overflow:hidden;min-height:240px}
+@media(min-width:768px){.featured-img{min-height:380px}}
+.featured-img img{width:100%;height:100%;object-fit:cover;transition:transform .65s var(--ease)}
+.featured-card:hover .featured-img img{transform:scale(1.05)}
+.featured-badge{position:absolute;top:1rem;left:1rem;background:var(--verde);color:#fff;font-size:.6rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;border-radius:100px}
+.featured-body{padding:2rem;display:flex;flex-direction:column;justify-content:center}
+@media(min-width:640px){.featured-body{padding:2.5rem 3rem}}
+.featured-label{display:inline-flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ouro);margin-bottom:1rem}
+.featured-label .dot{width:4px;height:4px;border-radius:50%;background:var(--ouro)}
+.featured-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.5rem,3vw,2.3rem);color:var(--carvao);line-height:1.2}
+.featured-desc{color:#666;line-height:1.75;margin-top:1rem;font-size:.92rem}
+.featured-meta{display:flex;align-items:center;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
+.featured-date{font-size:.75rem;color:#bbb}
+.featured-cat-tag{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--creme);color:var(--verde);padding:.25rem .7rem;border-radius:100px}
+.read-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:600;color:var(--verde);text-decoration:none;margin-top:1.5rem;transition:gap .3s}
+.read-link:hover{gap:.7rem}
+
+/* GRID CARDS */
+.news-grid{display:grid;gap:1.2rem}
+@media(min-width:480px){.news-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.news-grid{grid-template-columns:repeat(3,1fr)}}
+.news-card{background:#fff;border:1px solid #E8E4DC;border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .45s var(--ease),box-shadow .45s,border-color .3s}
+.news-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.1);border-color:#D9B55A}
+.news-card-img{position:relative;height:190px;overflow:hidden}
+@media(min-width:640px){.news-card-img{height:210px}}
+.news-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease),filter .4s;filter:brightness(.95)}
+.news-card:hover .news-card-img img{transform:scale(1.07);filter:brightness(.85)}
+.nc-cat{position:absolute;bottom:.75rem;left:.75rem;background:var(--verde);color:#fff;font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .7rem;border-radius:100px}
+.news-card-body{padding:1.25rem 1.35rem 1.5rem}
+.nc-date{font-size:.7rem;color:#bbb;margin-bottom:.4rem}
+.nc-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--carvao);line-height:1.35}
+.nc-desc{font-size:.82rem;color:#777;line-height:1.7;margin-top:.6rem;display:-webkit-box;-webkit-line-clamp:3; line-clamp:3; -webkit-box-orient:vertical;overflow:hidden}
+.nc-link{display:inline-flex;align-items:center;gap:.35rem;font-size:.74rem;font-weight:600;color:var(--verde);text-decoration:none;margin-top:1rem;transition:gap .3s}
+.nc-link:hover{gap:.6rem}
+
+.empty-state{text-align:center;padding:4rem 2rem;color:#aaa;grid-column:1/-1}
+.empty-state i{font-size:2.5rem;margin-bottom:1rem;display:block;color:#D8D4CB}
+.empty-state p{font-size:.9rem}
+
+/* PAGINATION */
+.pagination{display:flex;justify-content:center;align-items:center;gap:.5rem;margin-top:3.5rem;flex-wrap:wrap}
+.pg-btn{width:38px;height:38px;border-radius:10px;border:1px solid #D8D4CB;background:#fff;color:#777;font-size:.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;font-family:'Outfit',sans-serif;font-weight:500;-webkit-tap-highlight-color:transparent}
+.pg-btn:hover{border-color:var(--verde);color:var(--verde)}
+.pg-btn.active{background:var(--verde);border-color:var(--verde);color:#fff;font-weight:600}
+.pg-btn.nav{width:38px}
+.pg-btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* NEWS MODAL */
+#newsModal{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;z-index:200;padding:1rem;overflow-y:auto}
+#newsModal.open{display:flex}
+#newsModalContent{background:#fff;width:100%;max-width:780px;border-radius:20px;overflow:hidden;transform:scale(.95) translateY(20px);opacity:0;transition:transform .4s var(--ease),opacity .4s;margin:auto}
+#newsModal.open #newsModalContent{transform:scale(1) translateY(0);opacity:1}
+.nm-img{position:relative;height:280px}
+@media(min-width:640px){.nm-img{height:360px}}
+.nm-img img{width:100%;height:100%;object-fit:cover}
+.nm-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,16,.8),transparent 50%)}
+#closeNewsModal{position:absolute;top:1rem;right:1rem;z-index:1;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.3);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:background .3s;-webkit-tap-highlight-color:transparent}
+#closeNewsModal:hover{background:rgba(255,255,255,.15)}
+.nm-title-wrap{position:absolute;bottom:1.2rem;left:1.5rem;right:1.5rem;z-index:1}
+#nmCat{display:inline-block;background:var(--verde);color:#fff;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .7rem;border-radius:100px;margin-bottom:.6rem}
+#nmTitle{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:900;color:#fff;line-height:1.2}
+.nm-body{padding:1.75rem}
+@media(min-width:640px){.nm-body{padding:2.2rem}}
+.nm-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.3rem;padding-bottom:1.1rem;border-bottom:1px solid #F0EDE6}
+#nmDate{font-size:.75rem;color:#bbb}
+#nmDesc{color:#555;line-height:1.85;font-size:.95rem}
+
+/* ── ADMIN SECTION ── */
+#admin-section{background:var(--creme);border-top:1px solid #E5E1D8;padding:5rem 0}
+.admin-inner{max-width:900px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:640px){.admin-inner{padding:0 2.5rem}}
+.admin-header{margin-bottom:2.5rem}
+.admin-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--ouro);margin-bottom:.75rem}
+.admin-tag .rule{height:1px;width:22px;background:var(--ouro)}
+.admin-h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--carvao);line-height:1.05}
+.admin-sub{color:#777;margin-top:.6rem;font-size:.88rem}
+
+.auth-box{background:#fff;border:1px solid #E5E1D8;border-radius:16px;padding:2rem;max-width:480px}
+.auth-label{display:block;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:.5rem}
+.auth-row{display:flex;gap:.75rem;flex-wrap:wrap}
+.auth-input{flex:1;min-width:0;background:#FAFAF8;border:1px solid #D8D4CB;border-radius:8px;padding:.72rem 1rem;font-family:'Outfit',sans-serif;font-size:.9rem;color:var(--carvao);transition:border-color .3s,box-shadow .3s;outline:none}
+.auth-input:focus{border-color:var(--verde);box-shadow:0 0 0 3px rgba(13,74,51,.1)}
+.auth-btn{background:var(--verde);color:#fff;border:none;border-radius:8px;padding:.72rem 1.5rem;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .3s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.auth-btn:hover{background:var(--verde-md)}
+.auth-hint{font-size:.75rem;color:#aaa;margin-top:.65rem}
+.auth-hint strong{color:var(--carvao)}
+.auth-err{color:#e53e3e;font-size:.78rem;margin-top:.5rem;min-height:1.1rem}
+
+.admin-panel{display:flex;flex-direction:column;gap:1.5rem}
+.panel-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;padding-bottom:1.2rem;border-bottom:1px solid #E5E1D8}
+.panel-top h3{font-size:1rem;font-weight:600;color:var(--carvao)}
+.btn-logout{display:inline-flex;align-items:center;gap:.4rem;background:none;border:1px solid #D8D4CB;color:#777;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.08em;padding:.45rem 1rem;border-radius:6px;cursor:pointer;transition:background .3s,color .3s;-webkit-tap-highlight-color:transparent}
+.btn-logout:hover{background:#f5f0e8;color:var(--carvao)}
+
+.crud-form{background:#fff;border:1px solid #E5E1D8;border-radius:14px;padding:1.75rem}
+.crud-form h4{font-size:.95rem;font-weight:600;color:var(--carvao);margin-bottom:1.3rem;padding-bottom:.75rem;border-bottom:1px solid #F0EDE6}
+.form-grid{display:grid;gap:1rem}
+.form-row{display:grid;gap:1rem}
+@media(min-width:640px){.form-row.cols-2{grid-template-columns:1fr 1fr}}
+.field label{display:block;font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:.45rem}
+.field input,.field select,.field textarea{width:100%;background:#FAFAF8;border:1px solid #D8D4CB;border-radius:8px;padding:.7rem 1rem;font-family:'Outfit',sans-serif;font-size:.88rem;color:var(--carvao);transition:border-color .3s,box-shadow .3s;outline:none}
+.field textarea{resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--verde);box-shadow:0 0 0 3px rgba(13,74,51,.1)}
+.img-preview-wrap{margin-top:.6rem;border-radius:10px;overflow:hidden;border:1px solid #E5E1D8;display:none}
+.img-preview-wrap img{width:100%;height:140px;object-fit:cover}
+.form-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.3rem;padding-top:1.1rem;border-top:1px solid #F0EDE6}
+.btn-save{display:inline-flex;align-items:center;gap:.45rem;background:var(--verde);color:#fff;border:none;font-family:'Outfit',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.72rem 1.5rem;border-radius:8px;cursor:pointer;transition:background .3s;-webkit-tap-highlight-color:transparent}
+.btn-save:hover{background:var(--verde-md)}
+.btn-save:disabled{opacity:.6;cursor:not-allowed}
+.btn-cancel-form{display:inline-flex;align-items:center;gap:.4rem;background:none;border:1px solid #D8D4CB;color:#777;font-family:'Outfit',sans-serif;font-size:.74rem;font-weight:500;letter-spacing:.08em;padding:.7rem 1.2rem;border-radius:8px;cursor:pointer;transition:background .3s;-webkit-tap-highlight-color:transparent}
+.btn-cancel-form:hover{background:#f5f0e8;color:var(--carvao)}
+
+.crud-list{background:#fff;border:1px solid #E5E1D8;border-radius:14px;padding:1.75rem}
+.crud-list h4{font-size:.95rem;font-weight:600;color:var(--carvao);margin-bottom:1.2rem;padding-bottom:.75rem;border-bottom:1px solid #F0EDE6}
+.list-items{display:flex;flex-direction:column;gap:.7rem}
+.list-item{display:flex;align-items:center;gap:1rem;padding:.9rem 1rem;background:var(--creme);border:1px solid #E5E1D8;border-radius:10px;transition:border-color .3s}
+.list-item:hover{border-color:#C8C4BB}
+.list-item-img{width:52px;height:52px;border-radius:8px;overflow:hidden;flex-shrink:0}
+.list-item-img img{width:100%;height:100%;object-fit:cover}
+.list-item-info{flex:1;min-width:0}
+.list-item-title{font-size:.88rem;font-weight:600;color:var(--carvao);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-item-meta{font-size:.72rem;color:#aaa;margin-top:.15rem}
+.list-item-actions{display:flex;gap:.45rem;flex-shrink:0}
+.icon-btn{width:32px;height:32px;border-radius:7px;border:none;background:#F0EDE6;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#666;transition:background .2s,color .2s;-webkit-tap-highlight-color:transparent}
+.icon-btn:hover{background:var(--verde);color:#fff}
+.icon-btn.del:hover{background:#e53e3e;color:#fff}
+.list-empty{text-align:center;padding:2rem;color:#bbb;font-size:.85rem}
+
+/* CTA */
+.cta-section{background:var(--verde);padding:5rem 0;text-align:center}
+.cta-inner{max-width:640px;margin:0 auto;padding:0 1.5rem}
+.cta-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2rem,4vw,3rem);color:#fff}
+.cta-desc{color:rgba(255,255,255,.65);margin-top:.9rem;line-height:1.7;font-size:.95rem}
+.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--verde);font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:8px;text-decoration:none;margin-top:2rem;box-shadow:0 8px 32px rgba(0,0,0,.15);transition:background .3s,transform .3s}
+.btn-white:hover{background:var(--creme);transform:translateY(-3px)}
+
+footer{background:#090909;padding:1.5rem;text-align:center}
+footer p{color:#444;font-size:.75rem}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in-view{opacity:1;transform:translateY(0)}
+.hidden{display:none!important}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fa-spin{animation:spin 1s linear infinite}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo-wrap">
+      <div class="logo-mark"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=38&h=38&q=80" alt="RPP"></div>
+      <div><span class="logo-name">RPP</span><span class="logo-tagline">Engenharia & Construção</span></div>
+    </a>
+    <div class="hdr-actions">
+      <a href="../index.html" class="btn-back"><i class="fa-solid fa-arrow-left" style="font-size:.65rem"></i> Início</a>
+      <a href="../index.html#contacto" class="btn-cta"><i class="fa-solid fa-paper-plane" style="font-size:.65rem"></i> Proposta</a>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="../index.html">Início</a>
+      <span class="sep">/</span>
+      <span style="color:rgba(255,255,255,.7)">Notícias</span>
+    </div>
+    <div class="eyebrow"><div class="rule"></div><span>Atualizações RPP</span></div>
+    <h1 class="page-title">Notícias &amp; Publicações</h1>
+    <p class="page-hero-desc">Fique a par das últimas novidades, projetos e iniciativas da RPP Engenharia e Construção Civil.</p>
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls-bar">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="search-input" class="search-input" placeholder="Pesquisar notícias...">
+    </div>
+    <div class="filter-group" id="cat-filters">
+      <button class="filter-btn active" data-cat="all">Todas</button>
+      <button class="filter-btn" data-cat="Institucional">Institucional</button>
+      <button class="filter-btn" data-cat="Infraestrutura">Infraestrutura</button>
+      <button class="filter-btn" data-cat="Sustentabilidade">Sustentabilidade</button>
+      <button class="filter-btn" data-cat="Edificação">Edificação</button>
+    </div>
+    <span class="results-count" id="results-count"></span>
+  </div>
+</div>
+
+<!-- NEWS -->
+<section class="news-section">
+  <div class="news-inner">
+    <div id="featured-wrap"></div>
+    <div class="news-grid" id="news-grid"></div>
+    <div id="empty-state" class="hidden" style="text-align:center;padding:4rem 2rem">
+      <i class="fa-solid fa-newspaper" style="font-size:2.5rem;color:#D8D4CB;display:block;margin-bottom:1rem"></i>
+      <p style="color:#aaa;font-size:.9rem">Nenhuma notícia encontrada.</p>
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+</section>
+
+<!-- ADMIN SECTION -->
+<section id="admin-section">
+  <div class="admin-inner">
+    <div class="admin-header">
+      <div class="admin-tag"><div class="rule"></div><span>Área Restrita</span></div>
+      <h2 class="admin-h2">Gestão de Notícias</h2>
+      <p class="admin-sub">Área exclusiva para gestores. Autentique-se para criar, editar e eliminar publicações.</p>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="admin-login" class="auth-box">
+      <label class="auth-label" for="admin-pwd">Senha de acesso</label>
+      <div class="auth-row">
+        <input id="admin-pwd" type="password" class="auth-input" placeholder="Introduza a senha" autocomplete="current-password">
+        <button id="btn-login" class="auth-btn">Entrar</button>
+      </div>
+      <p class="auth-hint">Senha demo: <strong>rpp2026</strong></p>
+      <p id="auth-err" class="auth-err"></p>
+    </div>
+
+    <!-- PANEL -->
+    <div id="admin-panel" class="admin-panel hidden">
+      <div class="panel-top">
+        <h3><i class="fa-solid fa-shield-halved" style="color:var(--verde);margin-right:.4rem"></i> Acesso de Gestor Ativo</h3>
+        <button id="btn-logout" class="btn-logout"><i class="fa-solid fa-right-from-bracket" style="font-size:.7rem"></i> Sair</button>
+      </div>
+
+      <!-- FORM -->
+      <div class="crud-form">
+        <h4 id="form-title">Nova Publicação</h4>
+        <input type="hidden" id="edit-id">
+        <div class="form-grid">
+          <div class="form-row cols-2">
+            <div class="field"><label for="f-titulo">Título</label><input id="f-titulo" type="text" placeholder="Título da notícia" required></div>
+            <div class="field"><label for="f-cat">Categoria</label><select id="f-cat"><option>Institucional</option><option>Infraestrutura</option><option>Sustentabilidade</option><option>Edificação</option></select></div>
+          </div>
+          <div class="field"><label for="f-resumo">Resumo</label><textarea id="f-resumo" rows="3" placeholder="Resumo ou descrição completa da notícia..."></textarea></div>
+          <div class="form-row cols-2">
+            <div class="field">
+              <label for="f-img">Imagem (ficheiro)</label>
+              <input id="f-img" type="file" accept="image/*">
+              <div class="img-preview-wrap" id="img-preview-wrap"><img id="img-preview" alt="Pré-visualização"></div>
+            </div>
+            <div class="field">
+              <label for="f-img-url">Ou URL da imagem</label>
+              <input id="f-img-url" type="url" placeholder="https://...">
+              <div style="margin-top:.5rem;font-size:.72rem;color:#aaa">Data de publicação</div>
+              <input id="f-data" type="date" style="margin-top:.3rem;width:100%;background:#FAFAF8;border:1px solid #D8D4CB;border-radius:8px;padding:.7rem 1rem;font-family:'Outfit',sans-serif;font-size:.88rem;outline:none">
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn-save" id="btn-save"><i class="fa-solid fa-floppy-disk"></i> Guardar Publicação</button>
+          <button class="btn-cancel-form hidden" id="btn-cancel"><i class="fa-solid fa-xmark"></i> Cancelar edição</button>
+        </div>
+      </div>
+
+      <!-- LIST -->
+      <div class="crud-list">
+        <h4>Publicações cadastradas</h4>
+        <div class="list-items" id="admin-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS MODAL -->
+<div id="newsModal" role="dialog" aria-modal="true" aria-label="Notícia">
+  <div id="newsModalContent">
+    <div class="nm-img">
+      <img id="nmImg" alt="">
+      <button id="closeNewsModal" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+      <div class="nm-title-wrap">
+        <div id="nmCat"></div>
+        <h2 id="nmTitle"></h2>
+      </div>
+    </div>
+    <div class="nm-body">
+      <div class="nm-meta">
+        <span id="nmDate"></span>
+      </div>
+      <p id="nmDesc"></p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-title">Quer saber mais sobre a RPP?</h2>
+    <p class="cta-desc">Entre em contacto com a nossa equipa para mais informações sobre projetos e serviços.</p>
+    <a href="../index.html#contacto" class="btn-white">Contactar-nos <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i></a>
+  </div>
+</div>
+
+<footer><p>© 2026 RPP – Engenharia e Construção Civil, LDA. Todos os direitos reservados.</p></footer>
+
+<script>
+(function(){
+'use strict';
+const NEWS_KEY='rpp_noticias_v3';
+const PASS='rpp2026';
+const SESSION_KEY='rpp_admin_auth';
+const PER_PAGE=6;
+const DEF=[
+  {id:'n1',titulo:'RPP conclui obra de referência em Luanda',resumo:'A empresa entregou mais um projeto de excelência dentro do prazo e orçamento previstos, reforçando a sua posição como líder no mercado angolano de construção civil.',categoria:'Institucional',data:'2024-03-15',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=70'},
+  {id:'n2',titulo:'Novo contrato de infraestrutura no Norte de Angola',resumo:'RPP assinou contrato para construção de rede rodoviária de 85 km em Malanje, num dos maiores projetos de infraestrutura do país nos últimos anos.',categoria:'Infraestrutura',data:'2024-02-10',img:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=900&q=70'},
+  {id:'n3',titulo:'Certificação ISO 14001 renovada com distinção',resumo:'A RPP renovou com sucesso a certificação ambiental ISO 14001, reforçando o compromisso com a sustentabilidade e práticas de construção responsável.',categoria:'Sustentabilidade',data:'2024-01-22',img:'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=900&q=70'},
+  {id:'n4',titulo:'Expansão para o mercado europeu',resumo:'Com a abertura de escritório em Lisboa, a RPP consolida a sua presença internacional e abre portas para projetos em Portugal e Espanha.',categoria:'Institucional',data:'2024-04-05',img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=70'},
+  {id:'n5',titulo:'Parceria estratégica com grupo de engenharia brasileiro',resumo:'A RPP formalizou uma parceria de longo prazo com um consórcio de engenharia brasileiro, abrindo portas para novos mercados na América Latina.',categoria:'Institucional',data:'2024-05-18',img:'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=70'},
+  {id:'n6',titulo:'Reabilitação do centro histórico de Benguela',resumo:'A RPP arrancou com o projeto de reabilitação do centro histórico de Benguela, financiado pelo Governo Provincial com um investimento de 15 milhões de USD.',categoria:'Edificação',data:'2024-06-02',img:'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=900&q=70'},
+];
+
+const load=()=>{try{const v=localStorage.getItem(NEWS_KEY);return v?JSON.parse(v):DEF}catch{return DEF}};
+const save=d=>{try{localStorage.setItem(NEWS_KEY,JSON.stringify(d))}catch{}};
+const fmtDate=s=>{try{return new Date(s).toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'})}catch{return s||''}};
+if(!localStorage.getItem(NEWS_KEY))save(DEF);
+
+// ── REVEAL ──
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');ro.unobserve(e.target);}}),{threshold:.06});
+
+// ── STATE ──
+let activeCat='all';
+let searchQ='';
+let page=0;
+
+function getFiltered(){
+  const all=load();
+  return all.filter(n=>{
+    const matchCat=activeCat==='all'||n.categoria===activeCat;
+    const matchQ=!searchQ||n.titulo.toLowerCase().includes(searchQ)||n.resumo.toLowerCase().includes(searchQ);
+    return matchCat&&matchQ;
+  });
+}
+
+// ── RENDER ──
+function render(){
+  const filtered=getFiltered();
+  const totalPages=Math.max(1,Math.ceil(Math.max(0,filtered.length-1)/PER_PAGE));
+  if(page>=totalPages)page=0;
+
+  const featWrap=document.getElementById('featured-wrap');
+  const grid=document.getElementById('news-grid');
+  const emptyEl=document.getElementById('empty-state');
+  const countEl=document.getElementById('results-count');
+  countEl.textContent=filtered.length+' resultado'+(filtered.length!==1?'s':'');
+
+  if(!filtered.length){
+    featWrap.innerHTML='';grid.innerHTML='';emptyEl.classList.remove('hidden');
+    renderPagination(0,0);return;
+  }
+  emptyEl.classList.add('hidden');
+
+  // Featured = first item on page 0 only when showing all / no search
+  let featured=null;
+  let rest=filtered;
+  if(page===0&&!searchQ){
+    featured=filtered[0];
+    rest=filtered.slice(1);
+  }
+
+  // paginate rest
+  const startIdx=page===0?0:page*PER_PAGE-1;// on page 0 we already removed featured
+  const endIdx=page===0?PER_PAGE:startIdx+PER_PAGE;
+  const pageItems=rest.slice(page===0?0:startIdx,page===0?PER_PAGE:endIdx);
+
+  // FEATURED
+  if(featured){
+    featWrap.innerHTML=`
+      <div class="featured-card reveal" data-nid="${featured.id}">
+        <div class="featured-img">
+          <img src="${featured.img}" alt="${featured.titulo}" loading="lazy">
+          <span class="featured-badge">Em destaque</span>
+        </div>
+        <div class="featured-body">
+          <span class="featured-label"><span class="dot"></span>${featured.categoria}</span>
+          <h2 class="featured-title">${featured.titulo}</h2>
+          <p class="featured-desc">${featured.resumo}</p>
+          <div class="featured-meta">
+            <span class="featured-date">${fmtDate(featured.data)}</span>
+            <span class="featured-cat-tag">${featured.categoria}</span>
+          </div>
+          <a href="#" class="read-link" data-nid="${featured.id}">Ler artigo completo <i class="fa-solid fa-arrow-right" style="font-size:.6rem"></i></a>
+        </div>
+      </div>`;
+    featWrap.querySelectorAll('[data-nid]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openNewsModal(featured);}));
+    featWrap.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+  }else{featWrap.innerHTML='';}
+
+  // GRID
+  grid.innerHTML=pageItems.map((n,i)=>`
+    <div class="news-card reveal" style="transition-delay:${(i%3)*.08}s" data-nid="${n.id}">
+      <div class="news-card-img">
+        <img src="${n.img}" alt="${n.titulo}" loading="lazy">
+        <span class="nc-cat">${n.categoria}</span>
+      </div>
+      <div class="news-card-body">
+        <p class="nc-date">${fmtDate(n.data)}</p>
+        <h3 class="nc-title">${n.titulo}</h3>
+        <p class="nc-desc">${n.resumo}</p>
+        <a href="#" class="nc-link">Ler mais <i class="fa-solid fa-arrow-right" style="font-size:.6rem"></i></a>
+      </div>
+    </div>`).join('');
+  grid.querySelectorAll('.news-card').forEach(c=>{
+    ro.observe(c);
+    const n=load().find(x=>x.id===c.dataset.nid);
+    c.addEventListener('click',e=>{e.preventDefault();if(n)openNewsModal(n);});
+  });
+
+  renderPagination(totalPages,page);
+}
+
+function renderPagination(total,cur){
+  const pg=document.getElementById('pagination');
+  if(total<=1){pg.innerHTML='';return;}
+  let html=`<button class="pg-btn nav" id="pg-prev" ${cur===0?'disabled':''}><i class="fa-solid fa-arrow-left"></i></button>`;
+  for(let i=0;i<total;i++){
+    html+=`<button class="pg-btn${i===cur?' active':''}" data-pg="${i}">${i+1}</button>`;
+  }
+  html+=`<button class="pg-btn nav" id="pg-next" ${cur===total-1?'disabled':''}><i class="fa-solid fa-arrow-right"></i></button>`;
+  pg.innerHTML=html;
+  pg.querySelector('#pg-prev')?.addEventListener('click',()=>{page=Math.max(0,page-1);render();window.scrollTo({top:300,behavior:'smooth'});});
+  pg.querySelector('#pg-next')?.addEventListener('click',()=>{page=Math.min(total-1,page+1);render();window.scrollTo({top:300,behavior:'smooth'});});
+  pg.querySelectorAll('[data-pg]').forEach(b=>b.addEventListener('click',()=>{page=parseInt(b.dataset.pg);render();window.scrollTo({top:300,behavior:'smooth'});}));
+}
+
+render();
+
+// ── FILTERS ──
+document.querySelectorAll('.filter-btn[data-cat]').forEach(btn=>btn.addEventListener('click',()=>{
+  activeCat=btn.dataset.cat;page=0;
+  document.querySelectorAll('.filter-btn[data-cat]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');render();
+}));
+
+// ── SEARCH ──
+let searchTimer;
+document.getElementById('search-input').addEventListener('input',function(){
+  clearTimeout(searchTimer);searchTimer=setTimeout(()=>{searchQ=this.value.trim().toLowerCase();page=0;render();},250);
+});
+
+// ── NEWS MODAL ──
+const newsModal=document.getElementById('newsModal');
+function openNewsModal(n){
+  document.getElementById('nmImg').src=n.img||'';
+  document.getElementById('nmCat').textContent=n.categoria;
+  document.getElementById('nmTitle').textContent=n.titulo;
+  document.getElementById('nmDate').textContent=fmtDate(n.data);
+  document.getElementById('nmDesc').textContent=n.resumo;
+  newsModal.classList.add('open');document.body.style.overflow='hidden';
+}
+function closeNewsM(){newsModal.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('closeNewsModal').addEventListener('click',closeNewsM);
+newsModal.addEventListener('click',e=>{if(e.target===newsModal)closeNewsM();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNewsM();});
+
+// ── AUTH ──
+const isAdmin=()=>sessionStorage.getItem(SESSION_KEY)==='1';
+const loginBox=document.getElementById('admin-login');
+const panel=document.getElementById('admin-panel');
+function showPanel(){loginBox.classList.add('hidden');panel.classList.remove('hidden');renderAdminList();}
+function showLogin(){panel.classList.add('hidden');loginBox.classList.remove('hidden');}
+if(isAdmin())showPanel();
+
+document.getElementById('btn-login').addEventListener('click',()=>{
+  const pwd=document.getElementById('admin-pwd').value;
+  if(pwd===PASS){sessionStorage.setItem(SESSION_KEY,'1');showPanel();}
+  else{document.getElementById('auth-err').textContent='Senha incorreta. Tente novamente.';}
+});
+document.getElementById('admin-pwd').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btn-login').click();});
+document.getElementById('btn-logout').addEventListener('click',()=>{sessionStorage.removeItem(SESSION_KEY);showLogin();resetForm();});
+
+// ── IMAGE PREVIEW ──
+document.getElementById('f-img').addEventListener('change',function(){
+  if(!this.files[0])return;
+  const url=URL.createObjectURL(this.files[0]);
+  document.getElementById('img-preview').src=url;
+  document.getElementById('img-preview-wrap').style.display='block';
+  document.getElementById('f-img-url').value='';
+});
+document.getElementById('f-img-url').addEventListener('input',function(){
+  if(this.value){
+    document.getElementById('img-preview').src=this.value;
+    document.getElementById('img-preview-wrap').style.display='block';
+    document.getElementById('f-img').value='';
+  }
+});
+
+// ── FORM ──
+function resetForm(){
+  document.getElementById('edit-id').value='';
+  document.getElementById('f-titulo').value='';
+  document.getElementById('f-cat').value='Institucional';
+  document.getElementById('f-resumo').value='';
+  document.getElementById('f-img').value='';
+  document.getElementById('f-img-url').value='';
+  document.getElementById('f-data').value='';
+  document.getElementById('img-preview-wrap').style.display='none';
+  document.getElementById('form-title').textContent='Nova Publicação';
+  document.getElementById('btn-cancel').classList.add('hidden');
+}
+document.getElementById('btn-cancel').addEventListener('click',resetForm);
+
+document.getElementById('btn-save').addEventListener('click',async()=>{
+  const titulo=document.getElementById('f-titulo').value.trim();
+  const cat=document.getElementById('f-cat').value;
+  const resumo=document.getElementById('f-resumo').value.trim();
+  const imgFile=document.getElementById('f-img').files[0];
+  const imgUrl=document.getElementById('f-img-url').value.trim();
+  const dataVal=document.getElementById('f-data').value||new Date().toISOString().slice(0,10);
+  const editId=document.getElementById('edit-id').value;
+
+  if(!titulo){alert('Por favor introduza o título.');return;}
+
+  const btn=document.getElementById('btn-save');
+  btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> A guardar...';
+
+  try{
+    let img=imgUrl;
+    if(!img&&editId){const ex=load().find(n=>n.id===editId);img=ex?.img||'';}
+    if(imgFile){
+      img=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(imgFile);});
+    }
+    if(!img)img='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=70';
+
+    const data=load();
+    if(editId){
+      const idx=data.findIndex(n=>n.id===editId);
+      if(idx>-1)data[idx]={...data[idx],titulo,categoria:cat,resumo,img,data:dataVal};
+    }else{
+      data.unshift({id:'n'+Date.now(),titulo,categoria:cat,resumo,img,data:dataVal});
+    }
+    save(data);page=0;render();renderAdminList();resetForm();
+  }finally{
+    btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-floppy-disk"></i> Guardar Publicação';
+  }
+});
+
+function renderAdminList(){
+  const list=document.getElementById('admin-list');
+  const data=load();
+  if(!data.length){list.innerHTML='<div class="list-empty">Nenhuma publicação cadastrada.</div>';return;}
+  list.innerHTML=data.map(n=>`
+    <div class="list-item">
+      <div class="list-item-img"><img src="${n.img}" alt="${n.titulo}" loading="lazy"></div>
+      <div class="list-item-info">
+        <div class="list-item-title">${n.titulo}</div>
+        <div class="list-item-meta">${n.categoria} · ${fmtDate(n.data)}</div>
+      </div>
+      <div class="list-item-actions">
+        <button class="icon-btn" title="Editar" data-edit="${n.id}"><i class="fa-solid fa-pen"></i></button>
+        <button class="icon-btn del" title="Eliminar" data-del="${n.id}"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>`).join('');
+
+  list.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',()=>{
+    const n=load().find(x=>x.id===b.dataset.edit);if(!n)return;
+    document.getElementById('edit-id').value=n.id;
+    document.getElementById('f-titulo').value=n.titulo;
+    document.getElementById('f-cat').value=n.categoria;
+    document.getElementById('f-resumo').value=n.resumo;
+    document.getElementById('f-img-url').value=n.img.startsWith('data:')?'':n.img;
+    document.getElementById('f-data').value=n.data||'';
+    document.getElementById('img-preview').src=n.img;
+    document.getElementById('img-preview-wrap').style.display='block';
+    document.getElementById('form-title').textContent='Editar Publicação';
+    document.getElementById('btn-cancel').classList.remove('hidden');
+    document.querySelector('.crud-form').scrollIntoView({behavior:'smooth',block:'center'});
+  }));
+  list.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{
+    if(!confirm('Eliminar esta publicação?'))return;
+    const data=load().filter(n=>n.id!==b.dataset.del);
+    save(data);page=0;render();renderAdminList();resetForm();
+  }));
+}
+
+})();
+</script>
+</body>
+</html>

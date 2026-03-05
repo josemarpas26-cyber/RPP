@@ -1,1161 +1,837 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPP – Engenharia e Construção Civil, LDA</title>
-    <meta name="description" content="RPP – Engenharia e Construção Civil. Soluções completas em engenharia, infraestruturas e construção civil com excelência internacional.">
-    <meta name="keywords" content="engenharia, construção civil, infraestruturas, projetos, sustentabilidade, Angola, Portugal">
-    <meta name="author" content="RPP Engenharia">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RPP – Engenharia e Construção Civil, LDA</title>
+<meta name="description" content="RPP – Engenharia e Construção Civil. Soluções completas em engenharia, infraestruturas e construção civil com excelência internacional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --verde:#0D4A33;--verde-md:#16694A;--verde-lt:#1E8A62;
+  --ouro:#C49A3C;--ouro-lt:#D9B55A;
+  --carvao:#111110;--carvao-md:#1C1C1A;
+  --creme:#F5F1EA;--branco:#FAFAF8;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --ease2:cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Outfit',sans-serif;color:var(--carvao);background:var(--branco);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+/* ── SCROLL PROGRESS ── */
+#scroll-progress{position:fixed;top:0;left:0;height:3px;z-index:9999;background:linear-gradient(90deg,var(--ouro),var(--ouro-lt));width:0%;transition:width .1s linear}
 
-    <style>
-        :root {
-            --verde:    #0D4A33;
-            --verde-md: #16694A;
-            --verde-lt: #1E8A62;
-            --ouro:     #C49A3C;
-            --ouro-lt:  #D9B55A;
-            --carvao:   #111110;
-            --carvao-md:#1C1C1A;
-            --creme:    #F5F1EA;
-            --branco:   #FAFAF8;
-            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-            --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
-        }
+/* ── HEADER ── */
+#cabecalho{position:fixed;top:0;width:100%;z-index:100;transition:background .5s,backdrop-filter .5s}
+#cabecalho .inner{max-width:1280px;margin:0 auto;padding:1.4rem 1.5rem;display:flex;justify-content:space-between;align-items:center;transition:padding .4s}
+@media(min-width:640px){#cabecalho .inner{padding:1.4rem 2.5rem}}
+#cabecalho.scrolled{background:rgba(17,17,16,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,154,60,.12)}
+#cabecalho.scrolled .inner{padding-top:.85rem;padding-bottom:.85rem}
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Outfit', system-ui, sans-serif; color: var(--carvao); background: var(--branco); overflow-x: hidden; }
+.logo-wrap{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.logo-mark{width:40px;height:40px;border-radius:8px;background:var(--verde);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.logo-mark img{width:40px;height:40px;object-fit:cover}
+.logo-name{display:block;font-family:'Bebas Neue',sans-serif;color:#fff;font-size:1.15rem;letter-spacing:.15em;line-height:1}
+.logo-tagline{display:block;color:rgba(255,255,255,.4);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;margin-top:3px}
 
-        /* SCROLL PROGRESS */
-        #scroll-progress {
-            position: fixed; top: 0; left: 0; height: 2px; z-index: 9997;
-            background: linear-gradient(90deg, var(--ouro), var(--ouro-lt)); width: 0%;
-            transition: width .1s linear;
-        }
+nav.desktop{display:none;align-items:center;gap:2rem}
+@media(min-width:1024px){nav.desktop{display:flex}}
+.nav-link{color:rgba(255,255,255,.75);text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;position:relative;transition:color .3s;white-space:nowrap}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--ouro);transition:width .35s var(--ease)}
+.nav-link:hover,.nav-link:focus{color:#fff}.nav-link:hover::after,.nav-link:focus::after{width:100%}
 
-        /* HEADER */
-        #cabecalho {
-            position: fixed; top: 0; width: 100%; z-index: 100;
-            transition: background .5s, backdrop-filter .5s, border-color .5s;
-        }
-        #cabecalho .inner {
-            max-width: 1280px; margin: 0 auto; padding: 1.4rem 2.5rem;
-            display: flex; justify-content: space-between; align-items: center;
-            transition: padding .4s;
-        }
-        #cabecalho.scrolled {
-            background: rgba(17,17,16,.94); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(196,154,60,.15);
-        }
-        #cabecalho.scrolled .inner { padding-top: .9rem; padding-bottom: .9rem; }
+.btn-proposta{display:none;align-items:center;gap:.5rem;border:1px solid rgba(196,154,60,.5);color:var(--ouro-lt);background:transparent;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.55rem 1.2rem;border-radius:4px;text-decoration:none;transition:background .3s,color .3s;white-space:nowrap}
+@media(min-width:1024px){.btn-proposta{display:inline-flex}}
+.btn-proposta:hover{background:var(--ouro);color:var(--carvao);border-color:var(--ouro)}
 
-        .logo-wrap { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
-        .logo-mark img { width: 40px; height: 40px; border-radius: 6px; background: var(--verde); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .logo-mark span { color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: .08em; }
-        .logo-name  { display: block; font-family: 'Bebas Neue', sans-serif; color: #fff; font-size: 1.15rem; letter-spacing: .15em; line-height: 1; }
-        .logo-tagline { display: block; color: rgba(255,255,255,.45); font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; margin-top: 3px; }
+#hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;-webkit-tap-highlight-color:transparent}
+@media(min-width:1024px){#hamburger{display:none}}
+.ham-line{display:block;height:1.5px;background:#fff;transition:all .35s var(--ease)}
+.ham-line:nth-child(1){width:24px}.ham-line:nth-child(2){width:16px}.ham-line:nth-child(3){width:24px}
+#hamburger.open .ham-line:nth-child(1){transform:translateY(6.5px) rotate(45deg);width:24px}
+#hamburger.open .ham-line:nth-child(2){opacity:0;transform:scaleX(0)}
+#hamburger.open .ham-line:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
-        nav.desktop { display: none; align-items: center; gap: 2.2rem; }
-        @media(min-width:1024px){ nav.desktop { display: flex; } }
+/* ── MOBILE MENU ── */
+#mobile-menu{position:fixed;inset:0;z-index:90;background:rgba(17,17,16,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;opacity:0;pointer-events:none;transition:opacity .4s var(--ease2)}
+#mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-nav-link{color:rgba(255,255,255,.65);text-decoration:none;font-family:'Playfair Display',serif;font-size:clamp(1.8rem,6vw,2.8rem);font-weight:700;padding:.35rem 0;transition:color .3s}
+.mobile-nav-link:hover{color:var(--ouro-lt)}
+.mobile-cta{margin-top:2rem;border:1px solid rgba(196,154,60,.45);color:var(--ouro-lt);font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:.8rem 2rem;border-radius:4px;text-decoration:none;transition:background .3s,color .3s}
+.mobile-cta:hover{background:var(--ouro);color:var(--carvao)}
 
-        .nav-link {
-            color: rgba(255,255,255,.8); text-decoration: none;
-            font-size: .78rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
-            position: relative; transition: color .3s;
-        }
-        .nav-link::after { content:''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--ouro); transition: width .35s var(--ease-out-expo); }
-        .nav-link:hover { color: #fff; }
-        .nav-link:hover::after { width: 100%; }
+/* ── HERO ── */
+#inicio{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80') center/cover;transform:scale(1.08);animation:heroZoom 18s ease-out forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,16,.97) 0%,rgba(17,17,16,.6) 45%,rgba(17,17,16,.25) 100%)}
+.hero-grain{position:absolute;inset:0;opacity:.04;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+.hero-inner{position:relative;width:100%;max-width:1280px;margin:0 auto;padding:0 1.5rem 4rem}
+@media(min-width:640px){.hero-inner{padding:0 2.5rem 6rem}}
 
-        .btn-proposta {
-            display: none; align-items: center; gap: .5rem;
-            border: 1px solid rgba(196,154,60,.6); color: var(--ouro-lt); background: transparent;
-            font-size: .72rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
-            padding: .55rem 1.3rem; border-radius: 4px; text-decoration: none;
-            transition: background .3s, color .3s, border-color .3s;
-        }
-        @media(min-width:1024px){ .btn-proposta { display: inline-flex; } }
-        .btn-proposta:hover { background: var(--ouro); color: var(--carvao); border-color: var(--ouro); }
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.7rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ouro-lt);opacity:0;animation:fadeUp .8s var(--ease) .4s forwards}
+.hero-eyebrow .dot{width:4px;height:4px;border-radius:50%;background:var(--ouro);flex-shrink:0}
+.hero-headline{font-family:'Playfair Display',serif;font-weight:900;color:#fff;font-size:clamp(2.8rem,8vw,7.5rem);line-height:.95;letter-spacing:-.02em;margin-top:1rem}
+.hero-headline .line{display:block;overflow:hidden}
+.hero-headline .line span{display:block;opacity:0;animation:slideUp .9s var(--ease) forwards}
+.hero-headline .line:nth-child(1) span{animation-delay:.55s}
+.hero-headline .line:nth-child(2) span{animation-delay:.70s}
+.hero-headline .line:nth-child(3) span{animation-delay:.85s}
+.hero-headline .outline{-webkit-text-stroke:1px rgba(255,255,255,.3);color:transparent}
+.hero-subtext{color:rgba(255,255,255,.55);font-size:clamp(.9rem,2vw,1.05rem);line-height:1.75;max-width:560px;margin-top:1.5rem;opacity:0;animation:fadeUp .9s var(--ease) 1s forwards}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:2rem;opacity:0;animation:fadeUp .9s var(--ease) 1.15s forwards}
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);margin-top:3.5rem;border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;opacity:0;animation:fadeUp .9s var(--ease) 1.3s forwards}
+@media(min-width:480px){.hero-stats{grid-template-columns:repeat(4,1fr)}}
+.stat-cell{padding:1.2rem 1rem;text-align:center;background:rgba(17,17,16,.75);backdrop-filter:blur(12px);border-right:1px solid rgba(255,255,255,.05)}
+.stat-cell:last-child{border-right:none}
+@media(min-width:640px){.stat-cell{padding:1.4rem 1.5rem}}
+.stat-value{display:block;font-family:'Bebas Neue',sans-serif;color:var(--ouro-lt);font-size:2rem;letter-spacing:.03em;line-height:1}
+@media(min-width:640px){.stat-value{font-size:2.4rem}}
+.stat-label{display:block;color:rgba(255,255,255,.38);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;margin-top:.3rem}
 
-        /* HAMBURGER */
-        #hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
-        @media(min-width:1024px){ #hamburger { display: none; } }
-        .ham-line { display: block; height: 1.5px; background: #fff; transition: all .35s var(--ease-out-expo); }
-        .ham-line:nth-child(1){ width: 24px; }
-        .ham-line:nth-child(2){ width: 16px; }
-        .ham-line:nth-child(3){ width: 24px; }
-        #hamburger.open .ham-line:nth-child(1){ transform: translateY(6.5px) rotate(45deg); width: 24px; }
-        #hamburger.open .ham-line:nth-child(2){ opacity: 0; transform: scaleX(0); }
-        #hamburger.open .ham-line:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
+/* ── SECTION ATOMS ── */
+.section-eyebrow{display:flex;align-items:center;gap:.75rem;margin-bottom:1.2rem}
+.section-eyebrow .rule{height:1px;width:28px;background:var(--ouro);flex-shrink:0}
+.section-eyebrow span{font-size:.68rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ouro)}
+.section-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2rem,4vw,3.8rem);line-height:1.05;letter-spacing:-.01em}
+.section-header-center{text-align:center;max-width:640px;margin:0 auto 4rem}
+.section-header-center .section-eyebrow{justify-content:center}
+.section-header-center p{color:#666;line-height:1.75;margin-top:.9rem;font-size:.95rem}
 
-        /* MOBILE MENU */
-        #mobile-menu {
-            position: fixed; inset: 0; z-index: 90; background: var(--carvao-md);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: opacity .4s var(--ease-in-out);
-        }
-        #mobile-menu.open { opacity: 1; pointer-events: auto; }
-        .mobile-nav-link {
-            color: rgba(255,255,255,.7); text-decoration: none;
-            font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,5vw,3rem); font-weight: 700;
-            padding: .4rem 0; transition: color .3s;
-        }
-        .mobile-nav-link:hover { color: var(--ouro-lt); }
-        .mobile-cta {
-            margin-top: 2.5rem; border: 1px solid rgba(196,154,60,.5); color: var(--ouro-lt);
-            font-size: .78rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-            padding: .8rem 2.2rem; border-radius: 4px; text-decoration: none;
-            transition: background .3s, color .3s;
-        }
-        .mobile-cta:hover { background: var(--ouro); color: var(--carvao); }
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.reveal.in-view{opacity:1;transform:translateY(0)}
 
-        /* HERO */
-        #inicio { position: relative; min-height: 100vh; display: flex; align-items: flex-end; overflow: hidden; }
-        .hero-bg {
-            position: absolute; inset: 0;
-            background: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80') center/cover;
-            transform: scale(1.08); animation: heroZoom 18s ease-out forwards;
-        }
-        @keyframes heroZoom { to { transform: scale(1); } }
-        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,16,.96) 0%, rgba(17,17,16,.55) 45%, rgba(17,17,16,.2) 100%); }
-        .hero-grain {
-            position: absolute; inset: 0; opacity: .04; pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            background-size: 200px;
-        }
-        .hero-inner { position: relative; width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 2.5rem 6rem; }
-        .hero-eyebrow {
-            display: inline-flex; align-items: center; gap: .75rem;
-            font-size: .72rem; font-weight: 600; letter-spacing: .35em; text-transform: uppercase; color: var(--ouro-lt);
-            opacity: 0; animation: fadeUp .8s var(--ease-out-expo) .4s forwards;
-        }
-        .hero-eyebrow .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ouro); }
-        .hero-headline {
-            font-family: 'Playfair Display', serif; font-weight: 900; color: #fff;
-            font-size: clamp(3.2rem,8vw,7.5rem); line-height: .95; letter-spacing: -.02em; margin-top: 1.2rem;
-        }
-        .hero-headline .line { display: block; overflow: hidden; }
-        .hero-headline .line span { display: block; opacity: 0; animation: slideUp .9s var(--ease-out-expo) forwards; }
-        .hero-headline .line:nth-child(1) span { animation-delay: .55s; }
-        .hero-headline .line:nth-child(2) span { animation-delay: .70s; }
-        .hero-headline .line:nth-child(3) span { animation-delay: .85s; }
-        .hero-headline .outline { -webkit-text-stroke: 1px rgba(255,255,255,.35); color: transparent; }
-        .hero-subtext { color: rgba(255,255,255,.6); font-size: 1.05rem; line-height: 1.75; max-width: 560px; margin-top: 1.8rem; opacity: 0; animation: fadeUp .9s var(--ease-out-expo) 1s forwards; }
-        .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem; opacity: 0; animation: fadeUp .9s var(--ease-out-expo) 1.15s forwards; }
-        .hero-stats {
-            display: grid; grid-template-columns: repeat(2,1fr); margin-top: 4.5rem;
-            border: 1px solid rgba(255,255,255,.08); border-radius: 12px; overflow: hidden;
-            opacity: 0; animation: fadeUp .9s var(--ease-out-expo) 1.3s forwards;
-        }
-        @media(min-width:640px){ .hero-stats { grid-template-columns: repeat(4,1fr); } }
-        .stat-cell { padding: 1.4rem 1.5rem; text-align: center; background: rgba(17,17,16,.75); backdrop-filter: blur(12px); border-right: 1px solid rgba(255,255,255,.06); }
-        .stat-cell:last-child { border-right: none; }
-        .stat-value { display: block; font-family: 'Bebas Neue', sans-serif; color: var(--ouro-lt); font-size: 2.4rem; letter-spacing: .03em; line-height: 1; }
-        .stat-label { display: block; color: rgba(255,255,255,.4); font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; margin-top: .3rem; }
-        .scroll-indicator { position: absolute; bottom: 2.5rem; right: 2.5rem; display: none; flex-direction: column; align-items: center; gap: .5rem; opacity: .4; }
-        @media(min-width:768px){ .scroll-indicator { display: flex; } }
-        .scroll-indicator span { font-size: .6rem; letter-spacing: .25em; color: #fff; writing-mode: vertical-rl; }
-        .scroll-line-wrap { width: 1px; height: 50px; background: rgba(255,255,255,.2); overflow: hidden; }
-        .scroll-line-inner { width: 100%; height: 50%; background: var(--ouro); animation: scrollDrop 1.8s var(--ease-in-out) infinite; }
-        @keyframes scrollDrop { 0%{ transform: translateY(-100%); } 100%{ transform: translateY(200%); } }
+/* ── BUTTONS ── */
+.btn-primary{display:inline-flex;align-items:center;gap:.55rem;background:var(--verde);color:#fff;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 1.8rem;border-radius:6px;text-decoration:none;transition:background .3s,transform .3s;-webkit-tap-highlight-color:transparent}
+.btn-primary:hover{background:var(--verde-lt);transform:translateY(-2px)}
+.btn-primary .arrow{transition:transform .3s var(--ease)}
+.btn-primary:hover .arrow{transform:translateX(4px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:.55rem;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 1.8rem;border-radius:6px;text-decoration:none;transition:border-color .3s,color .3s,transform .3s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.65);color:#fff;transform:translateY(-2px)}
 
-        /* SECTION ATOMS */
-        .section-eyebrow { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.2rem; }
-        .section-eyebrow .rule { height: 1px; width: 32px; background: var(--ouro); flex-shrink: 0; }
-        .section-eyebrow span { font-size: .7rem; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: var(--ouro); }
-        .section-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.2rem,4vw,3.8rem); line-height: 1.05; letter-spacing: -.01em; }
-        .section-header-center { text-align: center; max-width: 640px; margin: 0 auto 4.5rem; }
-        .section-header-center .section-eyebrow { justify-content: center; }
-        .section-header-center p { color: #666; line-height: 1.75; margin-top: 1rem; }
+/* ── SOBRE ── */
+#sobre{padding:6rem 0;background:var(--creme)}
+@media(min-width:768px){#sobre{padding:8rem 0}}
+#sobre .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:640px){#sobre .inner{padding:0 2.5rem}}
+.grid-2{display:grid;gap:3.5rem;align-items:center}
+@media(min-width:1024px){.grid-2{grid-template-columns:1fr 1fr;gap:5rem}}
+.img-frame{position:relative}
+.img-frame-inner{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/5}
+.img-frame-inner img{width:100%;height:100%;object-fit:cover}
+.img-frame-inner::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,16,.3),transparent 60%)}
+.img-badge{position:absolute;bottom:-1.2rem;right:-1.2rem;background:var(--verde);color:#fff;border-radius:12px;padding:1.2rem 1.5rem;box-shadow:0 20px 60px rgba(13,74,51,.4);display:none}
+@media(min-width:640px){.img-badge{display:block}}
+.img-badge .num{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;line-height:1}
+.img-badge .lbl{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:.2rem}
+.img-accent{position:absolute;top:-1.5rem;left:-1.5rem;width:48px;height:48px;border:2px solid rgba(196,154,60,.4);border-radius:6px;display:none}
+@media(min-width:640px){.img-accent{display:block}}
+.sobre-content .section-title{color:var(--carvao)}
+.sobre-desc{color:#555;line-height:1.8;margin-top:1.4rem;font-size:.95rem}
+.values-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.8rem}
+.value-item{border-left:2px solid var(--ouro);padding-left:1rem}
+.value-item h4{font-size:.88rem;font-weight:600;color:var(--carvao);margin-bottom:.3rem}
+.value-item p{font-size:.8rem;color:#666;line-height:1.6}
+.cert-list{display:flex;flex-wrap:wrap;gap:.8rem 1.2rem;margin-top:1.8rem}
+.cert-item{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:#555}
+.cert-item i{color:var(--ouro);font-size:.72rem}
 
-        /* REVEAL */
-        .reveal { opacity: 0; transform: translateY(32px); transition: opacity .85s var(--ease-out-expo), transform .85s var(--ease-out-expo); }
-        .reveal.in-view { opacity: 1; transform: translateY(0); }
+/* ── SERVIÇOS ── */
+#servicos{padding:6rem 0;background:var(--branco)}
+@media(min-width:768px){#servicos{padding:8rem 0}}
+#servicos .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:640px){#servicos .inner{padding:0 2.5rem}}
+.servicos-grid{display:grid;gap:1rem}
+@media(min-width:480px){.servicos-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.servicos-grid{grid-template-columns:repeat(3,1fr)}}
+.servico-card{background:var(--creme);border:1px solid #E5E1D8;border-radius:14px;padding:1.75rem;transition:border-color .4s,box-shadow .4s,transform .4s var(--ease);position:relative;overflow:hidden}
+.servico-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--verde),var(--ouro));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.servico-card:hover{border-color:transparent;box-shadow:0 16px 48px rgba(0,0,0,.09);transform:translateY(-4px)}
+.servico-card:hover::before{transform:scaleX(1)}
+.servico-card.featured{background:var(--verde);border-color:var(--verde)}
+.servico-card.featured::before{background:linear-gradient(90deg,var(--ouro),var(--ouro-lt));transform:scaleX(1)}
+.servico-icon{width:48px;height:48px;border-radius:10px;background:rgba(13,74,51,.1);color:var(--verde);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1.2rem;transition:background .4s,color .4s}
+.servico-card:hover .servico-icon:not(.feat-icon){background:var(--verde);color:#fff}
+.feat-icon{background:rgba(255,255,255,.12);color:#fff}
+.servico-title{font-size:.95rem;font-weight:600;color:var(--carvao);margin-bottom:.55rem}
+.servico-card.featured .servico-title{color:#fff}
+.servico-desc{font-size:.82rem;color:#666;line-height:1.7}
+.servico-card.featured .servico-desc{color:rgba(255,255,255,.6)}
+.servico-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:600;color:var(--verde);text-decoration:none;margin-top:1.2rem;transition:gap .3s}
+.servico-card.featured .servico-link{color:rgba(255,255,255,.75)}
+.servico-link:hover{gap:.7rem}
 
-        /* BUTTONS */
-        .btn-primary {
-            display: inline-flex; align-items: center; gap: .6rem;
-            background: var(--verde); color: #fff;
-            font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-            padding: 1rem 2rem; border-radius: 6px; text-decoration: none;
-            transition: background .3s, transform .3s;
-        }
-        .btn-primary:hover { background: var(--verde-lt); transform: translateY(-2px); }
-        .btn-primary .arrow { transition: transform .3s var(--ease-out-expo); }
-        .btn-primary:hover .arrow { transform: translateX(4px); }
-        .btn-ghost {
-            display: inline-flex; align-items: center; gap: .6rem;
-            border: 1px solid rgba(255,255,255,.3); color: rgba(255,255,255,.85);
-            font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-            padding: 1rem 2rem; border-radius: 6px; text-decoration: none;
-            transition: border-color .3s, color .3s, transform .3s;
-        }
-        .btn-ghost:hover { border-color: rgba(255,255,255,.7); color: #fff; transform: translateY(-2px); }
+/* ── PROJETOS ── */
+#projetos{padding:6rem 0;background:var(--carvao)}
+@media(min-width:768px){#projetos{padding:8rem 0}}
+#projetos .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:640px){#projetos .inner{padding:0 2.5rem}}
+.projetos-header{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:3rem}
+@media(min-width:768px){.projetos-header{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.projetos-header .section-title{color:#fff}
+.filter-group{display:flex;flex-wrap:wrap;gap:.5rem}
+.filter-btn{background:none;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.5);cursor:pointer;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.42rem .9rem;border-radius:100px;transition:all .3s;-webkit-tap-highlight-color:transparent}
+.filter-btn:hover{color:#fff;border-color:rgba(255,255,255,.38)}
+.filter-btn.active{background:var(--ouro);border-color:var(--ouro);color:var(--carvao);font-weight:600}
+.projects-grid{display:grid;gap:1rem}
+@media(min-width:480px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.projects-grid{grid-template-columns:repeat(3,1fr)}}
+.project-card{position:relative;border-radius:14px;overflow:hidden;cursor:pointer;background:#1a1a18;transition:transform .5s var(--ease),box-shadow .5s}
+.project-card:hover{transform:translateY(-5px);box-shadow:0 24px 64px rgba(0,0,0,.5)}
+.card-img{position:relative;overflow:hidden}
+.card-img img{width:100%;height:200px;object-fit:cover;transition:transform .8s var(--ease),filter .5s;filter:brightness(.85)}
+@media(min-width:640px){.card-img img{height:240px}}
+.project-card:hover .card-img img{transform:scale(1.07);filter:brightness(.65)}
+.card-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,16,.95) 0%,rgba(17,17,16,.3) 60%,transparent 100%)}
+.card-badge{position:absolute;top:.9rem;left:.9rem;background:rgba(17,17,16,.7);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .7rem;border-radius:100px}
+.card-expand{position:absolute;top:.9rem;right:.9rem;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.72rem;opacity:0;transform:scale(.8);transition:opacity .3s,transform .3s var(--ease);cursor:pointer}
+.project-card:hover .card-expand{opacity:1;transform:scale(1)}
+.card-body{padding:1.1rem 1.3rem 1.3rem}
+.card-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
+.card-title{font-size:.95rem;font-weight:600;color:#fff;line-height:1.3}
+.card-year{font-family:'Bebas Neue',sans-serif;color:var(--ouro-lt);font-size:.95rem;flex-shrink:0}
+.card-location{color:rgba(255,255,255,.38);font-size:.75rem;margin-top:.25rem}
+.card-location i{color:var(--ouro);font-size:.65rem;margin-right:.2rem}
+.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:.9rem;padding-top:.9rem;border-top:1px solid rgba(255,255,255,.07)}
+.card-dim-label{font-size:.62rem;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.14em}
+.card-dim-value{font-size:.82rem;font-weight:600;color:var(--verde-lt)}
+.projetos-cta{text-align:center;margin-top:3rem}
+.projetos-cta a{display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.7);font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2rem;border-radius:8px;text-decoration:none;transition:background .3s,color .3s,border-color .3s,transform .3s}
+.projetos-cta a:hover{background:#fff;color:var(--carvao);border-color:#fff;transform:translateY(-2px)}
 
-        /* SOBRE */
-        #sobre { padding: 8rem 0; background: var(--creme); }
-        #sobre .inner { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
-        .grid-2 { display: grid; gap: 5rem; align-items: center; }
-        @media(min-width:1024px){ .grid-2 { grid-template-columns: 1fr 1fr; } }
-        .img-frame { position: relative; }
-        .img-frame-inner { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 4/5; }
-        .img-frame-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .img-frame-inner::after { content:''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,16,.35), transparent 60%); }
-        .img-badge { position: absolute; bottom: -1.5rem; right: -1.5rem; background: var(--verde); color: #fff; border-radius: 12px; padding: 1.4rem 1.8rem; box-shadow: 0 20px 60px rgba(13,74,51,.4); display: none; }
-        @media(min-width:768px){ .img-badge { display: block; } }
-        .img-badge .num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; line-height: 1; }
-        .img-badge .lbl { font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.65); margin-top: .2rem; }
-        .img-accent { position: absolute; top: -2rem; left: -2rem; width: 56px; height: 56px; border: 2px solid rgba(196,154,60,.45); border-radius: 6px; }
-        .sobre-content .section-title { color: var(--carvao); }
-        .sobre-desc { color: #555; line-height: 1.8; margin-top: 1.5rem; }
-        .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
-        .value-item { border-left: 2px solid var(--ouro); padding-left: 1rem; }
-        .value-item h4 { font-size: .88rem; font-weight: 600; color: var(--carvao); margin-bottom: .3rem; }
-        .value-item p  { font-size: .82rem; color: #666; line-height: 1.6; }
-        .cert-list { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 2rem; }
-        .cert-item { display: flex; align-items: center; gap: .4rem; font-size: .8rem; color: #555; }
-        .cert-item i { color: var(--ouro); font-size: .75rem; }
+/* ── SUSTENTABILIDADE ── */
+#sustentabilidade{padding:6rem 0;background:#081524;position:relative;overflow:hidden}
+@media(min-width:768px){#sustentabilidade{padding:8rem 0}}
+#sustentabilidade .dot-grid{position:absolute;inset:0;opacity:.04;background-image:radial-gradient(circle,white 1px,transparent 0);background-size:28px 28px}
+#sustentabilidade .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;position:relative}
+@media(min-width:640px){#sustentabilidade .inner{padding:0 2.5rem}}
+.sust-grid{display:grid;gap:4rem;align-items:center}
+@media(min-width:1024px){.sust-grid{grid-template-columns:1fr 1fr;gap:5rem}}
+.sust-content .section-title{color:#fff}
+.sust-content > p{color:rgba(255,255,255,.48);line-height:1.8;margin-top:1.4rem;font-size:.95rem}
+.pillars{display:flex;flex-direction:column;gap:1.75rem;margin-top:2.5rem}
+.pillar{display:flex;align-items:flex-start;gap:1.1rem}
+.pillar-icon{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:rgba(22,105,74,.2);display:flex;align-items:center;justify-content:center;color:var(--verde-lt)}
+.pillar h4{color:#fff;font-size:.9rem;font-weight:600;margin-bottom:.3rem}
+.pillar p{color:rgba(255,255,255,.42);font-size:.8rem;line-height:1.7}
+.sust-img{position:relative}
+.sust-img-inner{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:3/4}
+.sust-img-inner img{width:100%;height:100%;object-fit:cover}
+.sust-img-inner::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,21,36,.5),transparent 50%)}
+.sust-stat{position:absolute;bottom:-1.5rem;left:-1.5rem;background:var(--ouro);border-radius:12px;padding:1.2rem 1.5rem;box-shadow:0 20px 60px rgba(196,154,60,.3);display:none}
+@media(min-width:640px){.sust-stat{display:block}}
+.sust-stat .num{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:#fff;line-height:1}
+.sust-stat .lbl{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.2rem}
 
-        /* SERVIÇOS */
-        #servicos { padding: 8rem 0; background: var(--branco); }
-        #servicos .inner { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
-        .servicos-grid { display: grid; gap: 1.2rem; }
-        @media(min-width:640px){ .servicos-grid { grid-template-columns: repeat(2,1fr); } }
-        @media(min-width:1024px){ .servicos-grid { grid-template-columns: repeat(3,1fr); } }
-        .servico-card {
-            background: var(--creme); border: 1px solid #E5E1D8; border-radius: 14px; padding: 2rem;
-            transition: border-color .4s, box-shadow .4s, transform .4s var(--ease-out-expo);
-            position: relative; overflow: hidden;
-        }
-        .servico-card::before { content:''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg,var(--verde),var(--ouro)); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease-out-expo); }
-        .servico-card:hover { border-color: transparent; box-shadow: 0 16px 48px rgba(0,0,0,.1); transform: translateY(-4px); }
-        .servico-card:hover::before { transform: scaleX(1); }
-        .servico-card.featured { background: var(--verde); border-color: var(--verde); }
-        .servico-card.featured::before { background: linear-gradient(90deg,var(--ouro),var(--ouro-lt)); transform: scaleX(1); }
-        .servico-icon { width: 52px; height: 52px; border-radius: 10px; background: rgba(13,74,51,.1); color: var(--verde); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1.4rem; transition: background .4s, color .4s; }
-        .servico-card:hover .servico-icon:not(.feat-icon){ background: var(--verde); color: #fff; }
-        .feat-icon { background: rgba(255,255,255,.12); color: #fff; }
-        .servico-title { font-size: 1rem; font-weight: 600; color: var(--carvao); margin-bottom: .6rem; }
-        .servico-card.featured .servico-title { color: #fff; }
-        .servico-desc { font-size: .84rem; color: #666; line-height: 1.7; }
-        .servico-card.featured .servico-desc { color: rgba(255,255,255,.65); }
-        .servico-link { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; font-weight: 600; color: var(--verde); text-decoration: none; margin-top: 1.4rem; transition: gap .3s; }
-        .servico-card.featured .servico-link { color: rgba(255,255,255,.8); }
-        .servico-link:hover { gap: .7rem; }
+/* ── CTA BAND ── */
+#cta-band{padding:5rem 0;background:var(--verde);position:relative;overflow:hidden}
+#cta-band .dot-grid{position:absolute;inset:0;opacity:.04;background-image:radial-gradient(circle,white 1px,transparent 0);background-size:24px 24px}
+#cta-band .glow{position:absolute;border-radius:50%;background:rgba(255,255,255,.06);filter:blur(60px)}
+#cta-band .glow-r{width:300px;height:300px;top:-100px;right:-100px}
+#cta-band .glow-l{width:280px;height:280px;bottom:-80px;left:-80px}
+#cta-band .inner{position:relative;max-width:700px;margin:0 auto;padding:0 1.5rem;text-align:center}
+@media(min-width:640px){#cta-band .inner{padding:0 2.5rem}}
+#cta-band .section-eyebrow{justify-content:center}
+#cta-band .section-eyebrow .rule{background:rgba(196,154,60,.4)}
+#cta-band .section-title{color:#fff}
+#cta-band p{color:rgba(255,255,255,.62);line-height:1.75;margin-top:1rem;font-size:1rem}
+.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--verde);font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:8px;text-decoration:none;margin-top:2.2rem;box-shadow:0 8px 32px rgba(0,0,0,.15);transition:background .3s,transform .3s,box-shadow .3s}
+.btn-white:hover{background:var(--creme);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.2)}
 
-        /* PROJETOS */
-        #projetos { padding: 8rem 0; background: var(--carvao); }
-        #projetos .inner { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
-        .projetos-header { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3.5rem; }
-        @media(min-width:768px){ .projetos-header { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
-        .projetos-header .section-title { color: #fff; }
-        .filter-group { display: flex; flex-wrap: wrap; gap: .5rem; }
-        .filter-btn { background: none; border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.55); cursor: pointer; font-family: 'Outfit', sans-serif; font-size: .7rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: .45rem 1rem; border-radius: 100px; transition: all .3s; }
-        .filter-btn:hover { color: #fff; border-color: rgba(255,255,255,.4); }
-        .filter-btn.active { background: var(--ouro); border-color: var(--ouro); color: var(--carvao); font-weight: 600; }
-        .projects-grid { display: grid; gap: 1.2rem; }
-        @media(min-width:640px){ .projects-grid { grid-template-columns: repeat(2,1fr); } }
-        @media(min-width:1024px){ .projects-grid { grid-template-columns: repeat(3,1fr); } }
-        .project-card { position: relative; border-radius: 14px; overflow: hidden; cursor: pointer; background: #1a1a18; transition: transform .5s var(--ease-out-expo), box-shadow .5s; }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 24px 64px rgba(0,0,0,.5); }
-        .card-img { position: relative; overflow: hidden; }
-        .card-img img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform .8s var(--ease-out-expo), filter .5s; filter: brightness(.85); }
-        .project-card:hover .card-img img { transform: scale(1.07); filter: brightness(.7); }
-        .card-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,16,.95) 0%, rgba(17,17,16,.3) 60%, transparent 100%); }
-        .card-badge { position: absolute; top: 1rem; left: 1rem; background: rgba(17,17,16,.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.7); font-size: .62rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; padding: .3rem .75rem; border-radius: 100px; }
-        .card-expand { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.1); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.2); color: #fff; display: flex; align-items: center; justify-content: center; font-size: .75rem; opacity: 0; transform: scale(.8); transition: opacity .3s, transform .3s var(--ease-out-expo); cursor: pointer; }
-        .project-card:hover .card-expand { opacity: 1; transform: scale(1); }
-        .card-body { padding: 1.2rem 1.4rem 1.4rem; }
-        .card-meta { display: flex; justify-content: space-between; align-items: flex-start; gap: .5rem; }
-        .card-title { font-size: 1rem; font-weight: 600; color: #fff; line-height: 1.3; }
-        .card-year { font-family: 'Bebas Neue', sans-serif; color: var(--ouro-lt); font-size: 1rem; flex-shrink: 0; }
-        .card-location { color: rgba(255,255,255,.4); font-size: .78rem; margin-top: .3rem; }
-        .card-location i { color: var(--ouro); font-size: .68rem; margin-right: .25rem; }
-        .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.07); }
-        .card-dim-label { font-size: .65rem; color: rgba(255,255,255,.3); text-transform: uppercase; letter-spacing: .15em; }
-        .card-dim-value { font-size: .85rem; font-weight: 600; color: var(--verde-lt); }
-        .projetos-cta { text-align: center; margin-top: 3.5rem; }
-        .projetos-cta a { display: inline-flex; align-items: center; gap: .6rem; border: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.75); font-size: .78rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; padding: 1rem 2.2rem; border-radius: 8px; text-decoration: none; transition: background .3s, color .3s, border-color .3s, transform .3s; }
-        .projetos-cta a:hover { background: #fff; color: var(--carvao); border-color: #fff; transform: translateY(-2px); }
+/* ── NOTÍCIAS CARROSSEL ── */
+#noticias{padding:6rem 0;background:var(--creme)}
+@media(min-width:768px){#noticias{padding:8rem 0}}
+#noticias .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:640px){#noticias .inner{padding:0 2.5rem}}
+.noticias-header{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:3rem}
+@media(min-width:768px){.noticias-header{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.noticias-header .section-title{color:var(--carvao)}
+.carousel-controls{display:flex;align-items:center;gap:.7rem}
+.carousel-btn{width:42px;height:42px;border-radius:50%;border:1px solid rgba(17,17,16,.18);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--carvao);font-size:.82rem;transition:background .3s,color .3s,border-color .3s;-webkit-tap-highlight-color:transparent}
+.carousel-btn:hover{background:var(--verde);color:#fff;border-color:var(--verde)}
+.carousel-count{font-size:.82rem;font-weight:600;color:var(--carvao);min-width:2.8rem;text-align:center}
+.carousel-viewport{overflow:hidden;border-radius:16px}
+.carousel-track{display:flex;transition:transform .55s var(--ease)}
+.noticia-card{background:var(--branco);border:1px solid #E5E1D8;border-radius:0;overflow:hidden;flex:0 0 100%;width:100%;display:grid;grid-template-columns:1fr}
+@media(min-width:640px){.noticia-card{grid-template-columns:1fr 1fr;border-radius:16px}}
+.noticia-card .n-img{position:relative;overflow:hidden;min-height:200px}
+@media(min-width:640px){.noticia-card .n-img{min-height:340px}}
+.noticia-card .n-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.noticia-card:hover .n-img img{transform:scale(1.04)}
+.noticia-card .n-cat{position:absolute;bottom:.75rem;left:.75rem;background:var(--verde);color:#fff;font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .7rem;border-radius:100px}
+.noticia-card .n-body{padding:2rem;display:flex;flex-direction:column;justify-content:center}
+@media(min-width:640px){.noticia-card .n-body{padding:2.5rem}}
+.noticia-card .n-date{font-size:.7rem;color:#aaa;margin-bottom:.45rem}
+.noticia-card .n-title{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2.5vw,1.75rem);font-weight:700;color:var(--carvao);line-height:1.3}
+.noticia-card .n-desc{font-size:.88rem;color:#666;line-height:1.75;margin-top:.9rem}
+.noticia-card .n-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:600;color:var(--verde);text-decoration:none;margin-top:1.3rem;transition:gap .3s}
+.noticia-card .n-link:hover{gap:.7rem}
+.carousel-dots{display:flex;justify-content:center;gap:.45rem;margin-top:1.5rem}
+.c-dot{width:7px;height:7px;border-radius:50%;background:rgba(17,17,16,.14);border:none;cursor:pointer;transition:background .3s,transform .3s;padding:0;-webkit-tap-highlight-color:transparent}
+.c-dot.active{background:var(--verde);transform:scale(1.3)}
 
-        /* SUSTENTABILIDADE */
-        #sustentabilidade { padding: 8rem 0; background: #081524; position: relative; overflow: hidden; }
-        #sustentabilidade .dot-grid { position: absolute; inset: 0; opacity: .04; background-image: radial-gradient(circle,white 1px,transparent 0); background-size: 28px 28px; }
-        #sustentabilidade .left-accent { position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: linear-gradient(to bottom,transparent,var(--ouro),transparent); opacity: .3; }
-        #sustentabilidade .inner { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
-        .sust-grid { display: grid; gap: 5rem; align-items: center; }
-        @media(min-width:1024px){ .sust-grid { grid-template-columns: 1fr 1fr; } }
-        .sust-content .section-title { color: #fff; }
-        .sust-content > p { color: rgba(255,255,255,.5); line-height: 1.8; margin-top: 1.5rem; max-width: 520px; }
-        .pillars { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; }
-        .pillar { display: flex; align-items: flex-start; gap: 1.2rem; }
-        .pillar-icon { width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; background: rgba(22,105,74,.2); display: flex; align-items: center; justify-content: center; color: var(--verde-lt); }
-        .pillar h4 { color: #fff; font-size: .92rem; font-weight: 600; margin-bottom: .3rem; }
-        .pillar p  { color: rgba(255,255,255,.45); font-size: .82rem; line-height: 1.7; }
-        .sust-img { position: relative; }
-        .sust-img-inner { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 3/4; }
-        .sust-img-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .sust-img-inner::after { content:''; position: absolute; inset: 0; background: linear-gradient(to top,rgba(8,21,36,.5),transparent 50%); }
-        .sust-stat { position: absolute; bottom: -2rem; left: -2rem; background: var(--ouro); border-radius: 12px; padding: 1.4rem 1.8rem; box-shadow: 0 20px 60px rgba(196,154,60,.35); display: none; }
-        @media(min-width:768px){ .sust-stat { display: block; } }
-        .sust-stat .num { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; color: #fff; line-height: 1; }
-        .sust-stat .lbl { font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.75); margin-top: .2rem; }
+/* ── CONTACTO ── */
+#contacto{padding:6rem 0;background:var(--carvao)}
+@media(min-width:768px){#contacto{padding:8rem 0}}
+#contacto .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:640px){#contacto .inner{padding:0 2.5rem}}
+#contacto .section-header-center .section-title{color:#fff}
+.contact-grid{display:grid;gap:3.5rem}
+@media(min-width:1024px){.contact-grid{grid-template-columns:1fr 1fr;gap:4rem}}
+.contact-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:8px;padding:.82rem 1.05rem;color:#fff;font-family:'Outfit',sans-serif;font-size:.9rem;transition:border-color .3s,background .3s,box-shadow .3s;outline:none}
+.contact-input::placeholder{color:rgba(255,255,255,.28)}
+.contact-input:focus{border-color:var(--verde-lt);background:rgba(255,255,255,.07);box-shadow:0 0 0 3px rgba(22,105,74,.2)}
+textarea.contact-input{resize:none}
+.contact-label{display:block;font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.5rem}
+.c2{display:grid;gap:1.1rem}
+@media(min-width:480px){.c2{grid-template-columns:1fr 1fr}}
+.btn-submit{width:100%;background:var(--verde);color:#fff;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:1rem;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .3s,transform .3s;-webkit-tap-highlight-color:transparent}
+.btn-submit:hover{background:var(--verde-lt);transform:translateY(-2px)}
+.form-success{display:none;text-align:center;padding:1rem;background:rgba(22,105,74,.2);border-radius:10px;color:var(--verde-lt);font-size:.88rem;font-weight:600}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.info-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.1rem;transition:background .3s}
+.info-card:hover{background:rgba(255,255,255,.07)}
+.info-card-icon{width:36px;height:36px;border-radius:8px;background:rgba(13,74,51,.25);display:flex;align-items:center;justify-content:center;color:var(--verde-lt);font-size:.85rem;margin-bottom:.7rem}
+.info-card-label{font-size:.62rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.12em}
+.info-card-value{font-size:.82rem;color:#fff;margin-top:.2rem;word-break:break-all}
+.map-wrap{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.07);margin-top:.9rem}
+.map-wrap iframe{display:block;width:100%;height:220px;filter:grayscale(35%)}
+@media(min-width:640px){.map-wrap iframe{height:240px}}
 
-        /* CTA BAND */
-        #cta-band { padding: 6rem 0; background: var(--verde); position: relative; overflow: hidden; }
-        #cta-band .dot-grid { position: absolute; inset: 0; opacity: .04; background-image: radial-gradient(circle,white 1px,transparent 0); background-size: 24px 24px; }
-        #cta-band .glow-r { position: absolute; top: -80px; right: -80px; width: 320px; height: 320px; border-radius: 50%; background: rgba(255,255,255,.05); filter: blur(60px); }
-        #cta-band .glow-l { position: absolute; bottom: -80px; left: -80px; width: 320px; height: 320px; border-radius: 50%; background: rgba(255,255,255,.05); filter: blur(60px); }
-        #cta-band .inner { position: relative; max-width: 768px; margin: 0 auto; padding: 0 2.5rem; text-align: center; }
-        #cta-band .section-eyebrow { justify-content: center; }
-        #cta-band .section-eyebrow .rule { background: rgba(196,154,60,.5); }
-        #cta-band .section-title { color: #fff; }
-        #cta-band p { color: rgba(255,255,255,.65); line-height: 1.75; margin-top: 1.2rem; font-size: 1.05rem; }
-        .btn-white { display: inline-flex; align-items: center; gap: .6rem; background: #fff; color: var(--verde); font-size: .78rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; padding: 1.1rem 2.5rem; border-radius: 8px; text-decoration: none; margin-top: 2.5rem; box-shadow: 0 8px 32px rgba(0,0,0,.15); transition: background .3s, transform .3s, box-shadow .3s; }
-        .btn-white:hover { background: var(--creme); transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,.2); }
+/* ── MODAL ── */
+#projectModal{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:200;padding:1rem}
+#projectModal.open{display:flex}
+#modalContent{background:var(--branco);width:100%;max-width:860px;border-radius:20px;overflow:hidden;transform:scale(.95) translateY(20px);opacity:0;transition:transform .4s var(--ease),opacity .4s;max-height:92dvh;overflow-y:auto}
+#projectModal.open #modalContent{transform:scale(1) translateY(0);opacity:1}
+.modal-img-wrap{position:relative;height:250px}
+@media(min-width:640px){.modal-img-wrap{height:320px}}
+.modal-img-wrap img{width:100%;height:100%;object-fit:cover}
+.modal-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,16,.7),transparent 50%)}
+#closeModal{position:absolute;top:1rem;right:1rem;z-index:1;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.3);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:background .3s;-webkit-tap-highlight-color:transparent}
+#closeModal:hover{background:rgba(255,255,255,.15)}
+.modal-title-wrap{position:absolute;bottom:1.2rem;left:1.5rem;z-index:1}
+#modalTitle{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:900;color:#fff}
+.modal-body{padding:1.5rem}
+@media(min-width:640px){.modal-body{display:grid;grid-template-columns:3fr 2fr;gap:2rem;padding:2.2rem}}
+.modal-desc-label{font-size:.65rem;color:#aaa;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.7rem}
+#modalDescription{color:#555;line-height:1.8;font-size:.92rem}
+.modal-sheet{background:var(--creme);border-radius:12px;padding:1.3rem;margin-top:1.5rem}
+@media(min-width:640px){.modal-sheet{margin-top:0}}
+.modal-sheet-title{font-size:.65rem;color:#aaa;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.9rem}
+.sheet-item{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid #E5E1D8}
+.sheet-item:last-child{border-bottom:none}
+.sheet-key{font-size:.8rem;color:#888}
+.sheet-val{font-size:.82rem;font-weight:600;color:var(--carvao)}
+.sheet-val.green{color:var(--verde)}
 
-        /* ============================================================
-           NOTÍCIAS — CARROSSEL VERDADEIRO (1 card visível de cada vez)
-        ============================================================ */
-        #noticias { padding: 8rem 0; background: var(--creme); }
-        #noticias .inner { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
-        .noticias-header { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 3.5rem; }
-        @media(min-width:768px){ .noticias-header { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
-        .noticias-header .section-title { color: var(--carvao); }
+/* ── FOOTER ── */
+footer{background:#090909;color:#555;padding-top:4.5rem}
+footer .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:640px){footer .inner{padding:0 2.5rem}}
+footer .footer-grid{display:grid;gap:2.5rem;padding-bottom:3.5rem}
+@media(min-width:640px){footer .footer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){footer .footer-grid{grid-template-columns:2fr 1fr 1fr 1.5fr}}
+.footer-brand p{font-size:.82rem;line-height:1.75;margin-top:1rem;margin-bottom:1.4rem}
+.social-links{display:flex;gap:.55rem}
+.social-link{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;color:#555;font-size:.8rem;text-decoration:none;transition:background .3s,color .3s}
+.social-link:hover{background:var(--verde);color:#fff}
+.footer-col h4{color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.2rem}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:.6rem}
+.footer-links a{color:#555;text-decoration:none;font-size:.82rem;transition:color .3s,padding-left .3s}
+.footer-links a:hover{color:#fff;padding-left:4px}
+.footer-contact{display:flex;flex-direction:column;gap:.9rem}
+.fci{display:flex;align-items:flex-start;gap:.7rem;font-size:.82rem}
+.fci i{color:var(--ouro);margin-top:2px;flex-shrink:0;font-size:.75rem}
+.fci a{color:#555;text-decoration:none;transition:color .3s}
+.fci a:hover{color:#fff}
+footer .bottom{border-top:1px solid rgba(255,255,255,.05);padding:1.6rem 0;display:flex;flex-direction:column;gap:.9rem;align-items:center;text-align:center}
+@media(min-width:768px){footer .bottom{flex-direction:row;justify-content:space-between;text-align:left}}
+footer .bottom p{font-size:.75rem}
+.legal-links{display:flex;gap:1.3rem;flex-wrap:wrap;justify-content:center}
+.legal-links a{font-size:.75rem;color:#444;text-decoration:none;transition:color .3s}
+.legal-links a:hover{color:#fff}
 
-        /* Controlos */
-        .carousel-controls { display: flex; align-items: center; gap: .75rem; }
-        .carousel-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(17,17,16,.2); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--carvao); font-size: .85rem; transition: background .3s, color .3s, border-color .3s; }
-        .carousel-btn:hover { background: var(--verde); color: #fff; border-color: var(--verde); }
-        .carousel-count { font-size: .85rem; font-weight: 600; color: var(--carvao); min-width: 3rem; text-align: center; }
-
-        /* Viewport do carrossel */
-        .carousel-viewport { overflow: hidden; border-radius: 16px; }
-        .carousel-track {
-            display: flex;
-            transition: transform .55s var(--ease-out-expo);
-        }
-
-        /* Cada card ocupa 100% do viewport */
-        .noticia-card {
-            background: var(--branco); border: 1px solid #E5E1D8; border-radius: 0;
-            overflow: hidden; flex: 0 0 100%; width: 100%;
-            display: grid; grid-template-columns: 1fr;
-        }
-        @media(min-width:768px){
-            .noticia-card { grid-template-columns: 1fr 1fr; border-radius: 16px; }
-        }
-
-        .noticia-card .n-img { position: relative; overflow: hidden; min-height: 220px; }
-        @media(min-width:768px){ .noticia-card .n-img { min-height: 360px; } }
-        .noticia-card .n-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease-out-expo); }
-        .noticia-card:hover .n-img img { transform: scale(1.04); }
-        .noticia-card .n-cat { position: absolute; bottom: .8rem; left: .8rem; background: var(--verde); color: #fff; font-size: .6rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; padding: .3rem .75rem; border-radius: 100px; }
-
-        .noticia-card .n-body {
-            padding: 2.5rem;
-            display: flex; flex-direction: column; justify-content: center;
-        }
-        .noticia-card .n-date { font-size: .72rem; color: #aaa; margin-bottom: .5rem; }
-        .noticia-card .n-title { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem,2.5vw,1.8rem); font-weight: 700; color: var(--carvao); line-height: 1.3; }
-        .noticia-card .n-desc  { font-size: .9rem; color: #666; line-height: 1.75; margin-top: 1rem; }
-        .noticia-card .n-link  { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; font-weight: 600; color: var(--verde); text-decoration: none; margin-top: 1.5rem; transition: gap .3s; }
-        .noticia-card .n-link:hover { gap: .7rem; }
-
-        /* Dots de paginação */
-        .carousel-dots { display: flex; justify-content: center; gap: .5rem; margin-top: 1.8rem; }
-        .c-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(17,17,16,.15); border: none; cursor: pointer; transition: background .3s, transform .3s; padding: 0; }
-        .c-dot.active { background: var(--verde); transform: scale(1.3); }
-
-        /* ADMIN */
-        #admin { padding: 6rem 0; background: var(--branco); border-top: 1px solid #eee; }
-        #admin .inner { max-width: 860px; margin: 0 auto; padding: 0 2.5rem; }
-        .admin-box { background: #f9f7f4; border: 1px solid #E5E1D8; border-radius: 14px; padding: 2rem; }
-        .admin-label { display: block; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #666; margin-bottom: .45rem; }
-        .admin-input { width: 100%; background: #fff; border: 1px solid #DDD9D0; border-radius: 8px; padding: .7rem 1rem; font-family: 'Outfit', sans-serif; font-size: .9rem; color: var(--carvao); transition: border-color .3s, box-shadow .3s; outline: none; }
-        .admin-input:focus { border-color: var(--verde); box-shadow: 0 0 0 3px rgba(13,74,51,.1); }
-        textarea.admin-input { resize: vertical; }
-        .admin-btn { display: inline-flex; align-items: center; gap: .5rem; background: var(--verde); color: #fff; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .75rem 1.6rem; border-radius: 8px; transition: background .3s; }
-        .admin-btn:hover { background: var(--verde-md); }
-        .admin-btn.secondary { background: none; color: var(--carvao); border: 1px solid #DDD9D0; }
-        .admin-btn.secondary:hover { background: #f0ede6; }
-        .admin-login-row { display: flex; gap: .75rem; margin-top: .5rem; }
-        .admin-login-row .admin-input { flex: 1; }
-        .admin-error { color: #e53e3e; font-size: .8rem; margin-top: .5rem; min-height: 1.2rem; }
-        .pub-item { display: flex; justify-content: space-between; align-items: center; padding: .85rem 1rem; background: #fff; border: 1px solid #E5E1D8; border-radius: 10px; }
-        .pub-item-title { font-size: .88rem; font-weight: 500; color: var(--carvao); }
-        .pub-item-cat { font-size: .68rem; color: #aaa; margin-top: .1rem; }
-        .pub-actions { display: flex; gap: .5rem; }
-        .icon-btn { width: 32px; height: 32px; border-radius: 6px; border: none; background: #f0ede6; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: .75rem; color: #555; transition: background .2s, color .2s; }
-        .icon-btn:hover { background: var(--verde); color: #fff; }
-        .icon-btn.del:hover { background: #e53e3e; }
-
-        /* CONTACTO */
-        #contacto { padding: 8rem 0; background: var(--carvao); }
-        #contacto .inner { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
-        #contacto .section-header-center .section-title { color: #fff; }
-        .contact-grid { display: grid; gap: 4rem; }
-        @media(min-width:1024px){ .contact-grid { grid-template-columns: 1fr 1fr; } }
-        .contact-input { width: 100%; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: .85rem 1.1rem; color: #fff; font-family: 'Outfit', sans-serif; font-size: .9rem; transition: border-color .3s, background .3s, box-shadow .3s; outline: none; }
-        .contact-input::placeholder { color: rgba(255,255,255,.3); }
-        .contact-input:focus { border-color: var(--verde-lt); background: rgba(255,255,255,.08); box-shadow: 0 0 0 3px rgba(22,105,74,.2); }
-        textarea.contact-input { resize: none; }
-        .contact-label { display: block; font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: .5rem; }
-        .c2 { display: grid; gap: 1.2rem; }
-        @media(min-width:640px){ .c2 { grid-template-columns: 1fr 1fr; } }
-        .btn-submit { width: 100%; background: var(--verde); color: #fff; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: 1.1rem; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: .5rem; transition: background .3s, transform .3s; }
-        .btn-submit:hover { background: var(--verde-lt); transform: translateY(-2px); }
-        .form-success { display: none; text-align: center; padding: 1rem; background: rgba(22,105,74,.2); border-radius: 10px; color: var(--verde-lt); font-size: .9rem; font-weight: 600; }
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .info-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 1.2rem; transition: background .3s; }
-        .info-card:hover { background: rgba(255,255,255,.07); }
-        .info-card-icon { width: 38px; height: 38px; border-radius: 8px; background: rgba(13,74,51,.25); display: flex; align-items: center; justify-content: center; color: var(--verde-lt); font-size: .9rem; margin-bottom: .75rem; }
-        .info-card-label { font-size: .65rem; color: rgba(255,255,255,.3); text-transform: uppercase; letter-spacing: .14em; }
-        .info-card-value { font-size: .85rem; color: #fff; margin-top: .2rem; }
-        .map-wrap { border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); margin-top: 1rem; }
-        .map-wrap iframe { display: block; width: 100%; height: 240px; filter: grayscale(35%); }
-
-        /* MODAL */
-        #projectModal { position: fixed; inset: 0; background: rgba(0,0,0,.85); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 200; padding: 1.5rem; }
-        #projectModal.open { display: flex; }
-        #modalContent { background: var(--branco); width: 100%; max-width: 900px; border-radius: 20px; overflow: hidden; transform: scale(.95) translateY(20px); opacity: 0; transition: transform .4s var(--ease-out-expo), opacity .4s; max-height: 90vh; overflow-y: auto; }
-        #projectModal.open #modalContent { transform: scale(1) translateY(0); opacity: 1; }
-        .modal-img-wrap { position: relative; height: 300px; }
-        @media(min-width:768px){ .modal-img-wrap { height: 380px; } }
-        .modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .modal-img-wrap::after { content:''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,17,16,.7), transparent 50%); }
-        #closeModal { position: absolute; top: 1rem; right: 1rem; z-index: 1; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,.3); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.2); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: .85rem; transition: background .3s; }
-        #closeModal:hover { background: rgba(255,255,255,.15); }
-        .modal-title-wrap { position: absolute; bottom: 1.5rem; left: 2rem; z-index: 1; }
-        #modalTitle { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,3vw,2.2rem); font-weight: 900; color: #fff; }
-        .modal-body { padding: 2rem; }
-        @media(min-width:768px){ .modal-body { display: grid; grid-template-columns: 3fr 2fr; gap: 2rem; padding: 2.5rem; } }
-        .modal-desc-label { font-size: .68rem; color: #aaa; text-transform: uppercase; letter-spacing: .15em; margin-bottom: .75rem; }
-        #modalDescription { color: #555; line-height: 1.8; font-size: .95rem; }
-        .modal-sheet { background: var(--creme); border-radius: 12px; padding: 1.4rem; }
-        .modal-sheet-title { font-size: .68rem; color: #aaa; text-transform: uppercase; letter-spacing: .15em; margin-bottom: 1rem; }
-        .sheet-item { display: flex; justify-content: space-between; align-items: center; padding: .5rem 0; border-bottom: 1px solid #E5E1D8; }
-        .sheet-item:last-child { border-bottom: none; }
-        .sheet-key { font-size: .82rem; color: #888; }
-        .sheet-val { font-size: .85rem; font-weight: 600; color: var(--carvao); }
-        .sheet-val.green { color: var(--verde); }
-
-        /* FOOTER */
-        footer { background: #090909; color: #555; padding-top: 5rem; }
-        footer .inner { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; }
-        footer .footer-grid { display: grid; gap: 3rem; padding-bottom: 4rem; }
-        @media(min-width:640px){ footer .footer-grid { grid-template-columns: repeat(2,1fr); } }
-        @media(min-width:1024px){ footer .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; } }
-        .footer-brand p { font-size: .85rem; line-height: 1.75; margin-top: 1rem; margin-bottom: 1.5rem; }
-        .social-links { display: flex; gap: .6rem; }
-        .social-link { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: center; color: #555; font-size: .82rem; text-decoration: none; transition: background .3s, color .3s; }
-        .social-link:hover { background: var(--verde); color: #fff; }
-        .footer-col h4 { color: #fff; font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1.4rem; }
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: .65rem; }
-        .footer-links a { color: #555; text-decoration: none; font-size: .85rem; transition: color .3s, padding-left .3s; }
-        .footer-links a:hover { color: #fff; padding-left: 4px; }
-        .footer-contact { display: flex; flex-direction: column; gap: 1rem; }
-        .fci { display: flex; align-items: flex-start; gap: .75rem; font-size: .85rem; }
-        .fci i { color: var(--ouro); margin-top: 2px; flex-shrink: 0; font-size: .8rem; }
-        .fci a { color: #555; text-decoration: none; transition: color .3s; }
-        .fci a:hover { color: #fff; }
-        footer .bottom { border-top: 1px solid rgba(255,255,255,.05); padding: 1.8rem 0; display: flex; flex-direction: column; gap: 1rem; align-items: center; }
-        @media(min-width:768px){ footer .bottom { flex-direction: row; justify-content: space-between; } }
-        footer .bottom p { font-size: .78rem; }
-        .legal-links { display: flex; gap: 1.5rem; }
-        .legal-links a { font-size: .78rem; color: #444; text-decoration: none; transition: color .3s; }
-        .legal-links a:hover { color: #fff; }
-
-        /* KEYFRAMES */
-        @keyframes fadeUp  { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-        @keyframes slideUp { from { opacity:0; transform:translateY(100%); } to { opacity:1; transform:translateY(0); } }
-
-        .hidden { display: none !important; }
-    </style>
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}
+.hidden{display:none!important}
+</style>
 </head>
-
 <body>
-<!-- ✅ SEM cursor-dot / cursor-ring -->
 <div id="scroll-progress"></div>
 
 <!-- HEADER -->
 <header id="cabecalho">
-    <div class="inner">
-        <a href="#inicio" class="logo-wrap">
-            <div class="logo-mark"><img src="assets/imagens/logo.jpeg" alt="RPP Logo" class="h-8 w-auto rounded-md"></div>
-            <div>
-                <span class="logo-name">RPP</span>
-                <span class="logo-tagline">Engenharia & Construção</span>
-            </div>
-        </a>
-        <nav class="desktop">
-            <a href="#inicio"   class="nav-link">Início</a>
-            <a href="#sobre"    class="nav-link">Sobre</a>
-            <a href="#servicos" class="nav-link">Serviços</a>
-            <a href="#projetos" class="nav-link">Projetos</a>
-            <a href="#noticias" class="nav-link">Notícias</a>
-            <a href="#contacto" class="nav-link">Contacto</a>
-        </nav>
-        <div style="display:flex;align-items:center;gap:1rem;">
-            <a href="#contacto" class="btn-proposta">Solicitar Proposta <i class="fa-solid fa-arrow-right" style="font-size:.65rem;"></i></a>
-            <button id="hamburger" aria-label="Menu">
-                <span class="ham-line"></span>
-                <span class="ham-line"></span>
-                <span class="ham-line"></span>
-            </button>
-        </div>
+  <div class="inner">
+    <a href="#inicio" class="logo-wrap">
+      <div class="logo-mark"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=40&h=40&q=80" alt="RPP"></div>
+      <div><span class="logo-name">RPP</span><span class="logo-tagline">Engenharia & Construção</span></div>
+    </a>
+    <nav class="desktop">
+      <a href="#inicio" class="nav-link">Início</a>
+      <a href="#sobre" class="nav-link">Sobre</a>
+      <a href="#servicos" class="nav-link">Serviços</a>
+      <a href="#projetos" class="nav-link">Projetos</a>
+      <a href="#noticias" class="nav-link">Notícias</a>
+      <a href="#contacto" class="nav-link">Contacto</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:.9rem">
+      <a href="#contacto" class="btn-proposta">Solicitar Proposta <i class="fa-solid fa-arrow-right" style="font-size:.6rem"></i></a>
+      <button id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+      </button>
     </div>
+  </div>
 </header>
 
+<!-- MOBILE MENU -->
 <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu principal">
-    <nav style="display:flex;flex-direction:column;align-items:center;gap:.3rem;">
-        <a href="#inicio"   class="mobile-nav-link">Início</a>
-        <a href="#sobre"    class="mobile-nav-link">Sobre</a>
-        <a href="#servicos" class="mobile-nav-link">Serviços</a>
-        <a href="#projetos" class="mobile-nav-link">Projetos</a>
-        <a href="#noticias" class="mobile-nav-link">Notícias</a>
-        <a href="#contacto" class="mobile-nav-link">Contacto</a>
-    </nav>
-    <a href="#contacto" class="mobile-cta">Solicitar Proposta</a>
+  <nav style="display:flex;flex-direction:column;align-items:center;gap:.2rem">
+    <a href="#inicio" class="mobile-nav-link">Início</a>
+    <a href="#sobre" class="mobile-nav-link">Sobre</a>
+    <a href="#servicos" class="mobile-nav-link">Serviços</a>
+    <a href="#projetos" class="mobile-nav-link">Projetos</a>
+    <a href="#noticias" class="mobile-nav-link">Notícias</a>
+    <a href="#contacto" class="mobile-nav-link">Contacto</a>
+  </nav>
+  <a href="#contacto" class="mobile-cta">Solicitar Proposta</a>
 </div>
 
 <!-- HERO -->
 <section id="inicio">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-grain"></div>
-    <div class="hero-inner">
-        <br><br><br><br>
-        <h1 class="hero-headline">
-            <span class="line"><span>Construindo</span></span>
-            <span class="line"><span class="outline">Infraestruturas</span></span>
-            <span class="line"><span>com Excelência</span></span>
-        </h1>
-        <p class="hero-subtext">A RPP é uma construtora multinacional especializada em projetos de engenharia civil de grande escala. Entregamos soluções sólidas e duradouras para os setores público e privado.</p>
-        <div class="hero-actions">
-            <a href="#projetos" class="btn-primary">Ver Projetos <i class="fa-solid fa-arrow-right arrow" style="font-size:.7rem;"></i></a>
-            <a href="#contacto" class="btn-ghost">Solicitar Orçamento</a>
-        </div>
-        <br>
-        <p class="hero-eyebrow"><span class="dot"></span>Engenharia de Excelência · Desde 1999<span class="dot"></span></p>
-        <div class="hero-stats">
-            <div class="stat-cell"><span class="stat-value">+450</span><span class="stat-label">Projetos</span></div>
-            <div class="stat-cell"><span class="stat-value">+120</span><span class="stat-label">Clientes</span></div>
-            <div class="stat-cell"><span class="stat-value">25</span><span class="stat-label">Anos</span></div>
-            <div class="stat-cell"><span class="stat-value">100%</span><span class="stat-label">Compromisso</span></div>
-        </div>
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <br><br><br>
+    <h1 class="hero-headline">
+        <span class="line"><span>Construindo</span></span>
+        <span class="line"><span class="outline">Infraestruturas</span></span>
+        <span class="line"><span>com Excelência</span></span>
+    </h1>
+    <p class="hero-subtext">A RPP é uma construtora multinacional especializada em projetos de engenharia civil de grande escala. Entregamos soluções sólidas e duradouras para os setores público e privado.</p>
+    <div class="hero-actions">
+        <a href="#projetos" class="btn-primary">Ver Projetos <i class="fa-solid fa-arrow-right arrow" style="font-size:.65rem"></i></a>
+        <a href="#contacto" class="btn-ghost">Solicitar Orçamento</a>
     </div>
-    <div class="scroll-indicator">
-        <span>SCROLL</span>
-        <div class="scroll-line-wrap"><div class="scroll-line-inner"></div></div>
+    <p class="hero-eyebrow"><span class="dot"></span>Engenharia de Excelência · Desde 1999<span class="dot"></span></p>
+    <div class="hero-stats">
+      <div class="stat-cell"><span class="stat-value">+450</span><span class="stat-label">Projetos</span></div>
+      <div class="stat-cell"><span class="stat-value">+120</span><span class="stat-label">Clientes</span></div>
+      <div class="stat-cell"><span class="stat-value">25</span><span class="stat-label">Anos</span></div>
+      <div class="stat-cell"><span class="stat-value">100%</span><span class="stat-label">Compromisso</span></div>
     </div>
+  </div>
 </section>
 
 <!-- SOBRE -->
 <section id="sobre">
-    <div class="inner">
-        <div class="grid-2">
-            <div class="img-frame reveal">
-                <div class="img-frame-inner">
-                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80" alt="Equipa RPP em obra">
-                </div>
-                <div class="img-badge"><div class="num">25</div><div class="lbl">Anos de<br>Experiência</div></div>
-                <div class="img-accent"></div>
-            </div>
-            <div class="sobre-content reveal" style="transition-delay:.15s;">
-                <div class="section-eyebrow"><div class="rule"></div><span>Quem Somos</span></div>
-                <h2 class="section-title">Sólida, experiente e preparada para os maiores desafios</h2>
-                <p class="sobre-desc">A RPP Engenharia e Construção Civil orgulha-se de um historial de sucesso na execução de infraestruturas críticas. Com presença internacional, a nossa abordagem foca-se na qualidade intransigente e no cumprimento rigoroso de prazos.</p>
-                <div class="values-grid">
-                    <div class="value-item"><h4>Missão</h4><p>Executar projetos com máxima qualidade, rigor técnico e responsabilidade.</p></div>
-                    <div class="value-item"><h4>Visão</h4><p>Ser a referência internacional em engenharia e construção sustentável.</p></div>
-                </div>
-                <div class="cert-list">
-                    <span class="cert-item"><i class="fa-solid fa-check"></i> ISO 9001 Certificado</span>
-                    <span class="cert-item"><i class="fa-solid fa-check"></i> Presença Internacional</span>
-                    <span class="cert-item"><i class="fa-solid fa-check"></i> Zero Acidentes</span>
-                </div>
-            </div>
+  <div class="inner">
+    <div class="grid-2">
+      <div class="img-frame reveal">
+        <div class="img-frame-inner">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80" alt="Equipa RPP em obra" loading="lazy">
         </div>
+        <div class="img-badge"><div class="num">25</div><div class="lbl">Anos de<br>Experiência</div></div>
+        <div class="img-accent"></div>
+      </div>
+      <div class="sobre-content reveal" style="transition-delay:.12s">
+        <div class="section-eyebrow"><div class="rule"></div><span>Quem Somos</span></div>
+        <h2 class="section-title">Sólida, experiente e preparada para os maiores desafios</h2>
+        <p class="sobre-desc">A RPP Engenharia e Construção Civil orgulha-se de um historial de sucesso na execução de infraestruturas críticas. Com presença internacional, a nossa abordagem foca-se na qualidade intransigente e no cumprimento rigoroso de prazos.</p>
+        <div class="values-grid">
+          <div class="value-item"><h4>Missão</h4><p>Executar projetos com máxima qualidade, rigor técnico e responsabilidade.</p></div>
+          <div class="value-item"><h4>Visão</h4><p>Ser a referência internacional em engenharia e construção sustentável.</p></div>
+        </div>
+        <div class="cert-list">
+          <span class="cert-item"><i class="fa-solid fa-check"></i> ISO 9001 Certificado</span>
+          <span class="cert-item"><i class="fa-solid fa-check"></i> Presença Internacional</span>
+          <span class="cert-item"><i class="fa-solid fa-check"></i> Zero Acidentes</span>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <!-- SERVIÇOS -->
 <section id="servicos">
-    <div class="inner">
-        <div class="section-header-center reveal">
-            <div class="section-eyebrow"><div class="rule"></div><span>Áreas de Atuação</span><div class="rule"></div></div>
-            <h2 class="section-title">Capacidade Técnica de Excelência</h2>
-            <p>Portefólio abrangente de serviços de engenharia e construção, adaptado às exigências de projetos de grande escala.</p>
-        </div>
-        <div class="servicos-grid">
-            <div class="servico-card reveal" style="transition-delay:.05s;">
-                <div class="servico-icon"><i class="fa-solid fa-building"></i></div>
-                <h4 class="servico-title">Edificação Corporativa</h4>
-                <p class="servico-desc">Construção de edifícios de escritórios, sedes empresariais e centros logísticos modernos e eficientes.</p>
-                <a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.65rem;"></i></a>
-            </div>
-            <div class="servico-card reveal" style="transition-delay:.1s;">
-                <div class="servico-icon"><i class="fa-solid fa-road"></i></div>
-                <h4 class="servico-title">Infraestruturas Públicas</h4>
-                <p class="servico-desc">Vias rodoviárias, pontes, viadutos e redes de saneamento com o mais rigoroso padrão técnico.</p>
-                <a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.65rem;"></i></a>
-            </div>
-            <div class="servico-card reveal" style="transition-delay:.15s;">
-                <div class="servico-icon"><i class="fa-solid fa-helmet-safety"></i></div>
-                <h4 class="servico-title">Obras Industriais</h4>
-                <p class="servico-desc">Parques industriais, fábricas e instalações complexas com especificações técnicas de alto nível.</p>
-                <a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.65rem;"></i></a>
-            </div>
-            <div class="servico-card reveal" style="transition-delay:.2s;">
-                <div class="servico-icon"><i class="fa-solid fa-leaf"></i></div>
-                <h4 class="servico-title">Construção Sustentável</h4>
-                <p class="servico-desc">Soluções com certificação verde, eficiência energética e menor impacto ambiental em cada projeto.</p>
-                <a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.65rem;"></i></a>
-            </div>
-            <div class="servico-card reveal" style="transition-delay:.25s;">
-                <div class="servico-icon"><i class="fa-solid fa-wrench"></i></div>
-                <h4 class="servico-title">Reabilitação e Renovação</h4>
-                <p class="servico-desc">Requalificação de edifícios e infraestruturas existentes, alargando a vida útil e valor patrimonial.</p>
-                <a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.65rem;"></i></a>
-            </div>
-            <div class="servico-card featured reveal" style="transition-delay:.3s;">
-                <div class="servico-icon feat-icon"><i class="fa-solid fa-compass-drafting"></i></div>
-                <h4 class="servico-title">Consultoria & Projetos</h4>
-                <p class="servico-desc">Estudos de viabilidade, projetos de execução e acompanhamento técnico especializado.</p>
-                <a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.65rem;"></i></a>
-            </div>
-        </div>
+  <div class="inner">
+    <div class="section-header-center reveal">
+      <div class="section-eyebrow"><div class="rule"></div><span>Áreas de Atuação</span><div class="rule"></div></div>
+      <h2 class="section-title">Capacidade Técnica de Excelência</h2>
+      <p>Portefólio abrangente de serviços de engenharia e construção, adaptado às exigências de projetos de grande escala.</p>
     </div>
+    <div class="servicos-grid">
+      <div class="servico-card reveal" style="transition-delay:.05s"><div class="servico-icon"><i class="fa-solid fa-building"></i></div><h4 class="servico-title">Edificação Corporativa</h4><p class="servico-desc">Construção de edifícios de escritórios, sedes empresariais e centros logísticos modernos e eficientes.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
+      <div class="servico-card reveal" style="transition-delay:.1s"><div class="servico-icon"><i class="fa-solid fa-road"></i></div><h4 class="servico-title">Infraestruturas Públicas</h4><p class="servico-desc">Vias rodoviárias, pontes, viadutos e redes de saneamento com o mais rigoroso padrão técnico.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
+      <div class="servico-card reveal" style="transition-delay:.15s"><div class="servico-icon"><i class="fa-solid fa-helmet-safety"></i></div><h4 class="servico-title">Obras Industriais</h4><p class="servico-desc">Parques industriais, fábricas e instalações complexas com especificações técnicas de alto nível.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
+      <div class="servico-card reveal" style="transition-delay:.2s"><div class="servico-icon"><i class="fa-solid fa-leaf"></i></div><h4 class="servico-title">Construção Sustentável</h4><p class="servico-desc">Soluções com certificação verde, eficiência energética e menor impacto ambiental em cada projeto.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
+      <div class="servico-card reveal" style="transition-delay:.25s"><div class="servico-icon"><i class="fa-solid fa-wrench"></i></div><h4 class="servico-title">Reabilitação e Renovação</h4><p class="servico-desc">Requalificação de edifícios e infraestruturas existentes, alargando a vida útil e valor patrimonial.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
+      <div class="servico-card featured reveal" style="transition-delay:.3s"><div class="servico-icon feat-icon"><i class="fa-solid fa-compass-drafting"></i></div><h4 class="servico-title">Consultoria & Projetos</h4><p class="servico-desc">Estudos de viabilidade, projetos de execução e acompanhamento técnico especializado.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
+    </div>
+  </div>
 </section>
 
 <!-- PROJETOS -->
 <section id="projetos">
-    <div class="inner">
-        <div class="projetos-header reveal">
-            <div>
-                <div class="section-eyebrow"><div class="rule" style="background:rgba(196,154,60,.6);"></div><span>Portefólio</span></div>
-                <h2 class="section-title">Projetos de Referência</h2>
-            </div>
-            <div class="filter-group">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="edificacao">Edificação</button>
-                <button class="filter-btn" data-filter="infraestrutura">Infraestrutura</button>
-                <button class="filter-btn" data-filter="sustentavel">Sustentável</button>
-            </div>
-        </div>
-        <div class="projects-grid" id="projectsGrid">
-            <div class="project-card reveal" data-category="edificacao" data-title="Torre Financeira Global" data-image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" data-location="Lisboa, Portugal" data-year="2023" data-dimension="45.000 m²" data-description="Edifício corporativo de alto padrão com arquitetura contemporânea, eficiência energética e tecnologia sustentável integrada. Projeto que redefiniu a skyline empresarial da capital.">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Torre Financeira Global" loading="lazy">
-                    <div class="card-img-overlay"></div>
-                    <span class="card-badge">Edificação</span>
-                    <button class="card-expand" aria-label="Ver projeto"><i class="fa-solid fa-expand"></i></button>
-                </div>
-                <div class="card-body">
-                    <div class="card-meta"><h3 class="card-title">Torre Financeira Global</h3><span class="card-year">2023</span></div>
-                    <p class="card-location"><i class="fa-solid fa-location-dot"></i> Lisboa, Portugal</p>
-                    <div class="card-footer"><span class="card-dim-label">Dimensão</span><span class="card-dim-value">45.000 m²</span></div>
-                </div>
-            </div>
-            <div class="project-card reveal" style="transition-delay:.1s;" data-category="infraestrutura" data-title="Ponte do Estuário" data-image="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80" data-location="Porto, Portugal" data-year="2022" data-dimension="1.2 km" data-description="Projeto de infraestrutura moderna concebido para melhorar a mobilidade urbana e fortalecer a conectividade regional com padrões internacionais de segurança sísmica.">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80" alt="Ponte do Estuário" loading="lazy">
-                    <div class="card-img-overlay"></div>
-                    <span class="card-badge">Infraestrutura</span>
-                    <button class="card-expand" aria-label="Ver projeto"><i class="fa-solid fa-expand"></i></button>
-                </div>
-                <div class="card-body">
-                    <div class="card-meta"><h3 class="card-title">Ponte do Estuário</h3><span class="card-year">2022</span></div>
-                    <p class="card-location"><i class="fa-solid fa-location-dot"></i> Porto, Portugal</p>
-                    <div class="card-footer"><span class="card-dim-label">Dimensão</span><span class="card-dim-value">1.2 km</span></div>
-                </div>
-            </div>
-            <div class="project-card reveal" style="transition-delay:.2s;" data-category="sustentavel" data-title="Campus Tecnológico Verde" data-image="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80" data-location="Madrid, Espanha" data-year="2024" data-dimension="12.000 m²" data-description="Complexo tecnológico sustentável com soluções de energia renovável, arquitetura bioclimática e certificações ambientais internacionais LEED Gold.">
-                <div class="card-img">
-                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80" alt="Campus Tecnológico Verde" loading="lazy">
-                    <div class="card-img-overlay"></div>
-                    <span class="card-badge">Sustentável</span>
-                    <button class="card-expand" aria-label="Ver projeto"><i class="fa-solid fa-expand"></i></button>
-                </div>
-                <div class="card-body">
-                    <div class="card-meta"><h3 class="card-title">Campus Tecnológico Verde</h3><span class="card-year">2024</span></div>
-                    <p class="card-location"><i class="fa-solid fa-location-dot"></i> Madrid, Espanha</p>
-                    <div class="card-footer"><span class="card-dim-label">Dimensão</span><span class="card-dim-value">12.000 m²</span></div>
-                </div>
-            </div>
-        </div>
-        <div class="projetos-cta reveal">
-            <a href="projetos/detalhe.html">Ver Todos os Projetos <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></a>
-        </div>
+  <div class="inner">
+    <div class="projetos-header reveal">
+      <div>
+        <div class="section-eyebrow"><div class="rule" style="background:rgba(196,154,60,.55)"></div><span>Portefólio</span></div>
+        <h2 class="section-title">Projetos de Referência</h2>
+      </div>
+      <div class="filter-group">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="edificacao">Edificação</button>
+        <button class="filter-btn" data-filter="infraestrutura">Infraestrutura</button>
+        <button class="filter-btn" data-filter="sustentavel">Sustentável</button>
+        <button class="filter-btn" data-filter="industrial">Industrial</button>
+      </div>
     </div>
+    <div class="projects-grid" id="projectsGrid"></div>
+    <div class="projetos-cta reveal">
+      <a href="projetos/detalhe.html">Ver Todos os Projetos <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i></a>
+    </div>
+  </div>
 </section>
 
 <!-- SUSTENTABILIDADE -->
 <section id="sustentabilidade">
-    <div class="dot-grid"></div>
-    <div class="left-accent"></div>
-    <div class="inner">
-        <div class="sust-grid">
-            <div class="sust-content reveal">
-                <div class="section-eyebrow"><div class="rule"></div><span>O Nosso Compromisso</span></div>
-                <h2 class="section-title">Construímos hoje a pensar no amanhã</h2>
-                <p>A sustentabilidade e a segurança são pilares fundamentais da RPP. Integramos práticas de construção verde, gestão eficiente de recursos e garantimos os mais elevados padrões de segurança para todos os nossos colaboradores.</p>
-                <div class="pillars">
-                    <div class="pillar"><div class="pillar-icon"><i class="fa-solid fa-leaf"></i></div><div><h4>Responsabilidade Ambiental</h4><p>Minimização da pegada de carbono, gestão de resíduos em obra e utilização de materiais certificados e sustentáveis.</p></div></div>
-                    <div class="pillar"><div class="pillar-icon"><i class="fa-solid fa-shield-halved"></i></div><div><h4>Segurança Zero Acidentes</h4><p>Formação contínua e rigoroso controlo das condições de segurança e saúde no trabalho em todos os nossos estaleiros.</p></div></div>
-                    <div class="pillar"><div class="pillar-icon"><i class="fa-solid fa-award"></i></div><div><h4>Certificações Internacionais</h4><p>ISO 9001, ISO 14001 e OHSAS 18001 asseguram os mais elevados padrões de qualidade, ambiente e segurança.</p></div></div>
-                </div>
-            </div>
-            <div class="sust-img reveal" style="transition-delay:.15s;">
-                <div class="sust-img-inner">
-                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80" alt="Construção sustentável">
-                </div>
-                <div class="sust-stat"><div class="num">-40%</div><div class="lbl">Emissões CO₂<br>até 2027</div></div>
-            </div>
+  <div class="dot-grid"></div>
+  <div class="inner">
+    <div class="sust-grid">
+      <div class="sust-content reveal">
+        <div class="section-eyebrow"><div class="rule"></div><span>O Nosso Compromisso</span></div>
+        <h2 class="section-title">Construímos hoje a pensar no amanhã</h2>
+        <p>A sustentabilidade e a segurança são pilares fundamentais da RPP. Integramos práticas de construção verde, gestão eficiente de recursos e garantimos os mais elevados padrões de segurança.</p>
+        <div class="pillars">
+          <div class="pillar"><div class="pillar-icon"><i class="fa-solid fa-leaf"></i></div><div><h4>Responsabilidade Ambiental</h4><p>Minimização da pegada de carbono, gestão de resíduos em obra e utilização de materiais certificados e sustentáveis.</p></div></div>
+          <div class="pillar"><div class="pillar-icon"><i class="fa-solid fa-shield-halved"></i></div><div><h4>Segurança Zero Acidentes</h4><p>Formação contínua e rigoroso controlo das condições de segurança e saúde no trabalho em todos os estaleiros.</p></div></div>
+          <div class="pillar"><div class="pillar-icon"><i class="fa-solid fa-award"></i></div><div><h4>Certificações Internacionais</h4><p>ISO 9001, ISO 14001 e OHSAS 18001 asseguram os mais elevados padrões de qualidade e ambiente.</p></div></div>
         </div>
+      </div>
+      <div class="sust-img reveal" style="transition-delay:.15s">
+        <div class="sust-img-inner">
+          <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80" alt="Construção sustentável" loading="lazy">
+        </div>
+        <div class="sust-stat"><div class="num">-40%</div><div class="lbl">Emissões CO₂<br>até 2027</div></div>
+      </div>
     </div>
+  </div>
 </section>
 
 <!-- CTA BAND -->
 <section id="cta-band">
-    <div class="dot-grid"></div>
-    <div class="glow-r"></div>
-    <div class="glow-l"></div>
-    <div class="inner reveal">
-        <div class="section-eyebrow"><div class="rule"></div><span>Comece Agora</span><div class="rule"></div></div>
-        <h2 class="section-title">Pronto para iniciar o seu grande projeto?</h2>
-        <p>A nossa equipa de especialistas está preparada para analisar as suas necessidades e apresentar uma proposta técnica e comercial rigorosa.</p>
-        <a href="#contacto" class="btn-white">Solicitar Proposta <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i></a>
-    </div>
+  <div class="dot-grid"></div>
+  <div class="glow glow-r"></div><div class="glow glow-l"></div>
+  <div class="inner reveal">
+    <div class="section-eyebrow"><div class="rule"></div><span>Comece Agora</span><div class="rule"></div></div>
+    <h2 class="section-title">Pronto para iniciar o seu grande projeto?</h2>
+    <p>A nossa equipa de especialistas está preparada para analisar as suas necessidades e apresentar uma proposta técnica e comercial rigorosa.</p>
+    <a href="#contacto" class="btn-white">Solicitar Proposta <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i></a>
+  </div>
 </section>
 
-<!-- ============================================================
-     NOTÍCIAS — Carrossel 1 card de cada vez
-============================================================ -->
+<!-- NOTÍCIAS -->
 <section id="noticias">
-    <div class="inner">
-        <div class="noticias-header reveal">
-            <div>
-                <div class="section-eyebrow"><div class="rule"></div><span>Atualizações RPP</span></div>
-                <h2 class="section-title">Notícias e Publicações</h2>
-            </div>
-            <div class="carousel-controls">
-                <button id="noticias-prev" class="carousel-btn" aria-label="Anterior">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </button>
-                <span class="carousel-count">
-                    <span id="slide-atual">1</span> / <span id="slide-total">1</span>
-                </span>
-                <button id="noticias-next" class="carousel-btn" aria-label="Próxima">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
+  <div class="inner">
+    <div class="noticias-header reveal">
+      <div>
+        <div class="section-eyebrow"><div class="rule"></div><span>Atualizações RPP</span></div>
+        <h2 class="section-title">Notícias e Publicações</h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+        <div class="carousel-controls">
+          <button id="noticias-prev" class="carousel-btn" aria-label="Anterior"><i class="fa-solid fa-arrow-left"></i></button>
+          <span class="carousel-count"><span id="slide-atual">1</span> / <span id="slide-total">1</span></span>
+          <button id="noticias-next" class="carousel-btn" aria-label="Próxima"><i class="fa-solid fa-arrow-right"></i></button>
         </div>
-
-        <!-- Viewport: 1 card visível -->
-        <div class="carousel-viewport reveal">
-            <div id="noticias-track" class="carousel-track"></div>
-        </div>
-
-        <!-- Dots -->
-        <div id="carousel-dots" class="carousel-dots"></div>
+        <a href="noticias/show.html" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:600;color:var(--verde);text-decoration:none;letter-spacing:.08em;border:1px solid var(--verde);padding:.42rem 1rem;border-radius:100px;transition:background .3s,color .3s">Ver Todas <i class="fa-solid fa-arrow-right" style="font-size:.6rem"></i></a>
+      </div>
     </div>
-</section>
-
-<!-- ADMIN -->
-<section id="admin">
-    <div class="inner">
-        <div style="margin-bottom:2.5rem;">
-            <div class="section-eyebrow"><div class="rule"></div><span>Gestão de Conteúdo</span></div>
-            <h2 class="section-title" style="font-size:2rem;color:var(--carvao);">Área Exclusiva para Gestores</h2>
-            <p style="color:#666;margin-top:.5rem;font-size:.9rem;">Faça login para criar, editar e eliminar publicações com imagem.</p>
-        </div>
-        <form id="admin-login-form" class="admin-box">
-            <label for="admin-password" class="admin-label">Senha de acesso</label>
-            <div class="admin-login-row">
-                <input id="admin-password" type="password" class="admin-input" placeholder="Introduza a senha">
-                <button type="submit" class="admin-btn">Entrar</button>
-            </div>
-            <p style="font-size:.78rem;color:#aaa;margin-top:.75rem;">Senha de demonstração: <strong style="color:var(--carvao);">rpp2026</strong></p>
-            <p id="admin-login-error" class="admin-error"></p>
-        </form>
-        <div id="admin-panel" class="hidden">
-            <div style="display:flex;justify-content:flex-end;margin-bottom:1.5rem;">
-                <button id="admin-logout" type="button" class="admin-btn secondary"><i class="fa-solid fa-right-from-bracket"></i> Sair</button>
-            </div>
-            <form id="publicacao-form" class="admin-box">
-                <input type="hidden" id="publicacao-id">
-                <h4 style="font-weight:600;color:var(--carvao);margin-bottom:1.2rem;">Nova Publicação</h4>
-                <div style="display:grid;gap:1rem;">
-                    <div><label class="admin-label" for="publicacao-titulo">Título</label><input class="admin-input" id="publicacao-titulo" required placeholder="Título da publicação"></div>
-                    <div><label class="admin-label" for="publicacao-resumo">Resumo</label><textarea class="admin-input" id="publicacao-resumo" rows="3" required placeholder="Breve descrição..."></textarea></div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-                        <div><label class="admin-label" for="publicacao-categoria">Categoria</label><select id="publicacao-categoria" class="admin-input"><option>Infraestrutura</option><option>Edificação</option><option>Sustentabilidade</option><option>Institucional</option></select></div>
-                        <div><label class="admin-label" for="publicacao-imagem">Imagem</label><input id="publicacao-imagem" type="file" accept="image/*" class="admin-input"></div>
-                    </div>
-                </div>
-                <div style="display:flex;gap:.75rem;margin-top:1.2rem;">
-                    <button type="submit" class="admin-btn"><i class="fa-solid fa-floppy-disk"></i> Guardar publicação</button>
-                    <button type="button" id="cancelar-edicao" class="admin-btn secondary hidden">Cancelar edição</button>
-                </div>
-            </form>
-            <div class="admin-box" style="margin-top:1.2rem;">
-                <h4 style="font-weight:600;color:var(--carvao);margin-bottom:1.2rem;">Publicações cadastradas</h4>
-                <ul id="lista-publicacoes" style="display:flex;flex-direction:column;gap:.75rem;"></ul>
-            </div>
-        </div>
+    <div class="carousel-viewport reveal">
+      <div id="noticias-track" class="carousel-track"></div>
     </div>
+    <div id="carousel-dots" class="carousel-dots"></div>
+  </div>
 </section>
 
 <!-- CONTACTO -->
 <section id="contacto">
-    <div class="inner">
-        <div class="section-header-center reveal" style="margin-bottom:4rem;">
-            <div class="section-eyebrow"><div class="rule" style="background:rgba(196,154,60,.6);"></div><span>Fale Connosco</span><div class="rule" style="background:rgba(196,154,60,.6);"></div></div>
-            <h2 class="section-title">Estamos à sua disposição</h2>
-        </div>
-        <div class="contact-grid">
-            <div class="reveal">
-                <form id="formulario-contacto" style="display:flex;flex-direction:column;gap:1.1rem;">
-                    <div class="c2">
-                        <div><label class="contact-label">Empresa / Entidade</label><input type="text" placeholder="A sua empresa..." class="contact-input"></div>
-                        <div><label class="contact-label">Pessoa de Contacto</label><input type="text" placeholder="O seu nome..." class="contact-input"></div>
-                    </div>
-                    <div class="c2">
-                        <div><label class="contact-label">E-mail</label><input type="email" placeholder="email@empresa.com" class="contact-input"></div>
-                        <div><label class="contact-label">Telefone</label><input type="tel" placeholder="+244..." class="contact-input"></div>
-                    </div>
-                    <div><label class="contact-label">Assunto / Detalhes do Projeto</label><textarea rows="5" placeholder="Descreva brevemente o projeto..." class="contact-input"></textarea></div>
-                    <button type="submit" id="btn-enviar" class="btn-submit"><i class="fa-solid fa-paper-plane"></i> Enviar Mensagem</button>
-                    <div id="form-success" class="form-success"><i class="fa-solid fa-check-circle" style="color:var(--verde-lt);margin-right:.4rem;"></i>Mensagem enviada com sucesso! Entraremos em contacto brevemente.</div>
-                </form>
-            </div>
-            <div class="reveal" style="transition-delay:.15s;display:flex;flex-direction:column;gap:1.2rem;">
-                <div class="info-grid">
-                    <div class="info-card"><div class="info-card-icon"><i class="fa-solid fa-envelope"></i></div><div class="info-card-label">Email</div><div class="info-card-value">geral@rppengenharia.com</div></div>
-                    <div class="info-card"><div class="info-card-icon"><i class="fa-solid fa-phone"></i></div><div class="info-card-label">Telefone</div><div class="info-card-value">+244 900 000 000</div></div>
-                    <div class="info-card"><div class="info-card-icon"><i class="fa-solid fa-location-dot"></i></div><div class="info-card-label">Localização</div><div class="info-card-value">Luanda, Angola</div></div>
-                    <div class="info-card"><div class="info-card-icon"><i class="fa-solid fa-building"></i></div><div class="info-card-label">NIF</div><div class="info-card-value">5000000000</div></div>
-                </div>
-                <div class="map-wrap">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d6969.92709346321!2d13.210605020319921!3d-8.902305736705582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-PT!2sao!4v1772496124371!5m2!1spt-PT!2sao" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização RPP Engenharia"></iframe>
-                </div>
-            </div>
-        </div>
+  <div class="inner">
+    <div class="section-header-center reveal" style="margin-bottom:3.5rem">
+      <div class="section-eyebrow"><div class="rule" style="background:rgba(196,154,60,.5)"></div><span>Fale Connosco</span><div class="rule" style="background:rgba(196,154,60,.5)"></div></div>
+      <h2 class="section-title">Estamos à sua disposição</h2>
     </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <form id="formulario-contacto" style="display:flex;flex-direction:column;gap:1rem">
+          <div class="c2">
+            <div><label class="contact-label">Empresa / Entidade</label><input type="text" placeholder="A sua empresa..." class="contact-input"></div>
+            <div><label class="contact-label">Pessoa de Contacto</label><input type="text" placeholder="O seu nome..." class="contact-input"></div>
+          </div>
+          <div class="c2">
+            <div><label class="contact-label">E-mail</label><input type="email" placeholder="email@empresa.com" class="contact-input"></div>
+            <div><label class="contact-label">Telefone</label><input type="tel" placeholder="+244..." class="contact-input"></div>
+          </div>
+          <div><label class="contact-label">Assunto / Detalhes do Projeto</label><textarea rows="5" placeholder="Descreva brevemente o projeto..." class="contact-input"></textarea></div>
+          <button type="submit" id="btn-enviar" class="btn-submit"><i class="fa-solid fa-paper-plane"></i> Enviar Mensagem</button>
+          <div id="form-success" class="form-success"><i class="fa-solid fa-check-circle" style="margin-right:.4rem"></i>Mensagem enviada! Entraremos em contacto brevemente.</div>
+        </form>
+      </div>
+      <div class="reveal" style="transition-delay:.12s;display:flex;flex-direction:column;gap:1rem">
+        <div class="info-grid">
+          <div class="info-card"><div class="info-card-icon"><i class="fa-solid fa-envelope"></i></div><div class="info-card-label">Email</div><div class="info-card-value">geral@rppengenharia.com</div></div>
+          <div class="info-card"><div class="info-card-icon"><i class="fa-solid fa-phone"></i></div><div class="info-card-label">Telefone</div><div class="info-card-value">+244 900 000 000</div></div>
+          <div class="info-card"><div class="info-card-icon"><i class="fa-solid fa-location-dot"></i></div><div class="info-card-label">Localização</div><div class="info-card-value">Luanda, Angola</div></div>
+          <div class="info-card"><div class="info-card-icon"><i class="fa-solid fa-building"></i></div><div class="info-card-label">NIF</div><div class="info-card-value">5000000000</div></div>
+        </div>
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d6969.92709346321!2d13.210605020319921!3d-8.902305736705582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-PT!2sao!4v1772496124371!5m2!1spt-PT!2sao" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização RPP"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- MODAL -->
 <div id="projectModal" role="dialog" aria-modal="true" aria-label="Detalhe do projeto">
-    <div id="modalContent">
-        <div class="modal-img-wrap">
-            <img id="modalImage" alt="">
-            <button id="closeModal" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
-            <div class="modal-title-wrap"><h2 id="modalTitle"></h2></div>
-        </div>
-        <div class="modal-body">
-            <div><p class="modal-desc-label">Descrição do Projeto</p><p id="modalDescription"></p></div>
-            <div class="modal-sheet">
-                <p class="modal-sheet-title">Ficha Técnica</p>
-                <div class="sheet-item"><span class="sheet-key">Localização</span><span id="modalLocation" class="sheet-val"></span></div>
-                <div class="sheet-item"><span class="sheet-key">Ano</span><span id="modalYear" class="sheet-val"></span></div>
-                <div class="sheet-item"><span class="sheet-key">Dimensão</span><span id="modalDimension" class="sheet-val green"></span></div>
-                <div class="sheet-item"><span class="sheet-key">Categoria</span><span id="modalCategory" class="sheet-val"></span></div>
-            </div>
-        </div>
+  <div id="modalContent">
+    <div class="modal-img-wrap">
+      <img id="modalImage" alt="">
+      <button id="closeModal" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-title-wrap"><h2 id="modalTitle"></h2></div>
     </div>
+    <div class="modal-body">
+      <div><p class="modal-desc-label">Descrição do Projeto</p><p id="modalDescription"></p></div>
+      <div class="modal-sheet">
+        <p class="modal-sheet-title">Ficha Técnica</p>
+        <div class="sheet-item"><span class="sheet-key">Localização</span><span id="modalLocation" class="sheet-val"></span></div>
+        <div class="sheet-item"><span class="sheet-key">Ano</span><span id="modalYear" class="sheet-val"></span></div>
+        <div class="sheet-item"><span class="sheet-key">Dimensão</span><span id="modalDimension" class="sheet-val green"></span></div>
+        <div class="sheet-item"><span class="sheet-key">Categoria</span><span id="modalCategory" class="sheet-val"></span></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-    <div class="inner">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <a href="#inicio" class="logo-wrap">
-                    <div class="logo-mark"><img src="assets/imagens/logo.jpeg" alt="RPP Logo" class="h-8 w-auto rounded-md"></div>
-                    <div><span class="logo-name">RPP</span><span class="logo-tagline">Engenharia & Construção</span></div>
-                </a>
-                <p>Excelência na construção de infraestruturas, garantindo solidez, inovação e rigoroso cumprimento de prazos desde 1999.</p>
-                <div class="social-links">
-                    <a href="#" class="social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Links Rápidos</h4>
-                <ul class="footer-links">
-                    <li><a href="#inicio">Início</a></li><li><a href="#sobre">Sobre Nós</a></li>
-                    <li><a href="#servicos">Serviços</a></li><li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#noticias">Notícias</a></li><li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Serviços</h4>
-                <ul class="footer-links">
-                    <li><a href="#servicos">Infraestruturas Públicas</a></li><li><a href="#servicos">Edificação Corporativa</a></li>
-                    <li><a href="#servicos">Obras Industriais</a></li><li><a href="#servicos">Construção Sustentável</a></li>
-                    <li><a href="#servicos">Reabilitação</a></li><li><a href="#servicos">Consultoria & Projetos</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Sede</h4>
-                <div class="footer-contact">
-                    <div class="fci"><i class="fa-solid fa-location-dot"></i><span>Avenida da República, 100<br>Luanda, Angola</span></div>
-                    <div class="fci"><i class="fa-solid fa-envelope"></i><a href="mailto:geral@rppengenharia.com">geral@rppengenharia.com</a></div>
-                    <div class="fci"><i class="fa-solid fa-phone"></i><a href="tel:+244900000000">+244 900 000 000</a></div>
-                </div>
-            </div>
+  <div class="inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#inicio" class="logo-wrap">
+          <div class="logo-mark"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=40&h=40&q=80" alt="RPP"></div>
+          <div><span class="logo-name">RPP</span><span class="logo-tagline">Engenharia & Construção</span></div>
+        </a>
+        <p>Excelência na construção de infraestruturas, garantindo solidez, inovação e rigoroso cumprimento de prazos desde 1999.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
-        <div class="bottom">
-            <p>© 2026 RPP – Engenharia e Construção Civil, LDA. Todos os direitos reservados.</p>
-            <div class="legal-links"><a href="#">Política de Privacidade</a><a href="#">Termos de Utilização</a></div>
+      </div>
+      <div class="footer-col">
+        <h4>Links Rápidos</h4>
+        <ul class="footer-links">
+          <li><a href="#inicio">Início</a></li><li><a href="#sobre">Sobre Nós</a></li>
+          <li><a href="#servicos">Serviços</a></li><li><a href="#projetos">Projetos</a></li>
+          <li><a href="#noticias">Notícias</a></li><li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Serviços</h4>
+        <ul class="footer-links">
+          <li><a href="#servicos">Infraestruturas Públicas</a></li><li><a href="#servicos">Edificação Corporativa</a></li>
+          <li><a href="#servicos">Obras Industriais</a></li><li><a href="#servicos">Construção Sustentável</a></li>
+          <li><a href="#servicos">Reabilitação</a></li><li><a href="#servicos">Consultoria & Projetos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sede</h4>
+        <div class="footer-contact">
+          <div class="fci"><i class="fa-solid fa-location-dot"></i><span>Avenida da República, 100<br>Luanda, Angola</span></div>
+          <div class="fci"><i class="fa-solid fa-envelope"></i><a href="mailto:geral@rppengenharia.com">geral@rppengenharia.com</a></div>
+          <div class="fci"><i class="fa-solid fa-phone"></i><a href="tel:+244900000000">+244 900 000 000</a></div>
         </div>
+      </div>
     </div>
+    <div class="bottom">
+      <p>© 2026 RPP – Engenharia e Construção Civil, LDA. Todos os direitos reservados.</p>
+      <div class="legal-links"><a href="#">Política de Privacidade</a><a href="#">Termos de Utilização</a></div>
+    </div>
+  </div>
 </footer>
 
 <script>
 (function(){
-    'use strict';
+'use strict';
+const PASS='rpp2026';
+const NEWS_KEY='rpp_noticias_v3';
+const PROJ_KEY='rpp_projetos_v3';
+const DEF_NEWS=[
+  {id:'n1',titulo:'RPP conclui obra de referência em Luanda',resumo:'A empresa entregou mais um projeto de excelência dentro do prazo e orçamento previstos, reforçando a sua posição como líder no mercado angolano.',categoria:'Institucional',data:'2024-03-15',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=70'},
+  {id:'n2',titulo:'Novo contrato de infraestrutura no Norte de Angola',resumo:'RPP assinou contrato para construção de rede rodoviária de 85 km em Malanje, num dos maiores projetos de infraestrutura do país.',categoria:'Infraestrutura',data:'2024-02-10',img:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=900&q=70'},
+  {id:'n3',titulo:'Certificação ISO 14001 renovada com distinção',resumo:'A RPP renovou com sucesso a certificação ambiental ISO 14001, reforçando o compromisso com a sustentabilidade e práticas de construção responsável.',categoria:'Sustentabilidade',data:'2024-01-22',img:'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=900&q=70'},
+  {id:'n4',titulo:'Expansão para o mercado europeu',resumo:'Com a abertura de escritório em Lisboa, a RPP consolida a sua presença internacional e abre portas para projetos em Portugal e Espanha.',categoria:'Institucional',data:'2024-04-05',img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=70'},
+];
+const DEF_PROJ=[
+  {id:'p1',titulo:'Torre Financeira Global',categoria:'edificacao',local:'Lisboa, Portugal',ano:'2023',dim:'45.000 m²',desc:'Edifício corporativo de alto padrão com arquitetura contemporânea, eficiência energética e tecnologia sustentável integrada.',img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80'},
+  {id:'p2',titulo:'Ponte do Estuário',categoria:'infraestrutura',local:'Porto, Portugal',ano:'2022',dim:'1.2 km',desc:'Projeto de infraestrutura moderna concebido para melhorar a mobilidade urbana e fortalecer a conectividade regional.',img:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80'},
+  {id:'p3',titulo:'Campus Tecnológico Verde',categoria:'sustentavel',local:'Madrid, Espanha',ano:'2024',dim:'12.000 m²',desc:'Complexo tecnológico sustentável com soluções de energia renovável e certificação LEED Gold.',img:'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80'},
+  {id:'p4',titulo:'Parque Industrial Luanda Norte',categoria:'industrial',local:'Luanda, Angola',ano:'2023',dim:'80.000 m²',desc:'Parque industrial de grande escala com infraestrutura técnica avançada e subestação elétrica.',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80'},
+  {id:'p5',titulo:'Sede Corporativa RPP',categoria:'edificacao',local:'Lisboa, Portugal',ano:'2021',dim:'8.500 m²',desc:'Nova sede social da RPP, projetada com eficiência energética e tecnologia de gestão integrada.',img:'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1200&q=80'},
+  {id:'p6',titulo:'Anel Rodoviário Sul',categoria:'infraestrutura',local:'Benguela, Angola',ano:'2020',dim:'42 km',desc:'Via rodoviária de alta velocidade com 4 faixas, sinalização inteligente e sistemas de drenagem avançados.',img:'https://images.unsplash.com/photo-1768230130779-ae92d0935a94?auto=format&fit=crop&w=1200&q=80'},
+];
 
-    // ── SCROLL PROGRESS + HEADER ──────────────────────────────
-    const progressBar = document.getElementById('scroll-progress');
-    const header = document.getElementById('cabecalho');
-    window.addEventListener('scroll', ()=>{
-        const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
-        progressBar.style.width = pct + '%';
-        header.classList.toggle('scrolled', window.scrollY > 60);
-    }, {passive:true});
+const load=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
+const fmtDate=s=>{try{return new Date(s).toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'})}catch{return s||''}};
 
-    // ── HAMBURGER ─────────────────────────────────────────────
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    hamburger.addEventListener('click', ()=>{
-        const open = mobileMenu.classList.toggle('open');
-        hamburger.classList.toggle('open', open);
-        document.body.style.overflow = open ? 'hidden' : '';
-    });
-    document.querySelectorAll('.mobile-nav-link,.mobile-cta').forEach(el => el.addEventListener('click', ()=>{
-        mobileMenu.classList.remove('open');
-        hamburger.classList.remove('open');
-        document.body.style.overflow = '';
-    }));
+if(!localStorage.getItem(NEWS_KEY))save(NEWS_KEY,DEF_NEWS);
+if(!localStorage.getItem(PROJ_KEY))save(PROJ_KEY,DEF_PROJ);
 
-    // ── REVEAL ────────────────────────────────────────────────
-    const revObs = new IntersectionObserver(entries => entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in-view'); revObs.unobserve(e.target); }
-    }), {threshold:.1, rootMargin:'0px 0px -60px 0px'});
-    document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+// ── SCROLL PROGRESS + HEADER ──
+const prog=document.getElementById('scroll-progress');
+const hdr=document.getElementById('cabecalho');
+window.addEventListener('scroll',()=>{
+  const p=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
+  prog.style.width=p+'%';
+  hdr.classList.toggle('scrolled',window.scrollY>60);
+},{passive:true});
 
-    // ── PROJECT MODAL ─────────────────────────────────────────
-    const modal = document.getElementById('projectModal');
-    function openModal(c){
-        document.getElementById('modalImage').src          = c.dataset.image;
-        document.getElementById('modalTitle').textContent  = c.dataset.title;
-        document.getElementById('modalDescription').textContent = c.dataset.description;
-        document.getElementById('modalLocation').textContent    = c.dataset.location;
-        document.getElementById('modalYear').textContent        = c.dataset.year;
-        document.getElementById('modalDimension').textContent   = c.dataset.dimension;
-        document.getElementById('modalCategory').textContent    = c.dataset.category;
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeModalFn(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
-    document.querySelectorAll('.project-card').forEach(c => c.addEventListener('click', ()=> openModal(c)));
-    document.getElementById('closeModal').addEventListener('click', closeModalFn);
-    modal.addEventListener('click', e => { if(e.target === modal) closeModalFn(); });
-    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModalFn(); });
+// ── HAMBURGER ──
+const ham=document.getElementById('hamburger');
+const mob=document.getElementById('mobile-menu');
+ham.addEventListener('click',()=>{
+  const o=mob.classList.toggle('open');
+  ham.classList.toggle('open',o);
+  ham.setAttribute('aria-expanded',o);
+  document.body.style.overflow=o?'hidden':'';
+});
+document.querySelectorAll('.mobile-nav-link,.mobile-cta').forEach(el=>el.addEventListener('click',()=>{
+  mob.classList.remove('open');ham.classList.remove('open');
+  ham.setAttribute('aria-expanded','false');document.body.style.overflow='';
+}));
 
-    // ── FILTERS ───────────────────────────────────────────────
-    document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', ()=>{
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.querySelectorAll('.project-card').forEach(c => {
-            c.style.display = (btn.dataset.filter==='all' || c.dataset.category===btn.dataset.filter) ? '' : 'none';
-        });
-    }));
+// ── REVEAL ──
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in-view');ro.unobserve(e.target);}
+}),{threshold:.08,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
-    // ── CONTACT FORM ──────────────────────────────────────────
-    document.getElementById('formulario-contacto')?.addEventListener('submit', function(e){
-        e.preventDefault();
-        const btn=document.getElementById('btn-enviar'), ok=document.getElementById('form-success');
-        btn.disabled=true; btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> A enviar...';
-        setTimeout(()=>{
-            btn.classList.add('hidden'); ok.style.display='block'; this.reset();
-            setTimeout(()=>{ btn.classList.remove('hidden'); ok.style.display='none'; btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Enviar Mensagem'; }, 5000);
-        }, 1200);
-    });
+// ── PROJECTS RENDER ──
+function renderProjects(){
+  const projs=load(PROJ_KEY,DEF_PROJ);
+  const grid=document.getElementById('projectsGrid');
+  // show first 3 on homepage
+  grid.innerHTML=projs.slice(0,3).map((p,i)=>`
+    <div class="project-card reveal" style="transition-delay:${i*.1}s" data-category="${p.categoria}" data-title="${p.titulo}" data-image="${p.img}" data-location="${p.local}" data-year="${p.ano}" data-dimension="${p.dim}" data-description="${p.desc}" data-id="${p.id}">
+      <div class="card-img">
+        <img src="${p.img}" alt="${p.titulo}" loading="lazy">
+        <div class="card-img-overlay"></div>
+        <span class="card-badge">${p.categoria.charAt(0).toUpperCase()+p.categoria.slice(1)}</span>
+        <button class="card-expand" aria-label="Ver projeto"><i class="fa-solid fa-expand"></i></button>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><h3 class="card-title">${p.titulo}</h3><span class="card-year">${p.ano}</span></div>
+        <p class="card-location"><i class="fa-solid fa-location-dot"></i> ${p.local}</p>
+        <div class="card-footer"><span class="card-dim-label">Dimensão</span><span class="card-dim-value">${p.dim}</span></div>
+      </div>
+    </div>`).join('');
+  grid.querySelectorAll('.project-card').forEach(c=>{
+    c.addEventListener('click',()=>openModal(c));
+    ro.observe(c);
+  });
+}
+renderProjects();
 
-    // ══════════════════════════════════════════════════════════
-    //  NOTÍCIAS — CARROSSEL (1 card visível + slide animado)
-    // ══════════════════════════════════════════════════════════
-    const NEWS_KEY='rpp_noticias_v2', IMGS_KEY='rpp_imgs_v2', PASS='rpp2026';
+// ── FILTERS (homepage shows all) ──
+document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  // redirect to full page with filter
+  window.location.href=`projetos/detalhe.html?filter=${btn.dataset.filter}`;
+}));
 
-    const loadNews  = ()=>{ try{ return JSON.parse(localStorage.getItem(NEWS_KEY))||[]; }catch{ return []; } };
-    const saveNews  = d => localStorage.setItem(NEWS_KEY, JSON.stringify(d));
-    const loadImgs  = ()=>{ try{ return JSON.parse(localStorage.getItem(IMGS_KEY))||{}; }catch{ return {}; } };
-    const saveImgs  = i => localStorage.setItem(IMGS_KEY, JSON.stringify(i));
-    const fmtDate   = s=>{ try{ return new Date(s).toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'}); }catch{ return s; } };
+// ── MODAL ──
+const modal=document.getElementById('projectModal');
+function openModal(c){
+  document.getElementById('modalImage').src=c.dataset.image||'';
+  document.getElementById('modalTitle').textContent=c.dataset.title||'';
+  document.getElementById('modalDescription').textContent=c.dataset.description||'';
+  document.getElementById('modalLocation').textContent=c.dataset.location||'';
+  document.getElementById('modalYear').textContent=c.dataset.year||'';
+  document.getElementById('modalDimension').textContent=c.dataset.dimension||'';
+  document.getElementById('modalCategory').textContent=c.dataset.category||'';
+  modal.classList.add('open');document.body.style.overflow='hidden';
+}
+function closeM(){modal.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('closeModal').addEventListener('click',closeM);
+modal.addEventListener('click',e=>{if(e.target===modal)closeM();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
 
-    const defImgs = [
-        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=70',
-        'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=70',
-        'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=900&q=70'
-    ];
+// ── NOTÍCIAS CARROSSEL ──
+let ci=0;
+const track=document.getElementById('noticias-track');
+const dots=document.getElementById('carousel-dots');
+const saEl=document.getElementById('slide-atual');
+const stEl=document.getElementById('slide-total');
 
-    if (!localStorage.getItem(NEWS_KEY)) saveNews([
-        {id:1, titulo:'RPP conclui obra de referência em Luanda',    resumo:'A empresa entregou mais um projeto de excelência dentro do prazo e orçamento previstos.', categoria:'Institucional',    data:'2024-03-15'},
-        {id:2, titulo:'Novo contrato de infraestrutura no Norte de Angola', resumo:'RPP assinou contrato para construção de rede rodoviária de 85 km em Malanje.',              categoria:'Infraestrutura',   data:'2024-02-10'},
-        {id:3, titulo:'Certificação ISO 14001 renovada',              resumo:'A RPP renovou com sucesso a certificação ambiental ISO 14001, reforçando o compromisso com a sustentabilidade.', categoria:'Sustentabilidade', data:'2024-01-22'},
-    ]);
+function buildCarousel(){
+  const news=load(NEWS_KEY,DEF_NEWS);
+  if(!news.length){track.innerHTML='<p style="padding:2rem;color:#999">Sem publicações.</p>';return;}
+  track.innerHTML=news.map(n=>`
+    <article class="noticia-card">
+      <div class="n-img">
+        <img src="${n.img||'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=70'}" alt="${n.titulo}" loading="lazy">
+        <span class="n-cat">${n.categoria}</span>
+      </div>
+      <div class="n-body">
+        <p class="n-date">${fmtDate(n.data)}</p>
+        <h3 class="n-title">${n.titulo}</h3>
+        <p class="n-desc">${n.resumo}</p>
+        <a href="noticias/show.html" class="n-link">Ler mais <i class="fa-solid fa-arrow-right" style="font-size:.6rem"></i></a>
+      </div>
+    </article>`).join('');
+  dots.innerHTML=news.map((_,i)=>`<button class="c-dot${i===ci?' active':''}" data-i="${i}" aria-label="Slide ${i+1}"></button>`).join('');
+  dots.querySelectorAll('.c-dot').forEach(d=>d.addEventListener('click',()=>goTo(parseInt(d.dataset.i))));
+  stEl.textContent=news.length;
+  goTo(ci,false);
+}
+function goTo(i,anim=true){
+  const n=load(NEWS_KEY,DEF_NEWS).length;
+  ci=(i+n)%n;
+  if(!anim){track.style.transition='none';}
+  track.style.transform=`translateX(-${ci*100}%)`;
+  if(!anim)requestAnimationFrame(()=>{track.style.transition='';});
+  saEl.textContent=ci+1;
+  dots.querySelectorAll('.c-dot').forEach((d,i)=>d.classList.toggle('active',i===ci));
+}
+document.getElementById('noticias-prev').addEventListener('click',()=>goTo(ci-1));
+document.getElementById('noticias-next').addEventListener('click',()=>goTo(ci+1));
+let tx=0;
+track.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+track.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>45)goTo(dx<0?ci+1:ci-1);});
+let ap=setInterval(()=>goTo(ci+1),6000);
+[document.getElementById('noticias-prev'),document.getElementById('noticias-next')].forEach(b=>b.addEventListener('click',()=>{clearInterval(ap);ap=setInterval(()=>goTo(ci+1),6000);}));
+buildCarousel();
 
-    let currentIdx = 0;
-    const track    = document.getElementById('noticias-track');
-    const dotsWrap = document.getElementById('carousel-dots');
-    const slideAtualEl = document.getElementById('slide-atual');
-    const slideTotalEl = document.getElementById('slide-total');
-
-    function buildCarousel(){
-        const all  = loadNews();
-        const imgs = loadImgs();
-        if (!all.length){ track.innerHTML='<p style="padding:2rem;color:#aaa;">Sem publicações.</p>'; return; }
-
-        // Renderizar todos os cards no track
-        track.innerHTML = all.map((n, i) => `
-            <article class="noticia-card">
-                <div class="n-img">
-                    <img src="${imgs[n.id] || defImgs[i % defImgs.length]}" alt="${n.titulo}" loading="lazy">
-                    <span class="n-cat">${n.categoria}</span>
-                </div>
-                <div class="n-body">
-                    <p class="n-date">${fmtDate(n.data)}</p>
-                    <h3 class="n-title">${n.titulo}</h3>
-                    <p class="n-desc">${n.resumo}</p>
-                    <a href="#" class="n-link">Ler mais <i class="fa-solid fa-arrow-right" style="font-size:.65rem;"></i></a>
-                </div>
-            </article>`).join('');
-
-        // Dots
-        dotsWrap.innerHTML = all.map((_, i) =>
-            `<button class="c-dot${i===currentIdx?' active':''}" data-idx="${i}" aria-label="Notícia ${i+1}"></button>`
-        ).join('');
-        dotsWrap.querySelectorAll('.c-dot').forEach(d =>
-            d.addEventListener('click', ()=> goTo(parseInt(d.dataset.idx)))
-        );
-
-        // Atualizar contador e posição
-        slideTotalEl.textContent = all.length;
-        goTo(currentIdx, false);
-    }
-
-    function goTo(idx, animate=true){
-        const all = loadNews();
-        currentIdx = (idx + all.length) % all.length;
-        if (!animate) track.style.transition = 'none';
-        track.style.transform = `translateX(-${currentIdx * 100}%)`;
-        if (!animate) requestAnimationFrame(()=>{ track.style.transition = ''; });
-        slideAtualEl.textContent = currentIdx + 1;
-        dotsWrap.querySelectorAll('.c-dot').forEach((d, i) => d.classList.toggle('active', i===currentIdx));
-    }
-
-    document.getElementById('noticias-prev').addEventListener('click', ()=> goTo(currentIdx - 1));
-    document.getElementById('noticias-next').addEventListener('click', ()=> goTo(currentIdx + 1));
-
-    // Swipe touch
-    let touchStartX = 0;
-    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
-    track.addEventListener('touchend',   e => {
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 50) goTo(dx < 0 ? currentIdx+1 : currentIdx-1);
-    });
-
-    // Auto-avanço a cada 6 s
-    let autoPlay = setInterval(()=> goTo(currentIdx+1), 6000);
-    [document.getElementById('noticias-prev'), document.getElementById('noticias-next')].forEach(btn =>
-        btn.addEventListener('click', ()=>{ clearInterval(autoPlay); autoPlay = setInterval(()=> goTo(currentIdx+1), 6000); })
-    );
-
-    buildCarousel();
-
-    // ── ADMIN AUTH ────────────────────────────────────────────
-    const loginForm = document.getElementById('admin-login-form');
-    const panel     = document.getElementById('admin-panel');
-    const loginErr  = document.getElementById('admin-login-error');
-
-    if (sessionStorage.getItem('rpp_admin')==='1'){
-        loginForm.classList.add('hidden'); panel.classList.remove('hidden'); renderAdminList();
-    }
-    loginForm.addEventListener('submit', e=>{
-        e.preventDefault();
-        if (document.getElementById('admin-password').value===PASS){
-            sessionStorage.setItem('rpp_admin','1'); loginForm.classList.add('hidden'); panel.classList.remove('hidden'); renderAdminList();
-        } else { loginErr.textContent='Senha incorreta.'; }
-    });
-    document.getElementById('admin-logout').addEventListener('click', ()=>{
-        sessionStorage.removeItem('rpp_admin'); loginForm.classList.remove('hidden'); panel.classList.add('hidden');
-        document.getElementById('admin-password').value=''; loginErr.textContent='';
-    });
-
-    const pubForm   = document.getElementById('publicacao-form');
-    const cancelBtn = document.getElementById('cancelar-edicao');
-
-    pubForm.addEventListener('submit', async e=>{
-        e.preventDefault();
-        const data=loadNews(), imgs=loadImgs();
-        const id      = document.getElementById('publicacao-id').value;
-        const titulo  = document.getElementById('publicacao-titulo').value.trim();
-        const resumo  = document.getElementById('publicacao-resumo').value.trim();
-        const categoria = document.getElementById('publicacao-categoria').value;
-        const fi      = document.getElementById('publicacao-imagem');
-        const imgData = fi.files[0] ? await new Promise(res=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.readAsDataURL(fi.files[0]); }) : null;
-        if (id){
-            const idx=data.findIndex(x=>x.id===parseInt(id));
-            if (idx>-1){ data[idx]={...data[idx],titulo,resumo,categoria}; if(imgData) imgs[data[idx].id]=imgData; }
-        } else {
-            const nid=Date.now(); data.unshift({id:nid,titulo,resumo,categoria,data:new Date().toISOString().slice(0,10)});
-            if (imgData) imgs[nid]=imgData;
-        }
-        saveNews(data); saveImgs(imgs); pubForm.reset(); document.getElementById('publicacao-id').value=''; cancelBtn.classList.add('hidden');
-        currentIdx=0; buildCarousel(); renderAdminList();
-    });
-    cancelBtn.addEventListener('click', ()=>{ pubForm.reset(); document.getElementById('publicacao-id').value=''; cancelBtn.classList.add('hidden'); });
-
-    function renderAdminList(){
-        const data=loadNews(), list=document.getElementById('lista-publicacoes');
-        list.innerHTML = data.length ? data.map(n=>`
-            <li class="pub-item">
-                <div><div class="pub-item-title">${n.titulo}</div><div class="pub-item-cat">${n.categoria} · ${n.data}</div></div>
-                <div class="pub-actions">
-                    <button class="icon-btn" data-edit="${n.id}" title="Editar"><i class="fa-solid fa-pen"></i></button>
-                    <button class="icon-btn del" data-del="${n.id}" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
-                </div>
-            </li>`).join('') : '<li style="color:#aaa;font-size:.85rem;padding:.5rem 0;">Sem publicações.</li>';
-
-        list.querySelectorAll('[data-edit]').forEach(b => b.addEventListener('click', ()=>{
-            const item=loadNews().find(x=>x.id===parseInt(b.dataset.edit)); if(!item) return;
-            document.getElementById('publicacao-id').value   = item.id;
-            document.getElementById('publicacao-titulo').value  = item.titulo;
-            document.getElementById('publicacao-resumo').value  = item.resumo;
-            document.getElementById('publicacao-categoria').value = item.categoria;
-            cancelBtn.classList.remove('hidden');
-            pubForm.scrollIntoView({behavior:'smooth',block:'center'});
-        }));
-        list.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', ()=>{
-            if (!confirm('Eliminar publicação?')) return;
-            const id=parseInt(b.dataset.del), imgs=loadImgs();
-            saveNews(loadNews().filter(x=>x.id!==id)); delete imgs[id]; saveImgs(imgs);
-            currentIdx=0; buildCarousel(); renderAdminList();
-        }));
-    }
+// ── CONTACT FORM ──
+document.getElementById('formulario-contacto')?.addEventListener('submit',function(e){
+  e.preventDefault();
+  const btn=document.getElementById('btn-enviar'),ok=document.getElementById('form-success');
+  btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> A enviar...';
+  setTimeout(()=>{btn.classList.add('hidden');ok.style.display='block';this.reset();
+    setTimeout(()=>{btn.classList.remove('hidden');ok.style.display='none';btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Enviar Mensagem';},5000);
+  },1200);
+});
 
 })();
 </script>

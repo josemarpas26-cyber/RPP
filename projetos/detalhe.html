@@ -1,431 +1,572 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projetos – RPP Engenharia e Construção Civil</title>
-    <meta name="description" content="Portefólio completo de projetos de engenharia e construção civil da RPP.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projetos – RPP Engenharia e Construção Civil</title>
+<meta name="description" content="Portefólio completo de projetos de engenharia e construção civil da RPP.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --verde:#0D4A33;--verde-md:#16694A;--verde-lt:#1E8A62;
+  --ouro:#C49A3C;--ouro-lt:#D9B55A;
+  --carvao:#111110;--carvao-md:#1C1C1A;
+  --creme:#F5F1EA;--branco:#FAFAF8;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;color:var(--carvao);background:var(--branco);overflow-x:hidden}
+img{max-width:100%;display:block}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+/* HEADER */
+header{background:rgba(17,17,16,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,154,60,.1);position:sticky;top:0;z-index:100}
+.hdr-inner{max-width:1280px;margin:0 auto;padding:.9rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+@media(min-width:640px){.hdr-inner{padding:.9rem 2.5rem}}
+.logo-wrap{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.logo-mark{width:38px;height:38px;border-radius:8px;background:var(--verde);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.logo-mark img{width:38px;height:38px;object-fit:cover}
+.logo-name{display:block;font-family:'Bebas Neue',sans-serif;color:#fff;font-size:1.1rem;letter-spacing:.15em;line-height:1}
+.logo-tagline{display:block;color:rgba(255,255,255,.4);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;margin-top:3px}
+.hdr-actions{display:flex;align-items:center;gap:.75rem}
+.btn-back{display:inline-flex;align-items:center;gap:.45rem;color:rgba(255,255,255,.6);font-size:.73rem;font-weight:500;letter-spacing:.1em;text-decoration:none;transition:color .3s}
+.btn-back:hover{color:#fff}
+.btn-cta{display:inline-flex;align-items:center;gap:.4rem;background:var(--verde);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.52rem 1.15rem;border-radius:6px;text-decoration:none;transition:background .3s;white-space:nowrap}
+.btn-cta:hover{background:var(--verde-lt)}
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              verde: { DEFAULT: '#0F4D35', escuro: '#0A3D28', claro: '#1A6B4A' },
-              ouro:  { DEFAULT: '#C49A3C', claro: '#D4AC54' },
-              carvao: '#1C1C1E',
-              creme:  '#F7F4EF'
-            },
-            fontFamily: {
-              display:    ['Cormorant Garamond', 'serif'],
-              body:       ['DM Sans', 'sans-serif'],
-              condensed:  ['Barlow Condensed', 'sans-serif']
-            }
-          }
-        }
-      }
-    </script>
+/* HERO */
+.page-hero{position:relative;background:var(--carvao);padding:5rem 0 4rem;overflow:hidden}
+.page-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=60') center/cover;opacity:.18}
+.page-hero-inner{position:relative;max-width:1280px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:640px){.page-hero-inner{padding:0 2.5rem}}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:1.5rem;flex-wrap:wrap}
+.breadcrumb a{color:rgba(255,255,255,.4);text-decoration:none;transition:color .3s}
+.breadcrumb a:hover{color:#fff}
+.breadcrumb .sep{color:rgba(255,255,255,.2)}
+.eyebrow{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.eyebrow .rule{height:1px;width:28px;background:var(--ouro);flex-shrink:0}
+.eyebrow span{font-size:.68rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ouro)}
+.page-title{font-family:'Playfair Display',serif;font-weight:900;color:#fff;font-size:clamp(2.5rem,6vw,5rem);line-height:1}
 
-    <style>
-      body { font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
-      :root { --verde: #0F4D35; --ouro: #C49A3C; --carvao: #1C1C1E; }
-      ::-webkit-scrollbar { width: 5px; }
-      ::-webkit-scrollbar-thumb { background: var(--verde); border-radius: 10px; }
+/* MAIN */
+.main-inner{max-width:1280px;margin:0 auto;padding:3.5rem 1.5rem 6rem}
+@media(min-width:640px){.main-inner{padding:4rem 2.5rem 7rem}}
 
-      .project-card {
-        background: #fff;
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid #e5e7eb;
-        cursor: pointer;
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
-      }
-      .project-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.12); }
-      .card-img-wrap { position: relative; height: 240px; overflow: hidden; }
-      .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
-      .project-card:hover .card-img-wrap img { transform: scale(1.07); }
-      .card-overlay {
-        position: absolute; inset: 0;
-        background: rgba(15, 77, 53, 0.75);
-        display: flex; align-items: center; justify-content: center;
-        opacity: 0; transition: opacity 0.4s;
-      }
-      .project-card:hover .card-overlay { opacity: 1; }
-      .badge {
-        position: absolute; top: 14px; left: 14px;
-        background: rgba(15, 77, 53, 0.9); color: #fff;
-        font-size: 11px; padding: 5px 12px; border-radius: 999px;
-        font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; z-index: 1;
-      }
-      .card-body { padding: 20px 22px 22px; }
+/* FILTERS */
+.filters-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:3rem}
+.filter-btn{background:none;border:1px solid #D8D4CB;color:#666;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.42rem .9rem;border-radius:100px;transition:all .3s;-webkit-tap-highlight-color:transparent}
+.filter-btn:hover{border-color:var(--verde);color:var(--verde)}
+.filter-btn.active{background:var(--verde);border-color:var(--verde);color:#fff;font-weight:600}
 
-      .filter-btn {
-        padding: 8px 20px; border-radius: 999px;
-        border: 1px solid #e5e7eb; background: #fff;
-        color: #6b7280; font-size: 12px; font-weight: 500; letter-spacing: 0.05em;
-        transition: all 0.25s; cursor: pointer;
-      }
-      .filter-btn:hover { border-color: var(--verde); color: var(--verde); }
-      .filter-btn.active { background: var(--verde); border-color: var(--verde); color: #fff; }
+/* PROJECTS GRID */
+.projects-grid{display:grid;gap:1.2rem}
+@media(min-width:480px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.projects-grid{grid-template-columns:repeat(3,1fr)}}
+.project-card{background:#fff;border:1px solid #E8E4DC;border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .45s var(--ease),box-shadow .45s,border-color .3s}
+.project-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.12);border-color:#D9B55A}
+.card-img-wrap{position:relative;height:210px;overflow:hidden}
+@media(min-width:640px){.card-img-wrap{height:230px}}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .65s var(--ease),filter .4s;filter:brightness(.92)}
+.project-card:hover .card-img-wrap img{transform:scale(1.07);filter:brightness(.78)}
+.card-overlay{position:absolute;inset:0;background:rgba(13,74,51,.75);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .4s}
+.project-card:hover .card-overlay{opacity:1}
+.card-overlay span{color:#fff;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:.5rem}
+.card-badge{position:absolute;top:.9rem;left:.9rem;background:rgba(13,74,51,.88);color:#fff;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .75rem;border-radius:100px}
+.card-body{padding:1.3rem 1.4rem 1.5rem}
+.card-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
+.card-title{font-size:.98rem;font-weight:600;color:var(--carvao);line-height:1.3}
+.card-year{font-family:'Bebas Neue',sans-serif;color:var(--ouro);font-size:.98rem;flex-shrink:0}
+.card-location{color:#999;font-size:.75rem;margin-top:.25rem}
+.card-location i{color:var(--ouro);font-size:.65rem;margin-right:.2rem}
+.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:.9rem;padding-top:.9rem;border-top:1px solid #F0EDE6}
+.card-dim-label{font-size:.62rem;color:#bbb;text-transform:uppercase;letter-spacing:.14em}
+.card-dim-value{font-size:.82rem;font-weight:600;color:var(--verde)}
 
-      .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-      .reveal.visible { opacity: 1; transform: translateY(0); }
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:4rem 2rem;color:#aaa;grid-column:1/-1}
+.empty-state i{font-size:2.5rem;margin-bottom:1rem;display:block;color:#D8D4CB}
+.empty-state p{font-size:.9rem}
 
-      .hero-tag { animation: fadeUp 0.6s ease forwards 0.2s; opacity: 0; }
-      .hero-title { animation: fadeUp 0.7s ease forwards 0.4s; opacity: 0; }
-      @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to   { opacity: 1; transform: translateY(0); }
-      }
-    </style>
+/* ── ADMIN SECTION ── */
+#admin-section{background:var(--creme);border-top:1px solid #E5E1D8;padding:5rem 0}
+.admin-inner{max-width:900px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:640px){.admin-inner{padding:0 2.5rem}}
+.admin-header{margin-bottom:2.5rem}
+.admin-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--ouro);margin-bottom:.75rem}
+.admin-tag .rule{height:1px;width:22px;background:var(--ouro)}
+.admin-h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--carvao);line-height:1.05}
+.admin-sub{color:#777;margin-top:.6rem;font-size:.88rem}
+
+/* LOGIN BOX */
+.auth-box{background:#fff;border:1px solid #E5E1D8;border-radius:16px;padding:2rem;max-width:480px}
+.auth-label{display:block;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:.5rem}
+.auth-row{display:flex;gap:.75rem;flex-wrap:wrap}
+.auth-input{flex:1;min-width:0;background:#FAFAF8;border:1px solid #D8D4CB;border-radius:8px;padding:.72rem 1rem;font-family:'Outfit',sans-serif;font-size:.9rem;color:var(--carvao);transition:border-color .3s,box-shadow .3s;outline:none}
+.auth-input:focus{border-color:var(--verde);box-shadow:0 0 0 3px rgba(13,74,51,.1)}
+.auth-btn{background:var(--verde);color:#fff;border:none;border-radius:8px;padding:.72rem 1.5rem;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .3s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.auth-btn:hover{background:var(--verde-md)}
+.auth-hint{font-size:.75rem;color:#aaa;margin-top:.65rem}
+.auth-hint strong{color:var(--carvao)}
+.auth-err{color:#e53e3e;font-size:.78rem;margin-top:.5rem;min-height:1.1rem}
+
+/* ADMIN PANEL */
+.admin-panel{display:flex;flex-direction:column;gap:1.5rem}
+.panel-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;padding-bottom:1.2rem;border-bottom:1px solid #E5E1D8}
+.panel-top h3{font-size:1rem;font-weight:600;color:var(--carvao)}
+.btn-logout{display:inline-flex;align-items:center;gap:.4rem;background:none;border:1px solid #D8D4CB;color:#777;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.08em;padding:.45rem 1rem;border-radius:6px;cursor:pointer;transition:background .3s,color .3s;-webkit-tap-highlight-color:transparent}
+.btn-logout:hover{background:#f5f0e8;color:var(--carvao)}
+
+/* FORM */
+.crud-form{background:#fff;border:1px solid #E5E1D8;border-radius:14px;padding:1.75rem}
+.crud-form h4{font-size:.95rem;font-weight:600;color:var(--carvao);margin-bottom:1.3rem;padding-bottom:.75rem;border-bottom:1px solid #F0EDE6}
+.form-grid{display:grid;gap:1rem}
+.form-row{display:grid;gap:1rem}
+@media(min-width:640px){.form-row.cols-2{grid-template-columns:1fr 1fr}}
+@media(min-width:640px){.form-row.cols-3{grid-template-columns:1fr 1fr 1fr}}
+.field label{display:block;font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:.45rem}
+.field input,.field select,.field textarea{width:100%;background:#FAFAF8;border:1px solid #D8D4CB;border-radius:8px;padding:.7rem 1rem;font-family:'Outfit',sans-serif;font-size:.88rem;color:var(--carvao);transition:border-color .3s,box-shadow .3s;outline:none}
+.field textarea{resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--verde);box-shadow:0 0 0 3px rgba(13,74,51,.1)}
+.img-preview-wrap{margin-top:.6rem;border-radius:10px;overflow:hidden;border:1px solid #E5E1D8;display:none}
+.img-preview-wrap img{width:100%;height:140px;object-fit:cover}
+.form-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.3rem;padding-top:1.1rem;border-top:1px solid #F0EDE6}
+.btn-save{display:inline-flex;align-items:center;gap:.45rem;background:var(--verde);color:#fff;border:none;font-family:'Outfit',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.72rem 1.5rem;border-radius:8px;cursor:pointer;transition:background .3s;-webkit-tap-highlight-color:transparent}
+.btn-save:hover{background:var(--verde-md)}
+.btn-save:disabled{opacity:.6;cursor:not-allowed}
+.btn-cancel{display:inline-flex;align-items:center;gap:.4rem;background:none;border:1px solid #D8D4CB;color:#777;font-family:'Outfit',sans-serif;font-size:.74rem;font-weight:500;letter-spacing:.08em;padding:.7rem 1.2rem;border-radius:8px;cursor:pointer;transition:background .3s;-webkit-tap-highlight-color:transparent}
+.btn-cancel:hover{background:#f5f0e8;color:var(--carvao)}
+
+/* LIST */
+.crud-list{background:#fff;border:1px solid #E5E1D8;border-radius:14px;padding:1.75rem}
+.crud-list h4{font-size:.95rem;font-weight:600;color:var(--carvao);margin-bottom:1.2rem;padding-bottom:.75rem;border-bottom:1px solid #F0EDE6}
+.list-items{display:flex;flex-direction:column;gap:.7rem}
+.list-item{display:flex;align-items:center;gap:1rem;padding:.9rem 1rem;background:var(--creme);border:1px solid #E5E1D8;border-radius:10px;transition:border-color .3s}
+.list-item:hover{border-color:#C8C4BB}
+.list-item-img{width:52px;height:52px;border-radius:8px;overflow:hidden;flex-shrink:0}
+.list-item-img img{width:100%;height:100%;object-fit:cover}
+.list-item-info{flex:1;min-width:0}
+.list-item-title{font-size:.88rem;font-weight:600;color:var(--carvao);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-item-meta{font-size:.72rem;color:#aaa;margin-top:.15rem}
+.list-item-actions{display:flex;gap:.45rem;flex-shrink:0}
+.icon-btn{width:32px;height:32px;border-radius:7px;border:none;background:#F0EDE6;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#666;transition:background .2s,color .2s;-webkit-tap-highlight-color:transparent}
+.icon-btn:hover{background:var(--verde);color:#fff}
+.icon-btn.del:hover{background:#e53e3e;color:#fff}
+.list-empty{text-align:center;padding:2rem;color:#bbb;font-size:.85rem}
+
+/* MODAL */
+#projectModal{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:200;padding:1rem}
+#projectModal.open{display:flex}
+#modalContent{background:#fff;width:100%;max-width:860px;border-radius:20px;overflow:hidden;transform:scale(.95) translateY(20px);opacity:0;transition:transform .4s var(--ease),opacity .4s;max-height:92dvh;overflow-y:auto}
+#projectModal.open #modalContent{transform:scale(1) translateY(0);opacity:1}
+.modal-img-wrap{position:relative;height:250px}
+@media(min-width:640px){.modal-img-wrap{height:320px}}
+.modal-img-wrap img{width:100%;height:100%;object-fit:cover}
+.modal-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,16,.7),transparent 50%)}
+#closeModal{position:absolute;top:1rem;right:1rem;z-index:1;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.3);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:background .3s;-webkit-tap-highlight-color:transparent}
+#closeModal:hover{background:rgba(255,255,255,.15)}
+.modal-title-wrap{position:absolute;bottom:1.2rem;left:1.5rem;z-index:1}
+#modalTitle{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,3vw,2rem);font-weight:900;color:#fff}
+.modal-body{padding:1.5rem}
+@media(min-width:640px){.modal-body{display:grid;grid-template-columns:3fr 2fr;gap:2rem;padding:2.2rem}}
+.modal-desc-label{font-size:.62rem;color:#aaa;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.7rem}
+#modalDescription{color:#555;line-height:1.8;font-size:.92rem}
+.modal-sheet{background:var(--creme);border-radius:12px;padding:1.3rem;margin-top:1.5rem}
+@media(min-width:640px){.modal-sheet{margin-top:0}}
+.modal-sheet-title{font-size:.62rem;color:#aaa;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.9rem}
+.sheet-item{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid #E5E1D8}
+.sheet-item:last-child{border-bottom:none}
+.sheet-key{font-size:.8rem;color:#888}
+.sheet-val{font-size:.82rem;font-weight:600;color:var(--carvao)}
+.sheet-val.green{color:var(--verde)}
+
+/* CTA */
+.cta-section{background:var(--verde);padding:5rem 0;text-align:center}
+.cta-inner{max-width:640px;margin:0 auto;padding:0 1.5rem}
+.cta-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2rem,4vw,3rem);color:#fff}
+.cta-desc{color:rgba(255,255,255,.65);margin-top:.9rem;line-height:1.7;font-size:.95rem}
+.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--verde);font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:8px;text-decoration:none;margin-top:2rem;box-shadow:0 8px 32px rgba(0,0,0,.15);transition:background .3s,transform .3s}
+.btn-white:hover{background:var(--creme);transform:translateY(-3px)}
+
+/* FOOTER */
+footer{background:#090909;padding:1.5rem;text-align:center}
+footer p{color:#444;font-size:.75rem}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in-view{opacity:1;transform:translateY(0)}
+.hidden{display:none!important}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fa-spin{animation:spin 1s linear infinite}
+</style>
 </head>
-<body class="font-body text-carvao bg-creme">
+<body>
 
-<!-- ── HEADER ── -->
-<header class="bg-carvao/95 backdrop-blur sticky top-0 z-50 border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex justify-between items-center">
-        <a href="../index.html" class="flex items-center gap-3">
-            <div class="h-[40px] w-[40px] rounded bg-verde flex items-center justify-center">
-                <img src="../assets/imagens/logo.jpeg" alt="RPP Logo" class="h-[40px] w-[40px] rounded-md">
-            </div>
-            <div class="leading-none">
-                <span class="block font-condensed font-bold text-white text-[1.15rem] tracking-wider">RPP</span>
-                <span class="block text-[10px] tracking-[0.2em] text-gray-500 uppercase mt-[6px]">Engenharia & Construção</span>
-            </div>
-        </a>
-        <a href="../index.html#contacto"
-           class="inline-flex items-center gap-2 bg-verde text-white text-xs font-semibold tracking-wider px-5 py-2.5 rounded uppercase hover:bg-verde-claro transition-colors">
-            <i class="fa-solid fa-paper-plane text-xs"></i> Solicitar Proposta
-        </a>
+<!-- HEADER -->
+<header>
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo-wrap">
+      <div class="logo-mark"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=38&h=38&q=80" alt="RPP"></div>
+      <div><span class="logo-name">RPP</span><span class="logo-tagline">Engenharia & Construção</span></div>
+    </a>
+    <div class="hdr-actions">
+      <a href="../index.html" class="btn-back"><i class="fa-solid fa-arrow-left" style="font-size:.65rem"></i> Início</a>
+      <a href="../index.html#contacto" class="btn-cta"><i class="fa-solid fa-paper-plane" style="font-size:.65rem"></i> <span style="display:none" id="cta-text-show">Solicitar</span><span>Proposta</span></a>
     </div>
+  </div>
 </header>
 
-<!-- ── HERO ── -->
-<section class="relative bg-carvao py-28 overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center opacity-20"
-         style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=60')"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-carvao/80 to-carvao"></div>
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-10">
-        <nav class="flex items-center gap-2 text-xs text-gray-500 mb-8 hero-tag">
-            <a href="../index.html" class="hover:text-white transition-colors">Início</a>
-            <span class="text-gray-700">/</span>
-            <span class="text-gray-300">Projetos</span>
-        </nav>
-        <div class="flex items-center gap-3 mb-5 hero-tag">
-            <div class="w-8 h-px bg-ouro"></div>
-            <span class="text-ouro font-condensed tracking-[0.25em] text-sm uppercase">Portefólio</span>
-        </div>
-        <h1 class="font-display text-5xl lg:text-7xl font-bold text-white leading-tight hero-title">
-            Todos os Projetos
-        </h1>
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="../index.html">Início</a>
+      <span class="sep">/</span>
+      <span style="color:rgba(255,255,255,.7)">Projetos</span>
     </div>
-</section>
-
-<!-- ── FILTROS + GRID ── -->
-<section class="py-20">
-    <div class="max-w-7xl mx-auto px-6 lg:px-10">
-
-        <!-- Filtros -->
-        <div class="flex flex-wrap gap-3 mb-14 reveal">
-            <button class="filter-btn active" data-filter="all">Todos os Projetos</button>
-            <button class="filter-btn" data-filter="edificacao">Edificação</button>
-            <button class="filter-btn" data-filter="infraestrutura">Infraestrutura</button>
-            <button class="filter-btn" data-filter="sustentavel">Sustentável</button>
-            <button class="filter-btn" data-filter="industrial">Industrial</button>
-        </div>
-
-        <!-- Grid -->
-        <div id="projectsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            <div class="project-card reveal"
-                 data-category="edificacao"
-                 data-title="Torre Financeira Global"
-                 data-image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
-                 data-location="Lisboa, Portugal" data-year="2023"
-                 data-dimension="45.000 m²"
-                 data-description="Edifício corporativo de alto padrão com arquitetura contemporânea, eficiência energética e tecnologia sustentável integrada. Um marco na skyline empresarial de Lisboa.">
-                <div class="card-img-wrap">
-                    <span class="badge">Edificação</span>
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Torre Financeira Global" loading="lazy">
-                    <div class="card-overlay"><span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand text-ouro mr-2"></i>Ver Detalhes</span></div>
-                </div>
-                <div class="card-body">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="font-semibold text-carvao text-lg">Torre Financeira Global</h3>
-                            <p class="text-gray-500 text-sm mt-1"><i class="fa-solid fa-location-dot text-ouro text-xs mr-1"></i>Lisboa, Portugal</p>
-                        </div>
-                        <span class="text-ouro font-condensed font-bold text-sm">2023</span>
-                    </div>
-                    <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-400 uppercase tracking-widest">Dimensão</span>
-                        <span class="text-verde font-semibold text-sm">45.000 m²</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card reveal"
-                 data-category="infraestrutura"
-                 data-title="Ponte do Estuário"
-                 data-image="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80"
-                 data-location="Porto, Portugal" data-year="2022"
-                 data-dimension="1.2 km"
-                 data-description="Infraestrutura moderna concebida para melhorar a mobilidade urbana e fortalecer a conectividade regional com padrões internacionais de segurança sísmica.">
-                <div class="card-img-wrap">
-                    <span class="badge">Infraestrutura</span>
-                    <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80" alt="Ponte do Estuário" loading="lazy">
-                    <div class="card-overlay"><span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand text-ouro mr-2"></i>Ver Detalhes</span></div>
-                </div>
-                <div class="card-body">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="font-semibold text-carvao text-lg">Ponte do Estuário</h3>
-                            <p class="text-gray-500 text-sm mt-1"><i class="fa-solid fa-location-dot text-ouro text-xs mr-1"></i>Porto, Portugal</p>
-                        </div>
-                        <span class="text-ouro font-condensed font-bold text-sm">2022</span>
-                    </div>
-                    <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-400 uppercase tracking-widest">Dimensão</span>
-                        <span class="text-verde font-semibold text-sm">1.2 km</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card reveal"
-                 data-category="sustentavel"
-                 data-title="Campus Tecnológico Verde"
-                 data-image="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80"
-                 data-location="Madrid, Espanha" data-year="2024"
-                 data-dimension="12.000 m²"
-                 data-description="Complexo tecnológico sustentável com soluções de energia renovável, arquitetura bioclimática e certificação LEED Gold.">
-                <div class="card-img-wrap">
-                    <span class="badge">Sustentável</span>
-                    <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80" alt="Campus Tecnológico Verde" loading="lazy">
-                    <div class="card-overlay"><span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand text-ouro mr-2"></i>Ver Detalhes</span></div>
-                </div>
-                <div class="card-body">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="font-semibold text-carvao text-lg">Campus Tecnológico Verde</h3>
-                            <p class="text-gray-500 text-sm mt-1"><i class="fa-solid fa-location-dot text-ouro text-xs mr-1"></i>Madrid, Espanha</p>
-                        </div>
-                        <span class="text-ouro font-condensed font-bold text-sm">2024</span>
-                    </div>
-                    <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-400 uppercase tracking-widest">Dimensão</span>
-                        <span class="text-verde font-semibold text-sm">12.000 m²</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card reveal"
-                 data-category="industrial"
-                 data-title="Parque Industrial Luanda Norte"
-                 data-image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80"
-                 data-location="Luanda, Angola" data-year="2023"
-                 data-dimension="80.000 m²"
-                 data-description="Parque industrial de grande escala com infraestrutura técnica avançada, incluindo subestação elétrica, armazenamento e redes de utilidades industriais.">
-                <div class="card-img-wrap">
-                    <span class="badge">Industrial</span>
-                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Parque Industrial Luanda Norte" loading="lazy">
-                    <div class="card-overlay"><span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand text-ouro mr-2"></i>Ver Detalhes</span></div>
-                </div>
-                <div class="card-body">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="font-semibold text-carvao text-lg">Parque Industrial Luanda Norte</h3>
-                            <p class="text-gray-500 text-sm mt-1"><i class="fa-solid fa-location-dot text-ouro text-xs mr-1"></i>Luanda, Angola</p>
-                        </div>
-                        <span class="text-ouro font-condensed font-bold text-sm">2023</span>
-                    </div>
-                    <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-400 uppercase tracking-widest">Dimensão</span>
-                        <span class="text-verde font-semibold text-sm">80.000 m²</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card reveal"
-                 data-category="edificacao"
-                 data-title="Sede Corporativa RPP"
-                 data-image="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1200&q=80"
-                 data-location="Lisboa, Portugal" data-year="2021"
-                 data-dimension="8.500 m²"
-                 data-description="Nova sede social da RPP, projetada com os mais altos padrões de conforto, eficiência energética e tecnologia de gestão integrada de edifícios.">
-                <div class="card-img-wrap">
-                    <span class="badge">Edificação</span>
-                    <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=800&q=80" alt="Sede Corporativa RPP" loading="lazy">
-                    <div class="card-overlay"><span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand text-ouro mr-2"></i>Ver Detalhes</span></div>
-                </div>
-                <div class="card-body">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="font-semibold text-carvao text-lg">Sede Corporativa RPP</h3>
-                            <p class="text-gray-500 text-sm mt-1"><i class="fa-solid fa-location-dot text-ouro text-xs mr-1"></i>Lisboa, Portugal</p>
-                        </div>
-                        <span class="text-ouro font-condensed font-bold text-sm">2021</span>
-                    </div>
-                    <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-400 uppercase tracking-widest">Dimensão</span>
-                        <span class="text-verde font-semibold text-sm">8.500 m²</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card reveal"
-                 data-category="infraestrutura"
-                 data-title="Anel Rodoviário Sul"
-                 data-image="https://images.unsplash.com/photo-1768230130779-ae92d0935a94?q=80&w=431&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                 data-location="Benguela, Angola" data-year="2020"
-                 data-dimension="42 km"
-                 data-description="Via rodoviária de alta velocidade com 4 faixas, sinalização inteligente, iluminação LED e sistemas de drenagem avançados.">
-                <div class="card-img-wrap">
-                    <span class="badge">Infraestrutura</span>
-                    <img src="https://images.unsplash.com/photo-1768230130779-ae92d0935a94?q=80&w=431&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Anel Rodoviário Sul" loading="lazy">
-                    <div class="card-overlay"><span class="text-white text-sm font-semibold"><i class="fa-solid fa-expand text-ouro mr-2"></i>Ver Detalhes</span></div>
-                </div>
-                
-                <div class="card-body">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="font-semibold text-carvao text-lg">Anel Rodoviário Sul</h3>
-                            <p class="text-gray-500 text-sm mt-1"><i class="fa-solid fa-location-dot text-ouro text-xs mr-1"></i>Benguela, Angola</p>
-                        </div>
-                        <span class="text-ouro font-condensed font-bold text-sm">2020</span>
-                    </div>
-                    <div class="flex justify-between mt-4 pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-400 uppercase tracking-widest">Dimensão</span>
-                        <span class="text-verde font-semibold text-sm">42 km</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ── MODAL ── -->
-<div id="projectModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4 lg:p-8">
-    <div id="modalContent" class="bg-white w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
-        <div class="relative h-72 md:h-96">
-            <img id="modalImage" class="w-full h-full object-cover" alt="">
-            <div class="absolute inset-0 bg-gradient-to-t from-carvao/60 to-transparent"></div>
-            <button id="closeModal" class="absolute top-4 right-4 w-10 h-10 bg-white/10 backdrop-blur hover:bg-white hover:text-carvao text-white rounded-full flex items-center justify-center transition-all text-sm">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="absolute bottom-6 left-8">
-                <h2 id="modalTitle" class="font-display text-2xl md:text-3xl font-bold text-white"></h2>
-            </div>
-        </div>
-        <div class="p-8 grid md:grid-cols-5 gap-8">
-            <div class="md:col-span-3">
-                <p class="text-gray-400 text-xs uppercase tracking-wider mb-3">Descrição</p>
-                <p id="modalDescription" class="text-gray-600 leading-relaxed"></p>
-                <a href="../index.html#contacto" class="inline-flex items-center gap-2 mt-6 bg-verde text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-verde-escuro transition-colors">
-                    <i class="fa-solid fa-paper-plane text-xs"></i> Solicitar Proposta Similar
-                </a>
-            </div>
-            <div class="md:col-span-2 bg-creme rounded-xl p-6">
-                <p class="text-gray-400 text-xs uppercase tracking-wider mb-4">Ficha Técnica</p>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex justify-between border-b border-gray-100 pb-3"><span class="text-gray-500">Localização</span><span id="modalLocation" class="font-semibold text-carvao text-right"></span></li>
-                    <li class="flex justify-between border-b border-gray-100 pb-3"><span class="text-gray-500">Ano</span><span id="modalYear" class="font-semibold text-carvao"></span></li>
-                    <li class="flex justify-between border-b border-gray-100 pb-3"><span class="text-gray-500">Dimensão</span><span id="modalDimension" class="font-semibold text-verde"></span></li>
-                    <li class="flex justify-between"><span class="text-gray-500">Categoria</span><span id="modalCategory" class="font-semibold text-carvao capitalize"></span></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <div class="eyebrow"><div class="rule"></div><span>Portefólio</span></div>
+    <h1 class="page-title">Todos os Projetos</h1>
+  </div>
 </div>
 
-<!-- ── CTA ── -->
-<section class="py-20 bg-verde text-center">
-    <div class="max-w-2xl mx-auto px-6">
-        <h2 class="font-display text-4xl font-bold text-white mb-5">Tem um projeto em mente?</h2>
-        <p class="text-white/70 mb-10">Fale com a nossa equipa e receba uma proposta personalizada.</p>
-        <a href="../index.html#contacto" class="inline-flex items-center gap-3 bg-white text-verde px-10 py-4 rounded-xl font-bold text-sm tracking-wider uppercase hover:bg-creme transition-all">
-            Falar Connosco <i class="fa-solid fa-arrow-right text-xs"></i>
-        </a>
+<!-- MAIN -->
+<main>
+  <div class="main-inner">
+    <div class="filters-bar" id="filtersBar">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="edificacao">Edificação</button>
+      <button class="filter-btn" data-filter="infraestrutura">Infraestrutura</button>
+      <button class="filter-btn" data-filter="sustentavel">Sustentável</button>
+      <button class="filter-btn" data-filter="industrial">Industrial</button>
     </div>
+    <div class="projects-grid" id="projectsGrid"></div>
+  </div>
+</main>
+
+<!-- ADMIN SECTION -->
+<section id="admin-section">
+  <div class="admin-inner">
+    <div class="admin-header">
+      <div class="admin-tag"><div class="rule"></div><span>Área Restrita</span></div>
+      <h2 class="admin-h2">Gestão de Projetos</h2>
+      <p class="admin-sub">Área exclusiva para gestores. Autentique-se para criar, editar e eliminar projetos.</p>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="admin-login" class="auth-box">
+      <label class="auth-label" for="admin-pwd">Senha de acesso</label>
+      <div class="auth-row">
+        <input id="admin-pwd" type="password" class="auth-input" placeholder="Introduza a senha" autocomplete="current-password">
+        <button id="btn-login" class="auth-btn">Entrar</button>
+      </div>
+      <p class="auth-hint">Senha demo: <strong>rpp2026</strong></p>
+      <p id="auth-err" class="auth-err"></p>
+    </div>
+
+    <!-- PANEL -->
+    <div id="admin-panel" class="admin-panel hidden">
+      <div class="panel-top">
+        <h3><i class="fa-solid fa-shield-halved" style="color:var(--verde);margin-right:.4rem"></i> Acesso de Gestor Ativo</h3>
+        <button id="btn-logout" class="btn-logout"><i class="fa-solid fa-right-from-bracket" style="font-size:.7rem"></i> Sair</button>
+      </div>
+
+      <!-- FORM -->
+      <div class="crud-form">
+        <h4 id="form-title">Novo Projeto</h4>
+        <input type="hidden" id="edit-id">
+        <div class="form-grid">
+          <div class="form-row cols-2">
+            <div class="field"><label for="f-titulo">Título</label><input id="f-titulo" type="text" placeholder="Nome do projeto" required></div>
+            <div class="field"><label for="f-cat">Categoria</label><select id="f-cat"><option value="edificacao">Edificação</option><option value="infraestrutura">Infraestrutura</option><option value="sustentavel">Sustentável</option><option value="industrial">Industrial</option></select></div>
+          </div>
+          <div class="form-row cols-3">
+            <div class="field"><label for="f-local">Localização</label><input id="f-local" type="text" placeholder="Cidade, País"></div>
+            <div class="field"><label for="f-ano">Ano</label><input id="f-ano" type="text" placeholder="2024" maxlength="4"></div>
+            <div class="field"><label for="f-dim">Dimensão</label><input id="f-dim" type="text" placeholder="45.000 m²"></div>
+          </div>
+          <div class="field"><label for="f-desc">Descrição</label><textarea id="f-desc" rows="3" placeholder="Descreva o projeto..."></textarea></div>
+          <div class="field">
+            <label for="f-img">Imagem (ficheiro)</label>
+            <input id="f-img" type="file" accept="image/*">
+            <div class="img-preview-wrap" id="img-preview-wrap"><img id="img-preview" alt="Pré-visualização"></div>
+          </div>
+          <div class="field">
+            <label for="f-img-url">Ou URL da imagem</label>
+            <input id="f-img-url" type="url" placeholder="https://...">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn-save" id="btn-save"><i class="fa-solid fa-floppy-disk"></i> Guardar Projeto</button>
+          <button class="btn-cancel hidden" id="btn-cancel"><i class="fa-solid fa-xmark"></i> Cancelar edição</button>
+        </div>
+      </div>
+
+      <!-- LIST -->
+      <div class="crud-list">
+        <h4>Projetos cadastrados</h4>
+        <div class="list-items" id="admin-list"></div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ── FOOTER ── -->
-<footer class="bg-carvao text-gray-500 py-8">
-    <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-        <p>© 2026 RPP – Engenharia e Construção Civil, LDA.</p>
-        <a href="../index.html" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
-            <i class="fa-solid fa-arrow-left text-xs"></i> Voltar ao Início
-        </a>
+<!-- MODAL -->
+<div id="projectModal" role="dialog" aria-modal="true" aria-label="Detalhe do projeto">
+  <div id="modalContent">
+    <div class="modal-img-wrap">
+      <img id="modalImage" alt="">
+      <button id="closeModal" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-title-wrap"><h2 id="modalTitle"></h2></div>
     </div>
-</footer>
+    <div class="modal-body">
+      <div><p class="modal-desc-label">Descrição do Projeto</p><p id="modalDescription"></p>
+        <a href="../index.html#contacto" style="display:inline-flex;align-items:center;gap:.4rem;margin-top:1.3rem;background:var(--verde);color:#fff;font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.72rem 1.4rem;border-radius:8px;text-decoration:none">
+          <i class="fa-solid fa-paper-plane" style="font-size:.65rem"></i> Solicitar Proposta
+        </a>
+      </div>
+      <div class="modal-sheet">
+        <p class="modal-sheet-title">Ficha Técnica</p>
+        <div class="sheet-item"><span class="sheet-key">Localização</span><span id="modalLocation" class="sheet-val"></span></div>
+        <div class="sheet-item"><span class="sheet-key">Ano</span><span id="modalYear" class="sheet-val"></span></div>
+        <div class="sheet-item"><span class="sheet-key">Dimensão</span><span id="modalDimension" class="sheet-val green"></span></div>
+        <div class="sheet-item"><span class="sheet-key">Categoria</span><span id="modalCategory" class="sheet-val"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-title">Tem um projeto em mente?</h2>
+    <p class="cta-desc">Fale com a nossa equipa e receba uma proposta personalizada adaptada às suas necessidades.</p>
+    <a href="../index.html#contacto" class="btn-white">Falar Connosco <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i></a>
+  </div>
+</div>
+
+<footer><p>© 2026 RPP – Engenharia e Construção Civil, LDA. Todos os direitos reservados.</p></footer>
 
 <script>
-// Reveal
-document.addEventListener('DOMContentLoaded', () => {
-    const obs = new IntersectionObserver(entries => {
-        entries.forEach((e, i) => {
-            if (e.isIntersecting) {
-                e.target.style.transitionDelay = `${i % 3 * 80}ms`;
-                e.target.classList.add('visible');
-                obs.unobserve(e.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+(function(){
+'use strict';
+const PROJ_KEY='rpp_projetos_v3';
+const PASS='rpp2026';
+const SESSION_KEY='rpp_admin_auth';
+const DEF=[
+  {id:'p1',titulo:'Torre Financeira Global',categoria:'edificacao',local:'Lisboa, Portugal',ano:'2023',dim:'45.000 m²',desc:'Edifício corporativo de alto padrão com arquitetura contemporânea, eficiência energética e tecnologia sustentável integrada.',img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80'},
+  {id:'p2',titulo:'Ponte do Estuário',categoria:'infraestrutura',local:'Porto, Portugal',ano:'2022',dim:'1.2 km',desc:'Projeto de infraestrutura moderna concebido para melhorar a mobilidade urbana e fortalecer a conectividade regional.',img:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80'},
+  {id:'p3',titulo:'Campus Tecnológico Verde',categoria:'sustentavel',local:'Madrid, Espanha',ano:'2024',dim:'12.000 m²',desc:'Complexo tecnológico sustentável com soluções de energia renovável e certificação LEED Gold.',img:'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80'},
+  {id:'p4',titulo:'Parque Industrial Luanda Norte',categoria:'industrial',local:'Luanda, Angola',ano:'2023',dim:'80.000 m²',desc:'Parque industrial de grande escala com infraestrutura técnica avançada e subestação elétrica.',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80'},
+  {id:'p5',titulo:'Sede Corporativa RPP',categoria:'edificacao',local:'Lisboa, Portugal',ano:'2021',dim:'8.500 m²',desc:'Nova sede social da RPP, projetada com eficiência energética e tecnologia de gestão integrada.',img:'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1200&q=80'},
+  {id:'p6',titulo:'Anel Rodoviário Sul',categoria:'infraestrutura',local:'Benguela, Angola',ano:'2020',dim:'42 km',desc:'Via rodoviária de alta velocidade com 4 faixas, sinalização inteligente e sistemas de drenagem avançados.',img:'https://images.unsplash.com/photo-1768230130779-ae92d0935a94?auto=format&fit=crop&w=1200&q=80'},
+];
 
-    // Filter
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const f = btn.dataset.filter;
-            document.querySelectorAll('.project-card').forEach(card => {
-                const match = f === 'all' || card.dataset.category === f;
-                card.style.transition = 'opacity 0.35s, transform 0.35s';
-                if (match) {
-                    card.style.display = '';
-                    requestAnimationFrame(() => { card.style.opacity = '1'; card.style.transform = ''; });
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.95)';
-                    setTimeout(() => { card.style.display = 'none'; }, 350);
-                }
-            });
-        });
-    });
+const load=()=>{try{const v=localStorage.getItem(PROJ_KEY);return v?JSON.parse(v):DEF}catch{return DEF}};
+const save=d=>{try{localStorage.setItem(PROJ_KEY,JSON.stringify(d))}catch{}};
+if(!localStorage.getItem(PROJ_KEY))save(DEF);
 
-    // Modal
-    const modal = document.getElementById('projectModal');
-    const mc = document.getElementById('modalContent');
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('click', () => {
-            document.getElementById('modalImage').src = card.dataset.image;
-            document.getElementById('modalTitle').textContent = card.dataset.title;
-            document.getElementById('modalDescription').textContent = card.dataset.description;
-            document.getElementById('modalLocation').textContent = card.dataset.location;
-            document.getElementById('modalYear').textContent = card.dataset.year;
-            document.getElementById('modalDimension').textContent = card.dataset.dimension;
-            document.getElementById('modalCategory').textContent = card.dataset.category;
-            modal.classList.remove('hidden'); modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-            requestAnimationFrame(() => { mc.classList.remove('scale-95','opacity-0'); mc.classList.add('scale-100','opacity-100'); });
-        });
+let activeFilter='all';
+const catLabels={edificacao:'Edificação',infraestrutura:'Infraestrutura',sustentavel:'Sustentável',industrial:'Industrial'};
+
+// ── REVEAL ──
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');ro.unobserve(e.target);}}),{threshold:.08});
+
+// ── READ URL PARAM ──
+const urlFilter=new URLSearchParams(location.search).get('filter');
+if(urlFilter&&urlFilter!=='all')activeFilter=urlFilter;
+
+// ── RENDER GRID ──
+function renderGrid(){
+  const projs=load();
+  const grid=document.getElementById('projectsGrid');
+  const filtered=activeFilter==='all'?projs:projs.filter(p=>p.categoria===activeFilter);
+  if(!filtered.length){
+    grid.innerHTML=`<div class="empty-state"><i class="fa-solid fa-folder-open"></i><p>Nenhum projeto encontrado para esta categoria.</p></div>`;
+    return;
+  }
+  grid.innerHTML=filtered.map((p,i)=>`
+    <div class="project-card reveal" style="transition-delay:${(i%3)*.08}s" data-id="${p.id}">
+      <div class="card-img-wrap">
+        <img src="${p.img}" alt="${p.titulo}" loading="lazy">
+        <div class="card-overlay"><span><i class="fa-solid fa-expand" style="color:var(--ouro-lt)"></i> Ver Detalhes</span></div>
+        <span class="card-badge">${catLabels[p.categoria]||p.categoria}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><h3 class="card-title">${p.titulo}</h3><span class="card-year">${p.ano}</span></div>
+        <p class="card-location"><i class="fa-solid fa-location-dot"></i> ${p.local}</p>
+        <div class="card-footer"><span class="card-dim-label">Dimensão</span><span class="card-dim-value">${p.dim}</span></div>
+      </div>
+    </div>`).join('');
+  grid.querySelectorAll('.project-card').forEach(c=>{
+    ro.observe(c);
+    c.addEventListener('click',()=>{
+      const p=load().find(x=>x.id===c.dataset.id);
+      if(p)openModal(p);
     });
-    function closeModal() {
-        mc.classList.remove('scale-100','opacity-100'); mc.classList.add('scale-95','opacity-0');
-        setTimeout(() => { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow=''; }, 250);
-    }
-    document.getElementById('closeModal').addEventListener('click', closeModal);
-    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  });
+  // update filter btns active state
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.filter===activeFilter||(b.dataset.filter==='all'&&activeFilter==='all')));
+}
+renderGrid();
+
+// ── FILTERS ──
+document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  activeFilter=btn.dataset.filter;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}));
+
+// ── MODAL ──
+const modal=document.getElementById('projectModal');
+function openModal(p){
+  document.getElementById('modalImage').src=p.img||'';
+  document.getElementById('modalTitle').textContent=p.titulo;
+  document.getElementById('modalDescription').textContent=p.desc;
+  document.getElementById('modalLocation').textContent=p.local;
+  document.getElementById('modalYear').textContent=p.ano;
+  document.getElementById('modalDimension').textContent=p.dim;
+  document.getElementById('modalCategory').textContent=catLabels[p.categoria]||p.categoria;
+  modal.classList.add('open');document.body.style.overflow='hidden';
+}
+function closeM(){modal.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('closeModal').addEventListener('click',closeM);
+modal.addEventListener('click',e=>{if(e.target===modal)closeM();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+
+// ── AUTH ──
+const isAdmin=()=>sessionStorage.getItem(SESSION_KEY)==='1';
+const loginBox=document.getElementById('admin-login');
+const panel=document.getElementById('admin-panel');
+
+function showPanel(){loginBox.classList.add('hidden');panel.classList.remove('hidden');renderAdminList();}
+function showLogin(){panel.classList.add('hidden');loginBox.classList.remove('hidden');}
+
+if(isAdmin())showPanel();
+
+document.getElementById('btn-login').addEventListener('click',()=>{
+  const pwd=document.getElementById('admin-pwd').value;
+  if(pwd===PASS){sessionStorage.setItem(SESSION_KEY,'1');showPanel();}
+  else{document.getElementById('auth-err').textContent='Senha incorreta. Tente novamente.';}
 });
+document.getElementById('admin-pwd').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btn-login').click();});
+document.getElementById('btn-logout').addEventListener('click',()=>{sessionStorage.removeItem(SESSION_KEY);showLogin();resetForm();});
+
+// ── IMAGE PREVIEW ──
+document.getElementById('f-img').addEventListener('change',async function(){
+  if(!this.files[0])return;
+  const url=URL.createObjectURL(this.files[0]);
+  const prev=document.getElementById('img-preview');
+  prev.src=url;
+  document.getElementById('img-preview-wrap').style.display='block';
+  document.getElementById('f-img-url').value='';
+});
+document.getElementById('f-img-url').addEventListener('input',function(){
+  if(this.value){
+    document.getElementById('img-preview').src=this.value;
+    document.getElementById('img-preview-wrap').style.display='block';
+    document.getElementById('f-img').value='';
+  }
+});
+
+// ── FORM ──
+function resetForm(){
+  document.getElementById('edit-id').value='';
+  document.getElementById('f-titulo').value='';
+  document.getElementById('f-cat').value='edificacao';
+  document.getElementById('f-local').value='';
+  document.getElementById('f-ano').value='';
+  document.getElementById('f-dim').value='';
+  document.getElementById('f-desc').value='';
+  document.getElementById('f-img').value='';
+  document.getElementById('f-img-url').value='';
+  document.getElementById('img-preview-wrap').style.display='none';
+  document.getElementById('form-title').textContent='Novo Projeto';
+  document.getElementById('btn-cancel').classList.add('hidden');
+}
+document.getElementById('btn-cancel').addEventListener('click',resetForm);
+
+document.getElementById('btn-save').addEventListener('click',async()=>{
+  const titulo=document.getElementById('f-titulo').value.trim();
+  const cat=document.getElementById('f-cat').value;
+  const local=document.getElementById('f-local').value.trim();
+  const ano=document.getElementById('f-ano').value.trim();
+  const dim=document.getElementById('f-dim').value.trim();
+  const desc=document.getElementById('f-desc').value.trim();
+  const imgFile=document.getElementById('f-img').files[0];
+  const imgUrl=document.getElementById('f-img-url').value.trim();
+  const editId=document.getElementById('edit-id').value;
+
+  if(!titulo){alert('Por favor introduza o título.');return;}
+
+  const btn=document.getElementById('btn-save');
+  btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> A guardar...';
+
+  try{
+    let img=imgUrl;
+    if(!img&&editId){const ex=load().find(p=>p.id===editId);img=ex?.img||'';}
+    if(imgFile){
+      img=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(imgFile);});
+    }
+    if(!img)img='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80';
+
+    const data=load();
+    if(editId){
+      const idx=data.findIndex(p=>p.id===editId);
+      if(idx>-1)data[idx]={...data[idx],titulo,categoria:cat,local,ano,dim,desc,img};
+    }else{
+      data.unshift({id:'p'+Date.now(),titulo,categoria:cat,local,ano,dim,desc,img});
+    }
+    save(data);renderGrid();renderAdminList();resetForm();
+  }finally{
+    btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-floppy-disk"></i> Guardar Projeto';
+  }
+});
+
+function renderAdminList(){
+  const list=document.getElementById('admin-list');
+  const data=load();
+  if(!data.length){list.innerHTML='<div class="list-empty">Nenhum projeto cadastrado.</div>';return;}
+  list.innerHTML=data.map(p=>`
+    <div class="list-item">
+      <div class="list-item-img"><img src="${p.img}" alt="${p.titulo}" loading="lazy"></div>
+      <div class="list-item-info">
+        <div class="list-item-title">${p.titulo}</div>
+        <div class="list-item-meta">${catLabels[p.categoria]||p.categoria} · ${p.local} · ${p.ano}</div>
+      </div>
+      <div class="list-item-actions">
+        <button class="icon-btn" title="Editar" data-edit="${p.id}"><i class="fa-solid fa-pen"></i></button>
+        <button class="icon-btn del" title="Eliminar" data-del="${p.id}"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>`).join('');
+
+  list.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',()=>{
+    const p=load().find(x=>x.id===b.dataset.edit);if(!p)return;
+    document.getElementById('edit-id').value=p.id;
+    document.getElementById('f-titulo').value=p.titulo;
+    document.getElementById('f-cat').value=p.categoria;
+    document.getElementById('f-local').value=p.local;
+    document.getElementById('f-ano').value=p.ano;
+    document.getElementById('f-dim').value=p.dim;
+    document.getElementById('f-desc').value=p.desc;
+    document.getElementById('f-img-url').value=p.img.startsWith('data:')?'':p.img;
+    document.getElementById('img-preview').src=p.img;
+    document.getElementById('img-preview-wrap').style.display='block';
+    document.getElementById('form-title').textContent='Editar Projeto';
+    document.getElementById('btn-cancel').classList.remove('hidden');
+    document.querySelector('.crud-form').scrollIntoView({behavior:'smooth',block:'center'});
+  }));
+  list.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{
+    if(!confirm('Eliminar este projeto?'))return;
+    const data=load().filter(p=>p.id!==b.dataset.del);
+    save(data);renderGrid();renderAdminList();resetForm();
+  }));
+}
+
+})();
 </script>
 </body>
 </html>
