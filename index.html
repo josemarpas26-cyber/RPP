@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <style>
         :root {
@@ -30,7 +31,6 @@
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        /* ✅ CURSOR NORMAL — sem cursor personalizado */
         body { font-family: 'Outfit', system-ui, sans-serif; color: var(--carvao); background: var(--branco); overflow-x: hidden; }
 
         /* SCROLL PROGRESS */
@@ -57,7 +57,7 @@
         #cabecalho.scrolled .inner { padding-top: .9rem; padding-bottom: .9rem; }
 
         .logo-wrap { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
-        .logo-mark { width: 36px; height: 36px; border-radius: 6px; background: var(--verde); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .logo-mark img { width: 40px; height: 40px; border-radius: 6px; background: var(--verde); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .logo-mark span { color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: .08em; }
         .logo-name  { display: block; font-family: 'Bebas Neue', sans-serif; color: #fff; font-size: 1.15rem; letter-spacing: .15em; line-height: 1; }
         .logo-tagline { display: block; color: rgba(255,255,255,.45); font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; margin-top: 3px; }
@@ -490,7 +490,7 @@
 <header id="cabecalho">
     <div class="inner">
         <a href="#inicio" class="logo-wrap">
-            <div class="logo-mark"><span>RPP</span></div>
+            <div class="logo-mark"><img src="assets/imagens/logo.jpeg" alt="RPP Logo" class="h-8 w-auto rounded-md"></div>
             <div>
                 <span class="logo-name">RPP</span>
                 <span class="logo-tagline">Engenharia & Construção</span>
@@ -533,7 +533,7 @@
     <div class="hero-overlay"></div>
     <div class="hero-grain"></div>
     <div class="hero-inner">
-        <br><br>
+        <br><br><br><br>
         <h1 class="hero-headline">
             <span class="line"><span>Construindo</span></span>
             <span class="line"><span class="outline">Infraestruturas</span></span>
@@ -544,6 +544,7 @@
             <a href="#projetos" class="btn-primary">Ver Projetos <i class="fa-solid fa-arrow-right arrow" style="font-size:.7rem;"></i></a>
             <a href="#contacto" class="btn-ghost">Solicitar Orçamento</a>
         </div>
+        <br>
         <p class="hero-eyebrow"><span class="dot"></span>Engenharia de Excelência · Desde 1999<span class="dot"></span></p>
         <div class="hero-stats">
             <div class="stat-cell"><span class="stat-value">+450</span><span class="stat-label">Projetos</span></div>
@@ -880,7 +881,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <a href="#inicio" class="logo-wrap">
-                    <div class="logo-mark"><span>RPP</span></div>
+                    <div class="logo-mark"><img src="assets/imagens/logo.jpeg" alt="RPP Logo" class="h-8 w-auto rounded-md"></div>
                     <div><span class="logo-name">RPP</span><span class="logo-tagline">Engenharia & Construção</span></div>
                 </a>
                 <p>Excelência na construção de infraestruturas, garantindo solidez, inovação e rigoroso cumprimento de prazos desde 1999.</p>
