@@ -370,7 +370,7 @@ footer .bottom p{font-size:.75rem}
 <header id="cabecalho">
   <div class="inner">
     <a href="#inicio" class="logo-wrap">
-      <div class="logo-mark"><img src="assets/imagens/logo.jpeg" alt="RPP"></div>
+      <div class="logo-mark"><img src="assets/imagens/logo.jpeg" alt="RPP" onerror="this.style.display='none';this.parentElement.style.background='var(--verde)'"></div>
       <div><span class="logo-name">RPP</span><span class="logo-tagline">Engenharia & Construção</span></div>
     </a>
     <nav class="desktop">
@@ -411,14 +411,14 @@ footer .bottom p{font-size:.75rem}
   <div class="hero-inner">
     <br><br><br>
     <h1 class="hero-headline">
-        <span class="line"><span>Construindo</span></span>
-        <span class="line"><span class="outline">Infraestruturas</span></span>
-        <span class="line"><span>com Excelência</span></span>
+      <span class="line"><span>Construindo</span></span>
+      <span class="line"><span class="outline">Infraestruturas</span></span>
+      <span class="line"><span>com Excelência</span></span>
     </h1>
     <p class="hero-subtext">A RPP é uma construtora multinacional especializada em projetos de engenharia civil de grande escala. Entregamos soluções sólidas e duradouras para os setores público e privado.</p>
     <div class="hero-actions">
-        <a href="#projetos" class="btn-primary">Ver Projetos <i class="fa-solid fa-arrow-right arrow" style="font-size:.65rem"></i></a>
-        <a href="#contacto" class="btn-ghost">Solicitar Orçamento</a>
+      <a href="#projetos" class="btn-primary">Ver Projetos <i class="fa-solid fa-arrow-right arrow" style="font-size:.65rem"></i></a>
+      <a href="#contacto" class="btn-ghost">Solicitar Orçamento</a>
     </div>
     <p class="hero-eyebrow"><span class="dot"></span>Engenharia de Excelência · Desde 1999<span class="dot"></span></p>
     <div class="hero-stats">
@@ -600,7 +600,7 @@ footer .bottom p{font-size:.75rem}
   </div>
 </section>
 
-<!-- MODAL -->
+<!-- MODAL PROJETO -->
 <div id="projectModal" role="dialog" aria-modal="true" aria-label="Detalhe do projeto">
   <div id="modalContent">
     <div class="modal-img-wrap">
@@ -627,7 +627,7 @@ footer .bottom p{font-size:.75rem}
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#inicio" class="logo-wrap">
-          <div class="logo-mark"><img src="assets/imagens/logo.jpeg" alt="RPP"></div>
+          <div class="logo-mark"><img src="assets/imagens/logo.jpeg" alt="RPP" onerror="this.style.display='none'"></div>
           <div><span class="logo-name">RPP</span><span class="logo-tagline">Engenharia & Construção</span></div>
         </a>
         <p>Excelência na construção de infraestruturas, garantindo solidez, inovação e rigoroso cumprimento de prazos desde 1999.</p>
@@ -670,18 +670,29 @@ footer .bottom p{font-size:.75rem}
 </footer>
 
 <script>
+/* =====================================================
+   RPP ENGENHARIA – index.html
+   Chaves localStorage unificadas:
+     rpp_news      → notícias
+     rpp_projects  → projetos
+     rpp_ads       → publicidades
+     rpp_ads_imgs  → imagens das publicidades (base64)
+   ===================================================== */
 (function(){
 'use strict';
-const PASS='rpp2026';
-const NEWS_KEY='rpp_noticias_v3';
-const PROJ_KEY='rpp_projetos_v3';
+
+// ── CHAVES UNIFICADAS ──────────────────────────────────
+const KEYS={news:'rpp_news',projects:'rpp_projects',ads:'rpp_ads',adsImgs:'rpp_ads_imgs'};
+
+// ── DADOS PADRÃO ───────────────────────────────────────
 const DEF_NEWS=[
-  {id:'n1',titulo:'RPP conclui obra de referência em Luanda',resumo:'A empresa entregou mais um projeto de excelência dentro do prazo e orçamento previstos, reforçando a sua posição como líder no mercado angolano.',categoria:'Institucional',data:'2024-03-15',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=70'},
-  {id:'n2',titulo:'Novo contrato de infraestrutura no Norte de Angola',resumo:'RPP assinou contrato para construção de rede rodoviária de 85 km em Malanje, num dos maiores projetos de infraestrutura do país.',categoria:'Infraestrutura',data:'2024-02-10',img:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=900&q=70'},
-  {id:'n3',titulo:'Certificação ISO 14001 renovada com distinção',resumo:'A RPP renovou com sucesso a certificação ambiental ISO 14001, reforçando o compromisso com a sustentabilidade e práticas de construção responsável.',categoria:'Sustentabilidade',data:'2024-01-22',img:'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=900&q=70'},
-  {id:'n4',titulo:'Expansão para o mercado europeu',resumo:'Com a abertura de escritório em Lisboa, a RPP consolida a sua presença internacional e abre portas para projetos em Portugal e Espanha.',categoria:'Institucional',data:'2024-04-05',img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=70'},
+  {id:'n1',titulo:'RPP conclui obra de referência em Luanda',resumo:'A empresa entregou mais um projeto de excelência dentro do prazo e orçamento previstos, reforçando a sua posição como líder no mercado angolano.',content:'A RPP Engenharia concluiu com sucesso mais uma obra de referência em Luanda. O projeto foi entregue dentro do prazo e do orçamento previstos, demonstrando a capacidade técnica e organizacional da empresa.\n\nA obra envolveu uma equipa multidisciplinar de mais de 120 profissionais e incorporou as mais recentes tecnologias de construção sustentável.\n\nO cliente manifestou total satisfação com os resultados obtidos, destacando a qualidade de execução e a eficiência na gestão do projeto.',categoria:'Institucional',data:'2024-03-15',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=70'},
+  {id:'n2',titulo:'Novo contrato de infraestrutura no Norte de Angola',resumo:'RPP assinou contrato para construção de rede rodoviária de 85 km em Malanje, num dos maiores projetos de infraestrutura do país.',content:'A RPP Engenharia assinou um contrato de grande envergadura para a construção de uma rede rodoviária de 85 km na província de Malanje.\n\nO projeto inclui a construção de 4 pontes, sistemas de drenagem avançados e sinalização inteligente. A execução está prevista para 24 meses.\n\nEsta obra vai melhorar significativamente a conectividade da região Norte de Angola, beneficiando centenas de milhares de habitantes.',categoria:'Infraestrutura',data:'2024-02-10',img:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=900&q=70'},
+  {id:'n3',titulo:'Certificação ISO 14001 renovada com distinção',resumo:'A RPP renovou com sucesso a certificação ambiental ISO 14001, reforçando o compromisso com a sustentabilidade e práticas de construção responsável.',content:'A RPP Engenharia renovou com distinção a sua certificação ISO 14001, que atesta o compromisso da empresa com a gestão ambiental responsável.\n\nA auditoria destacou as melhorias implementadas nos processos de gestão de resíduos, redução de emissões e uso eficiente de recursos.\n\nEsta renovação reflete o investimento contínuo da RPP em práticas de construção sustentável e responsabilidade ambiental.',categoria:'Sustentabilidade',data:'2024-01-22',img:'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=900&q=70'},
+  {id:'n4',titulo:'Expansão para o mercado europeu',resumo:'Com a abertura de escritório em Lisboa, a RPP consolida a sua presença internacional e abre portas para projetos em Portugal e Espanha.',content:'A RPP Engenharia confirmou a abertura de um novo escritório em Lisboa, marcando o início da sua expansão para o mercado europeu.\n\nA presença em Portugal permitirá à empresa concorrer a projetos de grande envergadura em Portugal, Espanha e outros países da União Europeia.\n\nA nova delegação contará inicialmente com uma equipa de 15 profissionais especializados nas áreas de engenharia civil e gestão de projetos.',categoria:'Institucional',data:'2024-04-05',img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=70'},
 ];
-const DEF_PROJ=[
+
+const DEF_PROJECTS=[
   {id:'p1',titulo:'Torre Financeira Global',categoria:'edificacao',local:'Lisboa, Portugal',ano:'2023',dim:'45.000 m²',desc:'Edifício corporativo de alto padrão com arquitetura contemporânea, eficiência energética e tecnologia sustentável integrada.',img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80'},
   {id:'p2',titulo:'Ponte do Estuário',categoria:'infraestrutura',local:'Porto, Portugal',ano:'2022',dim:'1.2 km',desc:'Projeto de infraestrutura moderna concebido para melhorar a mobilidade urbana e fortalecer a conectividade regional.',img:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80'},
   {id:'p3',titulo:'Campus Tecnológico Verde',categoria:'sustentavel',local:'Madrid, Espanha',ano:'2024',dim:'12.000 m²',desc:'Complexo tecnológico sustentável com soluções de energia renovável e certificação LEED Gold.',img:'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80'},
@@ -690,14 +701,23 @@ const DEF_PROJ=[
   {id:'p6',titulo:'Anel Rodoviário Sul',categoria:'infraestrutura',local:'Benguela, Angola',ano:'2020',dim:'42 km',desc:'Via rodoviária de alta velocidade com 4 faixas, sinalização inteligente e sistemas de drenagem avançados.',img:'https://images.unsplash.com/photo-1768230130779-ae92d0935a94?auto=format&fit=crop&w=1200&q=80'},
 ];
 
-const load=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}};
-const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
-const fmtDate=s=>{try{return new Date(s).toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'})}catch{return s||''}};
+const DEF_ADS=[
+  {id:'a1',titulo:'Patrocínio de Eventos RPP',descricao:'Associe a sua marca aos maiores eventos de engenharia civil organizados pela RPP. Visibilidade garantida para decisores de topo.',categoria:'Patrocínio',preco:'A partir de 3.500 USD',contacto:'eventos@rppengenharia.com',data:'2024-03-01'},
+  {id:'a2',titulo:'Espaço Publicitário Digital',descricao:'Banner premium no site e newsletter mensal com mais de 8.000 profissionais do sector. Formatos desktop e mobile.',categoria:'Digital',preco:'1.200 USD/mês',contacto:'marketing@rppengenharia.com',data:'2024-02-15'},
+  {id:'a3',titulo:'Parceria Comercial Estratégica',descricao:'Programa de parceria para fornecedores e subcontratados. Inclui co-branding e presença em reuniões com clientes finais.',categoria:'Parceria',preco:'Sob consulta',contacto:'parcerias@rppengenharia.com',data:'2024-01-10'},
+];
 
-if(!localStorage.getItem(NEWS_KEY))save(NEWS_KEY,DEF_NEWS);
-if(!localStorage.getItem(PROJ_KEY))save(PROJ_KEY,DEF_PROJ);
+// ── STORAGE ────────────────────────────────────────────
+const load=(k,def)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):def;}catch{return def;}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}};
+const fmtDate=s=>{try{return new Date(s).toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'});}catch{return s||'';}};
 
-// ── SCROLL PROGRESS + HEADER ──
+// Inicializar dados padrão se não existirem
+if(!localStorage.getItem(KEYS.news))save(KEYS.news,DEF_NEWS);
+if(!localStorage.getItem(KEYS.projects))save(KEYS.projects,DEF_PROJECTS);
+if(!localStorage.getItem(KEYS.ads))save(KEYS.ads,DEF_ADS);
+
+// ── SCROLL PROGRESS + HEADER ──────────────────────────
 const prog=document.getElementById('scroll-progress');
 const hdr=document.getElementById('cabecalho');
 window.addEventListener('scroll',()=>{
@@ -706,13 +726,13 @@ window.addEventListener('scroll',()=>{
   hdr.classList.toggle('scrolled',window.scrollY>60);
 },{passive:true});
 
-// ── HAMBURGER ──
+// ── HAMBURGER ─────────────────────────────────────────
 const ham=document.getElementById('hamburger');
 const mob=document.getElementById('mobile-menu');
 ham.addEventListener('click',()=>{
   const o=mob.classList.toggle('open');
   ham.classList.toggle('open',o);
-  ham.setAttribute('aria-expanded',o);
+  ham.setAttribute('aria-expanded',String(o));
   document.body.style.overflow=o?'hidden':'';
 });
 document.querySelectorAll('.mobile-nav-link,.mobile-cta').forEach(el=>el.addEventListener('click',()=>{
@@ -720,23 +740,26 @@ document.querySelectorAll('.mobile-nav-link,.mobile-cta').forEach(el=>el.addEven
   ham.setAttribute('aria-expanded','false');document.body.style.overflow='';
 }));
 
-// ── REVEAL ──
+// ── REVEAL ────────────────────────────────────────────
 const ro=new IntersectionObserver(entries=>entries.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('in-view');ro.unobserve(e.target);}
 }),{threshold:.08,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
-// ── PROJECTS RENDER ──
+// ── PROJECTS RENDER ───────────────────────────────────
+const catLabel={edificacao:'Edificação',infraestrutura:'Infraestrutura',sustentavel:'Sustentável',industrial:'Industrial'};
+
 function renderProjects(){
-  const projs=load(PROJ_KEY,DEF_PROJ);
+  const projs=load(KEYS.projects,DEF_PROJECTS);
   const grid=document.getElementById('projectsGrid');
-  // show first 3 on homepage
   grid.innerHTML=projs.slice(0,3).map((p,i)=>`
-    <div class="project-card reveal" style="transition-delay:${i*.1}s" data-category="${p.categoria}" data-title="${p.titulo}" data-image="${p.img}" data-location="${p.local}" data-year="${p.ano}" data-dimension="${p.dim}" data-description="${p.desc}" data-id="${p.id}">
+    <div class="project-card reveal" style="transition-delay:${i*.1}s"
+      data-category="${p.categoria}" data-title="${p.titulo}" data-image="${p.img}"
+      data-location="${p.local}" data-year="${p.ano}" data-dimension="${p.dim}" data-description="${p.desc}">
       <div class="card-img">
-        <img src="${p.img}" alt="${p.titulo}" loading="lazy">
+        <img src="${p.img}" alt="${p.titulo}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=60'">
         <div class="card-img-overlay"></div>
-        <span class="card-badge">${p.categoria.charAt(0).toUpperCase()+p.categoria.slice(1)}</span>
+        <span class="card-badge">${catLabel[p.categoria]||p.categoria}</span>
         <button class="card-expand" aria-label="Ver projeto"><i class="fa-solid fa-expand"></i></button>
       </div>
       <div class="card-body">
@@ -752,45 +775,46 @@ function renderProjects(){
 }
 renderProjects();
 
-// ── FILTERS (homepage shows all) ──
+// ── FILTROS (redirecionam para detalhe.html) ───────────
 document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  // redirect to full page with filter
-  window.location.href=`projetos/detalhe.html?filter=${btn.dataset.filter}`;
+  const f=btn.dataset.filter;
+  window.location.href=`projetos/detalhe.html${f==='all'?'':'?filter='+f}`;
 }));
 
-// ── MODAL ──
+// ── MODAL PROJETO ────────────────────────────────────
 const modal=document.getElementById('projectModal');
 function openModal(c){
   document.getElementById('modalImage').src=c.dataset.image||'';
   document.getElementById('modalTitle').textContent=c.dataset.title||'';
   document.getElementById('modalDescription').textContent=c.dataset.description||'';
-  document.getElementById('modalLocation').textContent=c.dataset.location||'';
-  document.getElementById('modalYear').textContent=c.dataset.year||'';
-  document.getElementById('modalDimension').textContent=c.dataset.dimension||'';
-  document.getElementById('modalCategory').textContent=c.dataset.category||'';
+  document.getElementById('modalLocation').textContent=c.dataset.location||'—';
+  document.getElementById('modalYear').textContent=c.dataset.year||'—';
+  document.getElementById('modalDimension').textContent=c.dataset.dimension||'—';
+  document.getElementById('modalCategory').textContent=catLabel[c.dataset.category]||c.dataset.category||'—';
   modal.classList.add('open');document.body.style.overflow='hidden';
 }
-function closeM(){modal.classList.remove('open');document.body.style.overflow='';}
-document.getElementById('closeModal').addEventListener('click',closeM);
-modal.addEventListener('click',e=>{if(e.target===modal)closeM();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+function closeModal(){modal.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('closeModal').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-// ── NOTÍCIAS CARROSSEL ──
+// ── NOTÍCIAS CARROSSEL ────────────────────────────────
 let ci=0;
 const track=document.getElementById('noticias-track');
-const dots=document.getElementById('carousel-dots');
+const dotsEl=document.getElementById('carousel-dots');
 const saEl=document.getElementById('slide-atual');
 const stEl=document.getElementById('slide-total');
 
 function buildCarousel(){
-  const news=load(NEWS_KEY,DEF_NEWS);
-  if(!news.length){track.innerHTML='<p style="padding:2rem;color:#999">Sem publicações.</p>';return;}
+  const news=load(KEYS.news,DEF_NEWS);
+  if(!news.length){
+    track.innerHTML='<div style="padding:3rem;color:#aaa;text-align:center;font-size:.9rem">Sem publicações de momento.</div>';
+    return;
+  }
   track.innerHTML=news.map(n=>`
     <article class="noticia-card">
       <div class="n-img">
-        <img src="${n.img||'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=70'}" alt="${n.titulo}" loading="lazy">
+        <img src="${n.img||'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=70'}" alt="${n.titulo}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=70'">
         <span class="n-cat">${n.categoria}</span>
       </div>
       <div class="n-body">
@@ -800,35 +824,41 @@ function buildCarousel(){
         <a href="noticias/show.html" class="n-link">Ler mais <i class="fa-solid fa-arrow-right" style="font-size:.6rem"></i></a>
       </div>
     </article>`).join('');
-  dots.innerHTML=news.map((_,i)=>`<button class="c-dot${i===ci?' active':''}" data-i="${i}" aria-label="Slide ${i+1}"></button>`).join('');
-  dots.querySelectorAll('.c-dot').forEach(d=>d.addEventListener('click',()=>goTo(parseInt(d.dataset.i))));
+  dotsEl.innerHTML=news.map((_,i)=>`<button class="c-dot${i===0?' active':''}" data-i="${i}" aria-label="Slide ${i+1}"></button>`).join('');
+  dotsEl.querySelectorAll('.c-dot').forEach(d=>d.addEventListener('click',()=>goTo(parseInt(d.dataset.i))));
   stEl.textContent=news.length;
-  goTo(ci,false);
+  goTo(0,false);
 }
+
 function goTo(i,anim=true){
-  const n=load(NEWS_KEY,DEF_NEWS).length;
-  ci=(i+n)%n;
-  if(!anim){track.style.transition='none';}
+  const news=load(KEYS.news,DEF_NEWS);
+  const n=news.length;if(!n)return;
+  ci=(i%n+n)%n;
+  if(!anim)track.style.transition='none';
   track.style.transform=`translateX(-${ci*100}%)`;
   if(!anim)requestAnimationFrame(()=>{track.style.transition='';});
   saEl.textContent=ci+1;
-  dots.querySelectorAll('.c-dot').forEach((d,i)=>d.classList.toggle('active',i===ci));
+  dotsEl.querySelectorAll('.c-dot').forEach((d,idx)=>d.classList.toggle('active',idx===ci));
 }
+
 document.getElementById('noticias-prev').addEventListener('click',()=>goTo(ci-1));
 document.getElementById('noticias-next').addEventListener('click',()=>goTo(ci+1));
-let tx=0;
-track.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
-track.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>45)goTo(dx<0?ci+1:ci-1);});
+track.addEventListener('touchstart',e=>{window._tx=e.touches[0].clientX;},{passive:true});
+track.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-window._tx;if(Math.abs(dx)>45)goTo(dx<0?ci+1:ci-1);});
+
 let ap=setInterval(()=>goTo(ci+1),6000);
-[document.getElementById('noticias-prev'),document.getElementById('noticias-next')].forEach(b=>b.addEventListener('click',()=>{clearInterval(ap);ap=setInterval(()=>goTo(ci+1),6000);}));
+[document.getElementById('noticias-prev'),document.getElementById('noticias-next')].forEach(b=>{
+  b.addEventListener('click',()=>{clearInterval(ap);ap=setInterval(()=>goTo(ci+1),6000);});
+});
 buildCarousel();
 
-// ── CONTACT FORM ──
+// ── FORMULÁRIO CONTACTO ───────────────────────────────
 document.getElementById('formulario-contacto')?.addEventListener('submit',function(e){
   e.preventDefault();
   const btn=document.getElementById('btn-enviar'),ok=document.getElementById('form-success');
   btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> A enviar...';
-  setTimeout(()=>{btn.classList.add('hidden');ok.style.display='block';this.reset();
+  setTimeout(()=>{
+    btn.classList.add('hidden');ok.style.display='block';this.reset();
     setTimeout(()=>{btn.classList.remove('hidden');ok.style.display='none';btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Enviar Mensagem';},5000);
   },1200);
 });
