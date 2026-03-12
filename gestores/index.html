@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Gestores – RPP Engenharia</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--v:#0D4A33;--vm:#16694A;--vl:#1E8A62;--o:#C49A3C;--ol:#D9B55A;--c:#111110;--cm:#1C1C1A;--cr:#F5F1EA;--b:#FAFAF8;--ease:cubic-bezier(.16,1,.3,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+/* iOS FIX: sem scroll-behavior no CSS */
+body{font-family:'Outfit',sans-serif;color:var(--c);background:var(--cm);min-height:100vh;min-height:-webkit-fill-available;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--v);border-radius:4px}
+
+/* LOGIN */
+/* iOS FIX: position fixed com propriedades explícitas */
+#loginScreen{
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  z-index:500;
+  background:var(--cm);
+  display:-webkit-flex;
+  display:flex;
+  -webkit-align-items:center;
+  align-items:center;
+  -webkit-justify-content:center;
+  justify-content:center;
+  padding:1.5rem;
+  padding-bottom:calc(1.5rem + env(safe-area-inset-bottom));
+  -webkit-overflow-scrolling:touch;
+  overflow-y:auto;
+}
+#loginScreen.gone{display:none}
+.login-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2.8rem 2.4rem;width:100%;max-width:420px;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.login-logo{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.7rem;margin-bottom:2.5rem}
+.login-lm{width:40px;height:40px;border-radius:9px;background:var(--v);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;box-shadow:0 6px 20px rgba(13,74,51,.45);overflow:hidden;-webkit-flex-shrink:0;flex-shrink:0}
+.login-lm img{width:40px;height:40px;object-fit:cover}
+.login-lm-txt{color:#fff;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.06em;display:none}
+.login-ln{font-family:'Bebas Neue',sans-serif;color:#fff;font-size:1.2rem;letter-spacing:.15em;line-height:1}
+.login-lt{font-size:.54rem;color:rgba(255,255,255,.35);letter-spacing:.22em;text-transform:uppercase;margin-top:4px}
+.login-title{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;color:#fff;line-height:1.1;margin-bottom:.4rem}
+.login-sub{color:rgba(255,255,255,.38);font-size:.82rem;line-height:1.6;margin-bottom:2rem}
+.login-lbl{display:block;font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.45rem}
+/* iOS FIX: font-size 16px para evitar zoom automático + remover estilo nativo */
+.login-inp{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:.8rem 1rem;color:#fff;font-family:'Outfit',sans-serif;font-size:1rem;outline:none;transition:border-color .3s,box-shadow .3s;-webkit-appearance:none;appearance:none}
+.login-inp::placeholder{color:rgba(255,255,255,.22)}
+.login-inp:focus{border-color:rgba(196,154,60,.6);box-shadow:0 0 0 3px rgba(196,154,60,.1)}
+.login-btn{width:100%;background:var(--v);color:#fff;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:1rem;border-radius:9px;margin-top:1rem;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;gap:.5rem;transition:background .3s,-webkit-transform .25s;transition:background .3s,transform .25s;-webkit-appearance:none;appearance:none;/* iOS: altura mínima */min-height:48px}
+.login-btn:hover{background:var(--vl);-webkit-transform:translateY(-2px);transform:translateY(-2px)}
+.login-err{color:#ff6b6b;font-size:.78rem;margin-top:.65rem;min-height:1.2rem;text-align:center}
+.login-hint{text-align:center;margin-top:1.5rem;font-size:.74rem;color:rgba(255,255,255,.22)}
+
+/* PW WRAP */
+.pw-wrap{position:relative}
+.pw-wrap .login-inp,.pw-wrap .finp{padding-right:2.8rem}
+.pw-eye{position:absolute;right:.9rem;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.3);font-size:.82rem;cursor:pointer;transition:color .3s;padding:0;line-height:1;/* iOS: tap area */width:44px;height:44px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;right:0;-webkit-tap-highlight-color:transparent}
+.pw-eye:hover{color:rgba(255,255,255,.7)}
+
+/* RECOVERY OVERLAY */
+#recoveryOverlay{
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  z-index:600;
+  background:rgba(17,17,16,.97);
+  -webkit-backdrop-filter:blur(24px);
+  backdrop-filter:blur(24px);
+  display:none;
+  -webkit-align-items:center;
+  align-items:center;
+  -webkit-justify-content:center;
+  justify-content:center;
+  padding:1.5rem;
+  padding-bottom:calc(1.5rem + env(safe-area-inset-bottom));
+  -webkit-overflow-scrolling:touch;
+  overflow-y:auto;
+}
+#recoveryOverlay.show{display:-webkit-flex;display:flex}
+.rec-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2.6rem 2.4rem;width:100%;max-width:420px}
+.rec-back{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.45rem;font-size:.74rem;color:rgba(255,255,255,.38);margin-bottom:2rem;transition:color .3s;cursor:pointer;background:none;border:none;font-family:inherit;padding:.5rem 0;-webkit-tap-highlight-color:transparent;min-height:44px}
+.rec-back:hover{color:rgba(255,255,255,.8)}
+.rec-step{display:none}.rec-step.a{display:block}
+.rec-title{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:900;color:#fff;margin-bottom:.4rem}
+.rec-sub{color:rgba(255,255,255,.38);font-size:.82rem;line-height:1.65;margin-bottom:2rem}
+.rec-code-wrap{display:-webkit-flex;display:flex;gap:.45rem;-webkit-justify-content:center;justify-content:center;margin:1.5rem 0}
+/* iOS FIX: font-size 16px nos inputs de código + -webkit-appearance:none */
+.rec-code-wrap input{width:46px;height:54px;text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:1rem;font-weight:700;font-family:'Bebas Neue',sans-serif;outline:none;transition:border-color .3s,box-shadow .3s;-webkit-appearance:none;appearance:none}
+.rec-code-wrap input:focus{border-color:rgba(196,154,60,.7);box-shadow:0 0 0 3px rgba(196,154,60,.12)}
+.rec-code-wrap input.ok{border-color:rgba(30,138,98,.7)}
+.rec-code-wrap input.bad{border-color:rgba(255,107,107,.7)}
+.rec-msg{text-align:center;font-size:.76rem;min-height:1.1rem;margin-top:.5rem}
+.rec-msg.ok{color:var(--ol)}
+.rec-msg.bad{color:#ff6b6b}
+.rec-resend{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.35rem;font-size:.74rem;color:rgba(255,255,255,.28);margin-top:1.2rem;cursor:pointer;background:none;border:none;font-family:inherit;padding:.4rem 0;transition:color .3s;width:100%;-webkit-justify-content:center;justify-content:center;-webkit-tap-highlight-color:transparent;min-height:44px}
+.rec-resend:hover:not([disabled]){color:var(--ol)}
+.rec-resend[disabled]{opacity:.35;cursor:default}
+.strength-bar{height:4px;border-radius:100px;background:rgba(255,255,255,.08);margin-top:.5rem;overflow:hidden}
+.strength-fill{height:100%;border-radius:100px;width:0;transition:width .4s var(--ease),background .4s}
+.strength-label{font-size:.68rem;margin-top:.3rem;min-height:.9rem;color:rgba(255,255,255,.3)}
+
+/* TOAST */
+#toast{
+  position:fixed;
+  bottom:2rem;
+  bottom:calc(2rem + env(safe-area-inset-bottom));
+  left:50%;
+  -webkit-transform:translateX(-50%) translateY(130%);
+  transform:translateX(-50%) translateY(130%);
+  z-index:1000;
+  background:#152b1e;
+  border:1px solid rgba(196,154,60,.3);
+  color:#fff;
+  font-size:.82rem;
+  font-weight:500;
+  padding:.82rem 1.6rem;
+  border-radius:100px;
+  box-shadow:0 12px 40px rgba(0,0,0,.5);
+  display:-webkit-flex;
+  display:flex;
+  -webkit-align-items:center;
+  align-items:center;
+  gap:.6rem;
+  white-space:nowrap;
+  transition:-webkit-transform .4s var(--ease),opacity .4s;
+  transition:transform .4s var(--ease),opacity .4s;
+  pointer-events:none;
+  opacity:0
+}
+#toast.show{-webkit-transform:translateX(-50%) translateY(0);transform:translateX(-50%) translateY(0);opacity:1}
+#toast.err{background:#2e1515;border-color:rgba(255,107,107,.3)}
+
+/* DASHBOARD */
+#dashboard{display:none;min-height:100vh}
+#dashboard.show{display:-webkit-flex;display:flex}
+
+/* SIDEBAR */
+.sidebar{width:260px;-webkit-flex-shrink:0;flex-shrink:0;background:rgba(0,0,0,.3);border-right:1px solid rgba(255,255,255,.06);display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;position:-webkit-sticky;position:sticky;top:0;height:100vh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-left:env(safe-area-inset-left)}
+@media(max-width:900px){.sidebar{display:none}}
+.sb-logo{padding:1.6rem 1.4rem 1.2rem;border-bottom:1px solid rgba(255,255,255,.06);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.7rem}
+.sb-lm{width:34px;height:34px;border-radius:7px;background:var(--v);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;-webkit-flex-shrink:0;flex-shrink:0;overflow:hidden}
+.sb-lm img{width:34px;height:34px;object-fit:cover}
+.sb-lm-txt{color:#fff;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.06em;display:none}
+.sb-ln{font-family:'Bebas Neue',sans-serif;color:#fff;font-size:1rem;letter-spacing:.15em;line-height:1}
+.sb-lt{font-size:.5rem;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-top:3px}
+.sb-user{padding:.9rem 1.4rem;border-bottom:1px solid rgba(255,255,255,.06);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.7rem}
+.sb-av{width:32px;height:32px;border-radius:50%;background:rgba(196,154,60,.2);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;color:var(--ol);font-size:.8rem;-webkit-flex-shrink:0;flex-shrink:0}
+.sb-un{font-size:.8rem;font-weight:600;color:#fff}
+.sb-ur{font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px}
+nav.sb-nav{-webkit-flex:1;flex:1;padding:1rem .8rem}
+.nav-group{margin-bottom:1.5rem}
+.nav-group-lbl{font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);padding:0 .6rem;margin-bottom:.5rem}
+.nav-item{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.7rem;padding:.68rem .8rem;border-radius:9px;color:rgba(255,255,255,.5);font-size:.82rem;font-weight:500;transition:all .25s;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:44px}
+.nav-item i{width:16px;text-align:center;font-size:.82rem;-webkit-flex-shrink:0;flex-shrink:0}
+.nav-item:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.85)}
+.nav-item.a{background:rgba(13,74,51,.35);color:#fff;font-weight:600}
+.nav-item.a i{color:var(--ol)}
+.sb-footer{padding:1rem 1.4rem;border-top:1px solid rgba(255,255,255,.06);padding-bottom:calc(1rem + env(safe-area-inset-bottom))}
+.sb-out{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.6rem;font-size:.78rem;color:rgba(255,255,255,.35);transition:color .3s;cursor:pointer;padding:.5rem 0;-webkit-tap-highlight-color:transparent;min-height:44px}
+.sb-out:hover{color:#ff6b6b}
+.back-site{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.5rem;font-size:.76rem;color:rgba(255,255,255,.28);margin-bottom:.4rem;transition:color .3s;-webkit-tap-highlight-color:transparent;min-height:44px}
+.back-site:hover{color:rgba(255,255,255,.7)}
+
+/* MAIN CONTENT */
+.content{-webkit-flex:1;flex:1;overflow-y:auto;min-height:100vh;-webkit-overflow-scrolling:touch}
+.topbar{background:rgba(0,0,0,.2);border-bottom:1px solid rgba(255,255,255,.05);padding:.85rem 1.5rem;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:space-between;justify-content:space-between;position:-webkit-sticky;position:sticky;top:0;z-index:50;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+@media(min-width:768px){.topbar{padding:.85rem 2.5rem}}
+.topbar-title{font-size:1.05rem;font-weight:700;color:#fff}
+.topbar-right{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.8rem}
+.tb-out{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.4rem;font-size:.74rem;color:rgba(255,255,255,.45);transition:color .3s;cursor:pointer;-webkit-tap-highlight-color:transparent;min-height:44px}
+.tb-out:hover{color:#ff6b6b}
+.tb-back{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.4rem;font-size:.72rem;color:rgba(255,255,255,.45);transition:color .3s;-webkit-tap-highlight-color:transparent;min-height:44px}
+.tb-back:hover{color:rgba(255,255,255,.8)}
+
+/* PANELS */
+.panel{display:none;padding:2rem 1.5rem 4rem}
+@media(min-width:768px){.panel{padding:2.5rem 2.5rem 4rem}}
+.panel.a{display:block}
+
+/* STATS */
+.stats-row{display:-webkit-grid;display:grid;gap:.9rem;margin-bottom:2.5rem}
+@media(min-width:480px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.stats-row{grid-template-columns:repeat(4,1fr)}}
+.stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.3rem 1.5rem;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:1rem;transition:border-color .3s}
+.stat-card:hover{border-color:rgba(196,154,60,.25)}
+.stat-ic{width:44px;height:44px;border-radius:10px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;font-size:1rem;-webkit-flex-shrink:0;flex-shrink:0}
+.stat-ic.n{background:rgba(13,74,51,.25);color:var(--vl)}
+.stat-ic.a{background:rgba(196,154,60,.15);color:var(--ol)}
+.stat-ic.p{background:rgba(30,138,98,.15);color:var(--vl)}
+.stat-ic.u{background:rgba(255,107,107,.1);color:#ff6b6b}
+.stat-val{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#fff;line-height:1}
+.stat-lbl{font-size:.7rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.12em;margin-top:.15rem}
+
+/* SECTION HEADER */
+.sec-hdr{display:-webkit-flex;display:flex;-webkit-align-items:flex-end;align-items:flex-end;-webkit-justify-content:space-between;justify-content:space-between;margin-bottom:1.8rem;gap:1rem;-webkit-flex-wrap:wrap;flex-wrap:wrap}
+.sec-hdr h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:#fff}
+.sec-hdr p{color:rgba(255,255,255,.35);font-size:.8rem;margin-top:.2rem}
+
+/* FORM CARD */
+.fc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1.8rem;margin-bottom:1.2rem}
+.fc-title{font-weight:700;font-size:.9rem;color:#fff;margin-bottom:1.2rem;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.5rem}
+.fc-title i{color:var(--ol);font-size:.85rem}
+.flbl{display:block;font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.42rem}
+/* iOS FIX: font-size 16px em todos os inputs do formulário */
+.finp{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:9px;padding:.72rem 1rem;color:#fff;font-family:'Outfit',sans-serif;font-size:1rem;outline:none;transition:border-color .3s,box-shadow .3s;-webkit-appearance:none;appearance:none}
+.finp::placeholder{color:rgba(255,255,255,.2)}
+.finp:focus{border-color:rgba(196,154,60,.55);box-shadow:0 0 0 3px rgba(196,154,60,.08)}
+.finp option{background:var(--cm);color:#fff}
+textarea.finp{resize:vertical}
+.fg2{display:-webkit-grid;display:grid;gap:.9rem}
+@media(min-width:600px){.fg2{grid-template-columns:1fr 1fr}}
+.fa3{display:-webkit-grid;display:grid;gap:.9rem}
+@media(min-width:600px){.fa3{grid-template-columns:1fr 1fr 1fr}}
+.fbtn{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.45rem;background:var(--v);color:#fff;font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.72rem 1.45rem;border-radius:9px;transition:background .3s,-webkit-transform .25s;transition:background .3s,transform .25s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-appearance:none;appearance:none;min-height:44px}
+.fbtn:hover{background:var(--vl);-webkit-transform:translateY(-1px);transform:translateY(-1px)}
+.fbtn.sec{background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1)}
+.fbtn.sec:hover{background:rgba(255,255,255,.1);-webkit-transform:none;transform:none}
+.fbtn.danger{background:rgba(220,53,53,.15);color:#ff6b6b;border:1px solid rgba(220,53,53,.25)}
+.fbtn.danger:hover{background:rgba(220,53,53,.25)}
+
+/* ITEMS LIST */
+.items-list{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:.65rem}
+.item-row{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:.9rem 1.1rem;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.9rem;-webkit-flex-wrap:wrap;flex-wrap:wrap;transition:border-color .3s}
+.item-row:hover{border-color:rgba(255,255,255,.14)}
+.item-thumb{width:44px;height:44px;border-radius:8px;object-fit:cover;-webkit-flex-shrink:0;flex-shrink:0;background:rgba(255,255,255,.05)}
+.item-info{-webkit-flex:1;flex:1;min-width:0}
+.item-title{font-size:.88rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item-meta{font-size:.66rem;color:rgba(255,255,255,.3);margin-top:.18rem}
+.item-tag{display:-webkit-inline-flex;display:inline-flex;background:rgba(13,74,51,.3);color:var(--vl);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .6rem;border-radius:100px;margin-right:.3rem}
+.item-actions{display:-webkit-flex;display:flex;gap:.4rem;-webkit-flex-shrink:0;flex-shrink:0}
+/* iOS: botões de ação com 44x44px */
+.ia-btn{width:44px;height:44px;border-radius:8px;background:rgba(255,255,255,.06);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;font-size:.72rem;color:rgba(255,255,255,.5);transition:all .2s;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.ia-btn:hover{background:rgba(196,154,60,.2);color:var(--ol)}
+.ia-btn.del:hover{background:rgba(220,53,53,.2);color:#ff6b6b}
+.empty-state{text-align:center;padding:3.5rem 2rem;color:rgba(255,255,255,.2)}
+.empty-state i{font-size:2.5rem;display:block;margin-bottom:.8rem;color:rgba(255,255,255,.08)}
+.empty-state p{font-size:.85rem}
+
+/* MOBILE NAV */
+.mob-nav{display:none;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.06);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+@media(max-width:900px){.mob-nav{display:-webkit-flex;display:flex}}
+.mob-nav::-webkit-scrollbar{display:none}
+/* iOS: altura mínima de toque */
+.mn-item{padding:.75rem 1.1rem;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;transition:all .3s;-webkit-tap-highlight-color:transparent;min-height:48px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}
+.mn-item.a{color:#fff;border-color:var(--o)}
+
+/* BADGE */
+.badge{display:-webkit-inline-flex;display:inline-flex;background:var(--v);color:#fff;font-size:.58rem;font-weight:700;padding:.15rem .5rem;border-radius:100px;margin-left:.4rem;vertical-align:middle}
+
+/* SETTINGS */
+.settings-grid{display:-webkit-grid;display:grid;gap:1.4rem}
+@media(min-width:900px){.settings-grid{grid-template-columns:1fr 1fr}}
+.settings-info-row{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.85rem;padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.settings-info-row:last-child{border-bottom:none}
+.si-icon{width:34px;height:34px;border-radius:8px;background:rgba(196,154,60,.12);color:var(--ol);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;font-size:.82rem;-webkit-flex-shrink:0;flex-shrink:0}
+.si-lbl{font-size:.68rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.12em}
+.si-val{font-size:.9rem;font-weight:600;color:#fff;margin-top:.1rem}
+.pw-strength-bar{height:4px;border-radius:100px;background:rgba(255,255,255,.08);margin-top:.5rem;overflow:hidden}
+.pw-strength-fill{height:100%;border-radius:100px;width:0;transition:width .4s var(--ease),background .4s}
+.pw-strength-label{font-size:.68rem;margin-top:.3rem;min-height:.9rem;color:rgba(255,255,255,.3)}
+.divider{height:1px;background:rgba(255,255,255,.07);margin:1.2rem 0}
+
+/* UTILS */
+.hid{display:none!important}
+.row-btns{display:-webkit-flex;display:flex;gap:.65rem;-webkit-flex-wrap:wrap;flex-wrap:wrap;margin-top:1.1rem}
+
+/* iOS safe area */
+@supports(padding:max(0px)){
+  .topbar{
+    padding-left:max(1.5rem,env(safe-area-inset-left));
+    padding-right:max(1.5rem,env(safe-area-inset-right));
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-lm">
+        <img src="../assets/imagens/logo.jpeg" alt="RPP" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="login-lm-txt">RPP</span>
+      </div>
+      <div><div class="login-ln">RPP</div><div class="login-lt">Engenharia &amp; Construção Civil</div></div>
+    </div>
+    <h1 class="login-title">Área Restrita</h1>
+    <p class="login-sub">Acesso exclusivo para gestores autorizados da RPP Engenharia e Construção Civil.</p>
+    <!-- iOS FIX: sem form tag — usar div + botão com evento click -->
+    <div id="loginForm">
+      <label for="loginPW" class="login-lbl">Palavra-passe</label>
+      <div class="pw-wrap">
+        <input type="password" id="loginPW" class="login-inp" placeholder="Introduza a sua senha" autocomplete="current-password" inputmode="text">
+        <button type="button" class="pw-eye" data-target="loginPW" aria-label="Mostrar senha"><i class="fa-solid fa-eye"></i></button>
+      </div>
+      <button type="button" class="login-btn" id="loginBtn"><i class="fa-solid fa-lock" style="font-size:.68rem"></i> Entrar no Painel</button>
+      <p id="loginErr" class="login-err"></p>
+    </div>
+    <div style="text-align:center;margin-top:1.1rem">
+      <button id="openRecovery" type="button" style="background:none;border:none;font-family:inherit;font-size:.78rem;color:rgba(196,154,60,.65);cursor:pointer;padding:.4rem 0;transition:color .3s;-webkit-tap-highlight-color:transparent;min-height:44px">
+        <i class="fa-solid fa-key" style="font-size:.68rem;margin-right:.3rem"></i>Esqueceu a palavra-passe?
+      </button>
+    </div>
+    <p class="login-hint">Palavra-passe por omissão: <strong style="color:rgba(255,255,255,.5)">rpp2026</strong></p>
+  </div>
+</div>
+
+<!-- RECOVERY OVERLAY -->
+<div id="recoveryOverlay">
+  <div class="rec-card">
+    <button class="rec-back" id="recBack"><i class="fa-solid fa-arrow-left" style="font-size:.68rem"></i> Voltar ao login</button>
+
+    <div class="rec-step a" id="recStep1">
+      <div class="rec-title">Recuperar Acesso</div>
+      <p class="rec-sub">Introduza o email associado à conta de gestor para receber um código de verificação.</p>
+      <label class="login-lbl" for="recEmail">Email de gestor</label>
+      <input type="email" id="recEmail" class="login-inp" placeholder="gestor@rppengenharia.com" autocomplete="email" inputmode="email">
+      <button type="button" id="recSendCode" class="login-btn" style="margin-top:1rem">
+        <i class="fa-solid fa-paper-plane" style="font-size:.68rem"></i> Enviar código
+      </button>
+      <p class="rec-msg bad" id="recEmailErr" style="margin-top:.6rem"></p>
+    </div>
+
+    <div class="rec-step" id="recStep2">
+      <div class="rec-title">Verificar Código</div>
+      <p class="rec-sub" id="recStep2Sub">Introduza o código de 6 dígitos enviado para o seu email.</p>
+      <div class="rec-code-wrap" id="recCodeWrap">
+        <input type="text" maxlength="1" inputmode="numeric" class="rec-digit">
+        <input type="text" maxlength="1" inputmode="numeric" class="rec-digit">
+        <input type="text" maxlength="1" inputmode="numeric" class="rec-digit">
+        <input type="text" maxlength="1" inputmode="numeric" class="rec-digit">
+        <input type="text" maxlength="1" inputmode="numeric" class="rec-digit">
+        <input type="text" maxlength="1" inputmode="numeric" class="rec-digit">
+      </div>
+      <p class="rec-msg" id="recCodeMsg"></p>
+      <button type="button" id="recVerifyCode" class="login-btn" style="margin-top:1rem">
+        <i class="fa-solid fa-check" style="font-size:.68rem"></i> Verificar código
+      </button>
+      <button type="button" class="rec-resend" id="recResend" disabled>
+        <i class="fa-solid fa-rotate-right" style="font-size:.65rem"></i>
+        <span>Reenviar em <span id="recCountdown">60</span>s</span>
+      </button>
+    </div>
+
+    <div class="rec-step" id="recStep3">
+      <div class="rec-title">Nova Palavra-passe</div>
+      <p class="rec-sub">Código verificado. Defina agora uma nova palavra-passe para a conta.</p>
+      <div style="display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:.9rem">
+        <div>
+          <label class="login-lbl" for="recNewPW">Nova palavra-passe</label>
+          <div class="pw-wrap">
+            <input type="password" id="recNewPW" class="login-inp" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+            <button type="button" class="pw-eye" data-target="recNewPW" aria-label="Mostrar"><i class="fa-solid fa-eye"></i></button>
+          </div>
+          <div class="pw-strength-bar"><div class="pw-strength-fill" id="recStrFill"></div></div>
+          <div class="pw-strength-label" id="recStrLabel"></div>
+        </div>
+        <div>
+          <label class="login-lbl" for="recConfirmPW">Confirmar palavra-passe</label>
+          <div class="pw-wrap">
+            <input type="password" id="recConfirmPW" class="login-inp" placeholder="Repita a nova senha" autocomplete="new-password">
+            <button type="button" class="pw-eye" data-target="recConfirmPW" aria-label="Mostrar"><i class="fa-solid fa-eye"></i></button>
+          </div>
+        </div>
+      </div>
+      <button type="button" id="recSavePW" class="login-btn" style="margin-top:1.2rem">
+        <i class="fa-solid fa-floppy-disk" style="font-size:.68rem"></i> Guardar nova palavra-passe
+      </button>
+      <p class="rec-msg" id="recPWMsg" style="margin-top:.6rem"></p>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastTxt"></span></div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <aside class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-lm">
+        <img src="../assets/imagens/logo.jpeg" alt="RPP" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="sb-lm-txt">RPP</span>
+      </div>
+      <div><div class="sb-ln">RPP</div><div class="sb-lt">Gestores</div></div>
+    </div>
+    <div class="sb-user">
+      <div class="sb-av"><i class="fa-solid fa-user"></i></div>
+      <div><div class="sb-un">Administrador</div><div class="sb-ur" id="sbEmail">—</div></div>
+    </div>
+    <nav class="sb-nav">
+      <div class="nav-group">
+        <div class="nav-group-lbl">Visão Geral</div>
+        <div class="nav-item a" data-panel="overview"><i class="fa-solid fa-gauge"></i> Dashboard</div>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-lbl">Conteúdo</div>
+        <div class="nav-item" data-panel="noticias"><i class="fa-solid fa-newspaper"></i> Notícias <span class="badge" id="sbBadgeN">0</span></div>
+        <div class="nav-item" data-panel="publicidades"><i class="fa-solid fa-bullhorn"></i> Publicidades <span class="badge" id="sbBadgeA">0</span></div>
+        <div class="nav-item" data-panel="projetos"><i class="fa-solid fa-building"></i> Projetos <span class="badge" id="sbBadgeP">0</span></div>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-lbl">Conta</div>
+        <div class="nav-item" data-panel="settings"><i class="fa-solid fa-shield-halved"></i> Definições de Acesso</div>
+      </div>
+    </nav>
+    <div class="sb-footer">
+      <a href="../index.html" class="back-site"><i class="fa-solid fa-arrow-left" style="font-size:.7rem"></i> Voltar ao Site</a>
+      <div class="sb-out" id="sidebarOut"><i class="fa-solid fa-right-from-bracket" style="font-size:.8rem"></i> Terminar sessão</div>
+    </div>
+  </aside>
+
+  <div class="content">
+    <div class="topbar">
+      <span class="topbar-title" id="topbarTitle">Dashboard</span>
+      <div class="topbar-right">
+        <a href="../index.html" class="tb-back"><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.7rem"></i> Site</a>
+        <div class="tb-out" id="topbarOut"><i class="fa-solid fa-right-from-bracket" style="font-size:.72rem"></i> Sair</div>
+      </div>
+    </div>
+
+    <div class="mob-nav">
+      <div class="mn-item a" data-panel="overview">Dashboard</div>
+      <div class="mn-item" data-panel="noticias">Notícias</div>
+      <div class="mn-item" data-panel="publicidades">Publicidades</div>
+      <div class="mn-item" data-panel="projetos">Projetos</div>
+      <div class="mn-item" data-panel="settings">Definições</div>
+    </div>
+
+    <!-- PANEL: OVERVIEW -->
+    <div class="panel a" id="panel-overview">
+      <div class="stats-row" id="statsRow"></div>
+      <div style="display:-webkit-grid;display:grid;gap:1.2rem">
+        <div class="fc">
+          <div class="fc-title"><i class="fa-solid fa-clock-rotate-left"></i> Últimas notícias publicadas</div>
+          <div id="recentNews" class="items-list"></div>
+        </div>
+        <div class="fc">
+          <div class="fc-title"><i class="fa-solid fa-bullhorn"></i> Publicidades activas</div>
+          <div id="recentAds" class="items-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: NOTÍCIAS -->
+    <div class="panel" id="panel-noticias">
+      <div class="sec-hdr">
+        <div><h2>Gestão de Notícias</h2><p>Crie, edite e elimine publicações do site.</p></div>
+      </div>
+      <div class="fc">
+        <div class="fc-title" id="nFormTitle"><i class="fa-solid fa-plus"></i> Nova Notícia</div>
+        <input type="hidden" id="nId">
+        <div style="display:-webkit-grid;display:grid;gap:.9rem">
+          <div><label class="flbl" for="nTit">Título *</label><input class="finp" id="nTit" placeholder="Título da notícia" autocomplete="off"></div>
+          <div><label class="flbl" for="nRes">Resumo *</label><textarea class="finp" id="nRes" rows="2" placeholder="Breve descrição para listagem e carrossel..."></textarea></div>
+          <div><label class="flbl" for="nContent">Conteúdo completo *</label><textarea class="finp" id="nContent" rows="6" placeholder="Texto completo da notícia..."></textarea></div>
+          <div class="fa3">
+            <div><label class="flbl" for="nCat">Categoria</label><select id="nCat" class="finp"><option>Infraestrutura</option><option>Edificação</option><option>Sustentabilidade</option><option>Institucional</option></select></div>
+            <div><label class="flbl" for="nData">Data</label><input type="date" class="finp" id="nData"></div>
+            <div><label class="flbl" for="nImg">Imagem</label><input type="file" accept="image/*" class="finp" id="nImg" style="font-size:.8rem"></div>
+          </div>
+        </div>
+        <div class="row-btns">
+          <button class="fbtn" id="nSave"><i class="fa-solid fa-floppy-disk" style="font-size:.68rem"></i> Guardar Notícia</button>
+          <button class="fbtn sec hid" id="nCan">Cancelar edição</button>
+        </div>
+      </div>
+      <div class="fc">
+        <div class="fc-title"><i class="fa-solid fa-list"></i> Notícias Publicadas</div>
+        <div id="nList" class="items-list"></div>
+      </div>
+    </div>
+
+    <!-- PANEL: PUBLICIDADES -->
+    <div class="panel" id="panel-publicidades">
+      <div class="sec-hdr">
+        <div><h2>Gestão de Publicidades</h2><p>Gerencie os espaços e oportunidades publicitárias visíveis no site.</p></div>
+      </div>
+      <div class="fc">
+        <div class="fc-title" id="aFormTitle"><i class="fa-solid fa-plus"></i> Nova Publicidade</div>
+        <input type="hidden" id="aId">
+        <div style="display:-webkit-grid;display:grid;gap:.9rem">
+          <div><label class="flbl" for="aTit">Título *</label><input class="finp" id="aTit" placeholder="Título da publicidade" autocomplete="off"></div>
+          <div><label class="flbl" for="aDesc">Descrição *</label><textarea class="finp" id="aDesc" rows="3" placeholder="Descrição detalhada da oportunidade..."></textarea></div>
+          <div class="fg2">
+            <div><label class="flbl" for="aCat">Categoria</label><select id="aCat" class="finp"><option>Patrocínio</option><option>Banner</option><option>Digital</option><option>Evento</option><option>Parceria</option><option>Outdoor</option></select></div>
+            <div><label class="flbl" for="aPreco">Preço / Condições</label><input class="finp" id="aPreco" placeholder="ex: 5.000 USD/mês" autocomplete="off"></div>
+          </div>
+          <div class="fg2">
+            <div><label class="flbl" for="aContact">Contacto</label><input class="finp" id="aContact" placeholder="Email ou telefone" autocomplete="off" inputmode="email"></div>
+            <div><label class="flbl" for="aImg">Imagem</label><input type="file" accept="image/*" class="finp" id="aImg" style="font-size:.8rem"></div>
+          </div>
+        </div>
+        <div class="row-btns">
+          <button class="fbtn" id="aSave"><i class="fa-solid fa-floppy-disk" style="font-size:.68rem"></i> Guardar Publicidade</button>
+          <button class="fbtn sec hid" id="aCan">Cancelar edição</button>
+        </div>
+      </div>
+      <div class="fc">
+        <div class="fc-title"><i class="fa-solid fa-list"></i> Publicidades Cadastradas</div>
+        <div id="aList" class="items-list"></div>
+      </div>
+    </div>
+
+    <!-- PANEL: PROJETOS -->
+    <div class="panel" id="panel-projetos">
+      <div class="sec-hdr">
+        <div><h2>Gestão de Projetos</h2><p>Adicione e gira projetos do portefólio visíveis no site.</p></div>
+      </div>
+      <div class="fc">
+        <div class="fc-title" id="pFormTitle"><i class="fa-solid fa-plus"></i> Novo Projeto</div>
+        <input type="hidden" id="pId">
+        <div style="display:-webkit-grid;display:grid;gap:.9rem">
+          <div><label class="flbl" for="pTit">Título *</label><input class="finp" id="pTit" placeholder="Nome do projeto" autocomplete="off"></div>
+          <div><label class="flbl" for="pDesc">Descrição *</label><textarea class="finp" id="pDesc" rows="3" placeholder="Descrição técnica do projeto..."></textarea></div>
+          <div class="fg2">
+            <div><label class="flbl" for="pCat">Categoria</label><select id="pCat" class="finp"><option value="edificacao">Edificação</option><option value="infraestrutura">Infraestrutura</option><option value="sustentavel">Sustentável</option><option value="industrial">Industrial</option></select></div>
+            <div><label class="flbl" for="pAno">Ano</label><input class="finp" id="pAno" placeholder="ex: 2024" type="number" min="1990" max="2030" inputmode="numeric"></div>
+          </div>
+          <div class="fg2">
+            <div><label class="flbl" for="pLoc">Localização</label><input class="finp" id="pLoc" placeholder="ex: Luanda, Angola" autocomplete="off"></div>
+            <div><label class="flbl" for="pDim">Dimensão</label><input class="finp" id="pDim" placeholder="ex: 45.000 m²" autocomplete="off"></div>
+          </div>
+          <div><label class="flbl" for="pImg">Imagem</label><input type="file" accept="image/*" class="finp" id="pImg" style="font-size:.8rem"></div>
+        </div>
+        <div class="row-btns">
+          <button class="fbtn" id="pSave"><i class="fa-solid fa-floppy-disk" style="font-size:.68rem"></i> Guardar Projeto</button>
+          <button class="fbtn sec hid" id="pCan">Cancelar edição</button>
+        </div>
+      </div>
+      <div class="fc">
+        <div class="fc-title"><i class="fa-solid fa-list"></i> Projetos Cadastrados</div>
+        <div id="pList" class="items-list"></div>
+      </div>
+    </div>
+
+    <!-- PANEL: DEFINIÇÕES DE ACESSO -->
+    <div class="panel" id="panel-settings">
+      <div class="sec-hdr">
+        <div><h2>Definições de Acesso</h2><p>Gerencie as credenciais e o email de recuperação da conta de gestor.</p></div>
+      </div>
+      <div class="settings-grid">
+        <div class="fc" style="height:-webkit-fit-content;height:fit-content">
+          <div class="fc-title"><i class="fa-solid fa-circle-info"></i> Informações da Conta</div>
+          <div class="settings-info-row">
+            <div class="si-icon"><i class="fa-solid fa-user-shield"></i></div>
+            <div><div class="si-lbl">Perfil</div><div class="si-val">Administrador</div></div>
+          </div>
+          <div class="settings-info-row">
+            <div class="si-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div style="-webkit-flex:1;flex:1;min-width:0"><div class="si-lbl">Email de recuperação</div><div class="si-val" id="settingsEmailDisplay" style="font-size:.82rem;word-break:break-all">—</div></div>
+          </div>
+          <div class="settings-info-row">
+            <div class="si-icon"><i class="fa-solid fa-clock"></i></div>
+            <div><div class="si-lbl">Última sessão</div><div class="si-val" id="settingsLastLogin" style="font-size:.82rem">—</div></div>
+          </div>
+          <div class="settings-info-row">
+            <div class="si-icon"><i class="fa-solid fa-key"></i></div>
+            <div><div class="si-lbl">Palavra-passe</div><div class="si-val" style="font-size:.82rem;letter-spacing:.2em">••••••••</div></div>
+          </div>
+        </div>
+        <div style="display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:1.2rem">
+          <div class="fc">
+            <div class="fc-title"><i class="fa-solid fa-envelope"></i> Email de Recuperação</div>
+            <p style="font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.65;margin-bottom:1.1rem">Este email é usado para recuperar o acesso quando a palavra-passe é esquecida.</p>
+            <label class="flbl" for="settingsEmail">Endereço de email</label>
+            <input type="email" id="settingsEmail" class="finp" placeholder="gestor@rppengenharia.com" autocomplete="email" inputmode="email">
+            <div class="row-btns">
+              <button class="fbtn" id="saveEmail"><i class="fa-solid fa-floppy-disk" style="font-size:.68rem"></i> Guardar Email</button>
+            </div>
+          </div>
+          <div class="fc">
+            <div class="fc-title"><i class="fa-solid fa-lock"></i> Alterar Palavra-passe</div>
+            <p style="font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.65;margin-bottom:1.1rem">Introduza a palavra-passe atual e depois defina uma nova. Use pelo menos 6 caracteres.</p>
+            <div style="display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:.9rem">
+              <div>
+                <label class="flbl" for="settingsOldPW">Palavra-passe atual</label>
+                <div class="pw-wrap">
+                  <input type="password" id="settingsOldPW" class="finp" placeholder="Senha atual" autocomplete="current-password">
+                  <button type="button" class="pw-eye" data-target="settingsOldPW" aria-label="Mostrar"><i class="fa-solid fa-eye"></i></button>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <div>
+                <label class="flbl" for="settingsNewPW">Nova palavra-passe</label>
+                <div class="pw-wrap">
+                  <input type="password" id="settingsNewPW" class="finp" placeholder="Mínimo 6 caracteres" autocomplete="new-password">
+                  <button type="button" class="pw-eye" data-target="settingsNewPW" aria-label="Mostrar"><i class="fa-solid fa-eye"></i></button>
+                </div>
+                <div class="pw-strength-bar"><div class="pw-strength-fill" id="settingsStrFill"></div></div>
+                <div class="pw-strength-label" id="settingsStrLabel"></div>
+              </div>
+              <div>
+                <label class="flbl" for="settingsConfirmPW">Confirmar nova palavra-passe</label>
+                <div class="pw-wrap">
+                  <input type="password" id="settingsConfirmPW" class="finp" placeholder="Repita a nova senha" autocomplete="new-password">
+                  <button type="button" class="pw-eye" data-target="settingsConfirmPW" aria-label="Mostrar"><i class="fa-solid fa-eye"></i></button>
+                </div>
+              </div>
+            </div>
+            <p class="rec-msg bad hid" id="settingsPWErr" style="margin-top:.6rem;text-align:left"></p>
+            <div class="row-btns">
+              <button class="fbtn" id="savePW"><i class="fa-solid fa-shield-halved" style="font-size:.68rem"></i> Actualizar Palavra-passe</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /dashboard -->
+
+<script>
+(function(){
+'use strict';
+
+var SESSION_KEY = 'rpp_adm';
+var AUTH_KEY = 'rpp_auth';
+var KEYS = {news:'rpp_news', projects:'rpp_projects', ads:'rpp_ads', adsImgs:'rpp_ads_imgs'};
+var OTP_KEY = 'rpp_otp';
+var DEFAULT_PW = 'rpp2026';
+
+// iOS FIX: localStorage seguro
+function getAuth() {
+  try { return JSON.parse(localStorage.getItem(AUTH_KEY)) || {pw:DEFAULT_PW, email:'', lastLogin:''}; }
+  catch(e) { return {pw:DEFAULT_PW, email:'', lastLogin:''}; }
+}
+function saveAuth(obj) {
+  try { localStorage.setItem(AUTH_KEY, JSON.stringify(obj)); } catch(e){}
+}
+function currentPW() { return getAuth().pw || DEFAULT_PW; }
+
+var DEF_IMG = [
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=60',
+  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=60',
+  'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=400&q=60',
+  'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=60',
+];
+var catLabel = {edificacao:'Edificação', infraestrutura:'Infraestrutura', sustentavel:'Sustentável', industrial:'Industrial'};
+
+function get(k) { try { return JSON.parse(localStorage.getItem(k)) || []; } catch(e) { return []; } }
+function getObj(k) { try { return JSON.parse(localStorage.getItem(k)) || {}; } catch(e) { return {}; } }
+function set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+function fD(s) {
+  try { return new Date(s).toLocaleDateString('pt-PT', {day:'2-digit', month:'long', year:'numeric'}); }
+  catch(e) { return s || ''; }
+}
+
+var DEF_ADS = [
+  {id:'a1',titulo:'Patrocínio de Eventos RPP',descricao:'Associe a sua marca aos maiores eventos de engenharia civil organizados pela RPP.',categoria:'Patrocínio',preco:'A partir de 3.500 USD',contacto:'eventos@rppengenharia.com',data:'2024-03-01'},
+  {id:'a2',titulo:'Espaço Publicitário Digital',descricao:'Banner premium no site e newsletter mensal com mais de 8.000 profissionais.',categoria:'Digital',preco:'1.200 USD/mês',contacto:'marketing@rppengenharia.com',data:'2024-02-15'},
+  {id:'a3',titulo:'Parceria Comercial Estratégica',descricao:'Programa de parceria para fornecedores e subcontratados com co-branding.',categoria:'Parceria',preco:'Sob consulta',contacto:'parcerias@rppengenharia.com',data:'2024-01-10'},
+];
+var DEF_PROJECTS = [
+  {id:'p1',titulo:'Torre Financeira Global',descricao:'Edifício corporativo de alto padrão com arquitetura contemporânea.',categoria:'edificacao',ano:'2023',local:'Lisboa, Portugal',dim:'45.000 m²',img:''},
+  {id:'p2',titulo:'Ponte do Estuário',descricao:'Infraestrutura moderna para melhorar a mobilidade urbana.',categoria:'infraestrutura',ano:'2022',local:'Porto, Portugal',dim:'1.2 km',img:''},
+  {id:'p3',titulo:'Campus Tecnológico Verde',descricao:'Complexo tecnológico sustentável com energia renovável.',categoria:'sustentavel',ano:'2024',local:'Madrid, Espanha',dim:'12.000 m²',img:''},
+];
+try { if(!localStorage.getItem(KEYS.ads)) set(KEYS.ads, DEF_ADS); } catch(e){}
+try { if(!localStorage.getItem(KEYS.projects)) set(KEYS.projects, DEF_PROJECTS); } catch(e){}
+
+// TOAST
+var toastTimer;
+function toast(msg, err) {
+  var el = document.getElementById('toast');
+  el.querySelector('i').className = err ? 'fa-solid fa-circle-xmark' : 'fa-solid fa-circle-check';
+  document.getElementById('toastTxt').textContent = msg;
+  el.classList.toggle('err', !!err);
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { el.classList.remove('show'); }, 3200);
+}
+
+// PW VISIBILITY
+document.querySelectorAll('.pw-eye').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var inp = document.getElementById(btn.dataset.target);
+    if(!inp) return;
+    var show = inp.type === 'text';
+    inp.type = show ? 'password' : 'text';
+    btn.querySelector('i').className = show ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash';
+  });
+});
+
+// PASSWORD STRENGTH
+function pwStrength(pw) {
+  var score = 0;
+  if(pw.length >= 6) score++;
+  if(pw.length >= 10) score++;
+  if(/[A-Z]/.test(pw)) score++;
+  if(/[0-9]/.test(pw)) score++;
+  if(/[^A-Za-z0-9]/.test(pw)) score++;
+  return score;
+}
+function renderStrength(pw, fillId, labelId) {
+  var fill = document.getElementById(fillId);
+  var label = document.getElementById(labelId);
+  if(!fill || !label) return;
+  if(!pw) { fill.style.width = '0'; label.textContent = ''; label.style.color = 'rgba(255,255,255,.3)'; return; }
+  var s = pwStrength(pw);
+  var levels = [
+    {w:'20%', bg:'#e53935', txt:'Muito fraca'},
+    {w:'40%', bg:'#fb8c00', txt:'Fraca'},
+    {w:'60%', bg:'#fdd835', txt:'Razoável'},
+    {w:'80%', bg:'#7cb342', txt:'Boa'},
+    {w:'100%', bg:'#43a047', txt:'Excelente'},
+  ];
+  var l = levels[Math.min(s, 4)];
+  fill.style.width = l.w; fill.style.background = l.bg;
+  label.textContent = l.txt; label.style.color = l.bg;
+}
+document.getElementById('settingsNewPW').addEventListener('input', function(e) { renderStrength(e.target.value, 'settingsStrFill', 'settingsStrLabel'); });
+document.getElementById('recNewPW').addEventListener('input', function(e) { renderStrength(e.target.value, 'recStrFill', 'recStrLabel'); });
+
+// AUTH LOGIN
+function checkAuth() { if(sessionStorage.getItem(SESSION_KEY) === '1') showDashboard(); }
+
+// iOS FIX: usar click em vez de form submit para evitar comportamento nativo
+document.getElementById('loginBtn').addEventListener('click', doLogin);
+// Também suportar Enter no campo de senha
+document.getElementById('loginPW').addEventListener('keydown', function(e) {
+  if(e.key === 'Enter') doLogin();
+});
+
+function doLogin() {
+  var pw = document.getElementById('loginPW').value;
+  var err = document.getElementById('loginErr');
+  if(pw === currentPW()) {
+    try { sessionStorage.setItem(SESSION_KEY, '1'); } catch(e){}
+    var auth = getAuth(); auth.lastLogin = new Date().toISOString(); saveAuth(auth);
+    err.textContent = '';
+    document.getElementById('loginPW').value = '';
+    showDashboard();
+  } else {
+    err.textContent = 'Palavra-passe incorreta. Tente novamente.';
+    document.getElementById('loginPW').select();
+  }
+}
+
+function logout() {
+  try { sessionStorage.removeItem(SESSION_KEY); } catch(e){}
+  document.getElementById('dashboard').classList.remove('show');
+  document.getElementById('loginScreen').classList.remove('gone');
+  document.getElementById('loginPW').value = '';
+  document.getElementById('loginErr').textContent = '';
+}
+document.getElementById('sidebarOut').addEventListener('click', logout);
+document.getElementById('topbarOut').addEventListener('click', logout);
+
+function showDashboard() {
+  document.getElementById('loginScreen').classList.add('gone');
+  document.getElementById('dashboard').classList.add('show');
+  var auth = getAuth();
+  document.getElementById('sbEmail').textContent = auth.email || 'sem email configurado';
+  renderAll();
+}
+
+// NAVIGATION
+var panels = ['overview','noticias','publicidades','projetos','settings'];
+var titles = {overview:'Dashboard', noticias:'Gestão de Notícias', publicidades:'Gestão de Publicidades', projetos:'Gestão de Projetos', settings:'Definições de Acesso'};
+
+function switchPanel(name) {
+  panels.forEach(function(p) { document.getElementById('panel-' + p).classList.toggle('a', p === name); });
+  document.querySelectorAll('.nav-item').forEach(function(i) { i.classList.toggle('a', i.dataset.panel === name); });
+  document.querySelectorAll('.mn-item').forEach(function(i) { i.classList.toggle('a', i.dataset.panel === name); });
+  document.getElementById('topbarTitle').textContent = titles[name] || name;
+  if(name === 'overview') renderOverview();
+  if(name === 'settings') loadSettingsPanel();
+}
+document.querySelectorAll('[data-panel]').forEach(function(el) {
+  el.addEventListener('click', function() { switchPanel(el.dataset.panel); });
+});
+
+function renderAll() { renderOverview(); renderNewsList(); renderAdsList(); renderProjectsList(); updateBadges(); }
+function updateBadges() {
+  document.getElementById('sbBadgeN').textContent = get(KEYS.news).length;
+  document.getElementById('sbBadgeA').textContent = get(KEYS.ads).length;
+  document.getElementById('sbBadgeP').textContent = get(KEYS.projects).length;
+}
+
+// OVERVIEW
+function renderOverview() {
+  var n = get(KEYS.news), a = get(KEYS.ads), p = get(KEYS.projects);
+  document.getElementById('statsRow').innerHTML =
+    '<div class="stat-card"><div class="stat-ic n"><i class="fa-solid fa-newspaper"></i></div><div><div class="stat-val">' + n.length + '</div><div class="stat-lbl">Notícias</div></div></div>' +
+    '<div class="stat-card"><div class="stat-ic a"><i class="fa-solid fa-bullhorn"></i></div><div><div class="stat-val">' + a.length + '</div><div class="stat-lbl">Publicidades</div></div></div>' +
+    '<div class="stat-card"><div class="stat-ic p"><i class="fa-solid fa-building"></i></div><div><div class="stat-val">' + p.length + '</div><div class="stat-lbl">Projetos</div></div></div>' +
+    '<div class="stat-card"><div class="stat-ic u"><i class="fa-solid fa-eye"></i></div><div><div class="stat-val">' + (n.length+a.length+p.length) + '</div><div class="stat-lbl">Total itens</div></div></div>';
+
+  var rn = document.getElementById('recentNews');
+  if(!n.length) { rn.innerHTML = '<div class="empty-state"><i class="fa-solid fa-newspaper"></i><p>Sem notícias</p></div>'; }
+  else rn.innerHTML = n.slice(0, 4).map(function(item, i) {
+    return '<div class="item-row"><img class="item-thumb" src="' + (item.img||DEF_IMG[i%4]) + '" alt="" onerror="this.src=\'' + DEF_IMG[i%4] + '\'">' +
+      '<div class="item-info"><div class="item-title">' + item.titulo + '</div><div class="item-meta"><span class="item-tag">' + item.categoria + '</span>' + fD(item.data) + '</div></div>' +
+      '<div class="item-actions"><div class="ia-btn" onclick="editNews(\'' + item.id + '\')"><i class="fa-solid fa-pen"></i></div></div></div>';
+  }).join('');
+
+  var ra = document.getElementById('recentAds'), aimgs = getObj(KEYS.adsImgs);
+  if(!a.length) { ra.innerHTML = '<div class="empty-state"><i class="fa-solid fa-bullhorn"></i><p>Sem publicidades</p></div>'; }
+  else ra.innerHTML = a.slice(0, 4).map(function(item, i) {
+    return '<div class="item-row"><img class="item-thumb" src="' + (aimgs[item.id]||DEF_IMG[i%4]) + '" alt="" onerror="this.src=\'' + DEF_IMG[i%4] + '\'">' +
+      '<div class="item-info"><div class="item-title">' + item.titulo + '</div><div class="item-meta"><span class="item-tag">' + item.categoria + '</span>' + (item.preco||'—') + '</div></div>' +
+      '<div class="item-actions"><div class="ia-btn" onclick="editAd(\'' + item.id + '\')"><i class="fa-solid fa-pen"></i></div></div></div>';
+  }).join('');
+}
+
+// NOTÍCIAS CRUD
+function renderNewsList() {
+  var data = get(KEYS.news), el = document.getElementById('nList');
+  if(!data.length) { el.innerHTML = '<div class="empty-state"><i class="fa-solid fa-newspaper"></i><p>Sem notícias cadastradas.</p></div>'; return; }
+  el.innerHTML = data.map(function(n, i) {
+    return '<div class="item-row"><img class="item-thumb" src="' + (n.img||DEF_IMG[i%4]) + '" alt="" onerror="this.src=\'' + DEF_IMG[i%4] + '\'">' +
+      '<div class="item-info"><div class="item-title">' + n.titulo + '</div><div class="item-meta"><span class="item-tag">' + n.categoria + '</span>' + fD(n.data) + '</div></div>' +
+      '<div class="item-actions"><div class="ia-btn" onclick="editNews(\'' + n.id + '\')"><i class="fa-solid fa-pen"></i></div><div class="ia-btn del" onclick="deleteNews(\'' + n.id + '\')"><i class="fa-solid fa-trash"></i></div></div></div>';
+  }).join('');
+}
+
+document.getElementById('nSave').addEventListener('click', function() {
+  var id = document.getElementById('nId').value;
+  var tit = document.getElementById('nTit').value.trim();
+  var res = document.getElementById('nRes').value.trim();
+  var cont = document.getElementById('nContent').value.trim();
+  var cat = document.getElementById('nCat').value;
+  var dat = document.getElementById('nData').value || new Date().toISOString().slice(0,10);
+  var fi = document.getElementById('nImg');
+  if(!tit || !res || !cont) { toast('Preencha os campos obrigatórios (*)', true); return; }
+  var imgFile = fi.files[0];
+  if(imgFile) {
+    toB64(imgFile, function(img) { saveNews(id, tit, res, cont, cat, dat, img); });
+  } else {
+    saveNews(id, tit, res, cont, cat, dat, null);
+  }
+});
+
+function saveNews(id, tit, res, cont, cat, dat, img) {
+  var data = get(KEYS.news);
+  if(id) {
+    var x = -1;
+    for(var i=0;i<data.length;i++) { if(String(data[i].id)===id) { x=i; break; } }
+    if(x > -1) { data[x] = {id:data[x].id, titulo:tit, resumo:res, content:cont, categoria:cat, data:dat, img:img||data[x].img||''}; }
+  } else {
+    data.unshift({id:'n'+Date.now(), titulo:tit, resumo:res, content:cont, categoria:cat, img:img||'', data:dat});
+  }
+  set(KEYS.news, data);
+  resetNewsForm(); renderNewsList(); renderOverview(); updateBadges();
+  toast(id ? 'Notícia actualizada com sucesso.' : 'Notícia publicada com sucesso.');
+}
+
+document.getElementById('nCan').addEventListener('click', resetNewsForm);
+
+window.editNews = function(id) {
+  var data = get(KEYS.news), n = null;
+  for(var i=0;i<data.length;i++) { if(String(data[i].id)===String(id)) { n=data[i]; break; } }
+  if(!n) return;
+  document.getElementById('nId').value = n.id;
+  document.getElementById('nTit').value = n.titulo;
+  document.getElementById('nRes').value = n.resumo;
+  document.getElementById('nContent').value = n.content || '';
+  document.getElementById('nCat').value = n.categoria;
+  document.getElementById('nData').value = n.data || '';
+  document.getElementById('nFormTitle').innerHTML = '<i class="fa-solid fa-pen"></i> Editar Notícia';
+  document.getElementById('nCan').classList.remove('hid');
+  switchPanel('noticias');
+  // iOS FIX: scroll suave com fallback
+  var el = document.getElementById('nTit');
+  try { el.scrollIntoView({behavior:'smooth', block:'center'}); } catch(e) { el.scrollIntoView(); }
+};
+
+window.deleteNews = function(id) {
+  if(!confirm('Eliminar notícia?')) return;
+  set(KEYS.news, get(KEYS.news).filter(function(x) { return String(x.id) !== String(id); }));
+  renderNewsList(); renderOverview(); updateBadges(); toast('Notícia eliminada.');
+};
+
+function resetNewsForm() {
+  document.getElementById('nId').value = '';
+  ['nTit','nRes','nContent'].forEach(function(i) { document.getElementById(i).value = ''; });
+  document.getElementById('nData').value = new Date().toISOString().slice(0,10);
+  document.getElementById('nImg').value = '';
+  document.getElementById('nFormTitle').innerHTML = '<i class="fa-solid fa-plus"></i> Nova Notícia';
+  document.getElementById('nCan').classList.add('hid');
+}
+
+// PUBLICIDADES CRUD
+function renderAdsList() {
+  var data = get(KEYS.ads), imgs = getObj(KEYS.adsImgs), el = document.getElementById('aList');
+  if(!data.length) { el.innerHTML = '<div class="empty-state"><i class="fa-solid fa-bullhorn"></i><p>Sem publicidades cadastradas.</p></div>'; return; }
+  el.innerHTML = data.map(function(a, i) {
+    return '<div class="item-row"><img class="item-thumb" src="' + (imgs[a.id]||DEF_IMG[i%4]) + '" alt="" onerror="this.src=\'' + DEF_IMG[i%4] + '\'">' +
+      '<div class="item-info"><div class="item-title">' + a.titulo + '</div><div class="item-meta"><span class="item-tag">' + a.categoria + '</span>' + (a.preco||'Sob consulta') + '</div></div>' +
+      '<div class="item-actions"><div class="ia-btn" onclick="editAd(\'' + a.id + '\')"><i class="fa-solid fa-pen"></i></div><div class="ia-btn del" onclick="deleteAd(\'' + a.id + '\')"><i class="fa-solid fa-trash"></i></div></div></div>';
+  }).join('');
+}
+
+document.getElementById('aSave').addEventListener('click', function() {
+  var id = document.getElementById('aId').value;
+  var tit = document.getElementById('aTit').value.trim();
+  var desc = document.getElementById('aDesc').value.trim();
+  var cat = document.getElementById('aCat').value;
+  var preco = document.getElementById('aPreco').value.trim();
+  var cont = document.getElementById('aContact').value.trim();
+  var fi = document.getElementById('aImg');
+  if(!tit || !desc) { toast('Preencha os campos obrigatórios (*)', true); return; }
+  if(fi.files[0]) {
+    toB64(fi.files[0], function(img) { saveAd(id, tit, desc, cat, preco, cont, img); });
+  } else {
+    saveAd(id, tit, desc, cat, preco, cont, null);
+  }
+});
+
+function saveAd(id, tit, desc, cat, preco, cont, img) {
+  var data = get(KEYS.ads), imgs = getObj(KEYS.adsImgs);
+  if(id) {
+    var x = -1;
+    for(var i=0;i<data.length;i++) { if(String(data[i].id)===id) { x=i; break; } }
+    if(x > -1) { data[x] = {id:data[x].id, titulo:tit, descricao:desc, categoria:cat, preco:preco, contacto:cont, data:data[x].data}; if(img) imgs[data[x].id] = img; }
+  } else {
+    var nid = 'a' + Date.now();
+    data.unshift({id:nid, titulo:tit, descricao:desc, categoria:cat, preco:preco, contacto:cont, data:new Date().toISOString().slice(0,10)});
+    if(img) imgs[nid] = img;
+  }
+  set(KEYS.ads, data); set(KEYS.adsImgs, imgs);
+  resetAdForm(); renderAdsList(); renderOverview(); updateBadges();
+  toast(id ? 'Publicidade actualizada.' : 'Publicidade criada.');
+}
+
+document.getElementById('aCan').addEventListener('click', resetAdForm);
+
+window.editAd = function(id) {
+  var data = get(KEYS.ads), a = null;
+  for(var i=0;i<data.length;i++) { if(String(data[i].id)===String(id)) { a=data[i]; break; } }
+  if(!a) return;
+  document.getElementById('aId').value = a.id;
+  document.getElementById('aTit').value = a.titulo;
+  document.getElementById('aDesc').value = a.descricao;
+  document.getElementById('aCat').value = a.categoria;
+  document.getElementById('aPreco').value = a.preco || '';
+  document.getElementById('aContact').value = a.contacto || '';
+  document.getElementById('aFormTitle').innerHTML = '<i class="fa-solid fa-pen"></i> Editar Publicidade';
+  document.getElementById('aCan').classList.remove('hid');
+  switchPanel('publicidades');
+  var el = document.getElementById('aTit');
+  try { el.scrollIntoView({behavior:'smooth', block:'center'}); } catch(e) { el.scrollIntoView(); }
+};
+
+window.deleteAd = function(id) {
+  if(!confirm('Eliminar publicidade?')) return;
+  var imgs = getObj(KEYS.adsImgs); delete imgs[id]; set(KEYS.adsImgs, imgs);
+  set(KEYS.ads, get(KEYS.ads).filter(function(x) { return String(x.id) !== String(id); }));
+  renderAdsList(); renderOverview(); updateBadges(); toast('Publicidade eliminada.');
+};
+
+function resetAdForm() {
+  document.getElementById('aId').value = '';
+  ['aTit','aDesc','aPreco','aContact'].forEach(function(i) { document.getElementById(i).value = ''; });
+  document.getElementById('aImg').value = '';
+  document.getElementById('aFormTitle').innerHTML = '<i class="fa-solid fa-plus"></i> Nova Publicidade';
+  document.getElementById('aCan').classList.add('hid');
+}
+
+// PROJETOS CRUD
+function renderProjectsList() {
+  var data = get(KEYS.projects), el = document.getElementById('pList');
+  if(!data.length) { el.innerHTML = '<div class="empty-state"><i class="fa-solid fa-building"></i><p>Sem projetos cadastrados.</p></div>'; return; }
+  el.innerHTML = data.map(function(p, i) {
+    return '<div class="item-row"><img class="item-thumb" src="' + (p.img||DEF_IMG[i%4]) + '" alt="" onerror="this.src=\'' + DEF_IMG[i%4] + '\'">' +
+      '<div class="item-info"><div class="item-title">' + p.titulo + '</div><div class="item-meta"><span class="item-tag">' + (catLabel[p.categoria]||p.categoria) + '</span>' + (p.local||'') + (p.ano?' · '+p.ano:'') + '</div></div>' +
+      '<div class="item-actions"><div class="ia-btn" onclick="editProject(\'' + p.id + '\')"><i class="fa-solid fa-pen"></i></div><div class="ia-btn del" onclick="deleteProject(\'' + p.id + '\')"><i class="fa-solid fa-trash"></i></div></div></div>';
+  }).join('');
+}
+
+document.getElementById('pSave').addEventListener('click', function() {
+  var id = document.getElementById('pId').value;
+  var tit = document.getElementById('pTit').value.trim();
+  var desc = document.getElementById('pDesc').value.trim();
+  var cat = document.getElementById('pCat').value;
+  var ano = document.getElementById('pAno').value;
+  var loc = document.getElementById('pLoc').value.trim();
+  var dim = document.getElementById('pDim').value.trim();
+  var fi = document.getElementById('pImg');
+  if(!tit || !desc) { toast('Preencha os campos obrigatórios (*)', true); return; }
+  if(fi.files[0]) {
+    toB64(fi.files[0], function(img) { saveProject(id, tit, desc, cat, ano, loc, dim, img); });
+  } else {
+    saveProject(id, tit, desc, cat, ano, loc, dim, null);
+  }
+});
+
+function saveProject(id, tit, desc, cat, ano, loc, dim, img) {
+  var data = get(KEYS.projects);
+  if(id) {
+    var x = -1;
+    for(var i=0;i<data.length;i++) { if(String(data[i].id)===id) { x=i; break; } }
+    if(x > -1) { data[x] = {id:data[x].id, titulo:tit, descricao:desc, desc:desc, categoria:cat, ano:ano, local:loc, dim:dim, img:img||data[x].img||''}; }
+  } else {
+    data.unshift({id:'p'+Date.now(), titulo:tit, descricao:desc, desc:desc, categoria:cat, ano:ano, local:loc, dim:dim, img:img||''});
+  }
+  set(KEYS.projects, data);
+  resetProjectForm(); renderProjectsList(); renderOverview(); updateBadges();
+  toast(id ? 'Projeto actualizado.' : 'Projeto adicionado ao portefólio.');
+}
+
+document.getElementById('pCan').addEventListener('click', resetProjectForm);
+
+window.editProject = function(id) {
+  var data = get(KEYS.projects), p = null;
+  for(var i=0;i<data.length;i++) { if(String(data[i].id)===String(id)) { p=data[i]; break; } }
+  if(!p) return;
+  document.getElementById('pId').value = p.id;
+  document.getElementById('pTit').value = p.titulo;
+  document.getElementById('pDesc').value = p.descricao || p.desc || '';
+  document.getElementById('pCat').value = p.categoria;
+  document.getElementById('pAno').value = p.ano || '';
+  document.getElementById('pLoc').value = p.local || '';
+  document.getElementById('pDim').value = p.dim || '';
+  document.getElementById('pFormTitle').innerHTML = '<i class="fa-solid fa-pen"></i> Editar Projeto';
+  document.getElementById('pCan').classList.remove('hid');
+  switchPanel('projetos');
+  var el = document.getElementById('pTit');
+  try { el.scrollIntoView({behavior:'smooth', block:'center'}); } catch(e) { el.scrollIntoView(); }
+};
+
+window.deleteProject = function(id) {
+  if(!confirm('Eliminar projeto?')) return;
+  set(KEYS.projects, get(KEYS.projects).filter(function(x) { return String(x.id) !== String(id); }));
+  renderProjectsList(); renderOverview(); updateBadges(); toast('Projeto eliminado.');
+};
+
+function resetProjectForm() {
+  document.getElementById('pId').value = '';
+  ['pTit','pDesc','pAno','pLoc','pDim'].forEach(function(i) { document.getElementById(i).value = ''; });
+  document.getElementById('pImg').value = '';
+  document.getElementById('pFormTitle').innerHTML = '<i class="fa-solid fa-plus"></i> Novo Projeto';
+  document.getElementById('pCan').classList.add('hid');
+}
+
+// SETTINGS
+function loadSettingsPanel() {
+  var auth = getAuth();
+  document.getElementById('settingsEmail').value = auth.email || '';
+  document.getElementById('settingsEmailDisplay').textContent = auth.email || '—';
+  document.getElementById('settingsLastLogin').textContent = auth.lastLogin ? fD(auth.lastLogin) : '—';
+  document.getElementById('settingsOldPW').value = '';
+  document.getElementById('settingsNewPW').value = '';
+  document.getElementById('settingsConfirmPW').value = '';
+  document.getElementById('settingsPWErr').classList.add('hid');
+  renderStrength('', 'settingsStrFill', 'settingsStrLabel');
+}
+
+document.getElementById('saveEmail').addEventListener('click', function() {
+  var email = document.getElementById('settingsEmail').value.trim();
+  if(!email || email.indexOf('@') < 0) { toast('Introduza um endereço de email válido.', true); return; }
+  var auth = getAuth(); auth.email = email; saveAuth(auth);
+  document.getElementById('settingsEmailDisplay').textContent = email;
+  document.getElementById('sbEmail').textContent = email;
+  toast('Email de recuperação guardado com sucesso.');
+});
+
+document.getElementById('savePW').addEventListener('click', function() {
+  var errEl = document.getElementById('settingsPWErr');
+  var old = document.getElementById('settingsOldPW').value;
+  var nw = document.getElementById('settingsNewPW').value;
+  var cf = document.getElementById('settingsConfirmPW').value;
+  errEl.classList.add('hid');
+  if(old !== currentPW()) { errEl.textContent = 'A palavra-passe atual está incorreta.'; errEl.classList.remove('hid'); return; }
+  if(nw.length < 6) { errEl.textContent = 'A nova senha precisa de ter pelo menos 6 caracteres.'; errEl.classList.remove('hid'); return; }
+  if(nw !== cf) { errEl.textContent = 'As senhas não coincidem.'; errEl.classList.remove('hid'); return; }
+  var auth = getAuth(); auth.pw = nw; saveAuth(auth);
+  document.getElementById('settingsOldPW').value = '';
+  document.getElementById('settingsNewPW').value = '';
+  document.getElementById('settingsConfirmPW').value = '';
+  renderStrength('', 'settingsStrFill', 'settingsStrLabel');
+  toast('Palavra-passe actualizada com sucesso.');
+});
+
+// RECUPERAÇÃO OTP
+var countdownTimer = null;
+
+document.getElementById('openRecovery').addEventListener('click', function() {
+  goRecStep(1);
+  document.getElementById('recoveryOverlay').classList.add('show');
+  document.getElementById('recEmail').value = '';
+  document.getElementById('recEmailErr').textContent = '';
+});
+document.getElementById('recBack').addEventListener('click', closeRecovery);
+
+function closeRecovery() {
+  document.getElementById('recoveryOverlay').classList.remove('show');
+  clearInterval(countdownTimer);
+  try { localStorage.removeItem(OTP_KEY); } catch(e){}
+}
+
+function goRecStep(n) {
+  [1,2,3].forEach(function(i) { document.getElementById('recStep'+i).classList.toggle('a', i===n); });
+}
+
+document.getElementById('recSendCode').addEventListener('click', function() {
+  var email = document.getElementById('recEmail').value.trim();
+  var errEl = document.getElementById('recEmailErr');
+  errEl.textContent = '';
+  if(!email || email.indexOf('@') < 0) { errEl.textContent = 'Introduza um email válido.'; return; }
+  var auth = getAuth();
+  if(auth.email && email.toLowerCase() !== auth.email.toLowerCase()) {
+    errEl.textContent = 'Este email não corresponde ao email de recuperação registado.'; return;
+  }
+  if(!auth.email) {
+    errEl.textContent = 'Sem email de recuperação configurado. Configure-o nas Definições de Acesso após entrar.'; return;
+  }
+  var code = String(Math.floor(100000 + Math.random() * 900000));
+  var expires = Date.now() + 10*60*1000;
+  try { localStorage.setItem(OTP_KEY, JSON.stringify({code:code, email:email.toLowerCase(), expires:expires})); } catch(e){}
+  toast('Código de verificação: ' + code + '  (válido 10 min)');
+  var masked = email.replace(/(.{2}).+(@.+)/, '$1•••$2');
+  document.getElementById('recStep2Sub').textContent = 'Introduza o código de 6 dígitos enviado para ' + masked + '. Válido por 10 minutos.';
+  document.querySelectorAll('.rec-digit').forEach(function(d) { d.value = ''; d.classList.remove('ok','bad'); });
+  document.getElementById('recCodeMsg').textContent = '';
+  document.getElementById('recCodeMsg').className = 'rec-msg';
+  goRecStep(2);
+  document.querySelectorAll('.rec-digit')[0].focus();
+  startCountdown();
+});
+
+// iOS FIX: navegação entre dígitos OTP com input event (melhor no iOS)
+var recDigits = document.querySelectorAll('.rec-digit');
+recDigits.forEach(function(inp, i) {
+  inp.addEventListener('input', function(e) {
+    var val = inp.value.replace(/\D/g, '');
+    inp.value = val ? val[0] : '';
+    if(inp.value && i < recDigits.length - 1) recDigits[i+1].focus();
+  });
+  inp.addEventListener('keydown', function(e) {
+    if(e.key === 'Backspace' && !inp.value && i > 0) recDigits[i-1].focus();
+    if(e.key === 'ArrowLeft' && i > 0) recDigits[i-1].focus();
+    if(e.key === 'ArrowRight' && i < recDigits.length-1) recDigits[i+1].focus();
+  });
+  inp.addEventListener('paste', function(e) {
+    e.preventDefault();
+    var cd = (e.clipboardData || window.clipboardData);
+    var txt = cd ? cd.getData('text').replace(/\D/g,'').slice(0,6) : '';
+    txt.split('').forEach(function(ch, j) { if(recDigits[j]) recDigits[j].value = ch; });
+    var last = Math.min(txt.length, 5);
+    if(recDigits[last]) recDigits[last].focus();
+  });
+});
+
+document.getElementById('recVerifyCode').addEventListener('click', function() {
+  var entered = Array.from(recDigits).map(function(d) { return d.value; }).join('');
+  var msgEl = document.getElementById('recCodeMsg');
+  var stored = null;
+  try { stored = JSON.parse(localStorage.getItem(OTP_KEY) || 'null'); } catch(e){}
+  if(!stored || Date.now() > stored.expires) {
+    msgEl.textContent = 'Código expirado. Clique em reenviar.'; msgEl.className = 'rec-msg bad';
+    recDigits.forEach(function(d) { d.classList.add('bad'); }); return;
+  }
+  if(entered !== stored.code) {
+    msgEl.textContent = 'Código incorreto. Tente novamente.'; msgEl.className = 'rec-msg bad';
+    recDigits.forEach(function(d) { d.classList.add('bad'); });
+    setTimeout(function() { recDigits.forEach(function(d) { d.classList.remove('bad'); d.value = ''; }); recDigits[0].focus(); }, 900);
+    return;
+  }
+  recDigits.forEach(function(d) { d.classList.add('ok'); });
+  msgEl.textContent = 'Código verificado!'; msgEl.className = 'rec-msg ok';
+  clearInterval(countdownTimer);
+  try { localStorage.removeItem(OTP_KEY); } catch(e){}
+  setTimeout(function() {
+    document.getElementById('recNewPW').value = '';
+    document.getElementById('recConfirmPW').value = '';
+    document.getElementById('recPWMsg').textContent = '';
+    document.getElementById('recPWMsg').className = 'rec-msg';
+    renderStrength('', 'recStrFill', 'recStrLabel');
+    goRecStep(3);
+  }, 700);
+});
+
+document.getElementById('recResend').addEventListener('click', function() {
+  if(this.disabled) return;
+  document.getElementById('recSendCode').click();
+  startCountdown();
+});
+
+function startCountdown() {
+  clearInterval(countdownTimer);
+  var t = 60;
+  var btn = document.getElementById('recResend');
+  var cd = document.getElementById('recCountdown');
+  btn.disabled = true; cd.textContent = t;
+  countdownTimer = setInterval(function() {
+    t--; cd.textContent = t;
+    if(t <= 0) { clearInterval(countdownTimer); btn.disabled = false; cd.textContent = 60; }
+  }, 1000);
+}
+
+document.getElementById('recSavePW').addEventListener('click', function() {
+  var nw = document.getElementById('recNewPW').value;
+  var cf = document.getElementById('recConfirmPW').value;
+  var msgEl = document.getElementById('recPWMsg');
+  msgEl.className = 'rec-msg';
+  if(nw.length < 6) { msgEl.textContent = 'A senha precisa de ter pelo menos 6 caracteres.'; msgEl.classList.add('bad'); return; }
+  if(nw !== cf) { msgEl.textContent = 'As senhas não coincidem.'; msgEl.classList.add('bad'); return; }
+  var auth = getAuth(); auth.pw = nw; saveAuth(auth);
+  msgEl.textContent = 'Palavra-passe actualizada com sucesso!'; msgEl.classList.add('ok');
+  toast('Palavra-passe recuperada com sucesso. Pode fazer login.');
+  setTimeout(closeRecovery, 1800);
+});
+
+// HELPER: toB64 com callback (compatível com iOS antigo)
+function toB64(file, cb) {
+  var rd = new FileReader();
+  rd.onload = function() { cb(rd.result); };
+  rd.onerror = function() { cb(null); };
+  rd.readAsDataURL(file);
+}
+
+// INIT
+document.getElementById('nData').value = new Date().toISOString().slice(0,10);
+checkAuth();
+
+})();
+</script>
+</body>
+</html>

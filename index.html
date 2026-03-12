@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>RPP – Engenharia e Construção Civil, LDA</title>
 <meta name="description" content="RPP – Engenharia e Construção Civil. Soluções completas em engenharia, infraestruturas e construção civil com excelência internacional.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,75 +19,91 @@
   --ease2:cubic-bezier(0.4,0,0.2,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'Outfit',sans-serif;color:var(--carvao);background:var(--branco);overflow-x:hidden}
+
+/* iOS Safari fix: smooth scroll via JS, não CSS, para evitar bugs */
+html{font-size:16px}
+body{font-family:'Outfit',sans-serif;color:var(--carvao);background:var(--branco);overflow-x:hidden;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
 img{max-width:100%;height:auto;display:block}
 
 /* ── SCROLL PROGRESS ── */
-#scroll-progress{position:fixed;top:0;left:0;height:3px;z-index:9999;background:linear-gradient(90deg,var(--ouro),var(--ouro-lt));width:0%;transition:width .1s linear}
+#scroll-progress{position:fixed;top:0;left:0;height:3px;z-index:9999;background:-webkit-linear-gradient(left,var(--ouro),var(--ouro-lt));background:linear-gradient(90deg,var(--ouro),var(--ouro-lt));width:0%;transition:width .1s linear}
 
 /* ── HEADER ── */
-#cabecalho{position:fixed;top:0;width:100%;z-index:100;transition:background .5s,backdrop-filter .5s}
-#cabecalho .inner{max-width:1280px;margin:0 auto;padding:1.4rem 1.5rem;display:flex;justify-content:space-between;align-items:center;transition:padding .4s}
+#cabecalho{position:fixed;top:0;width:100%;z-index:100;transition:background .5s,-webkit-backdrop-filter .5s;transition:background .5s,backdrop-filter .5s}
+#cabecalho .inner{max-width:1280px;margin:0 auto;padding:1.4rem 1.5rem;display:-webkit-flex;display:flex;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;align-items:center;transition:padding .4s}
 @media(min-width:640px){#cabecalho .inner{padding:1.4rem 2.5rem}}
-#cabecalho.scrolled{background:rgba(17,17,16,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,154,60,.12)}
+#cabecalho.scrolled{background:rgba(17,17,16,.95);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,154,60,.12)}
 #cabecalho.scrolled .inner{padding-top:.85rem;padding-bottom:.85rem}
 
-.logo-wrap{display:flex;align-items:center;gap:.65rem;text-decoration:none}
-.logo-mark{width:40px;height:40px;border-radius:8px;background:var(--verde);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.logo-wrap{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.65rem;text-decoration:none}
+.logo-mark{width:40px;height:40px;border-radius:8px;background:var(--verde);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;-webkit-flex-shrink:0;flex-shrink:0;overflow:hidden}
 .logo-mark img{width:40px;height:40px;object-fit:cover}
 .logo-name{display:block;font-family:'Bebas Neue',sans-serif;color:#fff;font-size:1.15rem;letter-spacing:.15em;line-height:1}
 .logo-tagline{display:block;color:rgba(255,255,255,.4);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;margin-top:3px}
 
-nav.desktop{display:none;align-items:center;gap:2rem}
-@media(min-width:1024px){nav.desktop{display:flex}}
+nav.desktop{display:none;-webkit-align-items:center;align-items:center;gap:2rem}
+@media(min-width:1024px){nav.desktop{display:-webkit-flex;display:flex}}
 .nav-link{color:rgba(255,255,255,.75);text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;position:relative;transition:color .3s;white-space:nowrap}
 .nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--ouro);transition:width .35s var(--ease)}
 .nav-link:hover,.nav-link:focus{color:#fff}.nav-link:hover::after,.nav-link:focus::after{width:100%}
 
-.btn-proposta{display:none;align-items:center;gap:.5rem;border:1px solid rgba(196,154,60,.5);color:var(--ouro-lt);background:transparent;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.55rem 1.2rem;border-radius:4px;text-decoration:none;transition:background .3s,color .3s;white-space:nowrap}
-@media(min-width:1024px){.btn-proposta{display:inline-flex}}
+.btn-proposta{display:none;-webkit-align-items:center;align-items:center;gap:.5rem;border:1px solid rgba(196,154,60,.5);color:var(--ouro-lt);background:transparent;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.55rem 1.2rem;border-radius:4px;text-decoration:none;transition:background .3s,color .3s;white-space:nowrap}
+@media(min-width:1024px){.btn-proposta{display:-webkit-inline-flex;display:inline-flex}}
 .btn-proposta:hover{background:var(--ouro);color:var(--carvao);border-color:var(--ouro)}
 
-#hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;-webkit-tap-highlight-color:transparent}
+#hamburger{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 @media(min-width:1024px){#hamburger{display:none}}
 .ham-line{display:block;height:1.5px;background:#fff;transition:all .35s var(--ease)}
 .ham-line:nth-child(1){width:24px}.ham-line:nth-child(2){width:16px}.ham-line:nth-child(3){width:24px}
-#hamburger.open .ham-line:nth-child(1){transform:translateY(6.5px) rotate(45deg);width:24px}
-#hamburger.open .ham-line:nth-child(2){opacity:0;transform:scaleX(0)}
-#hamburger.open .ham-line:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+#hamburger.open .ham-line:nth-child(1){-webkit-transform:translateY(6.5px) rotate(45deg);transform:translateY(6.5px) rotate(45deg);width:24px}
+#hamburger.open .ham-line:nth-child(2){opacity:0;-webkit-transform:scaleX(0);transform:scaleX(0)}
+#hamburger.open .ham-line:nth-child(3){-webkit-transform:translateY(-6.5px) rotate(-45deg);transform:translateY(-6.5px) rotate(-45deg)}
 
 /* ── MOBILE MENU ── */
-#mobile-menu{position:fixed;inset:0;z-index:90;background:rgba(17,17,16,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;opacity:0;pointer-events:none;transition:opacity .4s var(--ease2)}
+#mobile-menu{position:fixed;inset:0;z-index:90;background:rgba(17,17,16,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;gap:.2rem;opacity:0;pointer-events:none;transition:opacity .4s var(--ease2)}
 #mobile-menu.open{opacity:1;pointer-events:auto}
-.mobile-nav-link{color:rgba(255,255,255,.65);text-decoration:none;font-family:'Playfair Display',serif;font-size:clamp(1.8rem,6vw,2.8rem);font-weight:700;padding:.35rem 0;transition:color .3s}
+.mobile-nav-link{color:rgba(255,255,255,.65);text-decoration:none;font-family:'Playfair Display',serif;font-size:clamp(1.8rem,6vw,2.8rem);font-weight:700;padding:.35rem 0;transition:color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .mobile-nav-link:hover{color:var(--ouro-lt)}
-.mobile-cta{margin-top:2rem;border:1px solid rgba(196,154,60,.45);color:var(--ouro-lt);font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:.8rem 2rem;border-radius:4px;text-decoration:none;transition:background .3s,color .3s}
+.mobile-cta{margin-top:2rem;border:1px solid rgba(196,154,60,.45);color:var(--ouro-lt);font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:.8rem 2rem;border-radius:4px;text-decoration:none;transition:background .3s,color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .mobile-cta:hover{background:var(--ouro);color:var(--carvao)}
 
-/* ── HERO ── */
-#inicio{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80') center/cover;transform:scale(1.08);animation:heroZoom 18s ease-out forwards}
-@keyframes heroZoom{to{transform:scale(1)}}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,16,.97) 0%,rgba(17,17,16,.6) 45%,rgba(17,17,16,.25) 100%)}
+/* ── HERO ── 
+   iOS FIX: usar altura calculada via JS para evitar bug do safari address bar
+   Fallback: min-height com 100vh primeiro, depois 100svh para browsers que suportam
+*/
+#inicio{
+  position:relative;
+  min-height:100vh; /* fallback para iOS antigo */
+  min-height:-webkit-fill-available; /* iOS Safari fix */
+  display:-webkit-flex;
+  display:flex;
+  -webkit-align-items:flex-end;
+  align-items:flex-end;
+  overflow:hidden
+}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80') center center/cover no-repeat;-webkit-transform:scale(1.08);transform:scale(1.08);-webkit-animation:heroZoom 18s ease-out forwards;animation:heroZoom 18s ease-out forwards}
+@-webkit-keyframes heroZoom{to{-webkit-transform:scale(1);transform:scale(1)}}
+@keyframes heroZoom{to{-webkit-transform:scale(1);transform:scale(1)}}
+.hero-overlay{position:absolute;inset:0;background:-webkit-linear-gradient(bottom,rgba(17,17,16,.97) 0%,rgba(17,17,16,.6) 45%,rgba(17,17,16,.25) 100%);background:linear-gradient(to top,rgba(17,17,16,.97) 0%,rgba(17,17,16,.6) 45%,rgba(17,17,16,.25) 100%)}
 .hero-grain{position:absolute;inset:0;opacity:.04;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
 .hero-inner{position:relative;width:100%;max-width:1280px;margin:0 auto;padding:0 1.5rem 4rem}
 @media(min-width:640px){.hero-inner{padding:0 2.5rem 6rem}}
 
-.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.7rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ouro-lt);opacity:0;animation:fadeUp .8s var(--ease) .4s forwards}
-.hero-eyebrow .dot{width:4px;height:4px;border-radius:50%;background:var(--ouro);flex-shrink:0}
+.hero-eyebrow{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.6rem;font-size:.7rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ouro-lt);opacity:0;-webkit-animation:fadeUp .8s var(--ease) .4s forwards;animation:fadeUp .8s var(--ease) .4s forwards}
+.hero-eyebrow .dot{width:4px;height:4px;border-radius:50%;background:var(--ouro);-webkit-flex-shrink:0;flex-shrink:0}
 .hero-headline{font-family:'Playfair Display',serif;font-weight:900;color:#fff;font-size:clamp(2.8rem,8vw,7.5rem);line-height:.95;letter-spacing:-.02em;margin-top:1rem}
 .hero-headline .line{display:block;overflow:hidden}
-.hero-headline .line span{display:block;opacity:0;animation:slideUp .9s var(--ease) forwards}
-.hero-headline .line:nth-child(1) span{animation-delay:.55s}
-.hero-headline .line:nth-child(2) span{animation-delay:.70s}
-.hero-headline .line:nth-child(3) span{animation-delay:.85s}
+.hero-headline .line span{display:block;opacity:0;-webkit-animation:slideUp .9s var(--ease) forwards;animation:slideUp .9s var(--ease) forwards}
+.hero-headline .line:nth-child(1) span{-webkit-animation-delay:.55s;animation-delay:.55s}
+.hero-headline .line:nth-child(2) span{-webkit-animation-delay:.70s;animation-delay:.70s}
+.hero-headline .line:nth-child(3) span{-webkit-animation-delay:.85s;animation-delay:.85s}
+/* iOS FIX: -webkit-text-stroke necessita prefixo */
 .hero-headline .outline{-webkit-text-stroke:1px rgba(255,255,255,.3);color:transparent}
-.hero-subtext{color:rgba(255,255,255,.55);font-size:clamp(.9rem,2vw,1.05rem);line-height:1.75;max-width:560px;margin-top:1.5rem;opacity:0;animation:fadeUp .9s var(--ease) 1s forwards}
-.hero-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:2rem;opacity:0;animation:fadeUp .9s var(--ease) 1.15s forwards}
-.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);margin-top:3.5rem;border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;opacity:0;animation:fadeUp .9s var(--ease) 1.3s forwards}
+.hero-subtext{color:rgba(255,255,255,.55);font-size:clamp(.9rem,2vw,1.05rem);line-height:1.75;max-width:560px;margin-top:1.5rem;opacity:0;-webkit-animation:fadeUp .9s var(--ease) 1s forwards;animation:fadeUp .9s var(--ease) 1s forwards}
+.hero-actions{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;gap:.85rem;margin-top:2rem;opacity:0;-webkit-animation:fadeUp .9s var(--ease) 1.15s forwards;animation:fadeUp .9s var(--ease) 1.15s forwards}
+.hero-stats{display:-webkit-grid;display:grid;grid-template-columns:repeat(2,1fr);margin-top:3.5rem;border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;opacity:0;-webkit-animation:fadeUp .9s var(--ease) 1.3s forwards;animation:fadeUp .9s var(--ease) 1.3s forwards}
 @media(min-width:480px){.hero-stats{grid-template-columns:repeat(4,1fr)}}
-.stat-cell{padding:1.2rem 1rem;text-align:center;background:rgba(17,17,16,.75);backdrop-filter:blur(12px);border-right:1px solid rgba(255,255,255,.05)}
+.stat-cell{padding:1.2rem 1rem;text-align:center;background:rgba(17,17,16,.75);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-right:1px solid rgba(255,255,255,.05)}
 .stat-cell:last-child{border-right:none}
 @media(min-width:640px){.stat-cell{padding:1.4rem 1.5rem}}
 .stat-value{display:block;font-family:'Bebas Neue',sans-serif;color:var(--ouro-lt);font-size:2rem;letter-spacing:.03em;line-height:1}
@@ -95,37 +111,39 @@ nav.desktop{display:none;align-items:center;gap:2rem}
 .stat-label{display:block;color:rgba(255,255,255,.38);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;margin-top:.3rem}
 
 /* ── SECTION ATOMS ── */
-.section-eyebrow{display:flex;align-items:center;gap:.75rem;margin-bottom:1.2rem}
-.section-eyebrow .rule{height:1px;width:28px;background:var(--ouro);flex-shrink:0}
+.section-eyebrow{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.75rem;margin-bottom:1.2rem}
+.section-eyebrow .rule{height:1px;width:28px;background:var(--ouro);-webkit-flex-shrink:0;flex-shrink:0}
 .section-eyebrow span{font-size:.68rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ouro)}
 .section-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2rem,4vw,3.8rem);line-height:1.05;letter-spacing:-.01em}
 .section-header-center{text-align:center;max-width:640px;margin:0 auto 4rem}
-.section-header-center .section-eyebrow{justify-content:center}
+.section-header-center .section-eyebrow{-webkit-justify-content:center;justify-content:center}
 .section-header-center p{color:#666;line-height:1.75;margin-top:.9rem;font-size:.95rem}
 
 /* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
-.reveal.in-view{opacity:1;transform:translateY(0)}
+.reveal{opacity:0;-webkit-transform:translateY(28px);transform:translateY(28px);transition:opacity .85s var(--ease),-webkit-transform .85s var(--ease);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.reveal.in-view{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}
 
 /* ── BUTTONS ── */
-.btn-primary{display:inline-flex;align-items:center;gap:.55rem;background:var(--verde);color:#fff;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 1.8rem;border-radius:6px;text-decoration:none;transition:background .3s,transform .3s;-webkit-tap-highlight-color:transparent}
-.btn-primary:hover{background:var(--verde-lt);transform:translateY(-2px)}
-.btn-primary .arrow{transition:transform .3s var(--ease)}
-.btn-primary:hover .arrow{transform:translateX(4px)}
-.btn-ghost{display:inline-flex;align-items:center;gap:.55rem;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 1.8rem;border-radius:6px;text-decoration:none;transition:border-color .3s,color .3s,transform .3s}
-.btn-ghost:hover{border-color:rgba(255,255,255,.65);color:#fff;transform:translateY(-2px)}
+.btn-primary{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.55rem;background:var(--verde);color:#fff;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 1.8rem;border-radius:6px;text-decoration:none;transition:background .3s,-webkit-transform .3s;transition:background .3s,transform .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn-primary:hover{background:var(--verde-lt);-webkit-transform:translateY(-2px);transform:translateY(-2px)}
+.btn-primary .arrow{transition:-webkit-transform .3s var(--ease);transition:transform .3s var(--ease)}
+.btn-primary:hover .arrow{-webkit-transform:translateX(4px);transform:translateX(4px)}
+.btn-ghost{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.55rem;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 1.8rem;border-radius:6px;text-decoration:none;transition:border-color .3s,color .3s,-webkit-transform .3s;transition:border-color .3s,color .3s,transform .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn-ghost:hover{border-color:rgba(255,255,255,.65);color:#fff;-webkit-transform:translateY(-2px);transform:translateY(-2px)}
 
 /* ── SOBRE ── */
 #sobre{padding:6rem 0;background:var(--creme)}
 @media(min-width:768px){#sobre{padding:8rem 0}}
 #sobre .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
 @media(min-width:640px){#sobre .inner{padding:0 2.5rem}}
-.grid-2{display:grid;gap:3.5rem;align-items:center}
+.grid-2{display:-webkit-grid;display:grid;gap:3.5rem;-webkit-align-items:center;align-items:center}
 @media(min-width:1024px){.grid-2{grid-template-columns:1fr 1fr;gap:5rem}}
 .img-frame{position:relative}
-.img-frame-inner{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/5}
-.img-frame-inner img{width:100%;height:100%;object-fit:cover}
-.img-frame-inner::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,16,.3),transparent 60%)}
+.img-frame-inner{position:relative;border-radius:16px;overflow:hidden}
+/* iOS FIX: aspect-ratio pode não funcionar em iOS < 15, usar padding-top hack */
+.img-frame-inner{padding-top:125%;height:0} /* 4:5 ratio = 125% */
+.img-frame-inner img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.img-frame-inner::after{content:'';position:absolute;inset:0;background:-webkit-linear-gradient(top,transparent 60%,rgba(17,17,16,.3));background:linear-gradient(to top,rgba(17,17,16,.3),transparent 60%)}
 .img-badge{position:absolute;bottom:-1.2rem;right:-1.2rem;background:var(--verde);color:#fff;border-radius:12px;padding:1.2rem 1.5rem;box-shadow:0 20px 60px rgba(13,74,51,.4);display:none}
 @media(min-width:640px){.img-badge{display:block}}
 .img-badge .num{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;line-height:1}
@@ -134,12 +152,12 @@ nav.desktop{display:none;align-items:center;gap:2rem}
 @media(min-width:640px){.img-accent{display:block}}
 .sobre-content .section-title{color:var(--carvao)}
 .sobre-desc{color:#555;line-height:1.8;margin-top:1.4rem;font-size:.95rem}
-.values-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.8rem}
+.values-grid{display:-webkit-grid;display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.8rem}
 .value-item{border-left:2px solid var(--ouro);padding-left:1rem}
 .value-item h4{font-size:.88rem;font-weight:600;color:var(--carvao);margin-bottom:.3rem}
 .value-item p{font-size:.8rem;color:#666;line-height:1.6}
-.cert-list{display:flex;flex-wrap:wrap;gap:.8rem 1.2rem;margin-top:1.8rem}
-.cert-item{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:#555}
+.cert-list{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;gap:.8rem 1.2rem;margin-top:1.8rem}
+.cert-item{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.4rem;font-size:.78rem;color:#555}
 .cert-item i{color:var(--ouro);font-size:.72rem}
 
 /* ── SERVIÇOS ── */
@@ -147,23 +165,23 @@ nav.desktop{display:none;align-items:center;gap:2rem}
 @media(min-width:768px){#servicos{padding:8rem 0}}
 #servicos .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
 @media(min-width:640px){#servicos .inner{padding:0 2.5rem}}
-.servicos-grid{display:grid;gap:1rem}
+.servicos-grid{display:-webkit-grid;display:grid;gap:1rem}
 @media(min-width:480px){.servicos-grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1024px){.servicos-grid{grid-template-columns:repeat(3,1fr)}}
-.servico-card{background:var(--creme);border:1px solid #E5E1D8;border-radius:14px;padding:1.75rem;transition:border-color .4s,box-shadow .4s,transform .4s var(--ease);position:relative;overflow:hidden}
-.servico-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--verde),var(--ouro));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
-.servico-card:hover{border-color:transparent;box-shadow:0 16px 48px rgba(0,0,0,.09);transform:translateY(-4px)}
-.servico-card:hover::before{transform:scaleX(1)}
+.servico-card{background:var(--creme);border:1px solid #E5E1D8;border-radius:14px;padding:1.75rem;transition:border-color .4s,box-shadow .4s,-webkit-transform .4s var(--ease);transition:border-color .4s,box-shadow .4s,transform .4s var(--ease);position:relative;overflow:hidden}
+.servico-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:-webkit-linear-gradient(left,var(--verde),var(--ouro));background:linear-gradient(90deg,var(--verde),var(--ouro));-webkit-transform:scaleX(0);transform:scaleX(0);-webkit-transform-origin:left;transform-origin:left;transition:-webkit-transform .5s var(--ease);transition:transform .5s var(--ease)}
+.servico-card:hover{border-color:transparent;box-shadow:0 16px 48px rgba(0,0,0,.09);-webkit-transform:translateY(-4px);transform:translateY(-4px)}
+.servico-card:hover::before{-webkit-transform:scaleX(1);transform:scaleX(1)}
 .servico-card.featured{background:var(--verde);border-color:var(--verde)}
-.servico-card.featured::before{background:linear-gradient(90deg,var(--ouro),var(--ouro-lt));transform:scaleX(1)}
-.servico-icon{width:48px;height:48px;border-radius:10px;background:rgba(13,74,51,.1);color:var(--verde);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1.2rem;transition:background .4s,color .4s}
+.servico-card.featured::before{background:-webkit-linear-gradient(left,var(--ouro),var(--ouro-lt));background:linear-gradient(90deg,var(--ouro),var(--ouro-lt));-webkit-transform:scaleX(1);transform:scaleX(1)}
+.servico-icon{width:48px;height:48px;border-radius:10px;background:rgba(13,74,51,.1);color:var(--verde);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;font-size:1.1rem;margin-bottom:1.2rem;transition:background .4s,color .4s}
 .servico-card:hover .servico-icon:not(.feat-icon){background:var(--verde);color:#fff}
 .feat-icon{background:rgba(255,255,255,.12);color:#fff}
 .servico-title{font-size:.95rem;font-weight:600;color:var(--carvao);margin-bottom:.55rem}
 .servico-card.featured .servico-title{color:#fff}
 .servico-desc{font-size:.82rem;color:#666;line-height:1.7}
 .servico-card.featured .servico-desc{color:rgba(255,255,255,.6)}
-.servico-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:600;color:var(--verde);text-decoration:none;margin-top:1.2rem;transition:gap .3s}
+.servico-link{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.4rem;font-size:.76rem;font-weight:600;color:var(--verde);text-decoration:none;margin-top:1.2rem;transition:gap .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .servico-card.featured .servico-link{color:rgba(255,255,255,.75)}
 .servico-link:hover{gap:.7rem}
 
@@ -172,38 +190,41 @@ nav.desktop{display:none;align-items:center;gap:2rem}
 @media(min-width:768px){#projetos{padding:8rem 0}}
 #projetos .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
 @media(min-width:640px){#projetos .inner{padding:0 2.5rem}}
-.projetos-header{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:3rem}
-@media(min-width:768px){.projetos-header{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.projetos-header{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:1.5rem;margin-bottom:3rem}
+@media(min-width:768px){.projetos-header{-webkit-flex-direction:row;flex-direction:row;-webkit-align-items:flex-end;align-items:flex-end;-webkit-justify-content:space-between;justify-content:space-between}}
 .projetos-header .section-title{color:#fff}
-.filter-group{display:flex;flex-wrap:wrap;gap:.5rem}
-.filter-btn{background:none;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.5);cursor:pointer;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.42rem .9rem;border-radius:100px;transition:all .3s;-webkit-tap-highlight-color:transparent}
+.filter-group{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;gap:.5rem}
+.filter-btn{background:none;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.5);cursor:pointer;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.42rem .9rem;border-radius:100px;transition:all .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .filter-btn:hover{color:#fff;border-color:rgba(255,255,255,.38)}
 .filter-btn.active{background:var(--ouro);border-color:var(--ouro);color:var(--carvao);font-weight:600}
-.projects-grid{display:grid;gap:1rem}
+.projects-grid{display:-webkit-grid;display:grid;gap:1rem}
 @media(min-width:480px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1024px){.projects-grid{grid-template-columns:repeat(3,1fr)}}
-.project-card{position:relative;border-radius:14px;overflow:hidden;cursor:pointer;background:#1a1a18;transition:transform .5s var(--ease),box-shadow .5s}
-.project-card:hover{transform:translateY(-5px);box-shadow:0 24px 64px rgba(0,0,0,.5)}
+.project-card{position:relative;border-radius:14px;overflow:hidden;cursor:pointer;background:#1a1a18;transition:-webkit-transform .5s var(--ease),transform .5s var(--ease),box-shadow .5s}
+.project-card:hover{-webkit-transform:translateY(-5px);transform:translateY(-5px);box-shadow:0 24px 64px rgba(0,0,0,.5)}
 .card-img{position:relative;overflow:hidden}
-.card-img img{width:100%;height:200px;object-fit:cover;transition:transform .8s var(--ease),filter .5s;filter:brightness(.85)}
+/* iOS FIX: usar altura fixa em vez de aspect-ratio para compatibilidade */
+.card-img img{width:100%;height:200px;object-fit:cover;transition:-webkit-transform .8s var(--ease),transform .8s var(--ease),filter .5s;filter:brightness(.85)}
 @media(min-width:640px){.card-img img{height:240px}}
-.project-card:hover .card-img img{transform:scale(1.07);filter:brightness(.65)}
-.card-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,16,.95) 0%,rgba(17,17,16,.3) 60%,transparent 100%)}
-.card-badge{position:absolute;top:.9rem;left:.9rem;background:rgba(17,17,16,.7);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .7rem;border-radius:100px}
-.card-expand{position:absolute;top:.9rem;right:.9rem;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.72rem;opacity:0;transform:scale(.8);transition:opacity .3s,transform .3s var(--ease);cursor:pointer}
-.project-card:hover .card-expand{opacity:1;transform:scale(1)}
+.project-card:hover .card-img img{-webkit-transform:scale(1.07);transform:scale(1.07);filter:brightness(.65)}
+.card-img-overlay{position:absolute;inset:0;background:-webkit-linear-gradient(top,transparent 40%,rgba(17,17,16,.3) 60%,rgba(17,17,16,.95));background:linear-gradient(to top,rgba(17,17,16,.95) 0%,rgba(17,17,16,.3) 60%,transparent 100%)}
+.card-badge{position:absolute;top:.9rem;left:.9rem;background:rgba(17,17,16,.7);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .7rem;border-radius:100px}
+.card-expand{position:absolute;top:.9rem;right:.9rem;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;font-size:.72rem;opacity:0;-webkit-transform:scale(.8);transform:scale(.8);transition:opacity .3s,-webkit-transform .3s var(--ease);transition:opacity .3s,transform .3s var(--ease);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.project-card:hover .card-expand{opacity:1;-webkit-transform:scale(1);transform:scale(1)}
+/* iOS: mostrar expand sempre em touch devices */
+@media(hover:none){.card-expand{opacity:1;-webkit-transform:scale(1);transform:scale(1)}}
 .card-body{padding:1.1rem 1.3rem 1.3rem}
-.card-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
+.card-meta{display:-webkit-flex;display:flex;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:flex-start;align-items:flex-start;gap:.5rem}
 .card-title{font-size:.95rem;font-weight:600;color:#fff;line-height:1.3}
-.card-year{font-family:'Bebas Neue',sans-serif;color:var(--ouro-lt);font-size:.95rem;flex-shrink:0}
+.card-year{font-family:'Bebas Neue',sans-serif;color:var(--ouro-lt);font-size:.95rem;-webkit-flex-shrink:0;flex-shrink:0}
 .card-location{color:rgba(255,255,255,.38);font-size:.75rem;margin-top:.25rem}
 .card-location i{color:var(--ouro);font-size:.65rem;margin-right:.2rem}
-.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:.9rem;padding-top:.9rem;border-top:1px solid rgba(255,255,255,.07)}
+.card-footer{display:-webkit-flex;display:flex;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;align-items:center;margin-top:.9rem;padding-top:.9rem;border-top:1px solid rgba(255,255,255,.07)}
 .card-dim-label{font-size:.62rem;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.14em}
 .card-dim-value{font-size:.82rem;font-weight:600;color:var(--verde-lt)}
 .projetos-cta{text-align:center;margin-top:3rem}
-.projetos-cta a{display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.7);font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2rem;border-radius:8px;text-decoration:none;transition:background .3s,color .3s,border-color .3s,transform .3s}
-.projetos-cta a:hover{background:#fff;color:var(--carvao);border-color:#fff;transform:translateY(-2px)}
+.projetos-cta a{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.6rem;border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.7);font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 2rem;border-radius:8px;text-decoration:none;transition:background .3s,color .3s,border-color .3s,-webkit-transform .3s;transition:background .3s,color .3s,border-color .3s,transform .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.projetos-cta a:hover{background:#fff;color:var(--carvao);border-color:#fff;-webkit-transform:translateY(-2px);transform:translateY(-2px)}
 
 /* ── SUSTENTABILIDADE ── */
 #sustentabilidade{padding:6rem 0;background:#081524;position:relative;overflow:hidden}
@@ -211,19 +232,20 @@ nav.desktop{display:none;align-items:center;gap:2rem}
 #sustentabilidade .dot-grid{position:absolute;inset:0;opacity:.04;background-image:radial-gradient(circle,white 1px,transparent 0);background-size:28px 28px}
 #sustentabilidade .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem;position:relative}
 @media(min-width:640px){#sustentabilidade .inner{padding:0 2.5rem}}
-.sust-grid{display:grid;gap:4rem;align-items:center}
+.sust-grid{display:-webkit-grid;display:grid;gap:4rem;-webkit-align-items:center;align-items:center}
 @media(min-width:1024px){.sust-grid{grid-template-columns:1fr 1fr;gap:5rem}}
 .sust-content .section-title{color:#fff}
 .sust-content > p{color:rgba(255,255,255,.48);line-height:1.8;margin-top:1.4rem;font-size:.95rem}
-.pillars{display:flex;flex-direction:column;gap:1.75rem;margin-top:2.5rem}
-.pillar{display:flex;align-items:flex-start;gap:1.1rem}
-.pillar-icon{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:rgba(22,105,74,.2);display:flex;align-items:center;justify-content:center;color:var(--verde-lt)}
+.pillars{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:1.75rem;margin-top:2.5rem}
+.pillar{display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start;gap:1.1rem}
+.pillar-icon{width:42px;height:42px;border-radius:50%;-webkit-flex-shrink:0;flex-shrink:0;background:rgba(22,105,74,.2);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;color:var(--verde-lt)}
 .pillar h4{color:#fff;font-size:.9rem;font-weight:600;margin-bottom:.3rem}
 .pillar p{color:rgba(255,255,255,.42);font-size:.8rem;line-height:1.7}
 .sust-img{position:relative}
-.sust-img-inner{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:3/4}
-.sust-img-inner img{width:100%;height:100%;object-fit:cover}
-.sust-img-inner::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,21,36,.5),transparent 50%)}
+/* iOS FIX: aspect-ratio fallback */
+.sust-img-inner{position:relative;border-radius:16px;overflow:hidden;padding-top:133.33%;height:0} /* 3:4 ratio */
+.sust-img-inner img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.sust-img-inner::after{content:'';position:absolute;inset:0;background:-webkit-linear-gradient(top,transparent 50%,rgba(8,21,36,.5));background:linear-gradient(to top,rgba(8,21,36,.5),transparent 50%)}
 .sust-stat{position:absolute;bottom:-1.5rem;left:-1.5rem;background:var(--ouro);border-radius:12px;padding:1.2rem 1.5rem;box-shadow:0 20px 60px rgba(196,154,60,.3);display:none}
 @media(min-width:640px){.sust-stat{display:block}}
 .sust-stat .num{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:#fff;line-height:1}
@@ -237,44 +259,47 @@ nav.desktop{display:none;align-items:center;gap:2rem}
 #cta-band .glow-l{width:280px;height:280px;bottom:-80px;left:-80px}
 #cta-band .inner{position:relative;max-width:700px;margin:0 auto;padding:0 1.5rem;text-align:center}
 @media(min-width:640px){#cta-band .inner{padding:0 2.5rem}}
-#cta-band .section-eyebrow{justify-content:center}
+#cta-band .section-eyebrow{-webkit-justify-content:center;justify-content:center}
 #cta-band .section-eyebrow .rule{background:rgba(196,154,60,.4)}
 #cta-band .section-title{color:#fff}
 #cta-band p{color:rgba(255,255,255,.62);line-height:1.75;margin-top:1rem;font-size:1rem}
-.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--verde);font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:8px;text-decoration:none;margin-top:2.2rem;box-shadow:0 8px 32px rgba(0,0,0,.15);transition:background .3s,transform .3s,box-shadow .3s}
-.btn-white:hover{background:var(--creme);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.2)}
+.btn-white{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.6rem;background:#fff;color:var(--verde);font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:8px;text-decoration:none;margin-top:2.2rem;box-shadow:0 8px 32px rgba(0,0,0,.15);transition:background .3s,-webkit-transform .3s,transform .3s,box-shadow .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn-white:hover{background:var(--creme);-webkit-transform:translateY(-3px);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.2)}
 
 /* ── NOTÍCIAS CARROSSEL ── */
 #noticias{padding:6rem 0;background:var(--creme)}
 @media(min-width:768px){#noticias{padding:8rem 0}}
 #noticias .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
 @media(min-width:640px){#noticias .inner{padding:0 2.5rem}}
-.noticias-header{display:flex;flex-direction:column;gap:1.2rem;margin-bottom:3rem}
-@media(min-width:768px){.noticias-header{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.noticias-header{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:1.2rem;margin-bottom:3rem}
+@media(min-width:768px){.noticias-header{-webkit-flex-direction:row;flex-direction:row;-webkit-align-items:flex-end;align-items:flex-end;-webkit-justify-content:space-between;justify-content:space-between}}
 .noticias-header .section-title{color:var(--carvao)}
-.carousel-controls{display:flex;align-items:center;gap:.7rem}
-.carousel-btn{width:42px;height:42px;border-radius:50%;border:1px solid rgba(17,17,16,.18);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--carvao);font-size:.82rem;transition:background .3s,color .3s,border-color .3s;-webkit-tap-highlight-color:transparent}
+.carousel-controls{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.7rem}
+.carousel-btn{width:42px;height:42px;border-radius:50%;border:1px solid rgba(17,17,16,.18);background:none;cursor:pointer;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;color:var(--carvao);font-size:.82rem;transition:background .3s,color .3s,border-color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .carousel-btn:hover{background:var(--verde);color:#fff;border-color:var(--verde)}
 .carousel-count{font-size:.82rem;font-weight:600;color:var(--carvao);min-width:2.8rem;text-align:center}
 .carousel-viewport{overflow:hidden;border-radius:16px}
-.carousel-track{display:flex;transition:transform .55s var(--ease)}
-.noticia-card{background:var(--branco);border:1px solid #E5E1D8;border-radius:0;overflow:hidden;flex:0 0 100%;width:100%;display:grid;grid-template-columns:1fr}
+/* iOS FIX: -webkit-overflow-scrolling e will-change para melhor performance */
+.carousel-track{display:-webkit-flex;display:flex;transition:-webkit-transform .55s var(--ease);transition:transform .55s var(--ease);-webkit-overflow-scrolling:touch;will-change:transform}
+.noticia-card{background:var(--branco);border:1px solid #E5E1D8;border-radius:0;overflow:hidden;-webkit-flex:0 0 100%;flex:0 0 100%;width:100%;display:-webkit-grid;display:grid;grid-template-columns:1fr}
 @media(min-width:640px){.noticia-card{grid-template-columns:1fr 1fr;border-radius:16px}}
 .noticia-card .n-img{position:relative;overflow:hidden;min-height:200px}
 @media(min-width:640px){.noticia-card .n-img{min-height:340px}}
-.noticia-card .n-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.noticia-card:hover .n-img img{transform:scale(1.04)}
+.noticia-card .n-img img{width:100%;height:100%;object-fit:cover;transition:-webkit-transform .6s var(--ease);transition:transform .6s var(--ease)}
+.noticia-card:hover .n-img img{-webkit-transform:scale(1.04);transform:scale(1.04)}
 .noticia-card .n-cat{position:absolute;bottom:.75rem;left:.75rem;background:var(--verde);color:#fff;font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .7rem;border-radius:100px}
-.noticia-card .n-body{padding:2rem;display:flex;flex-direction:column;justify-content:center}
+.noticia-card .n-body{padding:2rem;display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-justify-content:center;justify-content:center}
 @media(min-width:640px){.noticia-card .n-body{padding:2.5rem}}
 .noticia-card .n-date{font-size:.7rem;color:#aaa;margin-bottom:.45rem}
 .noticia-card .n-title{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2.5vw,1.75rem);font-weight:700;color:var(--carvao);line-height:1.3}
 .noticia-card .n-desc{font-size:.88rem;color:#666;line-height:1.75;margin-top:.9rem}
-.noticia-card .n-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:600;color:var(--verde);text-decoration:none;margin-top:1.3rem;transition:gap .3s}
+.noticia-card .n-link{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.4rem;font-size:.76rem;font-weight:600;color:var(--verde);text-decoration:none;margin-top:1.3rem;transition:gap .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .noticia-card .n-link:hover{gap:.7rem}
-.carousel-dots{display:flex;justify-content:center;gap:.45rem;margin-top:1.5rem}
-.c-dot{width:7px;height:7px;border-radius:50%;background:rgba(17,17,16,.14);border:none;cursor:pointer;transition:background .3s,transform .3s;padding:0;-webkit-tap-highlight-color:transparent}
-.c-dot.active{background:var(--verde);transform:scale(1.3)}
+.carousel-dots{display:-webkit-flex;display:flex;-webkit-justify-content:center;justify-content:center;gap:.45rem;margin-top:1.5rem}
+.c-dot{width:7px;height:7px;border-radius:50%;background:rgba(17,17,16,.14);border:none;cursor:pointer;transition:background .3s,-webkit-transform .3s;transition:background .3s,transform .3s;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;/* iOS: aumentar área de toque */min-width:28px;min-height:28px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;background-clip:content-box}
+/* Recriar o ponto visual dentro do botão maior */
+.c-dot::after{content:'';width:7px;height:7px;border-radius:50%;background:rgba(17,17,16,.14);transition:background .3s,-webkit-transform .3s;transition:background .3s,transform .3s;display:block;-webkit-flex-shrink:0;flex-shrink:0}
+.c-dot.active::after{background:var(--verde);-webkit-transform:scale(1.3);transform:scale(1.3)}
 
 /* ── CONTACTO ── */
 #contacto{padding:6rem 0;background:var(--carvao)}
@@ -282,22 +307,23 @@ nav.desktop{display:none;align-items:center;gap:2rem}
 #contacto .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
 @media(min-width:640px){#contacto .inner{padding:0 2.5rem}}
 #contacto .section-header-center .section-title{color:#fff}
-.contact-grid{display:grid;gap:3.5rem}
+.contact-grid{display:-webkit-grid;display:grid;gap:3.5rem}
 @media(min-width:1024px){.contact-grid{grid-template-columns:1fr 1fr;gap:4rem}}
-.contact-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:8px;padding:.82rem 1.05rem;color:#fff;font-family:'Outfit',sans-serif;font-size:.9rem;transition:border-color .3s,background .3s,box-shadow .3s;outline:none}
+/* iOS FIX: inputs precisam de font-size >= 16px para não dar zoom automático */
+.contact-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:8px;padding:.82rem 1.05rem;color:#fff;font-family:'Outfit',sans-serif;font-size:1rem; /* mínimo 16px no iOS */transition:border-color .3s,background .3s,box-shadow .3s;outline:none;-webkit-appearance:none;appearance:none}
 .contact-input::placeholder{color:rgba(255,255,255,.28)}
 .contact-input:focus{border-color:var(--verde-lt);background:rgba(255,255,255,.07);box-shadow:0 0 0 3px rgba(22,105,74,.2)}
 textarea.contact-input{resize:none}
 .contact-label{display:block;font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.5rem}
-.c2{display:grid;gap:1.1rem}
+.c2{display:-webkit-grid;display:grid;gap:1.1rem}
 @media(min-width:480px){.c2{grid-template-columns:1fr 1fr}}
-.btn-submit{width:100%;background:var(--verde);color:#fff;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:1rem;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .3s,transform .3s;-webkit-tap-highlight-color:transparent}
-.btn-submit:hover{background:var(--verde-lt);transform:translateY(-2px)}
+.btn-submit{width:100%;background:var(--verde);color:#fff;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:1rem;border-radius:8px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;gap:.5rem;transition:background .3s,-webkit-transform .3s;transition:background .3s,transform .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-appearance:none;appearance:none}
+.btn-submit:hover{background:var(--verde-lt);-webkit-transform:translateY(-2px);transform:translateY(-2px)}
 .form-success{display:none;text-align:center;padding:1rem;background:rgba(22,105,74,.2);border-radius:10px;color:var(--verde-lt);font-size:.88rem;font-weight:600}
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.info-grid{display:-webkit-grid;display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
 .info-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.1rem;transition:background .3s}
 .info-card:hover{background:rgba(255,255,255,.07)}
-.info-card-icon{width:36px;height:36px;border-radius:8px;background:rgba(13,74,51,.25);display:flex;align-items:center;justify-content:center;color:var(--verde-lt);font-size:.85rem;margin-bottom:.7rem}
+.info-card-icon{width:36px;height:36px;border-radius:8px;background:rgba(13,74,51,.25);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;color:var(--verde-lt);font-size:.85rem;margin-bottom:.7rem}
 .info-card-label{font-size:.62rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.12em}
 .info-card-value{font-size:.82rem;color:#fff;margin-top:.2rem;word-break:break-all}
 .map-wrap{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.07);margin-top:.9rem}
@@ -305,62 +331,103 @@ textarea.contact-input{resize:none}
 @media(min-width:640px){.map-wrap iframe{height:240px}}
 
 /* ── MODAL ── */
-#projectModal{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:200;padding:1rem}
-#projectModal.open{display:flex}
-#modalContent{background:var(--branco);width:100%;max-width:860px;border-radius:20px;overflow:hidden;transform:scale(.95) translateY(20px);opacity:0;transition:transform .4s var(--ease),opacity .4s;max-height:92dvh;overflow-y:auto}
-#projectModal.open #modalContent{transform:scale(1) translateY(0);opacity:1}
+/* iOS FIX: usar position fixed com inset explícito, sem top/bottom conflict */
+#projectModal{
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,.88);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  display:none;
+  -webkit-align-items:center;
+  align-items:center;
+  -webkit-justify-content:center;
+  justify-content:center;
+  z-index:200;
+  padding:1rem;
+  /* iOS FIX: safe area insets */
+  padding-bottom:calc(1rem + env(safe-area-inset-bottom));
+  -webkit-overflow-scrolling:touch;
+  overflow-y:auto;
+}
+#projectModal.open{display:-webkit-flex;display:flex}
+#modalContent{
+  background:var(--branco);
+  width:100%;
+  max-width:860px;
+  border-radius:20px;
+  overflow:hidden;
+  -webkit-transform:scale(.95) translateY(20px);
+  transform:scale(.95) translateY(20px);
+  opacity:0;
+  transition:-webkit-transform .4s var(--ease),transform .4s var(--ease),opacity .4s;
+  max-height:90vh;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+#projectModal.open #modalContent{-webkit-transform:scale(1) translateY(0);transform:scale(1) translateY(0);opacity:1}
 .modal-img-wrap{position:relative;height:250px}
 @media(min-width:640px){.modal-img-wrap{height:320px}}
 .modal-img-wrap img{width:100%;height:100%;object-fit:cover}
-.modal-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,16,.7),transparent 50%)}
-#closeModal{position:absolute;top:1rem;right:1rem;z-index:1;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.3);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:background .3s;-webkit-tap-highlight-color:transparent}
+.modal-img-wrap::after{content:'';position:absolute;inset:0;background:-webkit-linear-gradient(top,transparent 50%,rgba(17,17,16,.7));background:linear-gradient(to top,rgba(17,17,16,.7),transparent 50%)}
+#closeModal{position:absolute;top:1rem;right:1rem;z-index:1;width:44px;height:44px; /* iOS: min 44px tap target */border-radius:50%;background:rgba(0,0,0,.3);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;cursor:pointer;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;font-size:.82rem;transition:background .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 #closeModal:hover{background:rgba(255,255,255,.15)}
 .modal-title-wrap{position:absolute;bottom:1.2rem;left:1.5rem;z-index:1}
 #modalTitle{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:900;color:#fff}
 .modal-body{padding:1.5rem}
-@media(min-width:640px){.modal-body{display:grid;grid-template-columns:3fr 2fr;gap:2rem;padding:2.2rem}}
+@media(min-width:640px){.modal-body{display:-webkit-grid;display:grid;grid-template-columns:3fr 2fr;gap:2rem;padding:2.2rem}}
 .modal-desc-label{font-size:.65rem;color:#aaa;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.7rem}
 #modalDescription{color:#555;line-height:1.8;font-size:.92rem}
 .modal-sheet{background:var(--creme);border-radius:12px;padding:1.3rem;margin-top:1.5rem}
 @media(min-width:640px){.modal-sheet{margin-top:0}}
 .modal-sheet-title{font-size:.65rem;color:#aaa;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.9rem}
-.sheet-item{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid #E5E1D8}
+.sheet-item{display:-webkit-flex;display:flex;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;align-items:center;padding:.45rem 0;border-bottom:1px solid #E5E1D8}
 .sheet-item:last-child{border-bottom:none}
 .sheet-key{font-size:.8rem;color:#888}
 .sheet-val{font-size:.82rem;font-weight:600;color:var(--carvao)}
 .sheet-val.green{color:var(--verde)}
 
 /* ── FOOTER ── */
-footer{background:#090909;color:#555;padding-top:4.5rem}
+footer{background:#090909;color:#555;padding-top:4.5rem;padding-bottom:env(safe-area-inset-bottom)}
 footer .inner{max-width:1280px;margin:0 auto;padding:0 1.5rem}
 @media(min-width:640px){footer .inner{padding:0 2.5rem}}
-footer .footer-grid{display:grid;gap:2.5rem;padding-bottom:3.5rem}
+footer .footer-grid{display:-webkit-grid;display:grid;gap:2.5rem;padding-bottom:3.5rem}
 @media(min-width:640px){footer .footer-grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1024px){footer .footer-grid{grid-template-columns:2fr 1fr 1fr 1.5fr}}
 .footer-brand p{font-size:.82rem;line-height:1.75;margin-top:1rem;margin-bottom:1.4rem}
-.social-links{display:flex;gap:.55rem}
-.social-link{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;color:#555;font-size:.8rem;text-decoration:none;transition:background .3s,color .3s}
+.social-links{display:-webkit-flex;display:flex;gap:.55rem}
+.social-link{width:44px;height:44px; /* iOS: min 44px */border-radius:8px;background:rgba(255,255,255,.05);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;color:#555;font-size:.8rem;text-decoration:none;transition:background .3s,color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .social-link:hover{background:var(--verde);color:#fff}
 .footer-col h4{color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.2rem}
 .footer-links{list-style:none}
 .footer-links li{margin-bottom:.6rem}
-.footer-links a{color:#555;text-decoration:none;font-size:.82rem;transition:color .3s,padding-left .3s}
+.footer-links a{color:#555;text-decoration:none;font-size:.82rem;transition:color .3s,padding-left .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;display:inline-block;padding:.2rem 0} /* iOS: melhor área de toque */
 .footer-links a:hover{color:#fff;padding-left:4px}
-.footer-contact{display:flex;flex-direction:column;gap:.9rem}
-.fci{display:flex;align-items:flex-start;gap:.7rem;font-size:.82rem}
-.fci i{color:var(--ouro);margin-top:2px;flex-shrink:0;font-size:.75rem}
-.fci a{color:#555;text-decoration:none;transition:color .3s}
+.footer-contact{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:.9rem}
+.fci{display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start;gap:.7rem;font-size:.82rem}
+.fci i{color:var(--ouro);margin-top:2px;-webkit-flex-shrink:0;flex-shrink:0;font-size:.75rem}
+.fci a{color:#555;text-decoration:none;transition:color .3s;-webkit-tap-highlight-color:transparent}
 .fci a:hover{color:#fff}
-footer .bottom{border-top:1px solid rgba(255,255,255,.05);padding:1.6rem 0;display:flex;flex-direction:column;gap:.9rem;align-items:center;text-align:center}
-@media(min-width:768px){footer .bottom{flex-direction:row;justify-content:space-between;text-align:left}}
+footer .bottom{border-top:1px solid rgba(255,255,255,.05);padding:1.6rem 0;display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:.9rem;-webkit-align-items:center;align-items:center;text-align:center}
+@media(min-width:768px){footer .bottom{-webkit-flex-direction:row;flex-direction:row;-webkit-justify-content:space-between;justify-content:space-between;text-align:left}}
 footer .bottom p{font-size:.75rem}
-.legal-links{display:flex;gap:1.3rem;flex-wrap:wrap;justify-content:center}
-.legal-links a{font-size:.75rem;color:#444;text-decoration:none;transition:color .3s}
+.legal-links{display:-webkit-flex;display:flex;gap:1.3rem;-webkit-flex-wrap:wrap;flex-wrap:wrap;-webkit-justify-content:center;justify-content:center}
+.legal-links a{font-size:.75rem;color:#444;text-decoration:none;transition:color .3s;-webkit-tap-highlight-color:transparent;padding:.3rem 0}
 .legal-links a:hover{color:#fff}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideUp{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}
+@-webkit-keyframes fadeUp{from{opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px)}to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;-webkit-transform:translateY(20px);transform:translateY(20px)}to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}
+@-webkit-keyframes slideUp{from{opacity:0;-webkit-transform:translateY(100%);transform:translateY(100%)}to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}
+@keyframes slideUp{from{opacity:0;-webkit-transform:translateY(100%);transform:translateY(100%)}to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}}
 .hidden{display:none!important}
+
+/* iOS safe area padding para header */
+@supports(padding:max(0px)){
+  #cabecalho .inner{
+    padding-left:max(1.5rem,env(safe-area-inset-left));
+    padding-right:max(1.5rem,env(safe-area-inset-right));
+  }
+}
 </style>
 </head>
 <body>
@@ -370,7 +437,7 @@ footer .bottom p{font-size:.75rem}
 <header id="cabecalho">
   <div class="inner">
     <a href="#inicio" class="logo-wrap">
-      <div class="logo-mark"><img src="assets/imagens/logo.jpeg" alt="RPP"></div>
+      <div class="logo-mark"><img src="assets/imagens/logo.jpeg" alt="RPP" onerror="this.style.display='none';this.parentElement.style.background='var(--verde)'"></div>
       <div><span class="logo-name">RPP</span><span class="logo-tagline">Engenharia & Construção</span></div>
     </a>
     <nav class="desktop">
@@ -381,7 +448,7 @@ footer .bottom p{font-size:.75rem}
       <a href="#noticias" class="nav-link">Notícias</a>
       <a href="#contacto" class="nav-link">Contacto</a>
     </nav>
-    <div style="display:flex;align-items:center;gap:.9rem">
+    <div style="display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.9rem">
       <a href="#contacto" class="btn-proposta">Solicitar Proposta <i class="fa-solid fa-arrow-right" style="font-size:.6rem"></i></a>
       <button id="hamburger" aria-label="Menu" aria-expanded="false">
         <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
@@ -392,7 +459,7 @@ footer .bottom p{font-size:.75rem}
 
 <!-- MOBILE MENU -->
 <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu principal">
-  <nav style="display:flex;flex-direction:column;align-items:center;gap:.2rem">
+  <nav style="display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;gap:.2rem">
     <a href="#inicio" class="mobile-nav-link">Início</a>
     <a href="#sobre" class="mobile-nav-link">Sobre</a>
     <a href="#servicos" class="mobile-nav-link">Serviços</a>
@@ -411,14 +478,14 @@ footer .bottom p{font-size:.75rem}
   <div class="hero-inner">
     <br><br><br>
     <h1 class="hero-headline">
-        <span class="line"><span>Construindo</span></span>
-        <span class="line"><span class="outline">Infraestruturas</span></span>
-        <span class="line"><span>com Excelência</span></span>
+      <span class="line"><span>Construindo</span></span>
+      <span class="line"><span class="outline">Infraestruturas</span></span>
+      <span class="line"><span>com Excelência</span></span>
     </h1>
     <p class="hero-subtext">A RPP é uma construtora multinacional especializada em projetos de engenharia civil de grande escala. Entregamos soluções sólidas e duradouras para os setores público e privado.</p>
     <div class="hero-actions">
-        <a href="#projetos" class="btn-primary">Ver Projetos <i class="fa-solid fa-arrow-right arrow" style="font-size:.65rem"></i></a>
-        <a href="#contacto" class="btn-ghost">Solicitar Orçamento</a>
+      <a href="#projetos" class="btn-primary">Ver Projetos <i class="fa-solid fa-arrow-right arrow" style="font-size:.65rem"></i></a>
+      <a href="#contacto" class="btn-ghost">Solicitar Orçamento</a>
     </div>
     <p class="hero-eyebrow"><span class="dot"></span>Engenharia de Excelência · Desde 1999<span class="dot"></span></p>
     <div class="hero-stats">
@@ -441,7 +508,7 @@ footer .bottom p{font-size:.75rem}
         <div class="img-badge"><div class="num">25</div><div class="lbl">Anos de<br>Experiência</div></div>
         <div class="img-accent"></div>
       </div>
-      <div class="sobre-content reveal" style="transition-delay:.12s">
+      <div class="sobre-content reveal" style="-webkit-transition-delay:.12s;transition-delay:.12s">
         <div class="section-eyebrow"><div class="rule"></div><span>Quem Somos</span></div>
         <h2 class="section-title">Sólida, experiente e preparada para os maiores desafios</h2>
         <p class="sobre-desc">A RPP Engenharia e Construção Civil orgulha-se de um historial de sucesso na execução de infraestruturas críticas. Com presença internacional, a nossa abordagem foca-se na qualidade intransigente e no cumprimento rigoroso de prazos.</p>
@@ -468,12 +535,12 @@ footer .bottom p{font-size:.75rem}
       <p>Portefólio abrangente de serviços de engenharia e construção, adaptado às exigências de projetos de grande escala.</p>
     </div>
     <div class="servicos-grid">
-      <div class="servico-card reveal" style="transition-delay:.05s"><div class="servico-icon"><i class="fa-solid fa-building"></i></div><h4 class="servico-title">Edificação Corporativa</h4><p class="servico-desc">Construção de edifícios de escritórios, sedes empresariais e centros logísticos modernos e eficientes.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
-      <div class="servico-card reveal" style="transition-delay:.1s"><div class="servico-icon"><i class="fa-solid fa-road"></i></div><h4 class="servico-title">Infraestruturas Públicas</h4><p class="servico-desc">Vias rodoviárias, pontes, viadutos e redes de saneamento com o mais rigoroso padrão técnico.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
-      <div class="servico-card reveal" style="transition-delay:.15s"><div class="servico-icon"><i class="fa-solid fa-helmet-safety"></i></div><h4 class="servico-title">Obras Industriais</h4><p class="servico-desc">Parques industriais, fábricas e instalações complexas com especificações técnicas de alto nível.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
-      <div class="servico-card reveal" style="transition-delay:.2s"><div class="servico-icon"><i class="fa-solid fa-leaf"></i></div><h4 class="servico-title">Construção Sustentável</h4><p class="servico-desc">Soluções com certificação verde, eficiência energética e menor impacto ambiental em cada projeto.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
-      <div class="servico-card reveal" style="transition-delay:.25s"><div class="servico-icon"><i class="fa-solid fa-wrench"></i></div><h4 class="servico-title">Reabilitação e Renovação</h4><p class="servico-desc">Requalificação de edifícios e infraestruturas existentes, alargando a vida útil e valor patrimonial.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
-      <div class="servico-card featured reveal" style="transition-delay:.3s"><div class="servico-icon feat-icon"><i class="fa-solid fa-compass-drafting"></i></div><h4 class="servico-title">Consultoria & Projetos</h4><p class="servico-desc">Estudos de viabilidade, projetos de execução e acompanhamento técnico especializado.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
+      <div class="servico-card reveal" style="-webkit-transition-delay:.05s;transition-delay:.05s"><div class="servico-icon"><i class="fa-solid fa-building"></i></div><h4 class="servico-title">Edificação Corporativa</h4><p class="servico-desc">Construção de edifícios de escritórios, sedes empresariais e centros logísticos modernos e eficientes.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
+      <div class="servico-card reveal" style="-webkit-transition-delay:.1s;transition-delay:.1s"><div class="servico-icon"><i class="fa-solid fa-road"></i></div><h4 class="servico-title">Infraestruturas Públicas</h4><p class="servico-desc">Vias rodoviárias, pontes, viadutos e redes de saneamento com o mais rigoroso padrão técnico.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
+      <div class="servico-card reveal" style="-webkit-transition-delay:.15s;transition-delay:.15s"><div class="servico-icon"><i class="fa-solid fa-helmet-safety"></i></div><h4 class="servico-title">Obras Industriais</h4><p class="servico-desc">Parques industriais, fábricas e instalações complexas com especificações técnicas de alto nível.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
+      <div class="servico-card reveal" style="-webkit-transition-delay:.2s;transition-delay:.2s"><div class="servico-icon"><i class="fa-solid fa-leaf"></i></div><h4 class="servico-title">Construção Sustentável</h4><p class="servico-desc">Soluções com certificação verde, eficiência energética e menor impacto ambiental em cada projeto.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
+      <div class="servico-card reveal" style="-webkit-transition-delay:.25s;transition-delay:.25s"><div class="servico-icon"><i class="fa-solid fa-wrench"></i></div><h4 class="servico-title">Reabilitação e Renovação</h4><p class="servico-desc">Requalificação de edifícios e infraestruturas existentes, alargando a vida útil e valor patrimonial.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
+      <div class="servico-card featured reveal" style="-webkit-transition-delay:.3s;transition-delay:.3s"><div class="servico-icon feat-icon"><i class="fa-solid fa-compass-drafting"></i></div><h4 class="servico-title">Consultoria & Projetos</h4><p class="servico-desc">Estudos de viabilidade, projetos de execução e acompanhamento técnico especializado.</p><a href="#contacto" class="servico-link">Saber mais <i class="fa-solid fa-arrow-right" style="font-size:.62rem"></i></a></div>
     </div>
   </div>
 </section>
@@ -516,7 +583,7 @@ footer .bottom p{font-size:.75rem}
           <div class="pillar"><div class="pillar-icon"><i class="fa-solid fa-award"></i></div><div><h4>Certificações Internacionais</h4><p>ISO 9001, ISO 14001 e OHSAS 18001 asseguram os mais elevados padrões de qualidade e ambiente.</p></div></div>
         </div>
       </div>
-      <div class="sust-img reveal" style="transition-delay:.15s">
+      <div class="sust-img reveal" style="-webkit-transition-delay:.15s;transition-delay:.15s">
         <div class="sust-img-inner">
           <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80" alt="Construção sustentável" loading="lazy">
         </div>
@@ -546,13 +613,13 @@ footer .bottom p{font-size:.75rem}
         <div class="section-eyebrow"><div class="rule"></div><span>Atualizações RPP</span></div>
         <h2 class="section-title">Notícias e Publicações</h2>
       </div>
-      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+      <div style="display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:1rem;-webkit-flex-wrap:wrap;flex-wrap:wrap">
         <div class="carousel-controls">
           <button id="noticias-prev" class="carousel-btn" aria-label="Anterior"><i class="fa-solid fa-arrow-left"></i></button>
           <span class="carousel-count"><span id="slide-atual">1</span> / <span id="slide-total">1</span></span>
           <button id="noticias-next" class="carousel-btn" aria-label="Próxima"><i class="fa-solid fa-arrow-right"></i></button>
         </div>
-        <a href="noticias/show.html" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:600;color:var(--verde);text-decoration:none;letter-spacing:.08em;border:1px solid var(--verde);padding:.42rem 1rem;border-radius:100px;transition:background .3s,color .3s">Ver Todas <i class="fa-solid fa-arrow-right" style="font-size:.6rem"></i></a>
+        <a href="noticias/show.html" style="display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.4rem;font-size:.72rem;font-weight:600;color:var(--verde);text-decoration:none;letter-spacing:.08em;border:1px solid var(--verde);padding:.42rem 1rem;border-radius:100px;transition:background .3s,color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation">Ver Todas <i class="fa-solid fa-arrow-right" style="font-size:.6rem"></i></a>
       </div>
     </div>
     <div class="carousel-viewport reveal">
@@ -571,21 +638,21 @@ footer .bottom p{font-size:.75rem}
     </div>
     <div class="contact-grid">
       <div class="reveal">
-        <form id="formulario-contacto" style="display:flex;flex-direction:column;gap:1rem">
+        <form id="formulario-contacto" style="display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:1rem">
           <div class="c2">
-            <div><label class="contact-label">Empresa / Entidade</label><input type="text" placeholder="A sua empresa..." class="contact-input"></div>
-            <div><label class="contact-label">Pessoa de Contacto</label><input type="text" placeholder="O seu nome..." class="contact-input"></div>
+            <div><label class="contact-label">Empresa / Entidade</label><input type="text" placeholder="A sua empresa..." class="contact-input" autocomplete="organization"></div>
+            <div><label class="contact-label">Pessoa de Contacto</label><input type="text" placeholder="O seu nome..." class="contact-input" autocomplete="name"></div>
           </div>
           <div class="c2">
-            <div><label class="contact-label">E-mail</label><input type="email" placeholder="email@empresa.com" class="contact-input"></div>
-            <div><label class="contact-label">Telefone</label><input type="tel" placeholder="+244..." class="contact-input"></div>
+            <div><label class="contact-label">E-mail</label><input type="email" placeholder="email@empresa.com" class="contact-input" autocomplete="email" inputmode="email"></div>
+            <div><label class="contact-label">Telefone</label><input type="tel" placeholder="+244..." class="contact-input" autocomplete="tel" inputmode="tel"></div>
           </div>
           <div><label class="contact-label">Assunto / Detalhes do Projeto</label><textarea rows="5" placeholder="Descreva brevemente o projeto..." class="contact-input"></textarea></div>
           <button type="submit" id="btn-enviar" class="btn-submit"><i class="fa-solid fa-paper-plane"></i> Enviar Mensagem</button>
           <div id="form-success" class="form-success"><i class="fa-solid fa-check-circle" style="margin-right:.4rem"></i>Mensagem enviada! Entraremos em contacto brevemente.</div>
         </form>
       </div>
-      <div class="reveal" style="transition-delay:.12s;display:flex;flex-direction:column;gap:1rem">
+      <div class="reveal" style="-webkit-transition-delay:.12s;transition-delay:.12s;display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:1rem">
         <div class="info-grid">
           <div class="info-card"><div class="info-card-icon"><i class="fa-solid fa-envelope"></i></div><div class="info-card-label">Email</div><div class="info-card-value">geral@rppengenharia.com</div></div>
           <div class="info-card"><div class="info-card-icon"><i class="fa-solid fa-phone"></i></div><div class="info-card-label">Telefone</div><div class="info-card-value">+244 900 000 000</div></div>
@@ -600,7 +667,7 @@ footer .bottom p{font-size:.75rem}
   </div>
 </section>
 
-<!-- MODAL -->
+<!-- MODAL PROJETO -->
 <div id="projectModal" role="dialog" aria-modal="true" aria-label="Detalhe do projeto">
   <div id="modalContent">
     <div class="modal-img-wrap">
@@ -627,7 +694,7 @@ footer .bottom p{font-size:.75rem}
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#inicio" class="logo-wrap">
-          <div class="logo-mark"><img src="assets/imagens/logo.jpeg" alt="RPP"></div>
+          <div class="logo-mark"><img src="assets/imagens/logo.jpeg" alt="RPP" onerror="this.style.display='none'"></div>
           <div><span class="logo-name">RPP</span><span class="logo-tagline">Engenharia & Construção</span></div>
         </a>
         <p>Excelência na construção de infraestruturas, garantindo solidez, inovação e rigoroso cumprimento de prazos desde 1999.</p>
@@ -670,18 +737,74 @@ footer .bottom p{font-size:.75rem}
 </footer>
 
 <script>
+/* =====================================================
+   RPP ENGENHARIA – index.html
+   iOS/Safari FIXED VERSION
+   ===================================================== */
 (function(){
 'use strict';
-const PASS='rpp2026';
-const NEWS_KEY='rpp_noticias_v3';
-const PROJ_KEY='rpp_projetos_v3';
-const DEF_NEWS=[
-  {id:'n1',titulo:'RPP conclui obra de referência em Luanda',resumo:'A empresa entregou mais um projeto de excelência dentro do prazo e orçamento previstos, reforçando a sua posição como líder no mercado angolano.',categoria:'Institucional',data:'2024-03-15',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=70'},
-  {id:'n2',titulo:'Novo contrato de infraestrutura no Norte de Angola',resumo:'RPP assinou contrato para construção de rede rodoviária de 85 km em Malanje, num dos maiores projetos de infraestrutura do país.',categoria:'Infraestrutura',data:'2024-02-10',img:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=900&q=70'},
-  {id:'n3',titulo:'Certificação ISO 14001 renovada com distinção',resumo:'A RPP renovou com sucesso a certificação ambiental ISO 14001, reforçando o compromisso com a sustentabilidade e práticas de construção responsável.',categoria:'Sustentabilidade',data:'2024-01-22',img:'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=900&q=70'},
-  {id:'n4',titulo:'Expansão para o mercado europeu',resumo:'Com a abertura de escritório em Lisboa, a RPP consolida a sua presença internacional e abre portas para projetos em Portugal e Espanha.',categoria:'Institucional',data:'2024-04-05',img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=70'},
+
+// ── iOS FIX: hero height via JS ────────────────────────
+// Corrige o bug do Safari iOS onde 100vh inclui a barra de endereço
+function setHeroHeight(){
+  var hero = document.getElementById('inicio');
+  if(hero){
+    hero.style.minHeight = window.innerHeight + 'px';
+  }
+}
+setHeroHeight();
+// Atualizar quando orientação muda (iOS)
+window.addEventListener('orientationchange', function(){
+  setTimeout(setHeroHeight, 300);
+});
+// Não usar resize no iOS pois dispara ao scroll (barra de endereço)
+// Apenas em mudança real de tamanho
+var lastW = window.innerWidth;
+window.addEventListener('resize', function(){
+  if(window.innerWidth !== lastW){
+    lastW = window.innerWidth;
+    setHeroHeight();
+  }
+});
+
+// ── iOS FIX: scroll suave manual ──────────────────────
+// document.body.style.scrollBehavior não funciona bem em iOS
+function smoothScrollTo(target){
+  var el = document.querySelector(target);
+  if(!el) return;
+  var top = el.getBoundingClientRect().top + window.pageYOffset - 60;
+  // iOS Safari suporta scrollTo com behavior smooth a partir do iOS 15.4
+  // Usar feature detection
+  try {
+    window.scrollTo({top: top, behavior: 'smooth'});
+  } catch(e){
+    window.scrollTo(0, top);
+  }
+}
+
+// Interceptar todos os links de âncora
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var href = this.getAttribute('href');
+    if(href && href.length > 1 && href !== '#'){
+      e.preventDefault();
+      smoothScrollTo(href);
+    }
+  });
+});
+
+// ── CHAVES STORAGE ─────────────────────────────────────
+var KEYS = {news:'rpp_news', projects:'rpp_projects', ads:'rpp_ads', adsImgs:'rpp_ads_imgs'};
+
+// ── DADOS PADRÃO ──────────────────────────────────────
+var DEF_NEWS = [
+  {id:'n1',titulo:'RPP conclui obra de referência em Luanda',resumo:'A empresa entregou mais um projeto de excelência dentro do prazo e orçamento previstos, reforçando a sua posição como líder no mercado angolano.',content:'A RPP Engenharia concluiu com sucesso mais uma obra de referência em Luanda. O projeto foi entregue dentro do prazo e do orçamento previstos, demonstrando a capacidade técnica e organizacional da empresa.\n\nA obra envolveu uma equipa multidisciplinar de mais de 120 profissionais e incorporou as mais recentes tecnologias de construção sustentável.\n\nO cliente manifestou total satisfação com os resultados obtidos, destacando a qualidade de execução e a eficiência na gestão do projeto.',categoria:'Institucional',data:'2024-03-15',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=70'},
+  {id:'n2',titulo:'Novo contrato de infraestrutura no Norte de Angola',resumo:'RPP assinou contrato para construção de rede rodoviária de 85 km em Malanje, num dos maiores projetos de infraestrutura do país.',content:'A RPP Engenharia assinou um contrato de grande envergadura para a construção de uma rede rodoviária de 85 km na província de Malanje.\n\nO projeto inclui a construção de 4 pontes, sistemas de drenagem avançados e sinalização inteligente. A execução está prevista para 24 meses.\n\nEsta obra vai melhorar significativamente a conectividade da região Norte de Angola, beneficiando centenas de milhares de habitantes.',categoria:'Infraestrutura',data:'2024-02-10',img:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=900&q=70'},
+  {id:'n3',titulo:'Certificação ISO 14001 renovada com distinção',resumo:'A RPP renovou com sucesso a certificação ambiental ISO 14001, reforçando o compromisso com a sustentabilidade e práticas de construção responsável.',content:'A RPP Engenharia renovou com distinção a sua certificação ISO 14001, que atesta o compromisso da empresa com a gestão ambiental responsável.\n\nA auditoria destacou as melhorias implementadas nos processos de gestão de resíduos, redução de emissões e uso eficiente de recursos.\n\nEsta renovação reflete o investimento contínuo da RPP em práticas de construção sustentável e responsabilidade ambiental.',categoria:'Sustentabilidade',data:'2024-01-22',img:'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=900&q=70'},
+  {id:'n4',titulo:'Expansão para o mercado europeu',resumo:'Com a abertura de escritório em Lisboa, a RPP consolida a sua presença internacional e abre portas para projetos em Portugal e Espanha.',content:'A RPP Engenharia confirmou a abertura de um novo escritório em Lisboa, marcando o início da sua expansão para o mercado europeu.\n\nA presença em Portugal permitirá à empresa concorrer a projetos de grande envergadura em Portugal, Espanha e outros países da União Europeia.\n\nA nova delegação contará inicialmente com uma equipa de 15 profissionais especializados nas áreas de engenharia civil e gestão de projetos.',categoria:'Institucional',data:'2024-04-05',img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=70'},
 ];
-const DEF_PROJ=[
+
+var DEF_PROJECTS = [
   {id:'p1',titulo:'Torre Financeira Global',categoria:'edificacao',local:'Lisboa, Portugal',ano:'2023',dim:'45.000 m²',desc:'Edifício corporativo de alto padrão com arquitetura contemporânea, eficiência energética e tecnologia sustentável integrada.',img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80'},
   {id:'p2',titulo:'Ponte do Estuário',categoria:'infraestrutura',local:'Porto, Portugal',ano:'2022',dim:'1.2 km',desc:'Projeto de infraestrutura moderna concebido para melhorar a mobilidade urbana e fortalecer a conectividade regional.',img:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80'},
   {id:'p3',titulo:'Campus Tecnológico Verde',categoria:'sustentavel',local:'Madrid, Espanha',ano:'2024',dim:'12.000 m²',desc:'Complexo tecnológico sustentável com soluções de energia renovável e certificação LEED Gold.',img:'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80'},
@@ -690,148 +813,299 @@ const DEF_PROJ=[
   {id:'p6',titulo:'Anel Rodoviário Sul',categoria:'infraestrutura',local:'Benguela, Angola',ano:'2020',dim:'42 km',desc:'Via rodoviária de alta velocidade com 4 faixas, sinalização inteligente e sistemas de drenagem avançados.',img:'https://images.unsplash.com/photo-1768230130779-ae92d0935a94?auto=format&fit=crop&w=1200&q=80'},
 ];
 
-const load=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}};
-const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
-const fmtDate=s=>{try{return new Date(s).toLocaleDateString('pt-PT',{day:'2-digit',month:'long',year:'numeric'})}catch{return s||''}};
+// ── iOS FIX: localStorage seguro (modo privado iOS lança exceção) ──
+var _storage = {};
+function storageGet(k, def){
+  try {
+    var v = localStorage.getItem(k);
+    return v ? JSON.parse(v) : def;
+  } catch(e) {
+    return _storage[k] || def;
+  }
+}
+function storageSave(k, v){
+  try {
+    localStorage.setItem(k, JSON.stringify(v));
+  } catch(e) {
+    _storage[k] = v;
+  }
+}
 
-if(!localStorage.getItem(NEWS_KEY))save(NEWS_KEY,DEF_NEWS);
-if(!localStorage.getItem(PROJ_KEY))save(PROJ_KEY,DEF_PROJ);
+function fmtDate(s){
+  try {
+    return new Date(s).toLocaleDateString('pt-PT', {day:'2-digit', month:'long', year:'numeric'});
+  } catch(e) {
+    return s || '';
+  }
+}
 
-// ── SCROLL PROGRESS + HEADER ──
-const prog=document.getElementById('scroll-progress');
-const hdr=document.getElementById('cabecalho');
-window.addEventListener('scroll',()=>{
-  const p=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
-  prog.style.width=p+'%';
-  hdr.classList.toggle('scrolled',window.scrollY>60);
-},{passive:true});
+// Inicializar dados padrão
+if(!storageGet(KEYS.news, null)) storageSave(KEYS.news, DEF_NEWS);
+if(!storageGet(KEYS.projects, null)) storageSave(KEYS.projects, DEF_PROJECTS);
 
-// ── HAMBURGER ──
-const ham=document.getElementById('hamburger');
-const mob=document.getElementById('mobile-menu');
-ham.addEventListener('click',()=>{
-  const o=mob.classList.toggle('open');
-  ham.classList.toggle('open',o);
-  ham.setAttribute('aria-expanded',o);
-  document.body.style.overflow=o?'hidden':'';
+// ── SCROLL PROGRESS + HEADER ──────────────────────────
+var prog = document.getElementById('scroll-progress');
+var hdr = document.getElementById('cabecalho');
+
+// iOS FIX: usar requestAnimationFrame para melhor performance no scroll
+var ticking = false;
+window.addEventListener('scroll', function(){
+  if(!ticking){
+    window.requestAnimationFrame(function(){
+      var scrollH = document.documentElement.scrollHeight - window.innerHeight;
+      var p = scrollH > 0 ? (window.pageYOffset / scrollH * 100) : 0;
+      prog.style.width = p + '%';
+      hdr.classList.toggle('scrolled', window.pageYOffset > 60);
+      ticking = false;
+    });
+    ticking = true;
+  }
+}, {passive: true});
+
+// ── HAMBURGER ─────────────────────────────────────────
+var ham = document.getElementById('hamburger');
+var mob = document.getElementById('mobile-menu');
+ham.addEventListener('click', function(){
+  var o = mob.classList.toggle('open');
+  ham.classList.toggle('open', o);
+  ham.setAttribute('aria-expanded', String(o));
+  // iOS FIX: usar position fixed no body para bloquear scroll sem glitches
+  if(o){
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.position = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+  }
 });
-document.querySelectorAll('.mobile-nav-link,.mobile-cta').forEach(el=>el.addEventListener('click',()=>{
-  mob.classList.remove('open');ham.classList.remove('open');
-  ham.setAttribute('aria-expanded','false');document.body.style.overflow='';
-}));
 
-// ── REVEAL ──
-const ro=new IntersectionObserver(entries=>entries.forEach(e=>{
-  if(e.isIntersecting){e.target.classList.add('in-view');ro.unobserve(e.target);}
-}),{threshold:.08,rootMargin:'0px 0px -50px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+function closeMenu(){
+  mob.classList.remove('open');
+  ham.classList.remove('open');
+  ham.setAttribute('aria-expanded', 'false');
+  document.body.style.position = '';
+  document.body.style.width = '';
+  document.body.style.overflow = '';
+}
 
-// ── PROJECTS RENDER ──
+document.querySelectorAll('.mobile-nav-link, .mobile-cta').forEach(function(el){
+  el.addEventListener('click', closeMenu);
+});
+
+// ── REVEAL ────────────────────────────────────────────
+// iOS FIX: verificar suporte a IntersectionObserver
+if('IntersectionObserver' in window){
+  var ro = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        ro.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.08, rootMargin: '0px 0px -50px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ ro.observe(el); });
+} else {
+  // Fallback: mostrar todos os elementos imediatamente
+  document.querySelectorAll('.reveal').forEach(function(el){
+    el.classList.add('in-view');
+  });
+}
+
+// ── PROJECTS RENDER ───────────────────────────────────
+var catLabel = {edificacao:'Edificação', infraestrutura:'Infraestrutura', sustentavel:'Sustentável', industrial:'Industrial'};
+
 function renderProjects(){
-  const projs=load(PROJ_KEY,DEF_PROJ);
-  const grid=document.getElementById('projectsGrid');
-  // show first 3 on homepage
-  grid.innerHTML=projs.slice(0,3).map((p,i)=>`
-    <div class="project-card reveal" style="transition-delay:${i*.1}s" data-category="${p.categoria}" data-title="${p.titulo}" data-image="${p.img}" data-location="${p.local}" data-year="${p.ano}" data-dimension="${p.dim}" data-description="${p.desc}" data-id="${p.id}">
-      <div class="card-img">
-        <img src="${p.img}" alt="${p.titulo}" loading="lazy">
-        <div class="card-img-overlay"></div>
-        <span class="card-badge">${p.categoria.charAt(0).toUpperCase()+p.categoria.slice(1)}</span>
-        <button class="card-expand" aria-label="Ver projeto"><i class="fa-solid fa-expand"></i></button>
-      </div>
-      <div class="card-body">
-        <div class="card-meta"><h3 class="card-title">${p.titulo}</h3><span class="card-year">${p.ano}</span></div>
-        <p class="card-location"><i class="fa-solid fa-location-dot"></i> ${p.local}</p>
-        <div class="card-footer"><span class="card-dim-label">Dimensão</span><span class="card-dim-value">${p.dim}</span></div>
-      </div>
-    </div>`).join('');
-  grid.querySelectorAll('.project-card').forEach(c=>{
-    c.addEventListener('click',()=>openModal(c));
-    ro.observe(c);
+  var projs = storageGet(KEYS.projects, DEF_PROJECTS);
+  var grid = document.getElementById('projectsGrid');
+  grid.innerHTML = projs.slice(0, 3).map(function(p, i){
+    return '<div class="project-card reveal" style="-webkit-transition-delay:' + (i*.1) + 's;transition-delay:' + (i*.1) + 's"' +
+      ' data-category="' + p.categoria + '" data-title="' + p.titulo.replace(/"/g,'&quot;') + '" data-image="' + p.img + '"' +
+      ' data-location="' + p.local.replace(/"/g,'&quot;') + '" data-year="' + p.ano + '" data-dimension="' + p.dim.replace(/"/g,'&quot;') + '" data-description="' + p.desc.replace(/"/g,'&quot;') + '">' +
+      '<div class="card-img">' +
+      '<img src="' + p.img + '" alt="' + p.titulo.replace(/"/g,'&quot;') + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=60\'">' +
+      '<div class="card-img-overlay"></div>' +
+      '<span class="card-badge">' + (catLabel[p.categoria] || p.categoria) + '</span>' +
+      '<button class="card-expand" aria-label="Ver projeto"><i class="fa-solid fa-expand"></i></button>' +
+      '</div>' +
+      '<div class="card-body">' +
+      '<div class="card-meta"><h3 class="card-title">' + p.titulo + '</h3><span class="card-year">' + p.ano + '</span></div>' +
+      '<p class="card-location"><i class="fa-solid fa-location-dot"></i> ' + p.local + '</p>' +
+      '<div class="card-footer"><span class="card-dim-label">Dimensão</span><span class="card-dim-value">' + p.dim + '</span></div>' +
+      '</div>' +
+      '</div>';
+  }).join('');
+
+  grid.querySelectorAll('.project-card').forEach(function(c){
+    c.addEventListener('click', function(){ openModal(c); });
+    if('IntersectionObserver' in window && typeof ro !== 'undefined') ro.observe(c);
+    else c.classList.add('in-view');
   });
 }
 renderProjects();
 
-// ── FILTERS (homepage shows all) ──
-document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  // redirect to full page with filter
-  window.location.href=`projetos/detalhe.html?filter=${btn.dataset.filter}`;
-}));
+// ── FILTROS ───────────────────────────────────────────
+document.querySelectorAll('.filter-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var f = btn.dataset.filter;
+    window.location.href = 'projetos/detalhe.html' + (f === 'all' ? '' : '?filter=' + f);
+  });
+});
 
-// ── MODAL ──
-const modal=document.getElementById('projectModal');
+// ── MODAL PROJETO ────────────────────────────────────
+var modal = document.getElementById('projectModal');
+var _scrollY = 0;
+
 function openModal(c){
-  document.getElementById('modalImage').src=c.dataset.image||'';
-  document.getElementById('modalTitle').textContent=c.dataset.title||'';
-  document.getElementById('modalDescription').textContent=c.dataset.description||'';
-  document.getElementById('modalLocation').textContent=c.dataset.location||'';
-  document.getElementById('modalYear').textContent=c.dataset.year||'';
-  document.getElementById('modalDimension').textContent=c.dataset.dimension||'';
-  document.getElementById('modalCategory').textContent=c.dataset.category||'';
-  modal.classList.add('open');document.body.style.overflow='hidden';
+  document.getElementById('modalImage').src = c.dataset.image || '';
+  document.getElementById('modalTitle').textContent = c.dataset.title || '';
+  document.getElementById('modalDescription').textContent = c.dataset.description || '';
+  document.getElementById('modalLocation').textContent = c.dataset.location || '—';
+  document.getElementById('modalYear').textContent = c.dataset.year || '—';
+  document.getElementById('modalDimension').textContent = c.dataset.dimension || '—';
+  document.getElementById('modalCategory').textContent = catLabel[c.dataset.category] || c.dataset.category || '—';
+  modal.classList.add('open');
+  // iOS FIX: bloquear scroll sem position fixed glitch
+  _scrollY = window.pageYOffset;
+  document.body.style.position = 'fixed';
+  document.body.style.top = '-' + _scrollY + 'px';
+  document.body.style.width = '100%';
 }
-function closeM(){modal.classList.remove('open');document.body.style.overflow='';}
-document.getElementById('closeModal').addEventListener('click',closeM);
-modal.addEventListener('click',e=>{if(e.target===modal)closeM();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
 
-// ── NOTÍCIAS CARROSSEL ──
-let ci=0;
-const track=document.getElementById('noticias-track');
-const dots=document.getElementById('carousel-dots');
-const saEl=document.getElementById('slide-atual');
-const stEl=document.getElementById('slide-total');
+function closeModal(){
+  modal.classList.remove('open');
+  // iOS FIX: restaurar scroll position
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  window.scrollTo(0, _scrollY);
+}
+
+document.getElementById('closeModal').addEventListener('click', closeModal);
+modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+// ── NOTÍCIAS CARROSSEL ────────────────────────────────
+var ci = 0;
+var touchStartX = 0;
+var touchStartY = 0;
+var track = document.getElementById('noticias-track');
+var dotsEl = document.getElementById('carousel-dots');
+var saEl = document.getElementById('slide-atual');
+var stEl = document.getElementById('slide-total');
 
 function buildCarousel(){
-  const news=load(NEWS_KEY,DEF_NEWS);
-  if(!news.length){track.innerHTML='<p style="padding:2rem;color:#999">Sem publicações.</p>';return;}
-  track.innerHTML=news.map(n=>`
-    <article class="noticia-card">
-      <div class="n-img">
-        <img src="${n.img||'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=70'}" alt="${n.titulo}" loading="lazy">
-        <span class="n-cat">${n.categoria}</span>
-      </div>
-      <div class="n-body">
-        <p class="n-date">${fmtDate(n.data)}</p>
-        <h3 class="n-title">${n.titulo}</h3>
-        <p class="n-desc">${n.resumo}</p>
-        <a href="noticias/show.html" class="n-link">Ler mais <i class="fa-solid fa-arrow-right" style="font-size:.6rem"></i></a>
-      </div>
-    </article>`).join('');
-  dots.innerHTML=news.map((_,i)=>`<button class="c-dot${i===ci?' active':''}" data-i="${i}" aria-label="Slide ${i+1}"></button>`).join('');
-  dots.querySelectorAll('.c-dot').forEach(d=>d.addEventListener('click',()=>goTo(parseInt(d.dataset.i))));
-  stEl.textContent=news.length;
-  goTo(ci,false);
+  var news = storageGet(KEYS.news, DEF_NEWS);
+  if(!news || !news.length){
+    track.innerHTML = '<div style="padding:3rem;color:#aaa;text-align:center;font-size:.9rem">Sem publicações de momento.</div>';
+    return;
+  }
+  track.innerHTML = news.map(function(n){
+    var img = n.img || 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=70';
+    return '<article class="noticia-card">' +
+      '<div class="n-img">' +
+      '<img src="' + img + '" alt="' + (n.titulo||'').replace(/"/g,'&quot;') + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=70\'">' +
+      '<span class="n-cat">' + (n.categoria||'') + '</span>' +
+      '</div>' +
+      '<div class="n-body">' +
+      '<p class="n-date">' + fmtDate(n.data) + '</p>' +
+      '<h3 class="n-title">' + (n.titulo||'') + '</h3>' +
+      '<p class="n-desc">' + (n.resumo||'') + '</p>' +
+      '<a href="noticias/show.html" class="n-link">Ler mais <i class="fa-solid fa-arrow-right" style="font-size:.6rem"></i></a>' +
+      '</div>' +
+      '</article>';
+  }).join('');
+
+  dotsEl.innerHTML = news.map(function(_, i){
+    return '<button class="c-dot' + (i === 0 ? ' active' : '') + '" data-i="' + i + '" aria-label="Slide ' + (i+1) + '"></button>';
+  }).join('');
+
+  dotsEl.querySelectorAll('.c-dot').forEach(function(d){
+    d.addEventListener('click', function(){
+      goTo(parseInt(d.dataset.i));
+    });
+  });
+
+  stEl.textContent = news.length;
+  goTo(0, false);
 }
-function goTo(i,anim=true){
-  const n=load(NEWS_KEY,DEF_NEWS).length;
-  ci=(i+n)%n;
-  if(!anim){track.style.transition='none';}
-  track.style.transform=`translateX(-${ci*100}%)`;
-  if(!anim)requestAnimationFrame(()=>{track.style.transition='';});
-  saEl.textContent=ci+1;
-  dots.querySelectorAll('.c-dot').forEach((d,i)=>d.classList.toggle('active',i===ci));
+
+function goTo(i, anim){
+  if(anim === undefined) anim = true;
+  var news = storageGet(KEYS.news, DEF_NEWS);
+  var n = news ? news.length : 0;
+  if(!n) return;
+  ci = ((i % n) + n) % n;
+  if(!anim){
+    track.style.webkitTransition = 'none';
+    track.style.transition = 'none';
+  }
+  track.style.webkitTransform = 'translateX(-' + (ci * 100) + '%)';
+  track.style.transform = 'translateX(-' + (ci * 100) + '%)';
+  if(!anim){
+    // Forçar reflow antes de re-activar transição
+    track.offsetHeight; // eslint-disable-line
+    track.style.webkitTransition = '';
+    track.style.transition = '';
+  }
+  saEl.textContent = ci + 1;
+  dotsEl.querySelectorAll('.c-dot').forEach(function(d, idx){
+    d.classList.toggle('active', idx === ci);
+  });
 }
-document.getElementById('noticias-prev').addEventListener('click',()=>goTo(ci-1));
-document.getElementById('noticias-next').addEventListener('click',()=>goTo(ci+1));
-let tx=0;
-track.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
-track.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>45)goTo(dx<0?ci+1:ci-1);});
-let ap=setInterval(()=>goTo(ci+1),6000);
-[document.getElementById('noticias-prev'),document.getElementById('noticias-next')].forEach(b=>b.addEventListener('click',()=>{clearInterval(ap);ap=setInterval(()=>goTo(ci+1),6000);}));
+
+document.getElementById('noticias-prev').addEventListener('click', function(){ goTo(ci - 1); });
+document.getElementById('noticias-next').addEventListener('click', function(){ goTo(ci + 1); });
+
+// iOS FIX: Touch events robustos para o carrossel
+track.addEventListener('touchstart', function(e){
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, {passive: true});
+
+track.addEventListener('touchend', function(e){
+  var dx = e.changedTouches[0].clientX - touchStartX;
+  var dy = e.changedTouches[0].clientY - touchStartY;
+  // Só fazer swipe se movimento horizontal for dominante
+  if(Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 45){
+    goTo(dx < 0 ? ci + 1 : ci - 1);
+  }
+}, {passive: true});
+
+// Auto-avanço
+var ap = setInterval(function(){ goTo(ci + 1); }, 6000);
+function resetAutoPlay(){
+  clearInterval(ap);
+  ap = setInterval(function(){ goTo(ci + 1); }, 6000);
+}
+document.getElementById('noticias-prev').addEventListener('click', resetAutoPlay);
+document.getElementById('noticias-next').addEventListener('click', resetAutoPlay);
+
 buildCarousel();
 
-// ── CONTACT FORM ──
-document.getElementById('formulario-contacto')?.addEventListener('submit',function(e){
-  e.preventDefault();
-  const btn=document.getElementById('btn-enviar'),ok=document.getElementById('form-success');
-  btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> A enviar...';
-  setTimeout(()=>{btn.classList.add('hidden');ok.style.display='block';this.reset();
-    setTimeout(()=>{btn.classList.remove('hidden');ok.style.display='none';btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Enviar Mensagem';},5000);
-  },1200);
-});
+// ── FORMULÁRIO CONTACTO ───────────────────────────────
+var form = document.getElementById('formulario-contacto');
+if(form){
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = document.getElementById('btn-enviar');
+    var ok = document.getElementById('form-success');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> A enviar...';
+    setTimeout(function(){
+      btn.classList.add('hidden');
+      ok.style.display = 'block';
+      form.reset();
+      setTimeout(function(){
+        btn.classList.remove('hidden');
+        ok.style.display = 'none';
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar Mensagem';
+      }, 5000);
+    }, 1200);
+  });
+}
 
 })();
 </script>

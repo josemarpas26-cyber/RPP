@@ -2,360 +2,260 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projetos – RPP Engenharia e Construção Civil</title>
-<meta name="description" content="Portefólio completo de projetos de engenharia e construção civil da RPP.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Portefólio de Projetos – RPP Engenharia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root{
-  --verde:#0D4A33;--verde-md:#16694A;--verde-lt:#1E8A62;
-  --ouro:#C49A3C;--ouro-lt:#D9B55A;
-  --carvao:#111110;--carvao-md:#1C1C1A;
-  --creme:#F5F1EA;--branco:#FAFAF8;
-  --ease:cubic-bezier(0.16,1,0.3,1);
-}
+:root{--v:#0D4A33;--vm:#16694A;--vl:#1E8A62;--o:#C49A3C;--ol:#D9B55A;--c:#111110;--cm:#1C1C1A;--cr:#F5F1EA;--b:#FAFAF8;--ease:cubic-bezier(.16,1,.3,1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Outfit',sans-serif;color:var(--carvao);background:var(--branco);overflow-x:hidden}
+/* iOS FIX: não usar scroll-behavior no CSS — usar JS para compatibilidade */
+body{font-family:'Outfit',sans-serif;color:var(--c);background:var(--b);overflow-x:hidden;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--v);border-radius:4px}
 
 /* HEADER */
-header{background:rgba(17,17,16,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,154,60,.1);position:sticky;top:0;z-index:100}
-.hdr-inner{max-width:1280px;margin:0 auto;padding:.9rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
-@media(min-width:640px){.hdr-inner{padding:.9rem 2.5rem}}
-.logo-wrap{display:flex;align-items:center;gap:.65rem;text-decoration:none}
-.logo-mark{width:38px;height:38px;border-radius:8px;background:var(--verde);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
-.logo-mark img{width:38px;height:38px;object-fit:cover}
-.logo-name{display:block;font-family:'Bebas Neue',sans-serif;color:#fff;font-size:1.1rem;letter-spacing:.15em;line-height:1}
-.logo-tagline{display:block;color:rgba(255,255,255,.4);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;margin-top:3px}
-.hdr-actions{display:flex;align-items:center;gap:.75rem}
-.btn-back{display:inline-flex;align-items:center;gap:.45rem;color:rgba(255,255,255,.6);font-size:.73rem;font-weight:500;letter-spacing:.1em;text-decoration:none;transition:color .3s}
-.btn-back:hover{color:#fff}
-.btn-cta{display:inline-flex;align-items:center;gap:.4rem;background:var(--verde);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.52rem 1.15rem;border-radius:6px;text-decoration:none;transition:background .3s;white-space:nowrap}
-.btn-cta:hover{background:var(--verde-lt)}
+header{background:rgba(17,17,16,.97);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);position:-webkit-sticky;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(196,154,60,.12)}
+.hw{max-width:1320px;margin:0 auto;padding:.9rem 1.5rem;display:-webkit-flex;display:flex;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;align-items:center}
+@media(min-width:768px){.hw{padding:.95rem 2.5rem}}
+.lw{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.6rem}
+.lm{width:34px;height:34px;border-radius:7px;background:var(--v);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;-webkit-flex-shrink:0;flex-shrink:0;overflow:hidden}
+.lm img{width:34px;height:34px;object-fit:cover}
+.lm-txt{color:#fff;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.06em;display:none}
+.ln{display:block;font-family:'Bebas Neue',sans-serif;color:#fff;font-size:1.1rem;letter-spacing:.15em;line-height:1}
+.lt{display:block;color:rgba(255,255,255,.38);font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;margin-top:4px}
+.hbtn{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.45rem;background:var(--v);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1.25rem;border-radius:6px;transition:background .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.hbtn:hover{background:var(--vl)}
 
-/* HERO */
-.page-hero{position:relative;background:var(--carvao);padding:5rem 0 4rem;overflow:hidden}
-.page-hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=60') center/cover;opacity:.18}
-.page-hero-inner{position:relative;max-width:1280px;margin:0 auto;padding:0 1.5rem}
-@media(min-width:640px){.page-hero-inner{padding:0 2.5rem}}
-.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:1.5rem;flex-wrap:wrap}
-.breadcrumb a{color:rgba(255,255,255,.4);text-decoration:none;transition:color .3s}
-.breadcrumb a:hover{color:#fff}
-.breadcrumb .sep{color:rgba(255,255,255,.2)}
-.eyebrow{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
-.eyebrow .rule{height:1px;width:28px;background:var(--ouro);flex-shrink:0}
-.eyebrow span{font-size:.68rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ouro)}
-.page-title{font-family:'Playfair Display',serif;font-weight:900;color:#fff;font-size:clamp(2.5rem,6vw,5rem);line-height:1}
+/* HERO BANNER */
+.hero{background:var(--cm);padding:4rem 0 3rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=55') center center/cover;opacity:.1;pointer-events:none}
+.hero::after{content:'';position:absolute;inset:0;background:-webkit-linear-gradient(top,rgba(28,28,26,.65),rgba(28,28,26,.98));background:linear-gradient(to bottom,rgba(28,28,26,.65),rgba(28,28,26,.98));pointer-events:none}
+.hero-c{position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:0 1.5rem}
+@media(min-width:768px){.hero-c{padding:0 2.5rem}}
+.bc{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.5rem;font-size:.74rem;color:rgba(255,255,255,.42);margin-bottom:1.5rem;-webkit-flex-wrap:wrap;flex-wrap:wrap}
+.bc a{color:rgba(255,255,255,.42);transition:color .3s;-webkit-tap-highlight-color:transparent}.bc a:hover{color:#fff}
+.bc .sep{color:rgba(255,255,255,.18)}
+.ey{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.7rem;margin-bottom:1rem}
+.ey .r{height:1px;width:26px;background:var(--o);-webkit-flex-shrink:0;flex-shrink:0}
+.ey span{font-size:.64rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--o)}
+.hero-t{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.4rem,5.5vw,4.8rem);color:#fff;line-height:.95;margin-top:.5rem}
+.hero-sub{color:rgba(255,255,255,.52);font-size:.93rem;line-height:1.72;max-width:520px;margin-top:1rem}
+
+/* FILTER BAR */
+.filter-bar{background:var(--cr);border-bottom:1px solid #E8E4DB;padding:1.1rem 0;position:-webkit-sticky;position:sticky;top:55px;z-index:90}
+.filter-bar-inner{max-width:1320px;margin:0 auto;padding:0 1.5rem;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;gap:.42rem;-webkit-align-items:center;align-items:center;-webkit-justify-content:space-between;justify-content:space-between}
+@media(min-width:768px){.filter-bar-inner{padding:0 2.5rem}}
+.fb-group{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;gap:.42rem}
+.fb{border:1px solid #E8E4DB;color:#888;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.38rem .85rem;border-radius:100px;transition:all .3s;background:#fff;-webkit-tap-highlight-color:transparent;touch-action:manipulation;/* iOS: área de toque mínima */min-height:36px}
+.fb:hover{border-color:var(--v);color:var(--v)}
+.fb.a{background:var(--v);border-color:var(--v);color:#fff;font-weight:600}
+.count-lbl{font-size:.74rem;color:#aaa;white-space:nowrap}
+.count-lbl strong{color:var(--c)}
 
 /* MAIN */
-.main-inner{max-width:1280px;margin:0 auto;padding:3.5rem 1.5rem 6rem}
-@media(min-width:640px){.main-inner{padding:4rem 2.5rem 7rem}}
-
-/* FILTERS */
-.filters-bar{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:3rem}
-.filter-btn{background:none;border:1px solid #D8D4CB;color:#666;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.42rem .9rem;border-radius:100px;transition:all .3s;-webkit-tap-highlight-color:transparent}
-.filter-btn:hover{border-color:var(--verde);color:var(--verde)}
-.filter-btn.active{background:var(--verde);border-color:var(--verde);color:#fff;font-weight:600}
+.main{max-width:1320px;margin:0 auto;padding:3.5rem 1.5rem 5rem}
+@media(min-width:768px){.main{padding:4.5rem 2.5rem 6rem}}
 
 /* PROJECTS GRID */
-.projects-grid{display:grid;gap:1.2rem}
-@media(min-width:480px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.projects-grid{grid-template-columns:repeat(3,1fr)}}
-.project-card{background:#fff;border:1px solid #E8E4DC;border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .45s var(--ease),box-shadow .45s,border-color .3s}
-.project-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.12);border-color:#D9B55A}
-.card-img-wrap{position:relative;height:210px;overflow:hidden}
-@media(min-width:640px){.card-img-wrap{height:230px}}
-.card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .65s var(--ease),filter .4s;filter:brightness(.92)}
-.project-card:hover .card-img-wrap img{transform:scale(1.07);filter:brightness(.78)}
-.card-overlay{position:absolute;inset:0;background:rgba(13,74,51,.75);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .4s}
-.project-card:hover .card-overlay{opacity:1}
-.card-overlay span{color:#fff;font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:.5rem}
-.card-badge{position:absolute;top:.9rem;left:.9rem;background:rgba(13,74,51,.88);color:#fff;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .75rem;border-radius:100px}
-.card-body{padding:1.3rem 1.4rem 1.5rem}
-.card-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
-.card-title{font-size:.98rem;font-weight:600;color:var(--carvao);line-height:1.3}
-.card-year{font-family:'Bebas Neue',sans-serif;color:var(--ouro);font-size:.98rem;flex-shrink:0}
-.card-location{color:#999;font-size:.75rem;margin-top:.25rem}
-.card-location i{color:var(--ouro);font-size:.65rem;margin-right:.2rem}
-.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:.9rem;padding-top:.9rem;border-top:1px solid #F0EDE6}
-.card-dim-label{font-size:.62rem;color:#bbb;text-transform:uppercase;letter-spacing:.14em}
-.card-dim-value{font-size:.82rem;font-weight:600;color:var(--verde)}
-
-/* EMPTY STATE */
-.empty-state{text-align:center;padding:4rem 2rem;color:#aaa;grid-column:1/-1}
-.empty-state i{font-size:2.5rem;margin-bottom:1rem;display:block;color:#D8D4CB}
-.empty-state p{font-size:.9rem}
-
-/* ── ADMIN SECTION ── */
-#admin-section{background:var(--creme);border-top:1px solid #E5E1D8;padding:5rem 0}
-.admin-inner{max-width:900px;margin:0 auto;padding:0 1.5rem}
-@media(min-width:640px){.admin-inner{padding:0 2.5rem}}
-.admin-header{margin-bottom:2.5rem}
-.admin-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.65rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--ouro);margin-bottom:.75rem}
-.admin-tag .rule{height:1px;width:22px;background:var(--ouro)}
-.admin-h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--carvao);line-height:1.05}
-.admin-sub{color:#777;margin-top:.6rem;font-size:.88rem}
-
-/* LOGIN BOX */
-.auth-box{background:#fff;border:1px solid #E5E1D8;border-radius:16px;padding:2rem;max-width:480px}
-.auth-label{display:block;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:.5rem}
-.auth-row{display:flex;gap:.75rem;flex-wrap:wrap}
-.auth-input{flex:1;min-width:0;background:#FAFAF8;border:1px solid #D8D4CB;border-radius:8px;padding:.72rem 1rem;font-family:'Outfit',sans-serif;font-size:.9rem;color:var(--carvao);transition:border-color .3s,box-shadow .3s;outline:none}
-.auth-input:focus{border-color:var(--verde);box-shadow:0 0 0 3px rgba(13,74,51,.1)}
-.auth-btn{background:var(--verde);color:#fff;border:none;border-radius:8px;padding:.72rem 1.5rem;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .3s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
-.auth-btn:hover{background:var(--verde-md)}
-.auth-hint{font-size:.75rem;color:#aaa;margin-top:.65rem}
-.auth-hint strong{color:var(--carvao)}
-.auth-err{color:#e53e3e;font-size:.78rem;margin-top:.5rem;min-height:1.1rem}
-
-/* ADMIN PANEL */
-.admin-panel{display:flex;flex-direction:column;gap:1.5rem}
-.panel-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;padding-bottom:1.2rem;border-bottom:1px solid #E5E1D8}
-.panel-top h3{font-size:1rem;font-weight:600;color:var(--carvao)}
-.btn-logout{display:inline-flex;align-items:center;gap:.4rem;background:none;border:1px solid #D8D4CB;color:#777;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.08em;padding:.45rem 1rem;border-radius:6px;cursor:pointer;transition:background .3s,color .3s;-webkit-tap-highlight-color:transparent}
-.btn-logout:hover{background:#f5f0e8;color:var(--carvao)}
-
-/* FORM */
-.crud-form{background:#fff;border:1px solid #E5E1D8;border-radius:14px;padding:1.75rem}
-.crud-form h4{font-size:.95rem;font-weight:600;color:var(--carvao);margin-bottom:1.3rem;padding-bottom:.75rem;border-bottom:1px solid #F0EDE6}
-.form-grid{display:grid;gap:1rem}
-.form-row{display:grid;gap:1rem}
-@media(min-width:640px){.form-row.cols-2{grid-template-columns:1fr 1fr}}
-@media(min-width:640px){.form-row.cols-3{grid-template-columns:1fr 1fr 1fr}}
-.field label{display:block;font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:.45rem}
-.field input,.field select,.field textarea{width:100%;background:#FAFAF8;border:1px solid #D8D4CB;border-radius:8px;padding:.7rem 1rem;font-family:'Outfit',sans-serif;font-size:.88rem;color:var(--carvao);transition:border-color .3s,box-shadow .3s;outline:none}
-.field textarea{resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--verde);box-shadow:0 0 0 3px rgba(13,74,51,.1)}
-.img-preview-wrap{margin-top:.6rem;border-radius:10px;overflow:hidden;border:1px solid #E5E1D8;display:none}
-.img-preview-wrap img{width:100%;height:140px;object-fit:cover}
-.form-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.3rem;padding-top:1.1rem;border-top:1px solid #F0EDE6}
-.btn-save{display:inline-flex;align-items:center;gap:.45rem;background:var(--verde);color:#fff;border:none;font-family:'Outfit',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.72rem 1.5rem;border-radius:8px;cursor:pointer;transition:background .3s;-webkit-tap-highlight-color:transparent}
-.btn-save:hover{background:var(--verde-md)}
-.btn-save:disabled{opacity:.6;cursor:not-allowed}
-.btn-cancel{display:inline-flex;align-items:center;gap:.4rem;background:none;border:1px solid #D8D4CB;color:#777;font-family:'Outfit',sans-serif;font-size:.74rem;font-weight:500;letter-spacing:.08em;padding:.7rem 1.2rem;border-radius:8px;cursor:pointer;transition:background .3s;-webkit-tap-highlight-color:transparent}
-.btn-cancel:hover{background:#f5f0e8;color:var(--carvao)}
-
-/* LIST */
-.crud-list{background:#fff;border:1px solid #E5E1D8;border-radius:14px;padding:1.75rem}
-.crud-list h4{font-size:.95rem;font-weight:600;color:var(--carvao);margin-bottom:1.2rem;padding-bottom:.75rem;border-bottom:1px solid #F0EDE6}
-.list-items{display:flex;flex-direction:column;gap:.7rem}
-.list-item{display:flex;align-items:center;gap:1rem;padding:.9rem 1rem;background:var(--creme);border:1px solid #E5E1D8;border-radius:10px;transition:border-color .3s}
-.list-item:hover{border-color:#C8C4BB}
-.list-item-img{width:52px;height:52px;border-radius:8px;overflow:hidden;flex-shrink:0}
-.list-item-img img{width:100%;height:100%;object-fit:cover}
-.list-item-info{flex:1;min-width:0}
-.list-item-title{font-size:.88rem;font-weight:600;color:var(--carvao);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.list-item-meta{font-size:.72rem;color:#aaa;margin-top:.15rem}
-.list-item-actions{display:flex;gap:.45rem;flex-shrink:0}
-.icon-btn{width:32px;height:32px;border-radius:7px;border:none;background:#F0EDE6;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#666;transition:background .2s,color .2s;-webkit-tap-highlight-color:transparent}
-.icon-btn:hover{background:var(--verde);color:#fff}
-.icon-btn.del:hover{background:#e53e3e;color:#fff}
-.list-empty{text-align:center;padding:2rem;color:#bbb;font-size:.85rem}
+.pg{display:-webkit-grid;display:grid;gap:1.1rem}
+@media(min-width:540px){.pg{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.pg{grid-template-columns:repeat(3,1fr)}}
+.pc{background:#fff;border:1px solid #EAE6DE;border-radius:14px;overflow:hidden;cursor:pointer;transition:-webkit-transform .42s var(--ease),transform .42s var(--ease),box-shadow .42s}
+.pc:hover{-webkit-transform:translateY(-5px);transform:translateY(-5px);box-shadow:0 22px 55px rgba(0,0,0,.12)}
+/* iOS FIX: altura fixa em vez de aspect-ratio */
+.ciw{position:relative;height:230px;overflow:hidden}
+.ciw img{width:100%;height:100%;object-fit:cover;transition:-webkit-transform .7s var(--ease);transition:transform .7s var(--ease)}
+.pc:hover .ciw img{-webkit-transform:scale(1.07);transform:scale(1.07)}
+.cov{position:absolute;inset:0;background:rgba(13,74,51,.78);display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;opacity:0;transition:opacity .35s}
+.pc:hover .cov{opacity:1}
+/* iOS: mostrar overlay em dispositivos touch */
+@media(hover:none){.cov{opacity:1;background:rgba(13,74,51,.45)}}
+.cov span{color:#fff;font-size:.82rem;font-weight:600;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:.45rem}
+.cbg{position:absolute;top:.85rem;left:.85rem;background:rgba(13,74,51,.92);color:#fff;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.26rem .7rem;border-radius:100px;z-index:1}
+.cb{padding:1.1rem 1.25rem 1.3rem}
+.cm2{display:-webkit-flex;display:flex;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:flex-start;align-items:flex-start;gap:.5rem}
+.ctt{font-size:.95rem;font-weight:600;color:var(--c);line-height:1.3}
+.cy{font-family:'Bebas Neue',sans-serif;color:var(--o);font-size:.95rem;-webkit-flex-shrink:0;flex-shrink:0}
+.cloc{color:#aaa;font-size:.74rem;margin-top:.3rem}
+.cloc i{color:var(--o);font-size:.62rem;margin-right:.25rem}
+.cf{display:-webkit-flex;display:flex;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;align-items:center;margin-top:.9rem;padding-top:.9rem;border-top:1px solid #F0EDE6}
+.cdl{font-size:.6rem;color:#ccc;text-transform:uppercase;letter-spacing:.14em}
+.cdv{font-size:.82rem;font-weight:600;color:var(--v)}
+.no-results{text-align:center;padding:5rem 2rem;grid-column:1/-1;color:#ccc}
+.no-results i{font-size:2.8rem;display:block;margin-bottom:1rem;color:#e8e4db}
+.no-results p{font-size:.88rem;color:#aaa;line-height:1.65}
 
 /* MODAL */
-#projectModal{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:200;padding:1rem}
-#projectModal.open{display:flex}
-#modalContent{background:#fff;width:100%;max-width:860px;border-radius:20px;overflow:hidden;transform:scale(.95) translateY(20px);opacity:0;transition:transform .4s var(--ease),opacity .4s;max-height:92dvh;overflow-y:auto}
-#projectModal.open #modalContent{transform:scale(1) translateY(0);opacity:1}
-.modal-img-wrap{position:relative;height:250px}
-@media(min-width:640px){.modal-img-wrap{height:320px}}
-.modal-img-wrap img{width:100%;height:100%;object-fit:cover}
-.modal-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,16,.7),transparent 50%)}
-#closeModal{position:absolute;top:1rem;right:1rem;z-index:1;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.3);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:background .3s;-webkit-tap-highlight-color:transparent}
-#closeModal:hover{background:rgba(255,255,255,.15)}
-.modal-title-wrap{position:absolute;bottom:1.2rem;left:1.5rem;z-index:1}
-#modalTitle{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,3vw,2rem);font-weight:900;color:#fff}
-.modal-body{padding:1.5rem}
-@media(min-width:640px){.modal-body{display:grid;grid-template-columns:3fr 2fr;gap:2rem;padding:2.2rem}}
-.modal-desc-label{font-size:.62rem;color:#aaa;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.7rem}
-#modalDescription{color:#555;line-height:1.8;font-size:.92rem}
-.modal-sheet{background:var(--creme);border-radius:12px;padding:1.3rem;margin-top:1.5rem}
-@media(min-width:640px){.modal-sheet{margin-top:0}}
-.modal-sheet-title{font-size:.62rem;color:#aaa;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.9rem}
-.sheet-item{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid #E5E1D8}
-.sheet-item:last-child{border-bottom:none}
-.sheet-key{font-size:.8rem;color:#888}
-.sheet-val{font-size:.82rem;font-weight:600;color:var(--carvao)}
-.sheet-val.green{color:var(--verde)}
-
-/* CTA */
-.cta-section{background:var(--verde);padding:5rem 0;text-align:center}
-.cta-inner{max-width:640px;margin:0 auto;padding:0 1.5rem}
-.cta-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2rem,4vw,3rem);color:#fff}
-.cta-desc{color:rgba(255,255,255,.65);margin-top:.9rem;line-height:1.7;font-size:.95rem}
-.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--verde);font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:8px;text-decoration:none;margin-top:2rem;box-shadow:0 8px 32px rgba(0,0,0,.15);transition:background .3s,transform .3s}
-.btn-white:hover{background:var(--creme);transform:translateY(-3px)}
+/* iOS FIX: position fixed com top/bottom explícitos, sem inset shorthand */
+#md{
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,.87);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  display:none;
+  -webkit-align-items:center;
+  align-items:center;
+  -webkit-justify-content:center;
+  justify-content:center;
+  z-index:300;
+  padding:1.2rem;
+  padding-bottom:calc(1.2rem + env(safe-area-inset-bottom));
+  -webkit-overflow-scrolling:touch;
+  overflow-y:auto;
+}
+#md.o{display:-webkit-flex;display:flex}
+#mdc{
+  background:var(--b);
+  width:100%;
+  max-width:880px;
+  border-radius:20px;
+  overflow:hidden;
+  -webkit-transform:scale(.94) translateY(22px);
+  transform:scale(.94) translateY(22px);
+  opacity:0;
+  transition:-webkit-transform .42s var(--ease),transform .42s var(--ease),opacity .42s;
+  max-height:90vh;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+#md.o #mdc{-webkit-transform:scale(1) translateY(0);transform:scale(1) translateY(0);opacity:1}
+.miw{position:relative;height:250px}
+@media(min-width:700px){.miw{height:340px}}
+.miw img{width:100%;height:100%;object-fit:cover;display:block}
+.miw::after{content:'';position:absolute;inset:0;background:-webkit-linear-gradient(top,transparent 50%,rgba(17,17,16,.72));background:linear-gradient(to top,rgba(17,17,16,.72),transparent 50%)}
+/* iOS: botão de fechar com 44px mínimo */
+#cmd{position:absolute;top:.9rem;right:.9rem;z-index:1;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.32);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;font-size:.82rem;transition:background .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+#cmd:hover{background:rgba(255,255,255,.14)}
+.mtw{position:absolute;bottom:1.4rem;left:2rem;z-index:1}
+#mti{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:900;color:#fff}
+.mbd{padding:1.8rem}
+@media(min-width:700px){.mbd{display:-webkit-grid;display:grid;grid-template-columns:3fr 2fr;gap:2rem;padding:2.4rem}}
+.mdl{font-size:.64rem;color:#aaa;text-transform:uppercase;letter-spacing:.16em;margin-bottom:.72rem}
+#mde{color:#555;line-height:1.82;font-size:.9rem}
+.mss{background:var(--cr);border-radius:12px;padding:1.4rem}
+.msht{font-size:.64rem;color:#aaa;text-transform:uppercase;letter-spacing:.16em;margin-bottom:.95rem}
+.msi{display:-webkit-flex;display:flex;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;align-items:center;padding:.48rem 0;border-bottom:1px solid #E8E4DB}
+.msi:last-child{border-bottom:none}
+.msk{font-size:.8rem;color:#999}
+.msv{font-size:.82rem;font-weight:600;color:var(--c)}
+.msv.g{color:var(--v)}
+.mcta{display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.5rem;background:var(--v);color:#fff;font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.82rem 1.7rem;border-radius:7px;margin-top:1.6rem;transition:background .3s,-webkit-transform .25s;transition:background .3s,transform .25s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.mcta:hover{background:var(--vl);-webkit-transform:translateY(-2px);transform:translateY(-2px)}
 
 /* FOOTER */
-footer{background:#090909;padding:1.5rem;text-align:center}
-footer p{color:#444;font-size:.75rem}
+footer{background:#090909;color:#555;padding:2rem 0;padding-bottom:calc(2rem + env(safe-area-inset-bottom))}
+.fw{max-width:1320px;margin:0 auto;padding:0 1.5rem;display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:1rem;-webkit-align-items:center;align-items:center;text-align:center}
+@media(min-width:768px){.fw{-webkit-flex-direction:row;flex-direction:row;-webkit-justify-content:space-between;justify-content:space-between;text-align:left;padding:0 2.5rem}}
+footer p{font-size:.76rem}
+footer .back{font-size:.76rem;color:#555;transition:color .3s;display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;gap:.4rem;-webkit-tap-highlight-color:transparent;touch-action:manipulation;padding:.3rem 0}
+footer .back:hover{color:#fff}
 
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.reveal.in-view{opacity:1;transform:translateY(0)}
-.hidden{display:none!important}
-@keyframes spin{to{transform:rotate(360deg)}}
-.fa-spin{animation:spin 1s linear infinite}
+.rv{opacity:0;-webkit-transform:translateY(24px);transform:translateY(24px);transition:opacity .75s var(--ease),-webkit-transform .75s var(--ease);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.rv.in{opacity:1;-webkit-transform:translateY(0);transform:translateY(0)}
+
+/* iOS safe area */
+@supports(padding:max(0px)){
+  .hw{
+    padding-left:max(1.5rem,env(safe-area-inset-left));
+    padding-right:max(1.5rem,env(safe-area-inset-right));
+  }
+}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
-  <div class="hdr-inner">
-    <a href="../index.html" class="logo-wrap">
-      <div class="logo-mark"><img src="../assets/imagens/logo.jpeg" alt="RPP"></div>
-      <div><span class="logo-name">RPP</span><span class="logo-tagline">Engenharia & Construção</span></div>
+  <div class="hw">
+    <a href="../index.html" class="lw">
+      <div class="lm">
+        <img src="../assets/imagens/logo.jpeg" alt="RPP" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="lm-txt">RPP</span>
+      </div>
+      <div><span class="ln">RPP</span><span class="lt">Engenharia & Construção</span></div>
     </a>
-    <div class="hdr-actions">
-      <a href="../index.html" class="btn-back"><i class="fa-solid fa-arrow-left" style="font-size:.65rem"></i> Início</a>
-      <a href="../index.html#contacto" class="btn-cta"><i class="fa-solid fa-paper-plane" style="font-size:.65rem"></i> <span style="display:none" id="cta-text-show">Solicitar</span><span>Proposta</span></a>
-    </div>
+    <a href="../index.html#contacto" class="hbtn"><i class="fa-solid fa-paper-plane" style="font-size:.64rem"></i> Solicitar Proposta</a>
   </div>
 </header>
 
 <!-- HERO -->
-<div class="page-hero">
-  <div class="page-hero-bg"></div>
-  <div class="page-hero-inner">
-    <div class="breadcrumb">
-      <a href="../index.html">Início</a>
+<div class="hero">
+  <div class="hero-c">
+    <nav class="bc">
+      <a href="../index.html"><i class="fa-solid fa-house" style="font-size:.7rem"></i> Início</a>
       <span class="sep">/</span>
-      <span style="color:rgba(255,255,255,.7)">Projetos</span>
-    </div>
-    <div class="eyebrow"><div class="rule"></div><span>Portefólio</span></div>
-    <h1 class="page-title">Todos os Projetos</h1>
+      <span style="color:rgba(255,255,255,.65)">Portefólio</span>
+    </nav>
+    <div class="ey"><div class="r"></div><span>Portefólio Completo</span></div>
+    <h1 class="hero-t">Os Nossos<br>Projetos</h1>
+    <p class="hero-sub">Explore o nosso portefólio completo de projetos executados em Angola, Portugal e além-fronteiras.</p>
   </div>
 </div>
 
-<!-- MAIN -->
-<main>
-  <div class="main-inner">
-    <div class="filters-bar" id="filtersBar">
-      <button class="filter-btn active" data-filter="all">Todos</button>
-      <button class="filter-btn" data-filter="edificacao">Edificação</button>
-      <button class="filter-btn" data-filter="infraestrutura">Infraestrutura</button>
-      <button class="filter-btn" data-filter="sustentavel">Sustentável</button>
-      <button class="filter-btn" data-filter="industrial">Industrial</button>
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-bar-inner">
+    <div class="fb-group">
+      <button class="fb a" data-filter="all">Todos</button>
+      <button class="fb" data-filter="edificacao">Edificação</button>
+      <button class="fb" data-filter="infraestrutura">Infraestrutura</button>
+      <button class="fb" data-filter="sustentavel">Sustentável</button>
+      <button class="fb" data-filter="industrial">Industrial</button>
     </div>
-    <div class="projects-grid" id="projectsGrid"></div>
+    <span class="count-lbl">A mostrar <strong id="countVal">0</strong> projetos</span>
   </div>
-</main>
+</div>
 
-<!-- ADMIN SECTION -->
-<section id="admin-section">
-  <div class="admin-inner">
-    <div class="admin-header">
-      <div class="admin-tag"><div class="rule"></div><span>Área Restrita</span></div>
-      <h2 class="admin-h2">Gestão de Projetos</h2>
-      <p class="admin-sub">Área exclusiva para gestores. Autentique-se para criar, editar e eliminar projetos.</p>
-    </div>
-
-    <!-- LOGIN -->
-    <div id="admin-login" class="auth-box">
-      <label class="auth-label" for="admin-pwd">Senha de acesso</label>
-      <div class="auth-row">
-        <input id="admin-pwd" type="password" class="auth-input" placeholder="Introduza a senha" autocomplete="current-password">
-        <button id="btn-login" class="auth-btn">Entrar</button>
-      </div>
-      <p class="auth-hint">Senha demo: <strong>rpp2026</strong></p>
-      <p id="auth-err" class="auth-err"></p>
-    </div>
-
-    <!-- PANEL -->
-    <div id="admin-panel" class="admin-panel hidden">
-      <div class="panel-top">
-        <h3><i class="fa-solid fa-shield-halved" style="color:var(--verde);margin-right:.4rem"></i> Acesso de Gestor Ativo</h3>
-        <button id="btn-logout" class="btn-logout"><i class="fa-solid fa-right-from-bracket" style="font-size:.7rem"></i> Sair</button>
-      </div>
-
-      <!-- FORM -->
-      <div class="crud-form">
-        <h4 id="form-title">Novo Projeto</h4>
-        <input type="hidden" id="edit-id">
-        <div class="form-grid">
-          <div class="form-row cols-2">
-            <div class="field"><label for="f-titulo">Título</label><input id="f-titulo" type="text" placeholder="Nome do projeto" required></div>
-            <div class="field"><label for="f-cat">Categoria</label><select id="f-cat"><option value="edificacao">Edificação</option><option value="infraestrutura">Infraestrutura</option><option value="sustentavel">Sustentável</option><option value="industrial">Industrial</option></select></div>
-          </div>
-          <div class="form-row cols-3">
-            <div class="field"><label for="f-local">Localização</label><input id="f-local" type="text" placeholder="Cidade, País"></div>
-            <div class="field"><label for="f-ano">Ano</label><input id="f-ano" type="text" placeholder="2024" maxlength="4"></div>
-            <div class="field"><label for="f-dim">Dimensão</label><input id="f-dim" type="text" placeholder="45.000 m²"></div>
-          </div>
-          <div class="field"><label for="f-desc">Descrição</label><textarea id="f-desc" rows="3" placeholder="Descreva o projeto..."></textarea></div>
-          <div class="field">
-            <label for="f-img">Imagem (ficheiro)</label>
-            <input id="f-img" type="file" accept="image/*">
-            <div class="img-preview-wrap" id="img-preview-wrap"><img id="img-preview" alt="Pré-visualização"></div>
-          </div>
-          <div class="field">
-            <label for="f-img-url">Ou URL da imagem</label>
-            <input id="f-img-url" type="url" placeholder="https://...">
-          </div>
-        </div>
-        <div class="form-actions">
-          <button class="btn-save" id="btn-save"><i class="fa-solid fa-floppy-disk"></i> Guardar Projeto</button>
-          <button class="btn-cancel hidden" id="btn-cancel"><i class="fa-solid fa-xmark"></i> Cancelar edição</button>
-        </div>
-      </div>
-
-      <!-- LIST -->
-      <div class="crud-list">
-        <h4>Projetos cadastrados</h4>
-        <div class="list-items" id="admin-list"></div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- PROJECTS -->
+<div class="main">
+  <div class="pg rv" id="pGrid"></div>
+</div>
 
 <!-- MODAL -->
-<div id="projectModal" role="dialog" aria-modal="true" aria-label="Detalhe do projeto">
-  <div id="modalContent">
-    <div class="modal-img-wrap">
-      <img id="modalImage" alt="">
-      <button id="closeModal" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
-      <div class="modal-title-wrap"><h2 id="modalTitle"></h2></div>
+<div id="md" role="dialog" aria-modal="true" aria-label="Detalhe do projeto">
+  <div id="mdc">
+    <div class="miw">
+      <img id="mImg" alt="">
+      <button id="cmd" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+      <div class="mtw"><h2 id="mti"></h2></div>
     </div>
-    <div class="modal-body">
-      <div><p class="modal-desc-label">Descrição do Projeto</p><p id="modalDescription"></p>
-        <a href="../index.html#contacto" style="display:inline-flex;align-items:center;gap:.4rem;margin-top:1.3rem;background:var(--verde);color:#fff;font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.72rem 1.4rem;border-radius:8px;text-decoration:none">
-          <i class="fa-solid fa-paper-plane" style="font-size:.65rem"></i> Solicitar Proposta
-        </a>
+    <div class="mbd">
+      <div>
+        <p class="mdl">Descrição do Projeto</p>
+        <p id="mde"></p>
+        <a href="../index.html#contacto" class="mcta"><i class="fa-solid fa-paper-plane" style="font-size:.65rem"></i> Solicitar Proposta</a>
       </div>
-      <div class="modal-sheet">
-        <p class="modal-sheet-title">Ficha Técnica</p>
-        <div class="sheet-item"><span class="sheet-key">Localização</span><span id="modalLocation" class="sheet-val"></span></div>
-        <div class="sheet-item"><span class="sheet-key">Ano</span><span id="modalYear" class="sheet-val"></span></div>
-        <div class="sheet-item"><span class="sheet-key">Dimensão</span><span id="modalDimension" class="sheet-val green"></span></div>
-        <div class="sheet-item"><span class="sheet-key">Categoria</span><span id="modalCategory" class="sheet-val"></span></div>
+      <div class="mss">
+        <p class="msht">Ficha Técnica</p>
+        <div class="msi"><span class="msk">Localização</span><span id="mv1" class="msv"></span></div>
+        <div class="msi"><span class="msk">Ano</span><span id="mv2" class="msv"></span></div>
+        <div class="msi"><span class="msk">Dimensão</span><span id="mv3" class="msv g"></span></div>
+        <div class="msi"><span class="msk">Categoria</span><span id="mv4" class="msv"></span></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CTA -->
-<div class="cta-section">
-  <div class="cta-inner">
-    <h2 class="cta-title">Tem um projeto em mente?</h2>
-    <p class="cta-desc">Fale com a nossa equipa e receba uma proposta personalizada adaptada às suas necessidades.</p>
-    <a href="../index.html#contacto" class="btn-white">Falar Connosco <i class="fa-solid fa-arrow-right" style="font-size:.65rem"></i></a>
+<footer>
+  <div class="fw">
+    <p>© 2026 RPP – Engenharia e Construção Civil, LDA. Todos os direitos reservados.</p>
+    <a href="../index.html" class="back"><i class="fa-solid fa-arrow-left" style="font-size:.7rem"></i> Voltar ao Início</a>
   </div>
-</div>
-
-<footer><p>© 2026 RPP – Engenharia e Construção Civil, LDA. Todos os direitos reservados.</p></footer>
+</footer>
 
 <script>
 (function(){
 'use strict';
-const PROJ_KEY='rpp_projetos_v3';
-const PASS='rpp2026';
-const SESSION_KEY='rpp_admin_auth';
-const DEF=[
+
+var KEY = 'rpp_projects';
+
+var DEF = [
   {id:'p1',titulo:'Torre Financeira Global',categoria:'edificacao',local:'Lisboa, Portugal',ano:'2023',dim:'45.000 m²',desc:'Edifício corporativo de alto padrão com arquitetura contemporânea, eficiência energética e tecnologia sustentável integrada.',img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80'},
   {id:'p2',titulo:'Ponte do Estuário',categoria:'infraestrutura',local:'Porto, Portugal',ano:'2022',dim:'1.2 km',desc:'Projeto de infraestrutura moderna concebido para melhorar a mobilidade urbana e fortalecer a conectividade regional.',img:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80'},
   {id:'p3',titulo:'Campus Tecnológico Verde',categoria:'sustentavel',local:'Madrid, Espanha',ano:'2024',dim:'12.000 m²',desc:'Complexo tecnológico sustentável com soluções de energia renovável e certificação LEED Gold.',img:'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80'},
@@ -364,207 +264,133 @@ const DEF=[
   {id:'p6',titulo:'Anel Rodoviário Sul',categoria:'infraestrutura',local:'Benguela, Angola',ano:'2020',dim:'42 km',desc:'Via rodoviária de alta velocidade com 4 faixas, sinalização inteligente e sistemas de drenagem avançados.',img:'https://images.unsplash.com/photo-1768230130779-ae92d0935a94?auto=format&fit=crop&w=1200&q=80'},
 ];
 
-const load=()=>{try{const v=localStorage.getItem(PROJ_KEY);return v?JSON.parse(v):DEF}catch{return DEF}};
-const save=d=>{try{localStorage.setItem(PROJ_KEY,JSON.stringify(d))}catch{}};
-if(!localStorage.getItem(PROJ_KEY))save(DEF);
+var catLabel = {edificacao:'Edificação', infraestrutura:'Infraestrutura', sustentavel:'Sustentável', industrial:'Industrial'};
 
-let activeFilter='all';
-const catLabels={edificacao:'Edificação',infraestrutura:'Infraestrutura',sustentavel:'Sustentável',industrial:'Industrial'};
+// iOS FIX: localStorage seguro
+function load() {
+  try {
+    var v = localStorage.getItem(KEY);
+    return (v ? JSON.parse(v) : null) || DEF;
+  } catch(e) { return DEF; }
+}
+try { if(!localStorage.getItem(KEY)) localStorage.setItem(KEY, JSON.stringify(DEF)); } catch(e){}
 
-// ── REVEAL ──
-const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');ro.unobserve(e.target);}}),{threshold:.08});
+// iOS FIX: IntersectionObserver com fallback
+var rObs;
+if('IntersectionObserver' in window) {
+  rObs = new IntersectionObserver(function(es) {
+    es.forEach(function(e) {
+      if(e.isIntersecting) { e.target.classList.add('in'); rObs.unobserve(e.target); }
+    });
+  }, {threshold:.06});
+  document.querySelectorAll('.rv').forEach(function(el) { rObs.observe(el); });
+} else {
+  document.querySelectorAll('.rv').forEach(function(el) { el.classList.add('in'); });
+}
 
-// ── READ URL PARAM ──
-const urlFilter=new URLSearchParams(location.search).get('filter');
-if(urlFilter&&urlFilter!=='all')activeFilter=urlFilter;
+var activeFilter = 'all';
 
-// ── RENDER GRID ──
-function renderGrid(){
-  const projs=load();
-  const grid=document.getElementById('projectsGrid');
-  const filtered=activeFilter==='all'?projs:projs.filter(p=>p.categoria===activeFilter);
-  if(!filtered.length){
-    grid.innerHTML=`<div class="empty-state"><i class="fa-solid fa-folder-open"></i><p>Nenhum projeto encontrado para esta categoria.</p></div>`;
+// Ler URL param
+var urlParam = new URLSearchParams(location.search).get('filter');
+if(urlParam && urlParam !== 'all') activeFilter = urlParam;
+
+// RENDER
+function renderProjects(filter) {
+  activeFilter = filter || activeFilter;
+  var all = load();
+  var filtered = activeFilter === 'all' ? all : all.filter(function(p) { return p.categoria === activeFilter; });
+  var grid = document.getElementById('pGrid');
+  var countEl = document.getElementById('countVal');
+
+  document.querySelectorAll('.fb').forEach(function(b) {
+    b.classList.toggle('a', b.dataset.filter === activeFilter);
+  });
+  countEl.textContent = filtered.length;
+
+  if(!filtered.length) {
+    grid.innerHTML = '<div class="no-results rv"><i class="fa-solid fa-building"></i><p>Nenhum projeto encontrado para esta categoria.</p></div>';
+    if(rObs) document.querySelectorAll('.rv:not(.in)').forEach(function(el) { rObs.observe(el); });
+    else document.querySelectorAll('.rv:not(.in)').forEach(function(el) { el.classList.add('in'); });
     return;
   }
-  grid.innerHTML=filtered.map((p,i)=>`
-    <div class="project-card reveal" style="transition-delay:${(i%3)*.08}s" data-id="${p.id}">
-      <div class="card-img-wrap">
-        <img src="${p.img}" alt="${p.titulo}" loading="lazy">
-        <div class="card-overlay"><span><i class="fa-solid fa-expand" style="color:var(--ouro-lt)"></i> Ver Detalhes</span></div>
-        <span class="card-badge">${catLabels[p.categoria]||p.categoria}</span>
-      </div>
-      <div class="card-body">
-        <div class="card-meta"><h3 class="card-title">${p.titulo}</h3><span class="card-year">${p.ano}</span></div>
-        <p class="card-location"><i class="fa-solid fa-location-dot"></i> ${p.local}</p>
-        <div class="card-footer"><span class="card-dim-label">Dimensão</span><span class="card-dim-value">${p.dim}</span></div>
-      </div>
-    </div>`).join('');
-  grid.querySelectorAll('.project-card').forEach(c=>{
-    ro.observe(c);
-    c.addEventListener('click',()=>{
-      const p=load().find(x=>x.id===c.dataset.id);
-      if(p)openModal(p);
-    });
+
+  grid.innerHTML = filtered.map(function(p, i) {
+    return '<div class="pc rv" style="-webkit-transition-delay:' + (i%3*.08) + 's;transition-delay:' + (i%3*.08) + 's" data-id="' + p.id + '">' +
+      '<div class="ciw">' +
+      '<span class="cbg">' + (catLabel[p.categoria]||p.categoria) + '</span>' +
+      '<img src="' + p.img + '" alt="' + p.titulo.replace(/"/g,'&quot;') + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=60\'">' +
+      '<div class="cov"><span><i class="fa-solid fa-expand" style="font-size:.8rem"></i> Ver Detalhes</span></div>' +
+      '</div>' +
+      '<div class="cb">' +
+      '<div class="cm2"><h3 class="ctt">' + p.titulo + '</h3><span class="cy">' + p.ano + '</span></div>' +
+      '<p class="cloc"><i class="fa-solid fa-location-dot"></i> ' + p.local + '</p>' +
+      '<div class="cf"><span class="cdl">Dimensão</span><span class="cdv">' + p.dim + '</span></div>' +
+      '</div>' +
+      '</div>';
+  }).join('');
+
+  grid.querySelectorAll('.pc').forEach(function(c) {
+    c.addEventListener('click', function() { openModal(c.dataset.id); });
   });
-  // update filter btns active state
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.filter===activeFilter||(b.dataset.filter==='all'&&activeFilter==='all')));
+  if(rObs) document.querySelectorAll('.rv:not(.in)').forEach(function(el) { rObs.observe(el); });
+  else document.querySelectorAll('.rv:not(.in)').forEach(function(el) { el.classList.add('in'); });
 }
-renderGrid();
 
-// ── FILTERS ──
-document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
-  activeFilter=btn.dataset.filter;
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderGrid();
-}));
-
-// ── MODAL ──
-const modal=document.getElementById('projectModal');
-function openModal(p){
-  document.getElementById('modalImage').src=p.img||'';
-  document.getElementById('modalTitle').textContent=p.titulo;
-  document.getElementById('modalDescription').textContent=p.desc;
-  document.getElementById('modalLocation').textContent=p.local;
-  document.getElementById('modalYear').textContent=p.ano;
-  document.getElementById('modalDimension').textContent=p.dim;
-  document.getElementById('modalCategory').textContent=catLabels[p.categoria]||p.categoria;
-  modal.classList.add('open');document.body.style.overflow='hidden';
-}
-function closeM(){modal.classList.remove('open');document.body.style.overflow='';}
-document.getElementById('closeModal').addEventListener('click',closeM);
-modal.addEventListener('click',e=>{if(e.target===modal)closeM();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
-
-// ── AUTH ──
-const isAdmin=()=>sessionStorage.getItem(SESSION_KEY)==='1';
-const loginBox=document.getElementById('admin-login');
-const panel=document.getElementById('admin-panel');
-
-function showPanel(){loginBox.classList.add('hidden');panel.classList.remove('hidden');renderAdminList();}
-function showLogin(){panel.classList.add('hidden');loginBox.classList.remove('hidden');}
-
-if(isAdmin())showPanel();
-
-document.getElementById('btn-login').addEventListener('click',()=>{
-  const pwd=document.getElementById('admin-pwd').value;
-  if(pwd===PASS){sessionStorage.setItem(SESSION_KEY,'1');showPanel();}
-  else{document.getElementById('auth-err').textContent='Senha incorreta. Tente novamente.';}
-});
-document.getElementById('admin-pwd').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btn-login').click();});
-document.getElementById('btn-logout').addEventListener('click',()=>{sessionStorage.removeItem(SESSION_KEY);showLogin();resetForm();});
-
-// ── IMAGE PREVIEW ──
-document.getElementById('f-img').addEventListener('change',async function(){
-  if(!this.files[0])return;
-  const url=URL.createObjectURL(this.files[0]);
-  const prev=document.getElementById('img-preview');
-  prev.src=url;
-  document.getElementById('img-preview-wrap').style.display='block';
-  document.getElementById('f-img-url').value='';
-});
-document.getElementById('f-img-url').addEventListener('input',function(){
-  if(this.value){
-    document.getElementById('img-preview').src=this.value;
-    document.getElementById('img-preview-wrap').style.display='block';
-    document.getElementById('f-img').value='';
-  }
+// FILTERS
+document.querySelectorAll('.fb').forEach(function(btn) {
+  btn.addEventListener('click', function() { renderProjects(btn.dataset.filter); });
 });
 
-// ── FORM ──
-function resetForm(){
-  document.getElementById('edit-id').value='';
-  document.getElementById('f-titulo').value='';
-  document.getElementById('f-cat').value='edificacao';
-  document.getElementById('f-local').value='';
-  document.getElementById('f-ano').value='';
-  document.getElementById('f-dim').value='';
-  document.getElementById('f-desc').value='';
-  document.getElementById('f-img').value='';
-  document.getElementById('f-img-url').value='';
-  document.getElementById('img-preview-wrap').style.display='none';
-  document.getElementById('form-title').textContent='Novo Projeto';
-  document.getElementById('btn-cancel').classList.add('hidden');
+// MODAL
+var md = document.getElementById('md');
+var _scrollY = 0;
+
+function openModal(id) {
+  var p = load().find(function(x) { return String(x.id) === String(id); });
+  if(!p) return;
+  document.getElementById('mImg').src = p.img || '';
+  document.getElementById('mti').textContent = p.titulo;
+  document.getElementById('mde').textContent = p.desc;
+  document.getElementById('mv1').textContent = p.local || '—';
+  document.getElementById('mv2').textContent = p.ano || '—';
+  document.getElementById('mv3').textContent = p.dim || '—';
+  document.getElementById('mv4').textContent = catLabel[p.categoria] || p.categoria || '—';
+  md.classList.add('o');
+  // iOS FIX: bloquear scroll sem position:fixed glitch
+  _scrollY = window.pageYOffset;
+  document.body.style.position = 'fixed';
+  document.body.style.top = '-' + _scrollY + 'px';
+  document.body.style.width = '100%';
 }
-document.getElementById('btn-cancel').addEventListener('click',resetForm);
 
-document.getElementById('btn-save').addEventListener('click',async()=>{
-  const titulo=document.getElementById('f-titulo').value.trim();
-  const cat=document.getElementById('f-cat').value;
-  const local=document.getElementById('f-local').value.trim();
-  const ano=document.getElementById('f-ano').value.trim();
-  const dim=document.getElementById('f-dim').value.trim();
-  const desc=document.getElementById('f-desc').value.trim();
-  const imgFile=document.getElementById('f-img').files[0];
-  const imgUrl=document.getElementById('f-img-url').value.trim();
-  const editId=document.getElementById('edit-id').value;
+function closeM() {
+  md.classList.remove('o');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  window.scrollTo(0, _scrollY);
+}
 
-  if(!titulo){alert('Por favor introduza o título.');return;}
+document.getElementById('cmd').addEventListener('click', closeM);
+md.addEventListener('click', function(e) { if(e.target === md) closeM(); });
+document.addEventListener('keydown', function(e) { if(e.key === 'Escape' && md.classList.contains('o')) closeM(); });
 
-  const btn=document.getElementById('btn-save');
-  btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> A guardar...';
-
-  try{
-    let img=imgUrl;
-    if(!img&&editId){const ex=load().find(p=>p.id===editId);img=ex?.img||'';}
-    if(imgFile){
-      img=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(imgFile);});
-    }
-    if(!img)img='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80';
-
-    const data=load();
-    if(editId){
-      const idx=data.findIndex(p=>p.id===editId);
-      if(idx>-1)data[idx]={...data[idx],titulo,categoria:cat,local,ano,dim,desc,img};
-    }else{
-      data.unshift({id:'p'+Date.now(),titulo,categoria:cat,local,ano,dim,desc,img});
-    }
-    save(data);renderGrid();renderAdminList();resetForm();
-  }finally{
-    btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-floppy-disk"></i> Guardar Projeto';
-  }
+// iOS FIX: scroll suave via JS
+function smoothScrollTo(target) {
+  var el = document.querySelector(target);
+  if(!el) return;
+  var top = el.getBoundingClientRect().top + window.pageYOffset - 60;
+  try { window.scrollTo({top: top, behavior: 'smooth'}); } catch(e) { window.scrollTo(0, top); }
+}
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var href = this.getAttribute('href');
+    if(href && href.length > 1) { e.preventDefault(); smoothScrollTo(href); }
+  });
 });
 
-function renderAdminList(){
-  const list=document.getElementById('admin-list');
-  const data=load();
-  if(!data.length){list.innerHTML='<div class="list-empty">Nenhum projeto cadastrado.</div>';return;}
-  list.innerHTML=data.map(p=>`
-    <div class="list-item">
-      <div class="list-item-img"><img src="${p.img}" alt="${p.titulo}" loading="lazy"></div>
-      <div class="list-item-info">
-        <div class="list-item-title">${p.titulo}</div>
-        <div class="list-item-meta">${catLabels[p.categoria]||p.categoria} · ${p.local} · ${p.ano}</div>
-      </div>
-      <div class="list-item-actions">
-        <button class="icon-btn" title="Editar" data-edit="${p.id}"><i class="fa-solid fa-pen"></i></button>
-        <button class="icon-btn del" title="Eliminar" data-del="${p.id}"><i class="fa-solid fa-trash"></i></button>
-      </div>
-    </div>`).join('');
-
-  list.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',()=>{
-    const p=load().find(x=>x.id===b.dataset.edit);if(!p)return;
-    document.getElementById('edit-id').value=p.id;
-    document.getElementById('f-titulo').value=p.titulo;
-    document.getElementById('f-cat').value=p.categoria;
-    document.getElementById('f-local').value=p.local;
-    document.getElementById('f-ano').value=p.ano;
-    document.getElementById('f-dim').value=p.dim;
-    document.getElementById('f-desc').value=p.desc;
-    document.getElementById('f-img-url').value=p.img.startsWith('data:')?'':p.img;
-    document.getElementById('img-preview').src=p.img;
-    document.getElementById('img-preview-wrap').style.display='block';
-    document.getElementById('form-title').textContent='Editar Projeto';
-    document.getElementById('btn-cancel').classList.remove('hidden');
-    document.querySelector('.crud-form').scrollIntoView({behavior:'smooth',block:'center'});
-  }));
-  list.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{
-    if(!confirm('Eliminar este projeto?'))return;
-    const data=load().filter(p=>p.id!==b.dataset.del);
-    save(data);renderGrid();renderAdminList();resetForm();
-  }));
-}
+// INIT
+renderProjects();
 
 })();
 </script>
