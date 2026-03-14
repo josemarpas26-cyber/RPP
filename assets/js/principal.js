@@ -35,7 +35,14 @@ document.addEventListener('DOMContentLoaded', function() {
      usar position:fixed + top:-scrollY
   ────────────────────────────────────────── */
   var _menuScrollY = 0;
+  var _mobileNavTimer = null;
 
+  function getAnchorOffset() {
+    // header pode variar em altura (estado scrolled/safe-area/breakpoints)
+    if (cabecalho && cabecalho.offsetHeight) return cabecalho.offsetHeight + 8;
+    return 60;
+  }
+  
   function abrirMenu() {
     if (!mobileMenu) return;
     mobileMenu.classList.add('open');
@@ -62,29 +69,35 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   if (fecharMenu) fecharMenu.addEventListener('click', fecharMenuFn);
+ 
+ 
+  function navegarMenuMobile(destino) {
+    if (!destino || destino.charAt(0) !== '#') return;
+
+    if (_mobileNavTimer) {
+      clearTimeout(_mobileNavTimer);
+      _mobileNavTimer = null;
+    }
+
+    fecharMenuFn();
+
+    // 100ms para permitir unlock do body + reflow no iOS antes do cálculo de posição
+    _mobileNavTimer = setTimeout(function() {
+      var secao = document.querySelector(destino);
+      if (!secao) return;
+      var top = secao.getBoundingClientRect().top + window.pageYOffset - 60;
+      try { window.scrollTo({ top: top, behavior: 'smooth' }); }
+      catch(e2) { window.scrollTo(0, top); }
+      _mobileNavTimer = null;
+    }, 100);
+  }
 
   // ✅ CORRIGIDO: fechar menu e navegar sem conflito com a Secção 8
-  document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+   document.querySelectorAll('.mobile-nav-link, .mobile-cta').forEach(function(link) {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-
       var destino = this.getAttribute('href');
-
-      mobileMenu.classList.remove('open');
-      hamburger && hamburger.classList.remove('open');
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-
-      // ✅ 100ms para o iOS processar o reflow antes de calcular a posição
-      setTimeout(function() {
-        var secao = document.querySelector(destino);
-        if (secao) {
-          var top = secao.getBoundingClientRect().top + window.pageYOffset - 60;
-          try { window.scrollTo({ top: top, behavior: 'smooth' }); }
-          catch(e2) { window.scrollTo(0, top); }
-        }
-      }, 100);
+      navegarMenuMobile(destino);
     });
   });
 
