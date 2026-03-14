@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!mobileMenu) return;
     mobileMenu.classList.add('open');
     hamburger && hamburger.classList.add('open');
-    // iOS FIX: bloquear scroll sem glitch
     _menuScrollY = window.pageYOffset;
     document.body.style.position = 'fixed';
     document.body.style.top = '-' + _menuScrollY + 'px';
@@ -51,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!mobileMenu) return;
     mobileMenu.classList.remove('open');
     hamburger && hamburger.classList.remove('open');
-    // iOS FIX: restaurar scroll
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.width = '';
@@ -65,8 +63,29 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   if (fecharMenu) fecharMenu.addEventListener('click', fecharMenuFn);
 
+  // ✅ CORRIGIDO: fechar menu e navegar sem conflito com a Secção 8
   document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
-    link.addEventListener('click', fecharMenuFn);
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      var destino = this.getAttribute('href');
+
+      mobileMenu.classList.remove('open');
+      hamburger && hamburger.classList.remove('open');
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+
+      // ✅ 100ms para o iOS processar o reflow antes de calcular a posição
+      setTimeout(function() {
+        var secao = document.querySelector(destino);
+        if (secao) {
+          var top = secao.getBoundingClientRect().top + window.pageYOffset - 60;
+          try { window.scrollTo({ top: top, behavior: 'smooth' }); }
+          catch(e2) { window.scrollTo(0, top); }
+        }
+      }, 100);
+    });
   });
 
   /* ──────────────────────────────────────────
@@ -75,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
   ────────────────────────────────────────── */
   var heroBg = document.querySelector('.hero-bg');
   if (heroBg) {
-    // iOS FIX: forçar GPU layer
     heroBg.style.webkitBackfaceVisibility = 'hidden';
     heroBg.style.backfaceVisibility = 'hidden';
     heroBg.style.willChange = 'transform';
@@ -105,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { threshold: 0.12 });
     revealEls.forEach(function(el) { revealObs.observe(el); });
   } else {
-    // iOS FIX: fallback — mostrar todos imediatamente
     revealEls.forEach(function(el) { el.classList.add('visible'); });
   }
 
@@ -144,11 +161,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* ──────────────────────────────────────────
      6. NOTÍCIAS – CRUD + Carrossel
-     iOS FIX:
-       - localStorage com try/catch
-       - touch events com detecção de eixo dominante
-       - sem arrow functions nem template literals
-       - crypto.randomUUID com fallback
   ────────────────────────────────────────── */
   var STORAGE_KEY   = 'rpp_publicacoes';
   var ADMIN_PASS    = 'rpp2026';
@@ -167,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (!noticiasTrack) return;
 
-  // iOS FIX: fallback para crypto.randomUUID
   function generateId() {
     if (typeof crypto !== 'undefined' && crypto.randomUUID) return crypto.randomUUID();
     return 'id-' + Date.now() + '-' + Math.floor(Math.random() * 1000000);
@@ -200,7 +211,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   ];
 
-  // iOS FIX: localStorage seguro
   function carregarPublicacoes() {
     try {
       var guardado = localStorage.getItem(STORAGE_KEY);
@@ -227,7 +237,6 @@ document.addEventListener('DOMContentLoaded', function() {
   var publicacoes = carregarPublicacoes();
   var paginaAtual = 0;
 
-  // Render carousel
   function renderCarousel() {
     var cpp = getCardsPerPage();
     var totalPaginas = Math.max(1, Math.ceil(publicacoes.length / cpp));
@@ -289,21 +298,18 @@ document.addEventListener('DOMContentLoaded', function() {
   if (btnPrev) btnPrev.addEventListener('click', function() { resetAutoplay(); goPrev(); });
   if (btnNext) btnNext.addEventListener('click', function() { resetAutoplay(); goNext(); });
 
-  // Auto-advance
   var autoPlay = setInterval(goNext, 6000);
   function resetAutoplay() {
     clearInterval(autoPlay);
     autoPlay = setInterval(goNext, 6000);
   }
 
-  // iOS FIX: resize só reagir a mudanças de largura (não altura — evitar trigger por scroll iOS)
   var _lastW = window.innerWidth;
   window.addEventListener('resize', function() {
     var w = window.innerWidth;
     if (w !== _lastW) { _lastW = w; renderCarousel(); }
   }, { passive: true });
 
-  // iOS FIX: touch swipe com detecção de eixo dominante
   var touchStartX = 0, touchStartY = 0;
   noticiasTrack.addEventListener('touchstart', function(e) {
     touchStartX = e.touches[0].clientX;
@@ -313,7 +319,6 @@ document.addEventListener('DOMContentLoaded', function() {
   noticiasTrack.addEventListener('touchend', function(e) {
     var dx = e.changedTouches[0].clientX - touchStartX;
     var dy = e.changedTouches[0].clientY - touchStartY;
-    // iOS FIX: só activar swipe se horizontal for dominante e suficientemente grande
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 45) {
       resetAutoplay();
       if (dx > 0) goPrev(); else goNext();
@@ -365,7 +370,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (loginForm) {
-    // iOS FIX: usar submit para forms nativos (funciona corretamente no iOS com form tags)
     loginForm.addEventListener('submit', function(e) {
       e.preventDefault();
       if (loginSenha && loginSenha.value.trim() === ADMIN_PASS) {
@@ -390,7 +394,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (btnCancelar) btnCancelar.addEventListener('click', limparForm);
 
-  // iOS FIX: FileReader com callback em vez de Promise
   function lerImagemBase64(file, cb) {
     var r = new FileReader();
     r.onload  = function() { cb(null, r.result); };
@@ -481,10 +484,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* ──────────────────────────────────────────
      8. SMOOTH SCROLL para âncoras
-     iOS FIX: CSS scroll-behavior não funciona bem no iOS —
-     implementar em JS com fallback
+     iOS FIX: ignorar links do menu mobile (já têm handler próprio)
   ────────────────────────────────────────── */
   document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    // ✅ CORRIGIDO: ignorar links do menu mobile — já têm handler próprio na Secção 2
+    if (a.classList.contains('mobile-nav-link') || a.classList.contains('mobile-cta')) return;
+
     a.addEventListener('click', function(e) {
       var href = this.getAttribute('href');
       if (!href || href.length <= 1) return;
@@ -499,7 +504,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* ──────────────────────────────────────────
      9. ACTIVE NAV LINK (IntersectionObserver)
-     iOS FIX: fallback se IntersectionObserver não disponível
   ────────────────────────────────────────── */
   var navLinks = document.querySelectorAll('.nav-link');
 
