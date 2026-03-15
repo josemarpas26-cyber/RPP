@@ -13,7 +13,7 @@
 :root{--v:#0D4A33;--vm:#16694A;--vl:#1E8A62;--o:#C49A3C;--ol:#D9B55A;--c:#111110;--cm:#1C1C1A;--cr:#F5F1EA;--b:#FAFAF8;--ease:cubic-bezier(.16,1,.3,1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;height:100%}
-body{font-family:'Outfit',sans-serif;color:var(--c);background:var(--cm);min-height:100vh}
+body{font-family:'Outfit',sans-serif;color:var(--c);background:var(--cm);min-height:100vh;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
@@ -76,7 +76,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 #toast.err{background:#2e1515;border-color:rgba(255,107,107,.3)}
 
 /* DASHBOARD */
-#dashboard{display:none;min-height:100vh}
+#dashboard{display:none;min-height:100vh;width:100%;overflow-x:hidden}
 #dashboard.show{display:flex}
 
 /* SIDEBAR */
@@ -107,7 +107,7 @@ nav.sb-nav{flex:1;padding:1rem .8rem}
 .back-site:hover{color:rgba(255,255,255,.7)}
 
 /* MAIN CONTENT */
-.content{flex:1;overflow-y:auto;min-height:100vh}
+.content{flex:1;min-width:0;overflow-y:auto;overflow-x:hidden;min-height:100vh}
 .topbar{background:rgba(0,0,0,.2);border-bottom:1px solid rgba(255,255,255,.05);padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;backdrop-filter:blur(10px)}
 @media(min-width:768px){.topbar{padding:.85rem 2.5rem}}
 .topbar-title{font-size:1.05rem;font-weight:700;color:#fff}
@@ -118,14 +118,34 @@ nav.sb-nav{flex:1;padding:1rem .8rem}
 .tb-back:hover{color:rgba(255,255,255,.8)}
 
 /* PANELS */
-.panel{display:none;padding:2rem 1.5rem 4rem}
-@media(min-width:768px){.panel{padding:2.5rem 2.5rem 4rem}}
+.panel{display:none;padding:1.25rem 1rem 3rem}
+@media(min-width:768px){.panel{padding:2rem 2rem 3.5rem}}
+@media(min-width:1200px){.panel{padding:2.5rem 2.5rem 4rem}}
 .panel.a{display:block}
 
+/*
+  Layout responsivo do dashboard (mobile-first):
+  - mobile (320px+): pilha vertical sem overflow
+  - tablet (768px+): distribuição em 2 colunas
+  - desktop (1200px+): áreas mais amplas e grids mais densos
+*/
+.dashboard-grid{display:grid;gap:1rem;grid-template-columns:minmax(0,1fr)}
+@media(min-width:768px){.dashboard-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem}}
+
+.form-stack{display:grid;gap:.9rem;min-width:0}
+.settings-stack{display:flex;flex-direction:column;gap:1.2rem;min-width:0}
+.auth-fields{display:flex;flex-direction:column;gap:.9rem}
+.account-card{height:fit-content}
+.account-main{flex:1;min-width:0}
+.settings-email{font-size:.82rem;word-break:break-word}
+.settings-muted{font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.65;margin-bottom:1.1rem}
+.text-xs{font-size:.82rem}
+.track-wide{letter-spacing:.2em}
+
 /* STATS */
-.stats-row{display:grid;gap:.9rem;margin-bottom:2.5rem}
-@media(min-width:480px){.stats-row{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:900px){.stats-row{grid-template-columns:repeat(4,1fr)}}
+.stats-row{display:grid;gap:.9rem;margin-bottom:2rem;grid-template-columns:minmax(0,1fr)}
+@media(min-width:480px){.stats-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1200px){.stats-row{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:2.5rem}}
 .stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.3rem 1.5rem;display:flex;align-items:center;gap:1rem;transition:border-color .3s}
 .stat-card:hover{border-color:rgba(196,154,60,.25)}
 .stat-ic{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
@@ -142,7 +162,9 @@ nav.sb-nav{flex:1;padding:1rem .8rem}
 .sec-hdr p{color:rgba(255,255,255,.35);font-size:.8rem;margin-top:.2rem}
 
 /* FORM CARD */
-.fc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1.8rem;margin-bottom:1.2rem}
+.fc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1.1rem;margin-bottom:1rem;min-width:0}
+@media(min-width:768px){.fc{padding:1.6rem}}
+@media(min-width:1200px){.fc{padding:1.8rem;margin-bottom:1.2rem}}
 .fc-title{font-weight:700;font-size:.9rem;color:#fff;margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem}
 .fc-title i{color:var(--ol);font-size:.85rem}
 .flbl{display:block;font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.42rem}
@@ -155,7 +177,7 @@ textarea.finp{resize:vertical}
 @media(min-width:600px){.fg2{grid-template-columns:1fr 1fr}}
 .fa3{display:grid;gap:.9rem}
 @media(min-width:600px){.fa3{grid-template-columns:1fr 1fr 1fr}}
-.fbtn{display:inline-flex;align-items:center;gap:.45rem;background:var(--v);color:#fff;font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.72rem 1.45rem;border-radius:9px;transition:background .3s,transform .25s}
+.fbtn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;background:var(--v);color:#fff;font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.72rem 1.1rem;border-radius:9px;transition:background .3s,transform .25s;min-height:42px}
 .fbtn:hover{background:var(--vl);transform:translateY(-1px)}
 .fbtn.sec{background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1)}
 .fbtn.sec:hover{background:rgba(255,255,255,.1);transform:none}
@@ -205,6 +227,32 @@ textarea.finp{resize:vertical}
 /* UTILS */
 .hid{display:none!important}
 .row-btns{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1.1rem}
+@media(max-width:479px){.row-btns .fbtn{width:100%}}
+
+
+@media(max-width:767px){
+  .topbar{padding:.75rem 1rem;gap:.6rem}
+  .topbar-title{font-size:.95rem}
+  .topbar-right{gap:.55rem;flex-wrap:wrap;justify-content:flex-end}
+  .tb-back,.tb-out{font-size:.68rem}
+  .sec-hdr h2{font-size:1.22rem}
+  .sec-hdr p{font-size:.76rem}
+  .stat-card{padding:1rem}
+  .stat-val{font-size:1.7rem}
+  .item-row{padding:.75rem .8rem;gap:.65rem}
+  .item-title{font-size:.82rem}
+  .item-meta{font-size:.62rem;line-height:1.4}
+  .item-actions{width:100%;justify-content:flex-end}
+}
+
+@media(min-width:768px){
+  .settings-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+}
+
+@media(min-width:1200px){
+  .dashboard-grid{gap:1.4rem}
+}
+
 </style>
 </head>
 <body>
@@ -283,7 +331,7 @@ textarea.finp{resize:vertical}
     <div class="rec-step" id="recStep3">
       <div class="rec-title">Nova Palavra-passe</div>
       <p class="rec-sub">Código verificado. Defina agora uma nova palavra-passe para a conta.</p>
-      <div style="display:flex;flex-direction:column;gap:.9rem">
+      <div class="auth-fields">
         <div>
           <label class="login-lbl" for="recNewPW">Nova palavra-passe</label>
           <div class="pw-wrap">
@@ -374,7 +422,7 @@ textarea.finp{resize:vertical}
     <!-- PANEL: OVERVIEW -->
     <div class="panel a" id="panel-overview">
       <div class="stats-row" id="statsRow"></div>
-      <div style="display:grid;gap:1.2rem">
+       <div class="dashboard-grid">
         <div class="fc">
           <div class="fc-title"><i class="fa-solid fa-clock-rotate-left"></i> Últimas notícias publicadas</div>
           <div id="recentNews" class="items-list"></div>
@@ -394,7 +442,7 @@ textarea.finp{resize:vertical}
       <div class="fc">
         <div class="fc-title" id="nFormTitle"><i class="fa-solid fa-plus"></i> Nova Notícia</div>
         <input type="hidden" id="nId">
-        <div style="display:grid;gap:.9rem">
+         <div class="form-stack">
           <div><label class="flbl" for="nTit">Título *</label><input class="finp" id="nTit" placeholder="Título da notícia"></div>
           <div><label class="flbl" for="nRes">Resumo *</label><textarea class="finp" id="nRes" rows="2" placeholder="Breve descrição para listagem e carrossel..."></textarea></div>
           <div><label class="flbl" for="nContent">Conteúdo completo *</label><textarea class="finp" id="nContent" rows="6" placeholder="Texto completo da notícia..."></textarea></div>
@@ -423,7 +471,7 @@ textarea.finp{resize:vertical}
       <div class="fc">
         <div class="fc-title" id="aFormTitle"><i class="fa-solid fa-plus"></i> Nova Publicidade</div>
         <input type="hidden" id="aId">
-        <div style="display:grid;gap:.9rem">
+         <div class="form-stack">
           <div><label class="flbl" for="aTit">Título *</label><input class="finp" id="aTit" placeholder="Título da publicidade"></div>
           <div><label class="flbl" for="aDesc">Descrição *</label><textarea class="finp" id="aDesc" rows="3" placeholder="Descrição detalhada da oportunidade..."></textarea></div>
           <div class="fg2">
@@ -454,7 +502,7 @@ textarea.finp{resize:vertical}
       <div class="fc">
         <div class="fc-title" id="pFormTitle"><i class="fa-solid fa-plus"></i> Novo Projeto</div>
         <input type="hidden" id="pId">
-        <div style="display:grid;gap:.9rem">
+         <div class="form-stack">
           <div><label class="flbl" for="pTit">Título *</label><input class="finp" id="pTit" placeholder="Nome do projeto"></div>
           <div><label class="flbl" for="pDesc">Descrição *</label><textarea class="finp" id="pDesc" rows="3" placeholder="Descrição técnica do projeto..."></textarea></div>
           <div class="fg2">
@@ -486,7 +534,7 @@ textarea.finp{resize:vertical}
       <div class="settings-grid">
 
         <!-- Informações da conta -->
-        <div class="fc" style="height:fit-content">
+         <div class="form-stack">
           <div class="fc-title"><i class="fa-solid fa-circle-info"></i> Informações da Conta</div>
           <div class="settings-info-row">
             <div class="si-icon"><i class="fa-solid fa-user-shield"></i></div>
@@ -494,11 +542,11 @@ textarea.finp{resize:vertical}
           </div>
           <div class="settings-info-row">
             <div class="si-icon"><i class="fa-solid fa-envelope"></i></div>
-            <div style="flex:1;min-width:0"><div class="si-lbl">Email de recuperação</div><div class="si-val" id="settingsEmailDisplay" style="font-size:.82rem;word-break:break-all">—</div></div>
+            <div class="account-main"><div class="si-lbl">Email de recuperação</div><div class="si-val settings-email" id="settingsEmailDisplay">—</div></div>
           </div>
           <div class="settings-info-row">
             <div class="si-icon"><i class="fa-solid fa-clock"></i></div>
-            <div><div class="si-lbl">Última sessão</div><div class="si-val" id="settingsLastLogin" style="font-size:.82rem">—</div></div>
+            <div><div class="si-lbl">Última sessão</div><div class="si-val text-xs" id="settingsLastLogin">—</div></div>
           </div>
           <div class="settings-info-row">
             <div class="si-icon"><i class="fa-solid fa-key"></i></div>
@@ -506,12 +554,12 @@ textarea.finp{resize:vertical}
           </div>
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:1.2rem">
+         <div class="settings-stack">
 
           <!-- Alterar email de recuperação -->
           <div class="fc">
             <div class="fc-title"><i class="fa-solid fa-envelope"></i> Email de Recuperação</div>
-            <p style="font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.65;margin-bottom:1.1rem">Este email é usado para recuperar o acesso quando a palavra-passe é esquecida. Certifique-se de que o email está correto e acessível.</p>
+               <p class="settings-muted">Este email é usado para recuperar o acesso quando a palavra-passe é esquecida. Certifique-se de que o email está correto e acessível.</p>
             <label class="flbl" for="settingsEmail">Endereço de email</label>
             <input type="email" id="settingsEmail" class="finp" placeholder="gestor@rppengenharia.com">
             <div class="row-btns">
@@ -522,8 +570,8 @@ textarea.finp{resize:vertical}
           <!-- Alterar palavra-passe -->
           <div class="fc">
             <div class="fc-title"><i class="fa-solid fa-lock"></i> Alterar Palavra-passe</div>
-            <p style="font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.65;margin-bottom:1.1rem">Introduza a palavra-passe atual e depois defina uma nova. Use pelo menos 6 caracteres.</p>
-            <div style="display:flex;flex-direction:column;gap:.9rem">
+            <p class="settings-muted">Introduza a palavra-passe atual e depois defina uma nova. Use pelo menos 6 caracteres.</p>
+            <div class="auth-fields">
               <div>
                 <label class="flbl" for="settingsOldPW">Palavra-passe atual</label>
                 <div class="pw-wrap">
